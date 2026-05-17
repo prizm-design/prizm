@@ -8,6 +8,11 @@ import { ThemeProvider } from "@/lib/theme-context";
 import { ZoneRouteSync } from "@/lib/zone-detector";
 import "./globals.css";
 
+// Next.js's `metadata.icons` does NOT auto-prefix URLs with `basePath` — known
+// gotcha. We mirror the same NEXT_BASE_PATH env var read by next.config.mjs so
+// favicon URLs resolve correctly when deployed under a subpath (e.g. /prizm).
+const basePath = process.env.NEXT_BASE_PATH ?? "";
+
 export const metadata: Metadata = {
   title: {
     default: "PRIZM 4.0 — A DSTA design system",
@@ -17,9 +22,9 @@ export const metadata: Metadata = {
     "PRIZM 4.0 is the DSTA design system. Built for two product families — C3 and Enterprise — and engineered for both developers and AI.",
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "32x32" },
-      { url: "/favicon-32.png", type: "image/png", sizes: "32x32" },
-      { url: "/favicon.svg", type: "image/svg+xml", sizes: "any" },
+      { url: `${basePath}/favicon.ico`, sizes: "32x32" },
+      { url: `${basePath}/favicon-32.png`, type: "image/png", sizes: "32x32" },
+      { url: `${basePath}/favicon.svg`, type: "image/svg+xml", sizes: "any" },
     ],
   },
 };
