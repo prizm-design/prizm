@@ -1,0 +1,53 @@
+{
+  "name": "prizm",
+  "version": "4.0.0-alpha.1",
+  "private": true,
+  "description": "PRIZM 4.0 — a design system for C3 and Enterprise products, built for developers and AI",
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "format": "biome format --write .",
+    "typecheck": "tsc --noEmit",
+    "audit:airgap": "tsx scripts/audit-airgap.ts",
+    "build:offline": "tsx scripts/build-offline.ts",
+    "generate:llms-api": "tsx scripts/generate-llms-api.ts",
+    "generate:favicon-png": "tsx scripts/generate-favicon-png.ts"
+  },
+  "dependencies": {
+    "@base-ui-components/react": "^1.0.0-alpha.5",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.460.0",
+    "next": "^15.0.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwind-merge": "^2.5.4"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@mdx-js/loader": "^3.1.0",
+    "@mdx-js/react": "^3.1.0",
+    "@next/mdx": "^15.0.3",
+    "@tailwindcss/postcss": "^4.0.0-beta.4",
+    "@types/mdx": "^2.0.13",
+    "@types/node": "^22.9.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "gray-matter": "^4.0.3",
+    "postcss": "^8.4.49",
+    "sharp": "^0.34.5",
+    "shiki": "^1.23.1",
+    "tailwindcss": "^4.0.0-beta.4",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "packageManager": "pnpm@9.12.3"
+}
