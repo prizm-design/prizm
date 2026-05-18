@@ -1,4 +1,4 @@
-import { ArrowRight, FileText, Layout, Target } from "lucide-react";
+import { ArrowRight, Layout, Target } from "lucide-react";
 import Link from "next/link";
 
 export const metadata = { title: "C3" };
@@ -20,7 +20,7 @@ export default function C3LandingPage() {
         </p>
       </div>
 
-      <div className="mt-12 grid gap-4 md:grid-cols-3">
+      <div className="mt-12 grid gap-4 md:grid-cols-2">
         <ZoneCard
           icon={<Target className="h-5 w-5" />}
           title="Overview"
@@ -32,14 +32,6 @@ export default function C3LandingPage() {
           title="Templates"
           description="Layout scaffolds tuned for operator stations, dashboards, and tactical views."
           href="/c3/templates"
-          badge="Coming in Phase 3"
-        />
-        <ZoneCard
-          icon={<FileText className="h-5 w-5" />}
-          title="Pages"
-          description="Ready-to-use feature page designs for C3 product teams."
-          href="/c3/pages"
-          badge="Coming in Phase 3"
         />
       </div>
     </div>
@@ -51,13 +43,11 @@ function ZoneCard({
   title,
   description,
   href,
-  badge,
 }: {
   icon: React.ReactNode;
   title: string;
   description: string;
   href: string;
-  badge?: string;
 }) {
   return (
     <Link
@@ -69,11 +59,6 @@ function ZoneCard({
       </div>
       <h2 className="mt-4 text-xl font-semibold tracking-tight">{title}</h2>
       <p className="mt-2 text-sm text-fg-muted">{description}</p>
-      {badge && (
-        <span className="mt-3 inline-block rounded-full border border-border bg-bg px-2 py-0.5 text-[11px] text-fg-subtle">
-          {badge}
-        </span>
-      )}
       <div className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-transform group-hover:translate-x-0.5">
         Explore <ArrowRight className="h-3.5 w-3.5" />
       </div>
