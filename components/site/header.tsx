@@ -1,8 +1,9 @@
 "use client";
 
-import { ChevronDown, Github, Search } from "lucide-react";
+import { ChevronDown, Github, Menu, Search } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { Sheet, SheetBody, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import { CommandPalette, useCommandPaletteShortcut } from "./command-palette";
 import { ThemeToggle } from "./theme-toggle";
@@ -54,6 +55,7 @@ const NAV = [
 export function Header() {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [paletteOpen, setPaletteOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   useCommandPaletteShortcut(() => setPaletteOpen(true));
 
   return (
@@ -113,7 +115,7 @@ export function Header() {
           )}
         </nav>
 
-        <div className="flex items-center gap-1">
+        <div className="ml-auto flex items-center gap-1 md:ml-0">
           <button
             type="button"
             onClick={() => setPaletteOpen(true)}
@@ -146,10 +148,72 @@ export function Header() {
             <Github className="h-4 w-4" />
           </a>
           <ThemeToggle />
+          <button
+            type="button"
+            onClick={() => setMobileOpen(true)}
+            aria-label="Open navigation"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-md text-fg-muted transition-colors hover:bg-bg-muted hover:text-fg md:hidden"
+          >
+            <Menu className="h-4 w-4" />
+          </button>
         </div>
       </div>
       <CommandPalette open={paletteOpen} onOpenChange={setPaletteOpen} />
+      <MobileNav open={mobileOpen} onOpenChange={setMobileOpen} />
     </header>
+  );
+}
+
+function MobileNav({
+  open,
+  onOpenChange,
+}: {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+}) {
+  const close = () => onOpenChange(false);
+  const focusRef = useRef<HTMLElement>(null);
+  return (
+    <Sheet open={open} onOpenChange={onOpenChange}>
+      <SheetContent side="left" className="w-[85%] max-w-sm" initialFocus={focusRef}>
+        <SheetHeader>
+          <SheetTitle className="flex items-center gap-2">
+            <PrizmMark />
+            <span className="inline-flex items-baseline gap-1.5">
+              PRIZM 4.0
+              <span className="text-[10px] font-medium uppercase tracking-widest text-fg-subtle">
+                DSTA
+              </span>
+            </span>
+          </SheetTitle>
+        </SheetHeader>
+        <SheetBody className="px-0 py-2">
+          <nav ref={focusRef} tabIndex={-1} className="flex flex-col outline-none">
+            {NAV.map((item) => (
+              <div key={item.label} className="flex flex-col">
+                <Link
+                  href={item.href}
+                  onClick={close}
+                  className="px-6 py-2.5 text-sm font-semibold text-fg transition-colors hover:bg-bg-muted"
+                >
+                  {item.label}
+                </Link>
+                {item.children?.map((child) => (
+                  <Link
+                    key={child.href}
+                    href={child.href}
+                    onClick={close}
+                    className="py-2 pl-10 pr-6 text-sm text-fg-muted transition-colors hover:bg-bg-muted hover:text-fg"
+                  >
+                    {child.label}
+                  </Link>
+                ))}
+              </div>
+            ))}
+          </nav>
+        </SheetBody>
+      </SheetContent>
+    </Sheet>
   );
 }
 
