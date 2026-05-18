@@ -49,8 +49,8 @@ export default function C3OverviewPage() {
       <h2 className="mt-12 text-2xl font-semibold tracking-tight">When to use C3 vs Enterprise</h2>
       <p className="mt-4 text-fg-muted">
         Choose C3 when the product is operated by trained users in sustained monitoring sessions.
-        Choose Enterprise when the product serves a wider audience under normal working conditions
-        — back-office applications, customer-facing tools, internal portals.
+        Choose Enterprise when the product serves a wider audience under normal working conditions —
+        back-office applications, customer-facing tools, internal portals.
       </p>
     </article>
   );

@@ -168,15 +168,12 @@ function formatDate(iso: string): string {
 export default function ChangelogPage() {
   return (
     <article className="mx-auto max-w-3xl px-6 py-12">
-      <div className="text-xs font-medium uppercase tracking-widest text-accent">
-        Overview
-      </div>
+      <div className="text-xs font-medium uppercase tracking-widest text-accent">Overview</div>
       <h1 className="mt-2 text-4xl font-semibold tracking-tight">Changelog</h1>
       <p className="mt-4 text-lg text-fg-muted">
-        What&rsquo;s new in PRIZM — new components, new templates, design language
-        tweaks, and notable fixes. Entries are curated, not auto-generated from git;
-        if a change would affect a team copying PRIZM into their codebase, it
-        appears here.
+        What&rsquo;s new in PRIZM — new components, new templates, design language tweaks, and
+        notable fixes. Entries are curated, not auto-generated from git; if a change would affect a
+        team copying PRIZM into their codebase, it appears here.
       </p>
 
       <div className="mt-12 space-y-12">
@@ -210,9 +207,7 @@ export default function ChangelogPage() {
                     ) : (
                       <div className="text-base font-semibold text-fg">{entry.title}</div>
                     )}
-                    {entry.body && (
-                      <p className="mt-1 text-sm text-fg-muted">{entry.body}</p>
-                    )}
+                    {entry.body && <p className="mt-1 text-sm text-fg-muted">{entry.body}</p>}
                   </div>
                 </li>
               ))}
