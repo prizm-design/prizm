@@ -42,12 +42,6 @@ const CHANGELOG: ChangelogDay[] = [
     date: "2026-05-18",
     entries: [
       {
-        type: "foundation",
-        title: "Introduction page and Changelog added",
-        body: "Overview gains an Introduction (why PRIZM, what changed in 4.0, what's next) and a Changelog. Site nav reordered to Overview → Foundations → Components → C3 → Enterprise so new readers orient before they browse.",
-        href: "/docs/introduction",
-      },
-      {
         type: "design",
         title: "Liquid glass blur tuned to 8 / 12 px",
         body: "Chrome and panel blur reduced from 12 / 24 px so underlying canvas activity (map markers, route lines, terrain) stays readable through glass. Aligned with Apple's thin material tiers.",
@@ -60,22 +54,10 @@ const CHANGELOG: ChangelogDay[] = [
         href: "/components/combobox",
       },
       {
-        type: "component",
-        title: "Toast example wired up",
-        body: "The Toast component page now ships a working preview with Success / Error / Info triggers. ToastDemo lives as a client component under components/site/ so it can call the imperative toast.add() singleton.",
-        href: "/components/toast",
-      },
-      {
         type: "fix",
         title: "C3 App Shell theme toggle in liquid glass mode",
         body: "Toggling dark ↔ light while glass was on left the chrome and side panels visually stuck on the old tint until a browser tab switch. Force a one-frame backdrop-filter suppression on mode change so the GPU layer invalidates.",
         href: "/c3/templates/app-shell",
-      },
-      {
-        type: "foundation",
-        title: "Icons page mobile layout fixed",
-        body: "The Accessibility section's card grid was wider than the viewport on small screens, which forced page-level horizontal scroll and made the Custom SVGs section look broken. Now both sections fit cleanly.",
-        href: "/docs/icons",
       },
     ],
   },
@@ -113,7 +95,7 @@ const CHANGELOG: ChangelogDay[] = [
       {
         type: "component",
         title: "44-component baseline complete",
-        body: "All 44 primitives ported and marked stable. Drawer merged into Sheet (consolidated four-side panel API). Sidebar removed — assembled sidebars will ship as templates where the per-zone divergence is more naturally expressed.",
+        body: "All 44 primitives ported and marked stable.",
         href: "/components",
       },
       {
