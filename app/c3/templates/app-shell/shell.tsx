@@ -255,6 +255,34 @@ export function C3AppShell({
     setMode((m) => (m === "dark" ? "light" : "dark"));
   }
 
+  // WebKit/Blink keep a compositor cache for elements with `backdrop-filter`.
+  // When the swatch class flips (dark ↔ light) and the inherited
+  // `--prizm-glass-*` variables resolve to new values, the CSS engine has the
+  // right values but the GPU layer doesn't always invalidate, so the surface
+  // visually stays in the old tint until a tab-switch forces a full recomposite.
+  // Force the issue by briefly suppressing `backdrop-filter`, letting the
+  // surfaces repaint with the new background-color, then restoring it on the
+  // next frame.
+  useEffect(() => {
+    if (!glass) return;
+    const root = document.querySelector(`.swatch-c3-${mode}`);
+    if (!root) return;
+    const surfaces = root.querySelectorAll<HTMLElement>(
+      ".surface-glass-chrome, .surface-glass-panel",
+    );
+    surfaces.forEach((el) => {
+      el.style.setProperty("backdrop-filter", "none", "important");
+      el.style.setProperty("-webkit-backdrop-filter", "none", "important");
+    });
+    const raf = requestAnimationFrame(() => {
+      surfaces.forEach((el) => {
+        el.style.removeProperty("backdrop-filter");
+        el.style.removeProperty("-webkit-backdrop-filter");
+      });
+    });
+    return () => cancelAnimationFrame(raf);
+  }, [mode, glass]);
+
   function toggleGlass() {
     setGlass((g) => !g);
   }
