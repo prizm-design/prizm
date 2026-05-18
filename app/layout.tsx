@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     template: "%s · PRIZM 4.0",
   },
   description:
-    "PRIZM 4.0 is the DSTA design system. Built for two product families — C3 and Enterprise — and engineered for both developers and AI.",
+    "PRIZM 4.0 is a DSTA design system. Built for two product families — C3 and Enterprise — and engineered for both developers and AI.",
   icons: {
     icon: [
       { url: `${basePath}/favicon.ico`, sizes: "32x32" },

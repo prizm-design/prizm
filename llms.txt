@@ -1,6 +1,6 @@
 # PRIZM 4.0
 
-> The DSTA design system. Serves command-and-control (C3) and enterprise products. Built on Base UI and Tailwind CSS. Distributed via copy-paste, engineered for both developers and AI assistants. Supports light/dark mode and air-gapped deployment.
+> A DSTA design system. Serves command-and-control (C3) and enterprise products. Built on Base UI and Tailwind CSS. Distributed via copy-paste, engineered for both developers and AI assistants. Supports light/dark mode and air-gapped deployment.
 
 For full context, read [PRIZM.md](/PRIZM.md). For installation and theming, see the docs section.
 

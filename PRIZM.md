@@ -1,10 +1,10 @@
 # PRIZM 4.0 — Brief for AI assistants
 
-PRIZM 4.0 is the DSTA design system. If you are an AI assistant helping a developer build with PRIZM 4.0, read this file first. It contains everything you need to bootstrap work using PRIZM components and templates.
+PRIZM 4.0 is a DSTA design system. If you are an AI assistant helping a developer build with PRIZM 4.0, read this file first. It contains everything you need to bootstrap work using PRIZM components and templates.
 
 ## What PRIZM 4.0 is
 
-PRIZM 4.0 is the **DSTA design system**. It serves two distinct product families:
+PRIZM 4.0 is **a DSTA design system**. It serves two distinct product families:
 
 - **C3** — command and control systems. Dense data display, tactical UI, high-contrast surfaces. Used in operations centers, mission control, dispatch, network monitoring.
 - **Enterprise** — websites and applications. Calm, spacious, professional. Used in dashboards, forms, marketing pages, customer portals.
