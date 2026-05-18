@@ -63,4 +63,6 @@ Start with [PRIZM.md](./PRIZM.md). It explains conventions, theming, distributio
 
 ## License
 
-TBD.
+[MIT](./LICENSE) © Defence Science and Technology Agency (DSTA), Singapore.
+
+PRIZM is permissively licensed for both public and air-gapped use. Copy components into your project, modify them, and ship — keep the copyright notice. The license matches the underlying stack (Base UI, Tailwind, Next.js — all MIT; lucide-react is ISC) so consumers face no license-compatibility friction.

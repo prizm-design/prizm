@@ -253,7 +253,7 @@ export default function IconsFoundationPage() {
           The two rules that cover 95% of cases:
         </p>
         <div className="mt-6 grid gap-4 md:grid-cols-2">
-          <div className="rounded-lg border border-border bg-surface p-5">
+          <div className="min-w-0 rounded-lg border border-border bg-surface p-5">
             <p className="text-sm font-semibold text-fg">Decorative (alongside a visible label)</p>
             <p className="mt-2 text-sm text-fg-muted">
               Add <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">aria-hidden</code> so screen readers skip the icon. The label conveys the meaning.
@@ -268,7 +268,7 @@ export default function IconsFoundationPage() {
               />
             </div>
           </div>
-          <div className="rounded-lg border border-border bg-surface p-5">
+          <div className="min-w-0 rounded-lg border border-border bg-surface p-5">
             <p className="text-sm font-semibold text-fg">Meaningful (icon-only control)</p>
             <p className="mt-2 text-sm text-fg-muted">
               Put <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">aria-label</code> on the <em>container</em>, not the icon. The icon stays decorative.
