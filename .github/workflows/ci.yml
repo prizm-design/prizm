@@ -42,6 +42,9 @@ jobs:
       - name: Component audit (registry / API parity)
         run: pnpm audit:components
 
+      - name: Contrast audit (WCAG AA — 4.5:1 text, 3:1 fill)
+        run: pnpm audit:contrast
+
       - name: Internal link check
         run: pnpm check:links
 
