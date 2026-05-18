@@ -125,7 +125,7 @@ export function Header() {
             )}
           >
             <Search className="h-3.5 w-3.5" />
-            <span>Search components</span>
+            <span>Search</span>
             <kbd className="rounded border border-border bg-bg px-1.5 py-0.5 text-[10px] text-fg-subtle">
               ⌘K
             </kbd>
