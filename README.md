@@ -24,49 +24,16 @@ Before running, drop self-hosted font files into `public/fonts/` — see `public
 
 ## Scripts
 
-### Dev
-
 | Script | What it does |
 |--------|--------------|
 | `pnpm dev` | Run the docs site in dev mode |
-| `pnpm dev:clean` | Wipe `.next` and start dev — use after a dependency change |
-
-### Format & lint
-
-| Script | What it does |
-|--------|--------------|
-| `pnpm lint` | Run Biome (lint + format check, no writes) |
-| `pnpm lint:fix` | Run Biome with safe autofixes applied |
-| `pnpm format` | Format the codebase with Biome |
-
-### Verify
-
-| Script | What it does |
-|--------|--------------|
-| `pnpm typecheck` | Run the TypeScript compiler (`tsc --noEmit`) |
-| `pnpm verify` | Run the full CI chain locally — lint, typecheck, audits, link check, and static build. Use this before pushing to confirm CI will pass. |
-
-### Audits & checks
-
-| Script | What it does |
-|--------|--------------|
-| `pnpm audit:airgap` | Scan the repo for external URL references |
-| `pnpm audit:components` | Verify `components-registry.ts` and `components-api.ts` are aligned |
-| `pnpm check:links` | Validate every internal link uses the right primitive (`<Link>` for routes, `<a>` for static files) |
-
-### Build & release
-
-| Script | What it does |
-|--------|--------------|
 | `pnpm build` | Build the static export to `out/` |
+| `pnpm verify` | Run the full CI chain locally — use before pushing |
+| `pnpm lint` | Run Biome (lint + format check) |
+| `pnpm typecheck` | Run the TypeScript compiler |
 | `pnpm build:offline` | Produce release tarballs for air-gapped consumers |
 
-### Generation
-
-| Script | What it does |
-|--------|--------------|
-| `pnpm generate:llms-api` | Lift `components-api.ts` data into each per-component `llms/<slug>.md` |
-| `pnpm generate:favicon-png` | Regenerate `public/favicon.ico` and `public/favicon-32.png` from `public/favicon.svg` |
+Run `pnpm run` to see the full list, including audits, generation tasks, and CI helpers.
 
 ## Project structure
 
