@@ -1,11 +1,10 @@
+import { cn } from "@/lib/utils";
 import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
 import type { ComponentPropsWithoutRef } from "react";
-import { cn } from "@/lib/utils";
 
 export function Pagination({ className, ...props }: ComponentPropsWithoutRef<"nav">) {
   return (
     <nav
-      role="navigation"
       aria-label="Pagination"
       className={cn("mx-auto flex w-full justify-center", className)}
       {...props}
@@ -14,9 +13,7 @@ export function Pagination({ className, ...props }: ComponentPropsWithoutRef<"na
 }
 
 export function PaginationContent({ className, ...props }: ComponentPropsWithoutRef<"ul">) {
-  return (
-    <ul className={cn("flex flex-row items-center gap-1", className)} {...props} />
-  );
+  return <ul className={cn("flex flex-row items-center gap-1", className)} {...props} />;
 }
 
 export function PaginationItem({ className, ...props }: ComponentPropsWithoutRef<"li">) {

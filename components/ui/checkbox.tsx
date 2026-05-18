@@ -1,9 +1,9 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { Checkbox as BaseCheckbox } from "@base-ui-components/react/checkbox";
 import { Check } from "lucide-react";
 import type { ComponentPropsWithoutRef } from "react";
-import { cn } from "@/lib/utils";
 
 export function Checkbox({
   className,

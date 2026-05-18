@@ -19,7 +19,21 @@ const CORE_PRINCIPLES: Principle[] = [
     why: "People locate familiar information faster when it occupies a predictable spatial location. Research on attention and perception shows that fixed-position indicators reduce visual search time and prevent change-blindness errors that occur when content migrates between screens.",
     how: (
       <>
-        Recurring UI — header chrome, primary navigation, account controls, status indicators, alerts — sits in the same screen position across templates, regardless of which app or page is active. The <Link href="/components/badge" className="text-accent hover:underline">Badge</Link>, <Link href="/components/alert" className="text-accent hover:underline">Alert</Link>, and <Link href="/components/toast" className="text-accent hover:underline">Toast</Link> components inherit consistent anchoring rules.
+        Recurring UI — header chrome, primary navigation, account controls, status indicators,
+        alerts — sits in the same screen position across templates, regardless of which app or page
+        is active. The{" "}
+        <Link href="/components/badge" className="text-accent hover:underline">
+          Badge
+        </Link>
+        ,{" "}
+        <Link href="/components/alert" className="text-accent hover:underline">
+          Alert
+        </Link>
+        , and{" "}
+        <Link href="/components/toast" className="text-accent hover:underline">
+          Toast
+        </Link>{" "}
+        components inherit consistent anchoring rules.
       </>
     ),
   },
@@ -31,9 +45,18 @@ const CORE_PRINCIPLES: Principle[] = [
     how: (
       <>
         Icon rails cap at ~8 apps. Side panels group content into ≤5 sections.{" "}
-        <Link href="/components/menu" className="text-accent hover:underline">Menu</Link>,{" "}
-        <Link href="/components/navigation-menu" className="text-accent hover:underline">Navigation Menu</Link>, and{" "}
-        <Link href="/components/tabs" className="text-accent hover:underline">Tabs</Link> are the tools for keeping breadth low while preserving depth.
+        <Link href="/components/menu" className="text-accent hover:underline">
+          Menu
+        </Link>
+        ,{" "}
+        <Link href="/components/navigation-menu" className="text-accent hover:underline">
+          Navigation Menu
+        </Link>
+        , and{" "}
+        <Link href="/components/tabs" className="text-accent hover:underline">
+          Tabs
+        </Link>{" "}
+        are the tools for keeping breadth low while preserving depth.
       </>
     ),
   },
@@ -44,7 +67,18 @@ const CORE_PRINCIPLES: Principle[] = [
     why: "Fitts' law predicts movement time as a function of target size and distance. Small or crowded targets compound error rates, and the cost of a misclick grows with the stakes of the action. Spatial separation between destructive and confirming actions is a primary defense against accidental commits.",
     how: (
       <>
-        The <Link href="/components/button" className="text-accent hover:underline">Button</Link> primitive ships in four sizes; templates use <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">lg</code> or <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">md</code> for primary actions. The <Link href="/components/dialog" className="text-accent hover:underline">Dialog</Link> footer pattern places Confirm and Cancel apart, never paired tightly.
+        The{" "}
+        <Link href="/components/button" className="text-accent hover:underline">
+          Button
+        </Link>{" "}
+        primitive ships in four sizes; templates use{" "}
+        <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">lg</code> or{" "}
+        <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">md</code> for primary
+        actions. The{" "}
+        <Link href="/components/dialog" className="text-accent hover:underline">
+          Dialog
+        </Link>{" "}
+        footer pattern places Confirm and Cancel apart, never paired tightly.
       </>
     ),
   },
@@ -56,9 +90,18 @@ const CORE_PRINCIPLES: Principle[] = [
     how: (
       <>
         Templates declare explicit primary / secondary / on-demand regions.{" "}
-        <Link href="/components/hover-card" className="text-accent hover:underline">Hover Card</Link>,{" "}
-        <Link href="/components/popover" className="text-accent hover:underline">Popover</Link>, and{" "}
-        <Link href="/components/sheet" className="text-accent hover:underline">Sheet</Link> are the disclosure primitives.
+        <Link href="/components/hover-card" className="text-accent hover:underline">
+          Hover Card
+        </Link>
+        ,{" "}
+        <Link href="/components/popover" className="text-accent hover:underline">
+          Popover
+        </Link>
+        , and{" "}
+        <Link href="/components/sheet" className="text-accent hover:underline">
+          Sheet
+        </Link>{" "}
+        are the disclosure primitives.
       </>
     ),
   },
@@ -72,7 +115,12 @@ const C3_PRINCIPLES: Principle[] = [
     why: "Operator stations run in dim ambient light for hours. Dark interfaces reduce eye strain, preserve dark adaptation for any window-out reference, and minimize scatter on cockpit-style glass. MIL-STD-1472 (DoD human engineering criteria) reflects the same logic for operator workstations.",
     how: (
       <>
-        The dark variant of <Link href="/c3" className="text-accent hover:underline">C3</Link> is the default surface for templates. Light is supported but expected to be the minority case.
+        The dark variant of{" "}
+        <Link href="/c3" className="text-accent hover:underline">
+          C3
+        </Link>{" "}
+        is the default surface for templates. Light is supported but expected to be the minority
+        case.
       </>
     ),
   },
@@ -84,7 +132,12 @@ const C3_PRINCIPLES: Principle[] = [
     how: (
       <>
         Use{" "}
-        <Link href="/components/badge" className="text-accent hover:underline">Badge</Link> variants tiered by severity (success → warning → danger). Reserve motion (the hero-style pulse) for genuinely urgent indicators. Audio cues, when added, are reserved for the highest tier.
+        <Link href="/components/badge" className="text-accent hover:underline">
+          Badge
+        </Link>{" "}
+        variants tiered by severity (success → warning → danger). Reserve motion (the hero-style
+        pulse) for genuinely urgent indicators. Audio cues, when added, are reserved for the highest
+        tier.
       </>
     ),
   },
@@ -95,8 +148,16 @@ const C3_PRINCIPLES: Principle[] = [
     why: "C3 actions often affect the real world — a deployed asset is deployed. Norman's gulf-of-execution and Reason's slip / lapse error taxonomy both argue for a deliberate confirmation step that requires the operator to *re-engage* with what they're about to do, not just click again.",
     how: (
       <>
-        Destructive flows use <Link href="/components/dialog" className="text-accent hover:underline">Dialog</Link> with an explicit summary of the action and its consequences, before the commit button. The <Link href="/components/button" className="text-accent hover:underline">Button</Link>{" "}
-        <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">danger</code> variant is reserved for these final commits.
+        Destructive flows use{" "}
+        <Link href="/components/dialog" className="text-accent hover:underline">
+          Dialog
+        </Link>{" "}
+        with an explicit summary of the action and its consequences, before the commit button. The{" "}
+        <Link href="/components/button" className="text-accent hover:underline">
+          Button
+        </Link>{" "}
+        <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">danger</code> variant
+        is reserved for these final commits.
       </>
     ),
   },
@@ -107,7 +168,8 @@ const C3_PRINCIPLES: Principle[] = [
     why: "Under high cognitive load and time pressure, operators revert to overlearned motor patterns. Inconsistent layouts force them back into deliberate visual search — exactly when they have least capacity for it.",
     how: (
       <>
-        All C3 templates compose the same App Shell. The icon-rail order, badge positions, and command surfaces stay constant. Per-app content lives inside the chrome, never replacing it.
+        All C3 templates compose the same App Shell. The icon-rail order, badge positions, and
+        command surfaces stay constant. Per-app content lives inside the chrome, never replacing it.
       </>
     ),
   },
@@ -118,15 +180,45 @@ const C3_PRINCIPLES: Principle[] = [
     why: "C3 operators work inside a continuous spatial mental model. When a panel pops on top and covers the underlying canvas entirely, the operator has to mentally re-anchor when it closes. Translucent surfaces preserve the spatial relationship so the canvas remains the operator's persistent reference frame. Reserved for floating surfaces only — alerts, emergency dialogs, and critical-error states stay solid so legibility under stress is uncompromised.",
     how: (
       <>
-        See <Link href="/docs/liquid-glass" className="text-accent hover:underline">Liquid glass</Link>. The treatment ships with{" "}
-        <Link href="/components/sheet" className="text-accent hover:underline">Sheet</Link>,{" "}
-        <Link href="/components/popover" className="text-accent hover:underline">Popover</Link>,{" "}
-        <Link href="/components/tooltip" className="text-accent hover:underline">Tooltip</Link>,{" "}
-        <Link href="/components/hover-card" className="text-accent hover:underline">HoverCard</Link>,{" "}
-        <Link href="/components/menu" className="text-accent hover:underline">Menu</Link>, and{" "}
-        <Link href="/components/context-menu" className="text-accent hover:underline">ContextMenu</Link> via the <code className="rounded bg-bg-muted px-1 py-0.5 font-mono text-xs">variant="glass"</code> prop, or via the{" "}
-        <code className="rounded bg-bg-muted px-1 py-0.5 font-mono text-xs">surface-glass-chrome</code> /{" "}
-        <code className="rounded bg-bg-muted px-1 py-0.5 font-mono text-xs">surface-glass-panel</code> utility classes for custom chrome.
+        See{" "}
+        <Link href="/docs/liquid-glass" className="text-accent hover:underline">
+          Liquid glass
+        </Link>
+        . The treatment ships with{" "}
+        <Link href="/components/sheet" className="text-accent hover:underline">
+          Sheet
+        </Link>
+        ,{" "}
+        <Link href="/components/popover" className="text-accent hover:underline">
+          Popover
+        </Link>
+        ,{" "}
+        <Link href="/components/tooltip" className="text-accent hover:underline">
+          Tooltip
+        </Link>
+        ,{" "}
+        <Link href="/components/hover-card" className="text-accent hover:underline">
+          HoverCard
+        </Link>
+        ,{" "}
+        <Link href="/components/menu" className="text-accent hover:underline">
+          Menu
+        </Link>
+        , and{" "}
+        <Link href="/components/context-menu" className="text-accent hover:underline">
+          ContextMenu
+        </Link>{" "}
+        via the{" "}
+        <code className="rounded bg-bg-muted px-1 py-0.5 font-mono text-xs">variant="glass"</code>{" "}
+        prop, or via the{" "}
+        <code className="rounded bg-bg-muted px-1 py-0.5 font-mono text-xs">
+          surface-glass-chrome
+        </code>{" "}
+        /{" "}
+        <code className="rounded bg-bg-muted px-1 py-0.5 font-mono text-xs">
+          surface-glass-panel
+        </code>{" "}
+        utility classes for custom chrome.
       </>
     ),
   },
@@ -141,8 +233,15 @@ const ENTERPRISE_PRINCIPLES: Principle[] = [
     how: (
       <>
         Forms split into "essential" and "advanced" sections via{" "}
-        <Link href="/components/tabs" className="text-accent hover:underline">Tabs</Link> or{" "}
-        <Link href="/components/popover" className="text-accent hover:underline">Popover</Link>. Settings pages group rare options behind a "More" affordance rather than scrolling them all into view.
+        <Link href="/components/tabs" className="text-accent hover:underline">
+          Tabs
+        </Link>{" "}
+        or{" "}
+        <Link href="/components/popover" className="text-accent hover:underline">
+          Popover
+        </Link>
+        . Settings pages group rare options behind a "More" affordance rather than scrolling them
+        all into view.
       </>
     ),
   },
@@ -153,7 +252,12 @@ const ENTERPRISE_PRINCIPLES: Principle[] = [
     why: "Form research consistently shows that grouping fields the way users *think* about them (Identity → Address → Preferences) outperforms grouping by storage layout (Profile table → Address table). Inline validation cuts correction loops dramatically.",
     how: (
       <>
-        The <Link href="/components/field" className="text-accent hover:underline">Field</Link> wrapper composes label, hint, error, and input — supporting inline validation. Form templates demonstrate logical grouping and a "required-first" ordering.
+        The{" "}
+        <Link href="/components/field" className="text-accent hover:underline">
+          Field
+        </Link>{" "}
+        wrapper composes label, hint, error, and input — supporting inline validation. Form
+        templates demonstrate logical grouping and a "required-first" ordering.
       </>
     ),
   },
@@ -164,8 +268,12 @@ const ENTERPRISE_PRINCIPLES: Principle[] = [
     why: "Tufte's data-ink principle and Gestalt proximity grouping both point at the same thing — separation between groups is communicated more reliably by space than by lines or color. Enterprise pages are read; spacing controls reading rhythm.",
     how: (
       <>
-        The <Link href="/docs/surface-and-motion" className="text-accent hover:underline">spacing scale</Link>{" "}
-        is generous in Enterprise. Cards have padding, sections breathe. Borders are used for separation, not decoration.
+        The{" "}
+        <Link href="/docs/surface-and-motion" className="text-accent hover:underline">
+          spacing scale
+        </Link>{" "}
+        is generous in Enterprise. Cards have padding, sections breathe. Borders are used for
+        separation, not decoration.
       </>
     ),
   },
@@ -176,7 +284,12 @@ const ENTERPRISE_PRINCIPLES: Principle[] = [
     why: "Confirmation is the opposite tradeoff from C3. In Enterprise contexts, most actions are cheap to reverse and users perform them frequently — making the common case slower to protect the rare case fails the cost-benefit calculation. C3 templates flip this; Enterprise templates lean toward optimistic UI with undo.",
     how: (
       <>
-        Enterprise destructive flows show a <Link href="/components/toast" className="text-accent hover:underline">Toast</Link> with an Undo action rather than a Dialog confirm. Bulk and truly irreversible actions still confirm — the heuristic is "could a careful user undo this in 10 seconds?"
+        Enterprise destructive flows show a{" "}
+        <Link href="/components/toast" className="text-accent hover:underline">
+          Toast
+        </Link>{" "}
+        with an Undo action rather than a Dialog confirm. Bulk and truly irreversible actions still
+        confirm — the heuristic is "could a careful user undo this in 10 seconds?"
       </>
     ),
   },
@@ -196,7 +309,9 @@ export default function PrinciplesPage() {
       {/* ============================================================
           Core principles
           ============================================================ */}
-      <h2 className="mt-14 text-2xl font-semibold tracking-tight">Core — apply across both products</h2>
+      <h2 className="mt-14 text-2xl font-semibold tracking-tight">
+        Core — apply across both products
+      </h2>
       <p className="mt-3 text-fg-muted">
         Universal usability principles that show up in every PRIZM template, regardless of product.
       </p>
@@ -223,7 +338,9 @@ export default function PrinciplesPage() {
       {/* ============================================================
           Enterprise principles
           ============================================================ */}
-      <h2 className="mt-16 text-2xl font-semibold tracking-tight">Enterprise — for websites and applications</h2>
+      <h2 className="mt-16 text-2xl font-semibold tracking-tight">
+        Enterprise — for websites and applications
+      </h2>
       <p className="mt-3 text-fg-muted">
         Principles specific to Enterprise contexts — webapps, dashboards, marketing pages. Calmer,
         more progressive, more forgiving than C3 patterns.
@@ -242,25 +359,74 @@ export default function PrinciplesPage() {
         The works cited above. PRIZM doesn't reproduce these findings — it inherits them.
       </p>
       <ul className="mt-6 space-y-2 text-sm text-fg-muted">
-        <li>Cooper, A., Reimann, R., &amp; Cronin, D. (2007). <em>About Face 3: The Essentials of Interaction Design.</em></li>
-        <li>Driskell, J. E., &amp; Salas, E. (1996). <em>Stress and Human Performance.</em></li>
-        <li>Endsley, M. R. (1995). Toward a Theory of Situation Awareness in Dynamic Systems. <em>Human Factors</em>, 37(1).</li>
-        <li>Fitts, P. M. (1954). The Information Capacity of the Human Motor System in Controlling the Amplitude of Movement. <em>Journal of Experimental Psychology</em>, 47.</li>
-        <li>Jarrett, C., &amp; Gaffney, G. (2009). <em>Forms that Work: Designing Web Forms for Usability.</em></li>
-        <li>Lees, F. P. (1974). Quantification of Man-Machine System Reliability in Process Control. <em>IEEE Transactions on Reliability</em>.</li>
-        <li>Lidwell, W., Holden, K., &amp; Butler, J. (2010). <em>Universal Principles of Design.</em></li>
-        <li>Miller, G. A. (1956). The Magical Number Seven, Plus or Minus Two. <em>Psychological Review</em>, 63(2).</li>
-        <li>Nielsen, J. (1994). <em>Usability Engineering.</em></li>
-        <li>Nielsen, J. (2006). Progressive Disclosure. <em>Nielsen Norman Group.</em></li>
-        <li>Norman, D. A. (1988). <em>The Design of Everyday Things.</em></li>
-        <li>Reason, J. (1990). <em>Human Error.</em></li>
-        <li>Stanton, N. A. (1994). <em>Human Factors in Alarm Design.</em></li>
-        <li>Sweller, J. (1988). Cognitive Load During Problem Solving. <em>Cognitive Science</em>, 12(2).</li>
-        <li>Tidwell, J. (2010). <em>Designing Interfaces.</em></li>
-        <li>Tufte, E. R. (1990). <em>Envisioning Information.</em></li>
-        <li>U.S. Department of Defense. MIL-STD-1472: <em>Human Engineering Design Criteria for Military Systems, Equipment, and Facilities.</em></li>
-        <li>Wroblewski, L. (2008). <em>Web Form Design: Filling in the Blanks.</em></li>
-        <li>Yeh, M., &amp; Wickens, C. D. (2001). Display Signaling in Augmented Reality. <em>Human Factors</em>, 43(3).</li>
+        <li>
+          Cooper, A., Reimann, R., &amp; Cronin, D. (2007).{" "}
+          <em>About Face 3: The Essentials of Interaction Design.</em>
+        </li>
+        <li>
+          Driskell, J. E., &amp; Salas, E. (1996). <em>Stress and Human Performance.</em>
+        </li>
+        <li>
+          Endsley, M. R. (1995). Toward a Theory of Situation Awareness in Dynamic Systems.{" "}
+          <em>Human Factors</em>, 37(1).
+        </li>
+        <li>
+          Fitts, P. M. (1954). The Information Capacity of the Human Motor System in Controlling the
+          Amplitude of Movement. <em>Journal of Experimental Psychology</em>, 47.
+        </li>
+        <li>
+          Jarrett, C., &amp; Gaffney, G. (2009).{" "}
+          <em>Forms that Work: Designing Web Forms for Usability.</em>
+        </li>
+        <li>
+          Lees, F. P. (1974). Quantification of Man-Machine System Reliability in Process Control.{" "}
+          <em>IEEE Transactions on Reliability</em>.
+        </li>
+        <li>
+          Lidwell, W., Holden, K., &amp; Butler, J. (2010). <em>Universal Principles of Design.</em>
+        </li>
+        <li>
+          Miller, G. A. (1956). The Magical Number Seven, Plus or Minus Two.{" "}
+          <em>Psychological Review</em>, 63(2).
+        </li>
+        <li>
+          Nielsen, J. (1994). <em>Usability Engineering.</em>
+        </li>
+        <li>
+          Nielsen, J. (2006). Progressive Disclosure. <em>Nielsen Norman Group.</em>
+        </li>
+        <li>
+          Norman, D. A. (1988). <em>The Design of Everyday Things.</em>
+        </li>
+        <li>
+          Reason, J. (1990). <em>Human Error.</em>
+        </li>
+        <li>
+          Stanton, N. A. (1994). <em>Human Factors in Alarm Design.</em>
+        </li>
+        <li>
+          Sweller, J. (1988). Cognitive Load During Problem Solving. <em>Cognitive Science</em>,
+          12(2).
+        </li>
+        <li>
+          Tidwell, J. (2010). <em>Designing Interfaces.</em>
+        </li>
+        <li>
+          Tufte, E. R. (1990). <em>Envisioning Information.</em>
+        </li>
+        <li>
+          U.S. Department of Defense. MIL-STD-1472:{" "}
+          <em>
+            Human Engineering Design Criteria for Military Systems, Equipment, and Facilities.
+          </em>
+        </li>
+        <li>
+          Wroblewski, L. (2008). <em>Web Form Design: Filling in the Blanks.</em>
+        </li>
+        <li>
+          Yeh, M., &amp; Wickens, C. D. (2001). Display Signaling in Augmented Reality.{" "}
+          <em>Human Factors</em>, 43(3).
+        </li>
       </ul>
     </article>
   );

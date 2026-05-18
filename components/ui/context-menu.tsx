@@ -1,10 +1,10 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { ContextMenu as BaseContextMenu } from "@base-ui-components/react/context-menu";
 import { Menu as BaseMenu } from "@base-ui-components/react/menu";
 import { Check, Circle } from "lucide-react";
 import type { ComponentPropsWithoutRef } from "react";
-import { cn } from "@/lib/utils";
 
 export const ContextMenu = BaseContextMenu.Root;
 export const ContextMenuTrigger = BaseContextMenu.Trigger;
@@ -95,10 +95,7 @@ export function ContextMenuRadioItem({
 // aria-associated label, wrap items in <ContextMenuGroup> and use <ContextMenuGroupLabel>.
 export function ContextMenuLabel({ className, ...props }: ComponentPropsWithoutRef<"div">) {
   return (
-    <div
-      className={cn("px-2 py-1.5 text-xs font-semibold text-fg-muted", className)}
-      {...props}
-    />
+    <div className={cn("px-2 py-1.5 text-xs font-semibold text-fg-muted", className)} {...props} />
   );
 }
 

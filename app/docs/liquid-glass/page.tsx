@@ -1,12 +1,12 @@
 "use client";
 
-import { AlertTriangle, Droplet, Sparkles } from "lucide-react";
-import Link from "next/link";
-import { useState } from "react";
 import { CodeBlock } from "@/components/site/code-block";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { AlertTriangle, Droplet, Sparkles } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
 
 export default function LiquidGlassFoundationPage() {
   return (
@@ -48,9 +48,14 @@ export default function LiquidGlassFoundationPage() {
           </div>
           <ul className="mt-3 space-y-2 text-sm text-fg-muted">
             <li>• Floating panels that sit over a map, feed, or visual canvas</li>
-            <li>• Side panels (notifications, workspace, app drawers) where spatial context matters</li>
+            <li>
+              • Side panels (notifications, workspace, app drawers) where spatial context matters
+            </li>
             <li>• Top chrome (top bar, status ticker) over rich visual backgrounds</li>
-            <li>• Tooltips and popovers in C3 templates where the operator should keep seeing the data behind</li>
+            <li>
+              • Tooltips and popovers in C3 templates where the operator should keep seeing the data
+              behind
+            </li>
           </ul>
         </div>
         <div className="rounded-lg border border-border bg-surface p-6">
@@ -60,8 +65,8 @@ export default function LiquidGlassFoundationPage() {
           </div>
           <ul className="mt-3 space-y-2 text-sm text-fg-muted">
             <li>
-              <strong className="text-fg">Alert dialogs</strong> — emergency UI needs maximum legibility,
-              stay solid
+              <strong className="text-fg">Alert dialogs</strong> — emergency UI needs maximum
+              legibility, stay solid
             </li>
             <li>
               <strong className="text-fg">Critical-error toasts</strong> — danger states stay solid
@@ -149,17 +154,26 @@ export default function LiquidGlassFoundationPage() {
           How to apply — utility class + variant prop
           ============================================================ */}
       <section className="mt-12">
-        <h2 className="text-sm font-medium uppercase tracking-wider text-fg-subtle">How to apply</h2>
+        <h2 className="text-sm font-medium uppercase tracking-wider text-fg-subtle">
+          How to apply
+        </h2>
         <p className="mt-2 text-fg-muted">
           Two paths. Most projects use the variant prop for ergonomics; the utility class is the
           escape hatch when you need glass on a custom element.
         </p>
 
-        <h3 className="mt-6 text-base font-semibold text-fg">Variant prop on supporting components</h3>
+        <h3 className="mt-6 text-base font-semibold text-fg">
+          Variant prop on supporting components
+        </h3>
         <p className="mt-2 text-sm text-fg-muted">
-          Six components ship a <code className="rounded bg-bg-muted px-1 py-0.5 text-xs">variant="glass"</code> prop:
-          <strong className="text-fg"> Sheet, Popover, Tooltip, HoverCard, Menu, ContextMenu</strong>. Default remains{" "}
-          <code className="rounded bg-bg-muted px-1 py-0.5 text-xs">"solid"</code>.
+          Six components ship a{" "}
+          <code className="rounded bg-bg-muted px-1 py-0.5 text-xs">variant="glass"</code> prop:
+          <strong className="text-fg">
+            {" "}
+            Sheet, Popover, Tooltip, HoverCard, Menu, ContextMenu
+          </strong>
+          . Default remains <code className="rounded bg-bg-muted px-1 py-0.5 text-xs">"solid"</code>
+          .
         </p>
         <CodeBlock
           language="tsx"
@@ -176,7 +190,8 @@ export default function LiquidGlassFoundationPage() {
 
         <h3 className="mt-6 text-base font-semibold text-fg">Utility class on any surface</h3>
         <p className="mt-2 text-sm text-fg-muted">
-          For custom chrome, use <code className="rounded bg-bg-muted px-1 py-0.5 text-xs">surface-glass-chrome</code> or{" "}
+          For custom chrome, use{" "}
+          <code className="rounded bg-bg-muted px-1 py-0.5 text-xs">surface-glass-chrome</code> or{" "}
           <code className="rounded bg-bg-muted px-1 py-0.5 text-xs">surface-glass-panel</code>.
         </p>
         <CodeBlock
@@ -198,8 +213,13 @@ export default function LiquidGlassFoundationPage() {
         <h2 className="text-sm font-medium uppercase tracking-wider text-fg-subtle">Tokens</h2>
         <p className="mt-2 text-fg-muted">
           Glass values are wired through CSS custom properties so they can be tuned centrally. The
-          tokens live in <code className="rounded bg-bg-muted px-1 py-0.5 text-xs">styles/tokens/c3-light.css</code>{" "}
-          and <code className="rounded bg-bg-muted px-1 py-0.5 text-xs">styles/tokens/c3-dark.css</code>.
+          tokens live in{" "}
+          <code className="rounded bg-bg-muted px-1 py-0.5 text-xs">
+            styles/tokens/c3-light.css
+          </code>{" "}
+          and{" "}
+          <code className="rounded bg-bg-muted px-1 py-0.5 text-xs">styles/tokens/c3-dark.css</code>
+          .
         </p>
         <div className="mt-4 overflow-hidden rounded-lg border border-border">
           <table className="w-full text-sm">
@@ -231,9 +251,10 @@ export default function LiquidGlassFoundationPage() {
         <ul className="mt-4 space-y-3 text-sm text-fg-muted">
           <li>
             <strong className="text-fg">Browser support</strong> — uses{" "}
-            <code className="rounded bg-bg-muted px-1 py-0.5 text-xs">backdrop-filter</code>, supported
-            in all evergreen browsers and Chromium 76+. Older or stripped browsers fall back to solid
-            surfaces via <code className="rounded bg-bg-muted px-1 py-0.5 text-xs">@supports</code>.
+            <code className="rounded bg-bg-muted px-1 py-0.5 text-xs">backdrop-filter</code>,
+            supported in all evergreen browsers and Chromium 76+. Older or stripped browsers fall
+            back to solid surfaces via{" "}
+            <code className="rounded bg-bg-muted px-1 py-0.5 text-xs">@supports</code>.
           </li>
           <li>
             <strong className="text-fg">Air-gapped browsers</strong> — works the same. No external
@@ -296,10 +317,7 @@ export default function LiquidGlassFoundationPage() {
           >
             Open App Shell preview
           </Link>
-          <Link
-            href="/c3/templates/app-shell"
-            className={buttonVariants({ variant: "outline" })}
-          >
+          <Link href="/c3/templates/app-shell" className={buttonVariants({ variant: "outline" })}>
             App Shell docs
           </Link>
         </div>
@@ -389,7 +407,13 @@ function StylizedCanvas() {
   // the user can SEE the canvas content through the glass.
   // Chrome strip covers roughly y: 2-16% (top-8 + h-12 on a 360px canvas).
   // Panel covers roughly x: 2-72%, y: 31-65% (top-28 + 4xrem of content).
-  const markers: { left: string; top: string; tone: "accent" | "danger"; size: "sm" | "md" | "lg"; pulse?: boolean }[] = [
+  const markers: {
+    left: string;
+    top: string;
+    tone: "accent" | "danger";
+    size: "sm" | "md" | "lg";
+    pulse?: boolean;
+  }[] = [
     // Under the chrome strip
     { left: "20%", top: "8%", tone: "accent", size: "md" },
     { left: "50%", top: "10%", tone: "danger", size: "md", pulse: true },
@@ -550,12 +574,18 @@ function AnatomyRow({ n, label, body }: { n: number; label: string; body: string
 }
 
 const TOKEN_ROWS = [
-  { token: "--prizm-glass-chrome-bg", purpose: "Surface tint for chrome-tier glass (top bar, ticker, rail)" },
+  {
+    token: "--prizm-glass-chrome-bg",
+    purpose: "Surface tint for chrome-tier glass (top bar, ticker, rail)",
+  },
   { token: "--prizm-glass-chrome-border", purpose: "Inner hairline border for chrome-tier glass" },
   { token: "--prizm-glass-chrome-blur", purpose: "Backdrop blur amount for chrome tier (8px)" },
   { token: "--prizm-glass-chrome-saturate", purpose: "Backdrop saturation boost (180%)" },
   { token: "--prizm-glass-chrome-shadow", purpose: "Inner highlight/shadow for chrome tier" },
-  { token: "--prizm-glass-panel-bg", purpose: "Surface tint for panel-tier glass (sheets, popovers, side panels)" },
+  {
+    token: "--prizm-glass-panel-bg",
+    purpose: "Surface tint for panel-tier glass (sheets, popovers, side panels)",
+  },
   { token: "--prizm-glass-panel-border", purpose: "Inner hairline border for panel-tier glass" },
   { token: "--prizm-glass-panel-blur", purpose: "Backdrop blur amount for panel tier (12px)" },
   { token: "--prizm-glass-panel-saturate", purpose: "Backdrop saturation boost (180%)" },

@@ -1,11 +1,11 @@
-import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import {
   CATEGORIES,
-  type ComponentCategory,
   COMPONENTS,
+  type ComponentCategory,
   getComponentsByCategory,
 } from "@/lib/components-registry";
+import Link from "next/link";
 
 export const metadata = {
   title: "Components",

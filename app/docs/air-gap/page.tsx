@@ -5,18 +5,25 @@ export default function AirGapPage() {
     <article className="mx-auto max-w-3xl px-6 py-12">
       <h1 className="text-4xl font-semibold tracking-tight">Air-gap setup</h1>
       <p className="mt-3 text-lg text-fg-muted">
-        PRIZM 4.0 runs unmodified inside air-gapped environments. This page summarizes how. For
-        the full procedure, see{" "}
-        <code className="font-mono text-sm">OFFLINE_SETUP.md</code> in the repo root.
+        PRIZM 4.0 runs unmodified inside air-gapped environments. This page summarizes how. For the
+        full procedure, see <code className="font-mono text-sm">OFFLINE_SETUP.md</code> in the repo
+        root.
       </p>
 
       <h2 className="mt-12 text-2xl font-semibold tracking-tight">What's guaranteed</h2>
       <ul className="mt-4 space-y-2 text-fg-muted">
-        <li>• All fonts self-hosted in <code className="font-mono text-xs">/public/fonts/</code></li>
-        <li>• All icons bundled via <code className="font-mono text-xs">lucide-react</code></li>
+        <li>
+          • All fonts self-hosted in <code className="font-mono text-xs">/public/fonts/</code>
+        </li>
+        <li>
+          • All icons bundled via <code className="font-mono text-xs">lucide-react</code>
+        </li>
         <li>• No CDN-hosted scripts, stylesheets, or assets</li>
         <li>• No telemetry, error reporting, or remote APIs</li>
-        <li>• The <code className="font-mono text-xs">pnpm audit:airgap</code> script enforces this in CI</li>
+        <li>
+          • The <code className="font-mono text-xs">pnpm audit:airgap</code> script enforces this in
+          CI
+        </li>
       </ul>
 
       <h2 className="mt-12 text-2xl font-semibold tracking-tight">Three ingestion paths</h2>
@@ -38,8 +45,7 @@ export default function AirGapPage() {
 
       <h3 className="mt-6 text-lg font-semibold">C. Read-only docs</h3>
       <p className="mt-2 text-fg-muted">
-        If you only need to read docs and copy component source — not build PRIZM locally —
-        transfer{" "}
+        If you only need to read docs and copy component source — not build PRIZM locally — transfer{" "}
         <code className="font-mono text-xs">prizm-docs-&lt;version&gt;.tar.gz</code> and serve it
         with any static file server.
       </p>

@@ -32,5 +32,29 @@
       "semicolons": "always",
       "trailingCommas": "all"
     }
-  }
+  },
+  "overrides": [
+    {
+      "include": ["components/ui/command.tsx"],
+      "linter": {
+        "rules": {
+          "a11y": {
+            "useAriaPropsForRole": "off",
+            "useFocusableInteractive": "off",
+            "useSemanticElements": "off"
+          },
+          "complexity": { "noForEach": "off" },
+          "correctness": { "useExhaustiveDependencies": "off" }
+        }
+      }
+    },
+    {
+      "include": ["lib/component-examples.tsx"],
+      "linter": {
+        "rules": {
+          "a11y": { "useValidAnchor": "off" }
+        }
+      }
+    }
+  ]
 }

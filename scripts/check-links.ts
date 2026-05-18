@@ -64,7 +64,7 @@ function discoverRoutes(): Set<string> {
 
       // route groups (parens) don't add to URL
       // dynamic segments like [slug] are resolved below from the registry
-      let segment = entry;
+      const segment = entry;
       if (segment.startsWith("(") && segment.endsWith(")")) {
         walk(full, urlPrefix);
         continue;
@@ -297,7 +297,8 @@ for (const ref of allRefs) {
   // Skip when the link explicitly targets _blank — that's a deliberate full-page load.
   if (!ref.usingNextLink && !n.isStatic && ROUTES.has(n.path)) {
     // Re-read the line to check for target="_blank"
-    const lineContent = readFileSync(resolve(ROOT, ref.file), "utf8").split("\n")[ref.line - 1] ?? "";
+    const lineContent =
+      readFileSync(resolve(ROOT, ref.file), "utf8").split("\n")[ref.line - 1] ?? "";
     if (!/target=["']_blank["']/.test(lineContent)) {
       violations.push({
         file: ref.file,
@@ -350,7 +351,11 @@ for (const [file, vs] of byFile) {
   console.log();
 }
 console.log("Convention reminder:");
-console.log("  • <Link href=...> for ROUTES (client-side navigation, trailing-slash + basePath handled)");
-console.log("  • <a href={withBasePath(...)}> for STATIC FILES (raw fetch — llms.txt, PRIZM.md, etc.)");
+console.log(
+  "  • <Link href=...> for ROUTES (client-side navigation, trailing-slash + basePath handled)",
+);
+console.log(
+  "  • <a href={withBasePath(...)}> for STATIC FILES (raw fetch — llms.txt, PRIZM.md, etc.)",
+);
 console.log("    Static-file anchors must use withBasePath() — see lib/base-path.ts");
 process.exit(1);

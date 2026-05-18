@@ -1,8 +1,8 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { PreviewCard as BasePreviewCard } from "@base-ui-components/react/preview-card";
 import type { ComponentPropsWithoutRef } from "react";
-import { cn } from "@/lib/utils";
 
 export const HoverCard = BasePreviewCard.Root;
 export const HoverCardTrigger = BasePreviewCard.Trigger;

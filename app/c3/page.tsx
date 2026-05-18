@@ -11,9 +11,7 @@ export default function C3LandingPage() {
           <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent" />
           Command and Control
         </div>
-        <h1 className="text-balance text-5xl font-semibold tracking-tight">
-          PRIZM for C3 systems
-        </h1>
+        <h1 className="text-balance text-5xl font-semibold tracking-tight">PRIZM for C3 systems</h1>
         <p className="mt-4 text-balance text-lg text-fg-muted">
           The C3 design language emphasizes density, high contrast, and operator clarity. Built for
           tactical interfaces, real-time data, and low-light environments.

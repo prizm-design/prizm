@@ -9,13 +9,7 @@ import {
   ComboboxList,
 } from "@/components/ui/combobox";
 
-const items = [
-  "C3 product",
-  "Enterprise product",
-  "Mobile app",
-  "Internal tool",
-  "Marketing site",
-];
+const items = ["C3 product", "Enterprise product", "Mobile app", "Internal tool", "Marketing site"];
 
 export function ComboboxDemo() {
   return (

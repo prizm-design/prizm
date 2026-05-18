@@ -1,9 +1,9 @@
 "use client";
 
-import { Avatar as BaseAvatar } from "@base-ui-components/react/avatar";
-import { cva, type VariantProps } from "class-variance-authority";
-import type { ComponentPropsWithoutRef } from "react";
 import { cn } from "@/lib/utils";
+import { Avatar as BaseAvatar } from "@base-ui-components/react/avatar";
+import { type VariantProps, cva } from "class-variance-authority";
+import type { ComponentPropsWithoutRef } from "react";
 
 const avatarVariants = cva(
   "relative inline-flex shrink-0 items-center justify-center overflow-hidden rounded-full bg-bg-muted text-fg-muted",

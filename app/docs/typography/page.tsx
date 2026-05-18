@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { CodeBlock } from "@/components/site/code-block";
+import Link from "next/link";
 
 export const metadata = { title: "Typography" };
 
@@ -10,9 +10,25 @@ const TYPE_SCALE = [
   { name: "text-2xl", size: "24px", line: "32px", sample: "Subsection heading" },
   { name: "text-xl", size: "20px", line: "28px", sample: "Card title" },
   { name: "text-lg", size: "18px", line: "28px", sample: "Lead paragraph" },
-  { name: "text-base", size: "16px", line: "24px", sample: "Body text — the default reading size for PRIZM. Optimised for long-form prose and dense UI alike." },
-  { name: "text-sm", size: "14px", line: "20px", sample: "Secondary text — captions, descriptions, table cells." },
-  { name: "text-xs", size: "12px", line: "16px", sample: "Metadata, badges, keyboard hints, code annotations." },
+  {
+    name: "text-base",
+    size: "16px",
+    line: "24px",
+    sample:
+      "Body text — the default reading size for PRIZM. Optimised for long-form prose and dense UI alike.",
+  },
+  {
+    name: "text-sm",
+    size: "14px",
+    line: "20px",
+    sample: "Secondary text — captions, descriptions, table cells.",
+  },
+  {
+    name: "text-xs",
+    size: "12px",
+    line: "16px",
+    sample: "Metadata, badges, keyboard hints, code annotations.",
+  },
 ];
 
 const WEIGHTS = [
@@ -30,9 +46,13 @@ export default function TypographyPage() {
       <p className="mt-3 text-lg text-fg-muted">
         Two self-hosted variable fonts, a Tailwind-default type scale, and a small set of weights.
         For most UI text reach for the{" "}
-        <Link href="/components/heading" className="text-accent hover:underline">Heading</Link>{" "}
+        <Link href="/components/heading" className="text-accent hover:underline">
+          Heading
+        </Link>{" "}
         and{" "}
-        <Link href="/components/text" className="text-accent hover:underline">Text</Link>{" "}
+        <Link href="/components/text" className="text-accent hover:underline">
+          Text
+        </Link>{" "}
         primitives — the raw classes documented here are what those components compose underneath.
       </p>
 
@@ -41,7 +61,8 @@ export default function TypographyPage() {
           ============================================================ */}
       <h2 className="mt-14 text-2xl font-semibold tracking-tight">Font families</h2>
       <p className="mt-3 text-fg-muted">
-        Both fonts are self-hosted in <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-sm">/public/fonts/</code>{" "}
+        Both fonts are self-hosted in{" "}
+        <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-sm">/public/fonts/</code>{" "}
         — no CDN dependency, no Google Fonts call. Required for air-gap deployments.
       </p>
 
@@ -50,7 +71,7 @@ export default function TypographyPage() {
           name="Inter"
           token="--font-sans"
           tailwind="font-sans"
-          role="UI, headings, and body text"
+          purpose="UI, headings, and body text"
           sample="The quick brown fox"
           sampleClass="font-sans"
         />
@@ -58,7 +79,7 @@ export default function TypographyPage() {
           name="JetBrains Mono"
           token="--font-mono"
           tailwind="font-mono"
-          role="Code, keyboard shortcuts, token names"
+          purpose="Code, keyboard shortcuts, token names"
           sample="cn('text-fg-muted')"
           sampleClass="font-mono"
         />
@@ -78,13 +99,13 @@ export default function TypographyPage() {
         <div className="rounded-lg border border-border bg-surface p-6">
           <h3 className="text-base font-semibold text-fg">Inter for UI and body</h3>
           <p className="mt-3 text-fg-muted">
-            Inter was designed by Rasmus Andersson explicitly for on-screen interfaces. The
-            tall x-height keeps small text readable at the densities C3 operators and Enterprise
-            data tables both need; open apertures stop adjacent letters from blurring together
-            on long shifts. Crucially, it disambiguates the characters that matter most for
-            operator UIs — <code className="rounded bg-bg-muted px-1 py-0.5 font-mono text-xs">I</code>{" "}
-            from <code className="rounded bg-bg-muted px-1 py-0.5 font-mono text-xs">l</code>{" "}
-            from <code className="rounded bg-bg-muted px-1 py-0.5 font-mono text-xs">1</code>,{" "}
+            Inter was designed by Rasmus Andersson explicitly for on-screen interfaces. The tall
+            x-height keeps small text readable at the densities C3 operators and Enterprise data
+            tables both need; open apertures stop adjacent letters from blurring together on long
+            shifts. Crucially, it disambiguates the characters that matter most for operator UIs —{" "}
+            <code className="rounded bg-bg-muted px-1 py-0.5 font-mono text-xs">I</code> from{" "}
+            <code className="rounded bg-bg-muted px-1 py-0.5 font-mono text-xs">l</code> from{" "}
+            <code className="rounded bg-bg-muted px-1 py-0.5 font-mono text-xs">1</code>,{" "}
             <code className="rounded bg-bg-muted px-1 py-0.5 font-mono text-xs">0</code> from{" "}
             <code className="rounded bg-bg-muted px-1 py-0.5 font-mono text-xs">O</code> — so
             tactical readouts and form inputs stay unambiguous under glance or stress.
@@ -98,33 +119,33 @@ export default function TypographyPage() {
         </div>
 
         <div className="rounded-lg border border-border bg-surface p-6">
-          <h3 className="text-base font-semibold text-fg">JetBrains Mono for code and tabular data</h3>
+          <h3 className="text-base font-semibold text-fg">
+            JetBrains Mono for code and tabular data
+          </h3>
           <p className="mt-3 text-fg-muted">
-            JetBrains Mono was built for code editors — the same disambiguation work Inter does
-            for prose, JetBrains Mono does for source. Brackets, braces, and parentheses are
-            visually distinct;{" "}
-            <code className="rounded bg-bg-muted px-1 py-0.5 font-mono text-xs">0</code> /{" "}
+            JetBrains Mono was built for code editors — the same disambiguation work Inter does for
+            prose, JetBrains Mono does for source. Brackets, braces, and parentheses are visually
+            distinct; <code className="rounded bg-bg-muted px-1 py-0.5 font-mono text-xs">0</code> /{" "}
             <code className="rounded bg-bg-muted px-1 py-0.5 font-mono text-xs">O</code> and{" "}
             <code className="rounded bg-bg-muted px-1 py-0.5 font-mono text-xs">1</code> /{" "}
             <code className="rounded bg-bg-muted px-1 py-0.5 font-mono text-xs">l</code> /{" "}
             <code className="rounded bg-bg-muted px-1 py-0.5 font-mono text-xs">I</code> never
-            collapse into each other. PRIZM uses it for code blocks, keyboard shortcut chips
-            (<code className="rounded bg-bg-muted px-1 py-0.5 font-mono text-xs">Kbd</code>),
-            token names in foundation tables, and any place where tabular alignment matters more
-            than pretty curves.
+            collapse into each other. PRIZM uses it for code blocks, keyboard shortcut chips (
+            <code className="rounded bg-bg-muted px-1 py-0.5 font-mono text-xs">Kbd</code>), token
+            names in foundation tables, and any place where tabular alignment matters more than
+            pretty curves.
           </p>
           <p className="mt-3 text-fg-muted">
-            Also a variable font, also SIL Open Font License, also self-hosted alongside Inter
-            in the same vendored bundle.
+            Also a variable font, also SIL Open Font License, also self-hosted alongside Inter in
+            the same vendored bundle.
           </p>
         </div>
 
         <div className="rounded-lg border border-dashed border-border bg-bg-subtle p-5">
           <p className="text-sm text-fg-muted">
-            <strong className="font-semibold text-fg">A note on minimalism.</strong>{" "}
-            One sans and one mono is intentional. Adding more families increases cognitive load,
-            bundle size, and the surface for inconsistency — none of which earn their keep in
-            either product family.
+            <strong className="font-semibold text-fg">A note on minimalism.</strong> One sans and
+            one mono is intentional. Adding more families increases cognitive load, bundle size, and
+            the surface for inconsistency — none of which earn their keep in either product family.
           </p>
         </div>
       </div>
@@ -135,7 +156,9 @@ export default function TypographyPage() {
       <h2 className="mt-14 text-2xl font-semibold tracking-tight">Type scale</h2>
       <p className="mt-3 text-fg-muted">
         PRIZM uses Tailwind's default type scale unmodified. Sizes pair with sensible line-heights
-        so most components don't need to set <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-sm">leading-*</code> explicitly.
+        so most components don't need to set{" "}
+        <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-sm">leading-*</code>{" "}
+        explicitly.
       </p>
 
       <div className="mt-8 overflow-hidden rounded-lg border border-border">
@@ -189,13 +212,20 @@ export default function TypographyPage() {
       {/* ============================================================
           Component shortcuts
           ============================================================ */}
-      <h2 className="mt-14 text-2xl font-semibold tracking-tight">Use the primitives, not the raw classes</h2>
+      <h2 className="mt-14 text-2xl font-semibold tracking-tight">
+        Use the primitives, not the raw classes
+      </h2>
       <p className="mt-3 text-fg-muted">
         Day-to-day, prefer the{" "}
-        <Link href="/components/heading" className="text-accent hover:underline">Heading</Link>{" "}
+        <Link href="/components/heading" className="text-accent hover:underline">
+          Heading
+        </Link>{" "}
         and{" "}
-        <Link href="/components/text" className="text-accent hover:underline">Text</Link>{" "}
-        components — they encode the right defaults and keep visual treatment consistent across pages.
+        <Link href="/components/text" className="text-accent hover:underline">
+          Text
+        </Link>{" "}
+        components — they encode the right defaults and keep visual treatment consistent across
+        pages.
       </p>
       <div className="mt-4">
         <CodeBlock
@@ -218,8 +248,11 @@ export function Example() {
 
       <p className="mt-4 text-sm text-fg-muted">
         For long-form HTML content (MDX, CMS output), wrap it in{" "}
-        <Link href="/components/prose" className="text-accent hover:underline">Prose</Link>{" "}
-        — it applies the type scale and spacing to nested headings, paragraphs, lists, and code blocks.
+        <Link href="/components/prose" className="text-accent hover:underline">
+          Prose
+        </Link>{" "}
+        — it applies the type scale and spacing to nested headings, paragraphs, lists, and code
+        blocks.
       </p>
     </article>
   );
@@ -233,14 +266,14 @@ function FontFamilyCard({
   name,
   token,
   tailwind,
-  role,
+  purpose,
   sample,
   sampleClass,
 }: {
   name: string;
   token: string;
   tailwind: string;
-  role: string;
+  purpose: string;
   sample: string;
   sampleClass: string;
 }) {
@@ -250,7 +283,7 @@ function FontFamilyCard({
         <span className="text-sm font-semibold text-fg">{name}</span>
         <code className="font-mono text-[11px] text-fg-subtle">{token}</code>
       </div>
-      <p className="mt-1 text-xs text-fg-muted">{role}</p>
+      <p className="mt-1 text-xs text-fg-muted">{purpose}</p>
       <p className={`mt-4 text-3xl text-fg ${sampleClass}`}>{sample}</p>
       <div className="mt-4">
         <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs text-fg-muted">

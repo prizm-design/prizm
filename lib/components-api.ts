@@ -88,7 +88,7 @@ export const COMPONENT_API: Record<string, ComponentApi> = {
       classNameProp,
     ],
     notes:
-      "Spreads all `<button>` props (type, onClick, disabled, etc.). Forwards `ref` to the underlying button element. Defaults `type` to `\"button\"` to prevent accidental form submission.",
+      'Spreads all `<button>` props (type, onClick, disabled, etc.). Forwards `ref` to the underlying button element. Defaults `type` to `"button"` to prevent accidental form submission.',
   },
 
   // ----- Forms -----
@@ -172,7 +172,7 @@ export const COMPONENT_API: Record<string, ComponentApi> = {
       classNameProp,
     ],
     notes:
-      "Built on Base UI Switch (`role=\"switch\"`). Use for settings that take effect immediately. For form-submit values, prefer Checkbox.",
+      'Built on Base UI Switch (`role="switch"`). Use for settings that take effect immediately. For form-submit values, prefer Checkbox.',
   },
 
   select: {
@@ -269,9 +269,7 @@ export const COMPONENT_API: Record<string, ComponentApi> = {
       {
         name: "ComboboxItem",
         description: "An individual option.",
-        props: [
-          { name: "value", type: "string", description: "The value this item represents." },
-        ],
+        props: [{ name: "value", type: "string", description: "The value this item represents." }],
       },
       {
         name: "ComboboxEmpty",
@@ -465,7 +463,7 @@ export const COMPONENT_API: Record<string, ComponentApi> = {
       },
       classNameProp,
     ],
-    notes: "Built on Base UI Separator. Adds `role=\"separator\"` and correct `aria-orientation`.",
+    notes: 'Built on Base UI Separator. Adds `role="separator"` and correct `aria-orientation`.',
   },
 
   frame: {
@@ -527,7 +525,8 @@ export const COMPONENT_API: Record<string, ComponentApi> = {
       { name: "TableCell", description: "Body cell." },
       { name: "TableCaption", description: "Accessible caption." },
     ],
-    notes: "Plain HTML table primitives with PRIZM styling. No sorting / virtualization — bring your own.",
+    notes:
+      "Plain HTML table primitives with PRIZM styling. No sorting / virtualization — bring your own.",
   },
 
   calendar: {
@@ -580,7 +579,7 @@ export const COMPONENT_API: Record<string, ComponentApi> = {
       { name: "AlertTitle", description: "Short headline." },
       { name: "AlertDescription", description: "Body text." },
     ],
-    notes: "Root renders with `role=\"alert\"` — screen readers announce on mount.",
+    notes: 'Root renders with `role="alert"` — screen readers announce on mount.',
   },
 
   spinner: {
@@ -595,8 +594,7 @@ export const COMPONENT_API: Record<string, ComponentApi> = {
         name: "label",
         type: "string",
         default: `"Loading"`,
-        description:
-          "Accessible label exposed via `role=\"status\"` + hidden `<title>`.",
+        description: 'Accessible label exposed via `role="status"` + hidden `<title>`.',
       },
       classNameProp,
     ],
@@ -606,7 +604,7 @@ export const COMPONENT_API: Record<string, ComponentApi> = {
   skeleton: {
     props: [classNameProp],
     notes:
-      "Sized via Tailwind utilities on the className (e.g. `h-4 w-3/4`). Auto-applies `aria-hidden=\"true\"`.",
+      'Sized via Tailwind utilities on the className (e.g. `h-4 w-3/4`). Auto-applies `aria-hidden="true"`.',
   },
 
   progress: {
@@ -701,11 +699,11 @@ export const COMPONENT_API: Record<string, ComponentApi> = {
       { name: "BreadcrumbLink", description: "Clickable previous step." },
       {
         name: "BreadcrumbPage",
-        description: "Current page — marked `aria-current=\"page\"`, non-clickable.",
+        description: 'Current page — marked `aria-current="page"`, non-clickable.',
       },
       { name: "BreadcrumbSeparator", description: "Chevron divider between items." },
     ],
-    notes: "Root renders `<nav aria-label=\"Breadcrumb\">`.",
+    notes: 'Root renders `<nav aria-label="Breadcrumb">`.',
   },
 
   pagination: {
@@ -937,7 +935,11 @@ export const COMPONENT_API: Record<string, ComponentApi> = {
         type: "(open: boolean) => void",
         description: "Called when the open state changes.",
       },
-      { name: "delay", type: "number", description: "Override the provider's delay for this instance." },
+      {
+        name: "delay",
+        type: "number",
+        description: "Override the provider's delay for this instance.",
+      },
     ],
     subComponents: [
       {
@@ -1042,8 +1044,7 @@ export const COMPONENT_API: Record<string, ComponentApi> = {
     subComponents: [
       {
         name: "ContextMenuTrigger",
-        description:
-          "Wraps the area where right-click should open the menu. Renders a `<div>`.",
+        description: "Wraps the area where right-click should open the menu. Renders a `<div>`.",
       },
       {
         name: "ContextMenuContent",
@@ -1117,7 +1118,7 @@ export const COMPONENT_API: Record<string, ComponentApi> = {
     props: [
       {
         name: "level",
-        type: `1 | 2 | 3 | 4 | 5 | 6`,
+        type: "1 | 2 | 3 | 4 | 5 | 6",
         default: "2",
         description: "Renders as `<h1>` through `<h6>`. Affects size and weight.",
       },
@@ -1148,7 +1149,7 @@ export const COMPONENT_API: Record<string, ComponentApi> = {
       },
       classNameProp,
     ],
-    notes: "Body text primitive. Use `as=\"span\"` for inline.",
+    notes: 'Body text primitive. Use `as="span"` for inline.',
   },
 
   prose: {

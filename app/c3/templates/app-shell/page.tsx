@@ -1,7 +1,7 @@
-import { ExternalLink } from "lucide-react";
-import Link from "next/link";
 import { CodeBlock } from "@/components/site/code-block";
 import { Badge } from "@/components/ui/badge";
+import { ExternalLink } from "lucide-react";
+import Link from "next/link";
 import { C3AppShell } from "./shell";
 
 export const metadata = { title: "C3 App Shell" };
@@ -45,7 +45,9 @@ export default function C3AppShellPage() {
 
       <div className="mt-6 flex flex-wrap items-start justify-between gap-4">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-wider text-fg-subtle">C3 Template</p>
+          <p className="text-xs font-semibold uppercase tracking-wider text-fg-subtle">
+            C3 Template
+          </p>
           <h1 className="mt-2 text-4xl font-semibold tracking-tight">App Shell</h1>
           <p className="mt-3 max-w-2xl text-lg text-fg-muted">
             The foundational layout chrome every C3 application sits inside — top bar, status
@@ -91,9 +93,7 @@ export default function C3AppShellPage() {
           ============================================================ */}
       <section className="mt-12">
         <div className="mb-3 flex items-baseline justify-between">
-          <h2 className="text-sm font-medium uppercase tracking-wider text-fg-subtle">
-            Preview
-          </h2>
+          <h2 className="text-sm font-medium uppercase tracking-wider text-fg-subtle">Preview</h2>
           <Link
             href="/c3/templates/app-shell/preview"
             className="inline-flex items-center gap-1.5 text-sm text-accent hover:underline"
@@ -110,12 +110,12 @@ export default function C3AppShellPage() {
           </div>
         </div>
         <p className="mt-2 text-xs text-fg-subtle">
-          Click any icon in the rail to open its side panel (opens adjacent to the rail, can
-          expand to the full canvas). The App Store icon at the bottom of the rail follows the
-          same pattern and opens the add-on catalogue — install / uninstall / pin to rail (capped
-          at 5 pinned add-ons). The bell and avatar are different: they open the
-          right-anchored Notification Centre and Workspace panels respectively (those two are
-          chrome-level, mutually exclusive, and don't support the expand toggle).
+          Click any icon in the rail to open its side panel (opens adjacent to the rail, can expand
+          to the full canvas). The App Store icon at the bottom of the rail follows the same pattern
+          and opens the add-on catalogue — install / uninstall / pin to rail (capped at 5 pinned
+          add-ons). The bell and avatar are different: they open the right-anchored Notification
+          Centre and Workspace panels respectively (those two are chrome-level, mutually exclusive,
+          and don't support the expand toggle).
         </p>
       </section>
 
@@ -150,39 +150,97 @@ export default function YourApp() {
             <p className="font-medium text-fg">What's customizable</p>
             <ul className="mt-2 list-disc space-y-1 pl-6 text-sm">
               <li>Brand mark and product name (in the top bar)</li>
-              <li>Core icon rail items — order, labels, badges, icons; the current set (Dashboard, Ops Log, Incidents, Tasks, ORBAT, Chat) is placeholder. Always available to every operator.</li>
-              <li>Add-on app catalogue — apps the operator can install via the App Store. Up to five installed add-ons can be pinned to the rail (separated from core apps by a horizontal divider). Unpinned installed add-ons remain launchable: clicking their row in the App Store opens the app's slide panel (the same panel they'd open from the rail if pinned).</li>
+              <li>
+                Core icon rail items — order, labels, badges, icons; the current set (Dashboard, Ops
+                Log, Incidents, Tasks, ORBAT, Chat) is placeholder. Always available to every
+                operator.
+              </li>
+              <li>
+                Add-on app catalogue — apps the operator can install via the App Store. Up to five
+                installed add-ons can be pinned to the rail (separated from core apps by a
+                horizontal divider). Unpinned installed add-ons remain launchable: clicking their
+                row in the App Store opens the app's slide panel (the same panel they'd open from
+                the rail if pinned).
+              </li>
               <li>Status ticker metrics — labels, values, optional severity tone</li>
-              <li>Exercise start time — currently anchored 2 hours before mount; replace with your real D-day timestamp</li>
-              <li>Notification Centre data — the placeholder list, filters, and dismiss / mark-all-read behaviour are wired to local state for the demo; replace with your real backend</li>
-              <li>Workspace panel — the operator card (MAJ A. LOH · Watch Officer · DSTA) and the workspace list are placeholders</li>
-              <li>Side-panel content (rail apps) — currently placeholder text; wire your app's UI into each one</li>
-              <li>The main canvas — currently a stylized map placeholder (grid + markers + compass + scale bar). Substitute your real map (Leaflet, Mapbox, etc.), dashboard, or detail content</li>
+              <li>
+                Exercise start time — currently anchored 2 hours before mount; replace with your
+                real D-day timestamp
+              </li>
+              <li>
+                Notification Centre data — the placeholder list, filters, and dismiss /
+                mark-all-read behaviour are wired to local state for the demo; replace with your
+                real backend
+              </li>
+              <li>
+                Workspace panel — the operator card (MAJ A. LOH · Watch Officer · DSTA) and the
+                workspace list are placeholders
+              </li>
+              <li>
+                Side-panel content (rail apps) — currently placeholder text; wire your app's UI into
+                each one
+              </li>
+              <li>
+                The main canvas — currently a stylized map placeholder (grid + markers + compass +
+                scale bar). Substitute your real map (Leaflet, Mapbox, etc.), dashboard, or detail
+                content
+              </li>
             </ul>
           </div>
           <div>
             <p className="font-medium text-fg">What's intentionally fixed</p>
             <ul className="mt-2 list-disc space-y-1 pl-6 text-sm">
               <li>Top-bar height (56px) and ticker height (32px) — chunking constraint</li>
-              <li>Icon rail width (64px) — Fitts-comfortable target sizes within chunking limits</li>
+              <li>
+                Icon rail width (64px) — Fitts-comfortable target sizes within chunking limits
+              </li>
               <li>Top-bar element order — predictable placement across templates</li>
-              <li>Add-on pin cap (5) — keeps the rail's add-on chunk at the 7±2 limit; the App Store handles the rest</li>
-              <li>Visual seam between core and add-ons (horizontal divider) — preserves chunking via clear spatial grouping</li>
-              <li>App Store position — always pinned at the bottom of the rail, outside the scroll area. Rail scrolls vertically if core + pinned add-ons would overflow the available height, but App Store stays in place per <em>predictable information placement</em>.</li>
+              <li>
+                Add-on pin cap (5) — keeps the rail's add-on chunk at the 7±2 limit; the App Store
+                handles the rest
+              </li>
+              <li>
+                Visual seam between core and add-ons (horizontal divider) — preserves chunking via
+                clear spatial grouping
+              </li>
+              <li>
+                App Store position — always pinned at the bottom of the rail, outside the scroll
+                area. Rail scrolls vertically if core + pinned add-ons would overflow the available
+                height, but App Store stays in place per <em>predictable information placement</em>.
+              </li>
               <li>Dark theme as default — operator-state principle</li>
             </ul>
           </div>
           <div>
             <p className="font-medium text-fg">Primitives used</p>
             <p className="mt-2 text-sm">
-              <Link href="/components/avatar" className="text-accent hover:underline">Avatar</Link>,{" "}
-              <Link href="/components/badge" className="text-accent hover:underline">Badge</Link>,{" "}
-              <Link href="/components/button" className="text-accent hover:underline">Button</Link>,{" "}
-              <Link href="/components/tooltip" className="text-accent hover:underline">Tooltip</Link>.
-              No new primitives were created for this template. Building the Tooltip into the rail
-              surfaced two small enhancements to the design system: <code className="rounded bg-bg-muted px-1 py-0.5 font-mono text-xs">side</code> / <code className="rounded bg-bg-muted px-1 py-0.5 font-mono text-xs">align</code> props
-              on <code className="rounded bg-bg-muted px-1 py-0.5 font-mono text-xs">TooltipContent</code>, and a <code className="rounded bg-bg-muted px-1 py-0.5 font-mono text-xs">Badge</code>{" "}
-              <code className="rounded bg-bg-muted px-1 py-0.5 font-mono text-xs">info</code> variant.
+              <Link href="/components/avatar" className="text-accent hover:underline">
+                Avatar
+              </Link>
+              ,{" "}
+              <Link href="/components/badge" className="text-accent hover:underline">
+                Badge
+              </Link>
+              ,{" "}
+              <Link href="/components/button" className="text-accent hover:underline">
+                Button
+              </Link>
+              ,{" "}
+              <Link href="/components/tooltip" className="text-accent hover:underline">
+                Tooltip
+              </Link>
+              . No new primitives were created for this template. Building the Tooltip into the rail
+              surfaced two small enhancements to the design system:{" "}
+              <code className="rounded bg-bg-muted px-1 py-0.5 font-mono text-xs">side</code> /{" "}
+              <code className="rounded bg-bg-muted px-1 py-0.5 font-mono text-xs">align</code> props
+              on{" "}
+              <code className="rounded bg-bg-muted px-1 py-0.5 font-mono text-xs">
+                TooltipContent
+              </code>
+              , and a{" "}
+              <code className="rounded bg-bg-muted px-1 py-0.5 font-mono text-xs">Badge</code>{" "}
+              <code className="rounded bg-bg-muted px-1 py-0.5 font-mono text-xs">info</code>{" "}
+              variant.
             </p>
           </div>
         </div>

@@ -1,9 +1,5 @@
 "use client";
 
-import { Dialog as BaseDialog } from "@base-ui-components/react/dialog";
-import { ArrowRight, BookOpen, FileText } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { type ReactNode, useEffect, useMemo } from "react";
 import {
   Command,
   CommandEmpty,
@@ -15,6 +11,10 @@ import {
 } from "@/components/ui/command";
 import { COMPONENTS } from "@/lib/components-registry";
 import { cn } from "@/lib/utils";
+import { Dialog as BaseDialog } from "@base-ui-components/react/dialog";
+import { ArrowRight, BookOpen, FileText } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { type ReactNode, useEffect, useMemo } from "react";
 
 interface SearchEntry {
   id: string;
@@ -43,7 +43,18 @@ const DOC_ENTRIES: SearchEntry[] = [
     description: "How a team adopts PRIZM with AI in the loop — setup, prompts, air-gapped AI.",
     href: "/docs/using-with-ai",
     icon: <BookOpen className="h-4 w-4" />,
-    keywords: ["docs", "ai", "claude", "claude code", "cursor", "llm", "rag", "prompt", "team", "workflow"],
+    keywords: [
+      "docs",
+      "ai",
+      "claude",
+      "claude code",
+      "cursor",
+      "llm",
+      "rag",
+      "prompt",
+      "team",
+      "workflow",
+    ],
   },
   {
     id: "doc:installation",
@@ -79,7 +90,17 @@ const DOC_ENTRIES: SearchEntry[] = [
     description: "Human factors and HCI research behind PRIZM's patterns.",
     href: "/docs/principles",
     icon: <BookOpen className="h-4 w-4" />,
-    keywords: ["docs", "foundations", "principles", "human factors", "HCI", "Endsley", "Fitts", "Norman", "research"],
+    keywords: [
+      "docs",
+      "foundations",
+      "principles",
+      "human factors",
+      "HCI",
+      "Endsley",
+      "Fitts",
+      "Norman",
+      "research",
+    ],
   },
   {
     id: "doc:colors",
@@ -106,7 +127,17 @@ const DOC_ENTRIES: SearchEntry[] = [
     description: "Radii, shadows, and motion tokens (durations, ease curves).",
     href: "/docs/surface-and-motion",
     icon: <BookOpen className="h-4 w-4" />,
-    keywords: ["docs", "foundations", "radii", "radius", "shadow", "elevation", "motion", "duration", "ease"],
+    keywords: [
+      "docs",
+      "foundations",
+      "radii",
+      "radius",
+      "shadow",
+      "elevation",
+      "motion",
+      "duration",
+      "ease",
+    ],
   },
   {
     id: "doc:icons",
@@ -124,7 +155,17 @@ const DOC_ENTRIES: SearchEntry[] = [
     description: "C3-only translucent surface treatment with two tiers.",
     href: "/docs/liquid-glass",
     icon: <BookOpen className="h-4 w-4" />,
-    keywords: ["docs", "foundations", "c3", "glass", "liquid", "translucent", "frosted", "blur", "backdrop"],
+    keywords: [
+      "docs",
+      "foundations",
+      "c3",
+      "glass",
+      "liquid",
+      "translucent",
+      "frosted",
+      "blur",
+      "backdrop",
+    ],
   },
   {
     id: "doc:air-gap",
@@ -304,10 +345,7 @@ export function CommandPalette({
         >
           <BaseDialog.Title className="sr-only">Search PRIZM</BaseDialog.Title>
           <Command className="rounded-none">
-            <CommandInput
-              placeholder="Search components, docs, and zones..."
-              autoFocus
-            />
+            <CommandInput placeholder="Search components, docs, and zones..." autoFocus />
             <CommandList className="max-h-[60vh] p-1">
               <RankedResults entries={entries} onNavigate={navigate} />
             </CommandList>

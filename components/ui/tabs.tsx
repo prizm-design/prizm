@@ -1,15 +1,12 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { Tabs as BaseTabs } from "@base-ui-components/react/tabs";
 import type { ComponentPropsWithoutRef } from "react";
-import { cn } from "@/lib/utils";
 
 export const Tabs = BaseTabs.Root;
 
-export function TabsList({
-  className,
-  ...props
-}: ComponentPropsWithoutRef<typeof BaseTabs.List>) {
+export function TabsList({ className, ...props }: ComponentPropsWithoutRef<typeof BaseTabs.List>) {
   return (
     <BaseTabs.List
       className={cn(

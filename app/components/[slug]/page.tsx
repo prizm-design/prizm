@@ -1,13 +1,13 @@
-import { ArrowLeft } from "lucide-react";
-import Link from "next/link";
-import { notFound } from "next/navigation";
-import type { ReactNode } from "react";
 import { CodeBlock } from "@/components/site/code-block";
 import { ComponentPreview } from "@/components/site/component-preview";
 import { Badge } from "@/components/ui/badge";
 import { EXAMPLES } from "@/lib/component-examples";
-import { COMMON_PROPS_NOTE, getComponentApi, type PropSpec } from "@/lib/components-api";
+import { COMMON_PROPS_NOTE, type PropSpec, getComponentApi } from "@/lib/components-api";
 import { COMPONENTS, getComponent } from "@/lib/components-registry";
+import { ArrowLeft } from "lucide-react";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import type { ReactNode } from "react";
 
 export function generateStaticParams() {
   return COMPONENTS.map((c) => ({ slug: c.slug }));
@@ -89,14 +89,9 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
                     Sub-components
                   </h3>
                   {api.subComponents.map((sub) => (
-                    <div
-                      key={sub.name}
-                      className="rounded-lg border border-border bg-surface p-4"
-                    >
+                    <div key={sub.name} className="rounded-lg border border-border bg-surface p-4">
                       <div className="flex flex-wrap items-baseline gap-2">
-                        <code className="font-mono text-sm font-semibold text-fg">
-                          {sub.name}
-                        </code>
+                        <code className="font-mono text-sm font-semibold text-fg">{sub.name}</code>
                         <span className="text-sm text-fg-muted">— {sub.description}</span>
                       </div>
                       {sub.props && sub.props.length > 0 && (
@@ -108,9 +103,7 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
                   ))}
                 </div>
               )}
-              {api.notes && (
-                <p className="mt-4 text-sm text-fg-muted">{api.notes}</p>
-              )}
+              {api.notes && <p className="mt-4 text-sm text-fg-muted">{api.notes}</p>}
               <p className="mt-3 text-xs text-fg-subtle">{COMMON_PROPS_NOTE}</p>
             </section>
           )}
@@ -136,8 +129,8 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
             {component.builtOn && (
               <>
                 {" "}
-                It will be built on{" "}
-                <span className="font-medium text-fg">{component.builtOn}</span>.
+                It will be built on <span className="font-medium text-fg">{component.builtOn}</span>
+                .
               </>
             )}
           </p>

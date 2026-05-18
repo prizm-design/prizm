@@ -1,8 +1,8 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { Field as BaseField } from "@base-ui-components/react/field";
 import type { ComponentPropsWithoutRef } from "react";
-import { cn } from "@/lib/utils";
 
 export const Field = BaseField.Root;
 
@@ -35,10 +35,7 @@ export function FieldError({
   ...props
 }: ComponentPropsWithoutRef<typeof BaseField.Error>) {
   return (
-    <BaseField.Error
-      className={cn("text-xs leading-relaxed text-danger", className)}
-      {...props}
-    />
+    <BaseField.Error className={cn("text-xs leading-relaxed text-danger", className)} {...props} />
   );
 }
 

@@ -1,3 +1,4 @@
+import { CodeBlock } from "@/components/site/code-block";
 import {
   AlertCircle,
   AlertTriangle,
@@ -31,7 +32,6 @@ import {
   Users,
   X,
 } from "lucide-react";
-import { CodeBlock } from "@/components/site/code-block";
 
 export const metadata = { title: "Icons" };
 
@@ -109,11 +109,31 @@ const CATALOG: CatalogGroup[] = [
 ];
 
 const SIZES = [
-  { className: "h-3 w-3", px: "12px", useCase: "Inside Badge, dense status indicators, kbd glyphs" },
-  { className: "h-3.5 w-3.5", px: "14px", useCase: "Small buttons (size sm), breadcrumb separators" },
-  { className: "h-4 w-4", px: "16px (default)", useCase: "Most buttons, inline with body text, command palette" },
-  { className: "h-5 w-5", px: "20px", useCase: "Section headers, icon rail items, foundation cards" },
-  { className: "h-6 w-6", px: "24px", useCase: "Empty states, hero placements, oversized affordances" },
+  {
+    className: "h-3 w-3",
+    px: "12px",
+    useCase: "Inside Badge, dense status indicators, kbd glyphs",
+  },
+  {
+    className: "h-3.5 w-3.5",
+    px: "14px",
+    useCase: "Small buttons (size sm), breadcrumb separators",
+  },
+  {
+    className: "h-4 w-4",
+    px: "16px (default)",
+    useCase: "Most buttons, inline with body text, command palette",
+  },
+  {
+    className: "h-5 w-5",
+    px: "20px",
+    useCase: "Section headers, icon rail items, foundation cards",
+  },
+  {
+    className: "h-6 w-6",
+    px: "24px",
+    useCase: "Empty states, hero placements, oversized affordances",
+  },
 ];
 
 export default function IconsFoundationPage() {
@@ -124,20 +144,38 @@ export default function IconsFoundationPage() {
       <p className="text-xs font-semibold uppercase tracking-wider text-fg-subtle">Foundations</p>
       <h1 className="mt-2 text-4xl font-semibold tracking-tight">Icons</h1>
       <p className="mt-3 max-w-3xl text-lg text-fg-muted">
-        Icons in PRIZM use <a href="https://lucide.dev" className="text-accent underline-offset-4 hover:underline" target="_blank" rel="noreferrer noopener">lucide-react</a>{" "}
-        — a wide, well-maintained, MIT-licensed set bundled as React components. No remote fetches, air-gap safe out of the box. PRIZM overrides the stroke-width site-wide for a lighter, more precise aesthetic.
+        Icons in PRIZM use{" "}
+        <a
+          href="https://lucide.dev"
+          className="text-accent underline-offset-4 hover:underline"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          lucide-react
+        </a>{" "}
+        — a wide, well-maintained, MIT-licensed set bundled as React components. No remote fetches,
+        air-gap safe out of the box. PRIZM overrides the stroke-width site-wide for a lighter, more
+        precise aesthetic.
       </p>
 
       {/* ============================================================
           The stroke-width decision
           ============================================================ */}
       <section className="mt-12">
-        <h2 className="text-sm font-medium uppercase tracking-wider text-fg-subtle">Stroke width</h2>
+        <h2 className="text-sm font-medium uppercase tracking-wider text-fg-subtle">
+          Stroke width
+        </h2>
         <p className="mt-2 max-w-3xl text-fg-muted">
-          Lucide's default <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">stroke-width</code> is{" "}
-          <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">2</code>. PRIZM overrides to{" "}
-          <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">1.5</code> via a single rule in{" "}
-          <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">app/globals.css</code>:
+          Lucide's default{" "}
+          <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">stroke-width</code>{" "}
+          is <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">2</code>. PRIZM
+          overrides to{" "}
+          <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">1.5</code> via a
+          single rule in{" "}
+          <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">
+            app/globals.css
+          </code>
+          :
         </p>
         <div className="mt-4">
           <CodeBlock
@@ -157,8 +195,12 @@ export default function IconsFoundationPage() {
           The lighter stroke reads as more precise and pairs better with PRIZM's typography weights.
           The override applies to ALL svg elements site-wide. To deviate on a single icon, use the
           Tailwind arbitrary modifier (
-          <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">[stroke-width:2]</code>
-          ) or inline style. The lucide <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">strokeWidth</code> prop is overridden by the CSS rule, so prop-level changes have no effect.
+          <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">
+            [stroke-width:2]
+          </code>
+          ) or inline style. The lucide{" "}
+          <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">strokeWidth</code>{" "}
+          prop is overridden by the CSS rule, so prop-level changes have no effect.
         </p>
       </section>
 
@@ -206,7 +248,12 @@ export default function IconsFoundationPage() {
           Pairing with text
         </h2>
         <p className="mt-2 max-w-3xl text-fg-muted">
-          Use <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">inline-flex items-center</code> and an explicit gap that scales with the text. Vertical centering is rarely correct by default — let flex align them.
+          Use{" "}
+          <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">
+            inline-flex items-center
+          </code>{" "}
+          and an explicit gap that scales with the text. Vertical centering is rarely correct by
+          default — let flex align them.
         </p>
         <div className="mt-6 space-y-4">
           <PairingRow
@@ -249,14 +296,16 @@ export default function IconsFoundationPage() {
         <h2 className="text-sm font-medium uppercase tracking-wider text-fg-subtle">
           Accessibility
         </h2>
-        <p className="mt-2 max-w-3xl text-fg-muted">
-          The two rules that cover 95% of cases:
-        </p>
+        <p className="mt-2 max-w-3xl text-fg-muted">The two rules that cover 95% of cases:</p>
         <div className="mt-6 grid gap-4 md:grid-cols-2">
           <div className="min-w-0 rounded-lg border border-border bg-surface p-5">
             <p className="text-sm font-semibold text-fg">Decorative (alongside a visible label)</p>
             <p className="mt-2 text-sm text-fg-muted">
-              Add <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">aria-hidden</code> so screen readers skip the icon. The label conveys the meaning.
+              Add{" "}
+              <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">
+                aria-hidden
+              </code>{" "}
+              so screen readers skip the icon. The label conveys the meaning.
             </p>
             <div className="mt-4">
               <CodeBlock
@@ -271,7 +320,11 @@ export default function IconsFoundationPage() {
           <div className="min-w-0 rounded-lg border border-border bg-surface p-5">
             <p className="text-sm font-semibold text-fg">Meaningful (icon-only control)</p>
             <p className="mt-2 text-sm text-fg-muted">
-              Put <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">aria-label</code> on the <em>container</em>, not the icon. The icon stays decorative.
+              Put{" "}
+              <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">
+                aria-label
+              </code>{" "}
+              on the <em>container</em>, not the icon. The icon stays decorative.
             </p>
             <div className="mt-4">
               <CodeBlock
@@ -332,10 +385,14 @@ export default function IconsFoundationPage() {
           ))}
         </div>
         <p className="mt-6 text-sm text-fg-muted">
-          Import any of these by name from <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">lucide-react</code>:
+          Import any of these by name from{" "}
+          <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">lucide-react</code>:
         </p>
         <div className="mt-3">
-          <CodeBlock language="tsx" code={`import { Check, Search, Settings } from "lucide-react";`} />
+          <CodeBlock
+            language="tsx"
+            code={`import { Check, Search, Settings } from "lucide-react";`}
+          />
         </div>
       </section>
 
@@ -343,15 +400,20 @@ export default function IconsFoundationPage() {
           Custom SVGs
           ============================================================ */}
       <section className="mt-12">
-        <h2 className="text-sm font-medium uppercase tracking-wider text-fg-subtle">
-          Custom SVGs
-        </h2>
+        <h2 className="text-sm font-medium uppercase tracking-wider text-fg-subtle">Custom SVGs</h2>
         <p className="mt-2 max-w-3xl text-fg-muted">
           For brand marks and product-specific glyphs lucide doesn't cover, write the SVG inline.
-          Set <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">stroke-width</code> on each{" "}
-          <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">&lt;path&gt;</code> directly — the site-wide{" "}
-          <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">svg {`{ stroke-width: 1.5 }`}</code> only affects elements that don't have an explicit per-path value. Include a{" "}
-          <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">&lt;title&gt;</code> for accessibility.
+          Set{" "}
+          <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">stroke-width</code>{" "}
+          on each{" "}
+          <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">&lt;path&gt;</code>{" "}
+          directly — the site-wide{" "}
+          <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">
+            svg {"{ stroke-width: 1.5 }"}
+          </code>{" "}
+          only affects elements that don't have an explicit per-path value. Include a{" "}
+          <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">&lt;title&gt;</code>{" "}
+          for accessibility.
         </p>
         <div className="mt-6 flex flex-col gap-5 rounded-lg border border-border bg-surface p-6 sm:flex-row sm:items-center sm:gap-6">
           <div className="flex shrink-0 items-center gap-3">
@@ -397,10 +459,10 @@ export default function IconsFoundationPage() {
         <p className="mt-2 max-w-3xl text-sm text-fg-muted">
           lucide-react ships every icon as a React component bundled into your build — no remote
           fetches. PRIZM's air-gap audit (
-          <code className="rounded bg-bg px-1.5 py-0.5 font-mono text-xs">pnpm audit:airgap</code>
-          ) does not flag lucide. Custom SVGs vendored inline are also safe. The only thing that
-          would break air-gap discipline is referencing a remote icon font or external SVG URL —
-          don't do that.
+          <code className="rounded bg-bg px-1.5 py-0.5 font-mono text-xs">pnpm audit:airgap</code>)
+          does not flag lucide. Custom SVGs vendored inline are also safe. The only thing that would
+          break air-gap discipline is referencing a remote icon font or external SVG URL — don't do
+          that.
         </p>
       </section>
     </article>
@@ -481,12 +543,7 @@ function PrizmMark({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden>
       <title>PRIZM</title>
-      <path
-        d="M12 2L22 20H2L12 2Z"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinejoin="round"
-      />
+      <path d="M12 2L22 20H2L12 2Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
       <path d="M12 2L12 20" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
     </svg>
   );

@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { CodeBlock } from "@/components/site/code-block";
+import Link from "next/link";
 
 export const metadata = { title: "Theming" };
 
@@ -39,7 +39,8 @@ export default function ThemingPage() {
       <ol className="mt-3 list-decimal space-y-2 pl-6 text-fg-muted">
         <li>
           <strong className="text-fg">Baseline tokens</strong> — raw color scales (slate, blue,
-          cyan), radii, motion. In <code className="font-mono text-xs">styles/tokens/baseline.css</code>.
+          cyan), radii, motion. In{" "}
+          <code className="font-mono text-xs">styles/tokens/baseline.css</code>.
         </li>
         <li>
           <strong className="text-fg">Semantic tokens</strong> — meaning-based variables like{" "}
@@ -51,7 +52,10 @@ export default function ThemingPage() {
       <p className="mt-3 text-fg-muted">
         Components always reference semantic tokens — never baseline scales directly. This is what
         makes theme switching free. For the full palette and per-token visual reference, see{" "}
-        <Link href="/docs/colors" className="text-accent hover:underline">Colors</Link>.
+        <Link href="/docs/colors" className="text-accent hover:underline">
+          Colors
+        </Link>
+        .
       </p>
 
       <h2 className="mt-12 text-2xl font-semibold tracking-tight">Using tokens in code</h2>

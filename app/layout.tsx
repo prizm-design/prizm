@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
-import type { ReactNode } from "react";
 import { Footer } from "@/components/site/footer";
 import { Header } from "@/components/site/header";
 import { ZoneIndicator } from "@/components/site/zone-indicator";
 import { ToastProvider } from "@/components/ui/toast";
 import { ThemeProvider } from "@/lib/theme-context";
 import { ZoneRouteSync } from "@/lib/zone-detector";
+import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import "./globals.css";
 
 import { basePath } from "@/lib/base-path";
@@ -51,6 +51,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* FOUC-prevention: applies the persisted theme before React hydrates.
+            Cannot be a regular module — must execute synchronously in <head>
+            from a known-safe inline string we control. */}
+        {/* biome-ignore lint/security/noDangerouslySetInnerHtml: trusted constant */}
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body className="flex min-h-screen flex-col bg-bg text-fg antialiased">

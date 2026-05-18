@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
-import { useTheme, type Zone } from "./theme-context";
+import { type Zone, useTheme } from "./theme-context";
 
 /**
  * Watches the route and syncs the active zone to the URL.

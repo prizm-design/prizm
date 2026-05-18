@@ -1,8 +1,8 @@
 "use client";
 
-import { type ReactNode, useState } from "react";
-import { useTheme, type Zone } from "@/lib/theme-context";
+import { type Zone, useTheme } from "@/lib/theme-context";
 import { cn } from "@/lib/utils";
+import { type ReactNode, useState } from "react";
 
 type Variant = "c3" | "enterprise" | "compare";
 
@@ -64,10 +64,18 @@ export function ComponentPreview({
 
       {view === "compare" ? (
         <div className="grid grid-cols-1 md:grid-cols-2">
-          <PreviewSwatch zone="c3" mode="light" label="C3 · Light">{children}</PreviewSwatch>
-          <PreviewSwatch zone="c3" mode="dark" label="C3 · Dark">{children}</PreviewSwatch>
-          <PreviewSwatch zone="enterprise" mode="light" label="Enterprise · Light">{children}</PreviewSwatch>
-          <PreviewSwatch zone="enterprise" mode="dark" label="Enterprise · Dark">{children}</PreviewSwatch>
+          <PreviewSwatch zone="c3" mode="light" label="C3 · Light">
+            {children}
+          </PreviewSwatch>
+          <PreviewSwatch zone="c3" mode="dark" label="C3 · Dark">
+            {children}
+          </PreviewSwatch>
+          <PreviewSwatch zone="enterprise" mode="light" label="Enterprise · Light">
+            {children}
+          </PreviewSwatch>
+          <PreviewSwatch zone="enterprise" mode="dark" label="Enterprise · Dark">
+            {children}
+          </PreviewSwatch>
         </div>
       ) : (
         <div className="flex min-h-[200px] items-center justify-center p-10">{children}</div>

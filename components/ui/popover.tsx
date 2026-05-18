@@ -1,9 +1,9 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { Popover as BasePopover } from "@base-ui-components/react/popover";
 import { X } from "lucide-react";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
-import { cn } from "@/lib/utils";
 
 export const Popover = BasePopover.Root;
 export const PopoverTrigger = BasePopover.Trigger;
@@ -63,10 +63,7 @@ export function PopoverTitle({
   ...props
 }: ComponentPropsWithoutRef<typeof BasePopover.Title>) {
   return (
-    <BasePopover.Title
-      className={cn("text-sm font-semibold text-fg", className)}
-      {...props}
-    />
+    <BasePopover.Title className={cn("text-sm font-semibold text-fg", className)} {...props} />
   );
 }
 
@@ -74,10 +71,5 @@ export function PopoverDescription({
   className,
   ...props
 }: ComponentPropsWithoutRef<typeof BasePopover.Description>) {
-  return (
-    <BasePopover.Description
-      className={cn("text-sm text-fg-muted", className)}
-      {...props}
-    />
-  );
+  return <BasePopover.Description className={cn("text-sm text-fg-muted", className)} {...props} />;
 }

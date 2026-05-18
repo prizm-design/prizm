@@ -1,3 +1,4 @@
+import { Badge } from "@/components/ui/badge";
 import {
   AlertTriangle,
   ArrowRight,
@@ -10,7 +11,6 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { Badge } from "@/components/ui/badge";
 
 export const metadata = { title: "C3 — Templates" };
 
@@ -141,13 +141,11 @@ export default function C3TemplatesPage() {
         ))}
       </div>
 
-      <h2 className="mt-16 text-sm font-medium uppercase tracking-wider text-fg-subtle">
-        Planned
-      </h2>
+      <h2 className="mt-16 text-sm font-medium uppercase tracking-wider text-fg-subtle">Planned</h2>
       <p className="mt-3 text-sm text-fg-muted">
-        Each maps directly to an app in the App Shell's icon rail. All share the same chrome and
-        the same panel-plus-expanded pattern — what changes is the content inside the panel and
-        (when expanded) the canvas.
+        Each maps directly to an app in the App Shell's icon rail. All share the same chrome and the
+        same panel-plus-expanded pattern — what changes is the content inside the panel and (when
+        expanded) the canvas.
       </p>
       <div className="mt-4 grid gap-4 sm:grid-cols-2">
         {PLANNED.map((t) => (

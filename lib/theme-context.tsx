@@ -1,13 +1,6 @@
 "use client";
 
-import {
-  createContext,
-  type ReactNode,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { type ReactNode, createContext, useCallback, useContext, useEffect, useState } from "react";
 
 export type Zone = "enterprise" | "c3";
 export type Mode = "light" | "dark";

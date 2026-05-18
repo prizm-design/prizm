@@ -1,9 +1,9 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { Dialog as BaseDialog } from "@base-ui-components/react/dialog";
 import { X } from "lucide-react";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
-import { cn } from "@/lib/utils";
 
 export const Sheet = BaseDialog.Root;
 export const SheetTrigger = BaseDialog.Trigger;
@@ -11,9 +11,11 @@ export const SheetClose = BaseDialog.Close;
 
 const sideClasses = {
   left: "inset-y-0 left-0 h-full w-3/4 border-r sm:max-w-sm data-[starting-style]:-translate-x-full data-[ending-style]:-translate-x-full",
-  right: "inset-y-0 right-0 h-full w-3/4 border-l sm:max-w-sm data-[starting-style]:translate-x-full data-[ending-style]:translate-x-full",
+  right:
+    "inset-y-0 right-0 h-full w-3/4 border-l sm:max-w-sm data-[starting-style]:translate-x-full data-[ending-style]:translate-x-full",
   top: "inset-x-0 top-0 w-full border-b data-[starting-style]:-translate-y-full data-[ending-style]:-translate-y-full",
-  bottom: "inset-x-0 bottom-0 w-full border-t data-[starting-style]:translate-y-full data-[ending-style]:translate-y-full",
+  bottom:
+    "inset-x-0 bottom-0 w-full border-t data-[starting-style]:translate-y-full data-[ending-style]:translate-y-full",
 } as const;
 
 export function SheetContent({
@@ -68,10 +70,7 @@ export function SheetContent({
 export function SheetHeader({ className, ...props }: ComponentPropsWithoutRef<"div">) {
   return (
     <div
-      className={cn(
-        "flex flex-col gap-1.5 border-b border-border px-6 py-4",
-        className,
-      )}
+      className={cn("flex flex-col gap-1.5 border-b border-border px-6 py-4", className)}
       {...props}
     />
   );
@@ -93,9 +92,7 @@ export function SheetDescription({
   className,
   ...props
 }: ComponentPropsWithoutRef<typeof BaseDialog.Description>) {
-  return (
-    <BaseDialog.Description className={cn("text-sm text-fg-muted", className)} {...props} />
-  );
+  return <BaseDialog.Description className={cn("text-sm text-fg-muted", className)} {...props} />;
 }
 
 export function SheetBody({ className, ...props }: ComponentPropsWithoutRef<"div">) {

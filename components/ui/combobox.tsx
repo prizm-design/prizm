@@ -1,9 +1,9 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { Combobox as BaseCombobox } from "@base-ui-components/react/combobox";
 import { Check, ChevronsUpDown } from "lucide-react";
 import type { ComponentPropsWithoutRef } from "react";
-import { cn } from "@/lib/utils";
 
 export const Combobox = BaseCombobox.Root;
 
@@ -26,7 +26,9 @@ export function ComboboxTrigger({
     >
       {children ?? (
         <>
-          <BaseCombobox.Value>{(v: unknown) => (v != null ? String(v) : "Select…")}</BaseCombobox.Value>
+          <BaseCombobox.Value>
+            {(v: unknown) => (v != null ? String(v) : "Select…")}
+          </BaseCombobox.Value>
           <BaseCombobox.Icon>
             <ChevronsUpDown className="h-4 w-4 opacity-50" />
           </BaseCombobox.Icon>

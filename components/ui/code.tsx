@@ -1,5 +1,5 @@
-import { type HTMLAttributes, forwardRef } from "react";
 import { cn } from "@/lib/utils";
+import { type HTMLAttributes, forwardRef } from "react";
 
 // Inline code
 export const Code = forwardRef<HTMLElement, HTMLAttributes<HTMLElement>>(

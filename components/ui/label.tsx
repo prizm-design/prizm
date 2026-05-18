@@ -1,8 +1,11 @@
-import { type LabelHTMLAttributes, forwardRef } from "react";
 import { cn } from "@/lib/utils";
+import { type LabelHTMLAttributes, forwardRef } from "react";
 
 export const Label = forwardRef<HTMLLabelElement, LabelHTMLAttributes<HTMLLabelElement>>(
   ({ className, ...props }, ref) => (
+    // Primitive: htmlFor is supplied by consumers. The lint rule fires because
+    // the bare label has no control association at the source — by design.
+    // biome-ignore lint/a11y/noLabelWithoutControl: consumer supplies htmlFor
     <label
       ref={ref}
       className={cn(

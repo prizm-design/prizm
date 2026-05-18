@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { CodeBlock } from "@/components/site/code-block";
+import Link from "next/link";
 
 export const metadata = { title: "Getting started" };
 
@@ -13,7 +13,9 @@ export default function GettingStartedPage() {
       </p>
 
       <h2 className="mt-12 text-2xl font-semibold tracking-tight">1. Install peer dependencies</h2>
-      <p className="mt-3 text-fg-muted">PRIZM components rely on a small set of well-supported libraries:</p>
+      <p className="mt-3 text-fg-muted">
+        PRIZM components rely on a small set of well-supported libraries:
+      </p>
       <div className="mt-4">
         <CodeBlock
           language="bash"
@@ -24,7 +26,8 @@ pnpm add -D tailwindcss@^4.0.0-beta.4`}
 
       <h2 className="mt-12 text-2xl font-semibold tracking-tight">2. Add the PRIZM token CSS</h2>
       <p className="mt-3 text-fg-muted">
-        Copy the contents of <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">/styles/tokens/</code>{" "}
+        Copy the contents of{" "}
+        <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">/styles/tokens/</code>{" "}
         into your project and import them in your global CSS:
       </p>
       <div className="mt-4">
@@ -56,7 +59,10 @@ pnpm add -D tailwindcss@^4.0.0-beta.4`}
 
       <h2 className="mt-12 text-2xl font-semibold tracking-tight">4. Copy your first component</h2>
       <p className="mt-3 text-fg-muted">
-        Browse the <Link href="/components" className="text-accent underline-offset-4 hover:underline">component catalog</Link>{" "}
+        Browse the{" "}
+        <Link href="/components" className="text-accent underline-offset-4 hover:underline">
+          component catalog
+        </Link>{" "}
         and copy the source of any stable component into{" "}
         <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">components/ui/</code>{" "}
         in your project. You now own that component — modify it freely.

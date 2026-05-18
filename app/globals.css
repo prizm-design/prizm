@@ -62,7 +62,7 @@
   color-scheme: light;
   --color-bg: oklch(98.5% 0.002 247.84);
   --color-bg-subtle: oklch(99.5% 0.002 247.84);
-  --color-bg-muted: oklch(96.8% 0.007 247.90);
+  --color-bg-muted: oklch(96.8% 0.007 247.9);
   --color-surface: oklch(100% 0 0);
   --color-surface-elevated: oklch(100% 0 0);
   --color-border: oklch(92.9% 0.013 255.51);
@@ -82,18 +82,18 @@
 
 .swatch-enterprise-dark {
   color-scheme: dark;
-  --color-bg: oklch(12.9% 0.042 264.70);
-  --color-bg-subtle: oklch(10.4% 0.040 264.70);
-  --color-bg-muted: oklch(16.5% 0.040 265.75);
+  --color-bg: oklch(12.9% 0.042 264.7);
+  --color-bg-subtle: oklch(10.4% 0.04 264.7);
+  --color-bg-muted: oklch(16.5% 0.04 265.75);
   --color-surface: oklch(20.8% 0.042 265.75);
   --color-surface-elevated: oklch(27.9% 0.041 260.03);
   --color-border: oklch(27.9% 0.041 260.03);
   --color-border-strong: oklch(37.2% 0.044 257.29);
   --color-fg: oklch(98.5% 0.002 247.84);
-  --color-fg-muted: oklch(70.4% 0.040 256.79);
+  --color-fg-muted: oklch(70.4% 0.04 256.79);
   --color-fg-subtle: oklch(55.4% 0.046 257.42);
   --color-accent: oklch(62.3% 0.214 259.81);
-  --color-accent-fg: oklch(12.9% 0.042 264.70);
+  --color-accent-fg: oklch(12.9% 0.042 264.7);
   --color-accent-hover: oklch(70.7% 0.165 254.62);
   --color-danger: oklch(63.7% 0.237 25.33);
   --color-danger-fg: oklch(98.5% 0.002 247.84);
@@ -106,12 +106,12 @@
   color-scheme: light;
   --color-bg: oklch(97.4% 0.005 247.84);
   --color-bg-subtle: oklch(98.5% 0.002 247.84);
-  --color-bg-muted: oklch(96.8% 0.007 247.90);
+  --color-bg-muted: oklch(96.8% 0.007 247.9);
   --color-surface: oklch(100% 0 0);
   --color-surface-elevated: oklch(100% 0 0);
   --color-border: oklch(86.9% 0.022 252.89);
-  --color-border-strong: oklch(70.4% 0.040 256.79);
-  --color-fg: oklch(12.9% 0.042 264.70);
+  --color-border-strong: oklch(70.4% 0.04 256.79);
+  --color-fg: oklch(12.9% 0.042 264.7);
   --color-fg-muted: oklch(37.2% 0.044 257.29);
   --color-fg-subtle: oklch(55.4% 0.046 257.42);
   --color-accent: oklch(52.0% 0.105 223.13);
@@ -128,19 +128,19 @@
   --prizm-glass-chrome-blur: 8px;
   --prizm-glass-chrome-saturate: 180%;
   --prizm-glass-chrome-shadow: inset 0 1px 0 oklch(100% 0 0 / 0.25);
-  --prizm-glass-panel-bg: oklch(20% 0.025 240 / 0.10);
-  --prizm-glass-panel-border: oklch(0% 0 0 / 0.10);
+  --prizm-glass-panel-bg: oklch(20% 0.025 240 / 0.1);
+  --prizm-glass-panel-border: oklch(0% 0 0 / 0.1);
   --prizm-glass-panel-blur: 12px;
   --prizm-glass-panel-saturate: 180%;
-  --prizm-glass-panel-shadow: inset 0 1px 0 oklch(100% 0 0 / 0.30), 0 8px 24px oklch(0% 0 0 / 0.08);
+  --prizm-glass-panel-shadow: inset 0 1px 0 oklch(100% 0 0 / 0.3), 0 8px 24px oklch(0% 0 0 / 0.08);
   --prizm-glass-noise-opacity: 0.05;
 }
 
 .swatch-c3-dark {
   color-scheme: dark;
-  --color-bg: oklch(9.8% 0.030 264.70);
-  --color-bg-subtle: oklch(12.9% 0.042 264.70);
-  --color-bg-muted: oklch(15.5% 0.040 264.70);
+  --color-bg: oklch(9.8% 0.03 264.7);
+  --color-bg-subtle: oklch(12.9% 0.042 264.7);
+  --color-bg-muted: oklch(15.5% 0.04 264.7);
   --color-surface: oklch(20.8% 0.042 265.75);
   --color-surface-elevated: oklch(27.9% 0.041 260.03);
   --color-border: oklch(37.2% 0.044 257.29);
@@ -149,7 +149,7 @@
   --color-fg-muted: oklch(86.9% 0.022 252.89);
   --color-fg-subtle: oklch(55.4% 0.046 257.42);
   --color-accent: oklch(78.9% 0.154 211.53);
-  --color-accent-fg: oklch(12.9% 0.042 264.70);
+  --color-accent-fg: oklch(12.9% 0.042 264.7);
   --color-accent-hover: oklch(86.5% 0.127 207.08);
   --color-danger: oklch(63.7% 0.237 25.33);
   --color-danger-fg: oklch(98.5% 0.002 247.84);
@@ -161,12 +161,12 @@
   --prizm-glass-chrome-border: oklch(100% 0 0 / 0.08);
   --prizm-glass-chrome-blur: 8px;
   --prizm-glass-chrome-saturate: 180%;
-  --prizm-glass-chrome-shadow: inset 0 1px 0 oklch(100% 0 0 / 0.10);
-  --prizm-glass-panel-bg: oklch(85% 0.015 220 / 0.10);
-  --prizm-glass-panel-border: oklch(100% 0 0 / 0.10);
+  --prizm-glass-chrome-shadow: inset 0 1px 0 oklch(100% 0 0 / 0.1);
+  --prizm-glass-panel-bg: oklch(85% 0.015 220 / 0.1);
+  --prizm-glass-panel-border: oklch(100% 0 0 / 0.1);
   --prizm-glass-panel-blur: 12px;
   --prizm-glass-panel-saturate: 180%;
-  --prizm-glass-panel-shadow: inset 0 1px 0 oklch(100% 0 0 / 0.15), 0 12px 32px oklch(0% 0 0 / 0.50);
+  --prizm-glass-panel-shadow: inset 0 1px 0 oklch(100% 0 0 / 0.15), 0 12px 32px oklch(0% 0 0 / 0.5);
   --prizm-glass-noise-opacity: 0.04;
 }
 
@@ -212,19 +212,15 @@
 
   @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
     .surface-glass-chrome {
-      -webkit-backdrop-filter:
-        blur(var(--prizm-glass-chrome-blur, 8px))
+      -webkit-backdrop-filter: blur(var(--prizm-glass-chrome-blur, 8px))
         saturate(var(--prizm-glass-chrome-saturate, 180%));
-      backdrop-filter:
-        blur(var(--prizm-glass-chrome-blur, 8px))
+      backdrop-filter: blur(var(--prizm-glass-chrome-blur, 8px))
         saturate(var(--prizm-glass-chrome-saturate, 180%));
     }
     .surface-glass-panel {
-      -webkit-backdrop-filter:
-        blur(var(--prizm-glass-panel-blur, 12px))
+      -webkit-backdrop-filter: blur(var(--prizm-glass-panel-blur, 12px))
         saturate(var(--prizm-glass-panel-saturate, 180%));
-      backdrop-filter:
-        blur(var(--prizm-glass-panel-blur, 12px))
+      backdrop-filter: blur(var(--prizm-glass-panel-blur, 12px))
         saturate(var(--prizm-glass-panel-saturate, 180%));
     }
   }
@@ -305,8 +301,13 @@
    ============================================================ */
 
 @keyframes prizm-hero-edge-pulse {
-  0%, 100% { opacity: 0.4; }
-  25%      { opacity: 1; }
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  25% {
+    opacity: 1;
+  }
 }
 
 .prizm-hero-edge-1,
@@ -315,9 +316,15 @@
 .prizm-hero-edge-4 {
   animation: prizm-hero-edge-pulse 6s ease-in-out infinite;
 }
-.prizm-hero-edge-2 { animation-delay: 1.5s; }
-.prizm-hero-edge-3 { animation-delay: 3s; }
-.prizm-hero-edge-4 { animation-delay: 4.5s; }
+.prizm-hero-edge-2 {
+  animation-delay: 1.5s;
+}
+.prizm-hero-edge-3 {
+  animation-delay: 3s;
+}
+.prizm-hero-edge-4 {
+  animation-delay: 4.5s;
+}
 
 @media (prefers-reduced-motion: reduce) {
   .prizm-hero-edge-1,

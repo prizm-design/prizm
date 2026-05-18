@@ -1,13 +1,10 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { Switch as BaseSwitch } from "@base-ui-components/react/switch";
 import type { ComponentPropsWithoutRef } from "react";
-import { cn } from "@/lib/utils";
 
-export function Switch({
-  className,
-  ...props
-}: ComponentPropsWithoutRef<typeof BaseSwitch.Root>) {
+export function Switch({ className, ...props }: ComponentPropsWithoutRef<typeof BaseSwitch.Root>) {
   return (
     <BaseSwitch.Root
       className={cn(

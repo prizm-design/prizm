@@ -1,13 +1,27 @@
+import { ComboboxDemo } from "@/components/site/combobox-demo";
+import { ToastDemo } from "@/components/site/toast-demo";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
 import {
-  BookOpenIcon,
-  CalendarIcon,
-  FileTextIcon,
-  InboxIcon,
-  LayoutDashboardIcon,
-  SettingsIcon,
-} from "lucide-react";
-import type { ReactNode } from "react";
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Code, CodeBlock } from "@/components/ui/code";
 import {
   Command,
@@ -26,15 +40,25 @@ import {
   ContextMenuSeparator,
   ContextMenuTrigger,
 } from "@/components/ui/context-menu";
-import { EmptyState } from "@/components/ui/empty-state";
-import { Frame } from "@/components/ui/frame";
-import { Heading } from "@/components/ui/heading";
 import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card";
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { EmptyState } from "@/components/ui/empty-state";
+import { Field, FieldDescription, FieldLabel } from "@/components/ui/field";
+import { Frame } from "@/components/ui/frame";
+import { Group } from "@/components/ui/group";
+import { Heading } from "@/components/ui/heading";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import { Input } from "@/components/ui/input";
 import { Kbd } from "@/components/ui/kbd";
+import { Label } from "@/components/ui/label";
+import { Link } from "@/components/ui/link";
 import {
   Menu,
   MenuContent,
@@ -68,7 +92,17 @@ import {
   PopoverTitle,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { Progress } from "@/components/ui/progress";
 import { Prose } from "@/components/ui/prose";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Separator } from "@/components/ui/separator";
 import {
   Sheet,
   SheetBody,
@@ -79,6 +113,11 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Slider } from "@/components/ui/slider";
+import { Spinner } from "@/components/ui/spinner";
+import { Stack } from "@/components/ui/stack";
+import { Switch } from "@/components/ui/switch";
 import {
   Table,
   TableBody,
@@ -88,61 +127,19 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Text } from "@/components/ui/text";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Field, FieldDescription, FieldLabel } from "@/components/ui/field";
-import { Group } from "@/components/ui/group";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Link } from "@/components/ui/link";
-import { Progress } from "@/components/ui/progress";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Separator } from "@/components/ui/separator";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Slider } from "@/components/ui/slider";
-import { Spinner } from "@/components/ui/spinner";
-import { Stack } from "@/components/ui/stack";
-import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Text } from "@/components/ui/text";
 import { Textarea } from "@/components/ui/textarea";
-import { ComboboxDemo } from "@/components/site/combobox-demo";
-import { ToastDemo } from "@/components/site/toast-demo";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+  BookOpenIcon,
+  CalendarIcon,
+  FileTextIcon,
+  InboxIcon,
+  LayoutDashboardIcon,
+  SettingsIcon,
+} from "lucide-react";
+import type { ReactNode } from "react";
 
 export interface ComponentExample {
   preview: ReactNode;
@@ -338,7 +335,9 @@ const fieldExample: ComponentExample = {
     <Field className="w-full max-w-sm space-y-1.5">
       <FieldLabel>Project key</FieldLabel>
       <Input placeholder="PRIZM" />
-      <FieldDescription>Used as the prefix for issue IDs. Cannot be changed later.</FieldDescription>
+      <FieldDescription>
+        Used as the prefix for issue IDs. Cannot be changed later.
+      </FieldDescription>
     </Field>
   ),
   code: `import { Field, FieldLabel, FieldDescription } from "@/components/ui/field";
@@ -912,7 +911,9 @@ const headingExample: ComponentExample = {
     <div className="space-y-2">
       <Heading size="4xl">Display heading</Heading>
       <Heading size="2xl">Section heading</Heading>
-      <Heading size="lg" as="h3">Subsection</Heading>
+      <Heading size="lg" as="h3">
+        Subsection
+      </Heading>
     </div>
   ),
   code: `import { Heading } from "@/components/ui/heading";
@@ -932,7 +933,9 @@ const textExample: ComponentExample = {
   preview: (
     <div className="space-y-2">
       <Text>Default body text at base size.</Text>
-      <Text variant="muted" size="sm">Muted small text for secondary info.</Text>
+      <Text variant="muted" size="sm">
+        Muted small text for secondary info.
+      </Text>
       <Text weight="semibold">Semibold emphasis.</Text>
     </div>
   ),
@@ -953,10 +956,15 @@ const proseExample: ComponentExample = {
   preview: (
     <Prose className="max-w-prose">
       <h2>Getting started</h2>
-      <p>PRIZM provides a set of accessible, themeable components for building C3 and enterprise interfaces.</p>
+      <p>
+        PRIZM provides a set of accessible, themeable components for building C3 and enterprise
+        interfaces.
+      </p>
       <ul>
         <li>Copy components into your project</li>
-        <li>Apply design tokens via <code>data-zone</code> and <code>data-mode</code></li>
+        <li>
+          Apply design tokens via <code>data-zone</code> and <code>data-mode</code>
+        </li>
         <li>Customise as needed</li>
       </ul>
     </Prose>
@@ -1001,7 +1009,9 @@ export function Example() {
 const frameExample: ComponentExample = {
   preview: (
     <Frame maxWidth="sm" padding="md" className="bg-bg-muted rounded-md">
-      <p className="text-sm text-fg-muted text-center">Constrained frame with max-width and padding</p>
+      <p className="text-sm text-fg-muted text-center">
+        Constrained frame with max-width and padding
+      </p>
     </Frame>
   ),
   code: `import { Frame } from "@/components/ui/frame";
@@ -1193,9 +1203,15 @@ const sheetExample: ComponentExample = {
           </SheetHeader>
           <SheetBody>
             <nav className="flex flex-col gap-1 text-sm">
-              <a href="#" className="rounded px-2 py-1.5 text-fg hover:bg-bg-muted">Dashboard</a>
-              <a href="#" className="rounded px-2 py-1.5 text-fg hover:bg-bg-muted">Reports</a>
-              <a href="#" className="rounded px-2 py-1.5 text-fg hover:bg-bg-muted">Settings</a>
+              <a href="#" className="rounded px-2 py-1.5 text-fg hover:bg-bg-muted">
+                Dashboard
+              </a>
+              <a href="#" className="rounded px-2 py-1.5 text-fg hover:bg-bg-muted">
+                Reports
+              </a>
+              <a href="#" className="rounded px-2 py-1.5 text-fg hover:bg-bg-muted">
+                Settings
+              </a>
             </nav>
           </SheetBody>
         </SheetContent>
@@ -1211,7 +1227,9 @@ const sheetExample: ComponentExample = {
             <p className="text-sm text-fg-muted">Form fields would live here.</p>
           </SheetBody>
           <SheetFooter>
-            <Button size="sm" variant="outline">Cancel</Button>
+            <Button size="sm" variant="outline">
+              Cancel
+            </Button>
             <Button size="sm">Save</Button>
           </SheetFooter>
         </SheetContent>
@@ -1316,7 +1334,9 @@ const paginationExample: ComponentExample = {
           <PaginationLink href="#">1</PaginationLink>
         </PaginationItem>
         <PaginationItem>
-          <PaginationLink href="#" isActive>2</PaginationLink>
+          <PaginationLink href="#" isActive>
+            2
+          </PaginationLink>
         </PaginationItem>
         <PaginationItem>
           <PaginationLink href="#">3</PaginationLink>
@@ -1444,8 +1464,16 @@ const navigationMenuExample: ComponentExample = {
           <NavigationMenuTrigger>Products</NavigationMenuTrigger>
           <NavigationMenuContent className="p-3 w-48">
             <ul className="space-y-1 text-sm">
-              <li><a href="#" className="block rounded px-2 py-1 text-fg hover:bg-bg-muted">C3 Suite</a></li>
-              <li><a href="#" className="block rounded px-2 py-1 text-fg hover:bg-bg-muted">Enterprise Portal</a></li>
+              <li>
+                <a href="#" className="block rounded px-2 py-1 text-fg hover:bg-bg-muted">
+                  C3 Suite
+                </a>
+              </li>
+              <li>
+                <a href="#" className="block rounded px-2 py-1 text-fg hover:bg-bg-muted">
+                  Enterprise Portal
+                </a>
+              </li>
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
@@ -1453,8 +1481,16 @@ const navigationMenuExample: ComponentExample = {
           <NavigationMenuTrigger>Docs</NavigationMenuTrigger>
           <NavigationMenuContent className="p-3 w-48">
             <ul className="space-y-1 text-sm">
-              <li><a href="#" className="block rounded px-2 py-1 text-fg hover:bg-bg-muted">Getting started</a></li>
-              <li><a href="#" className="block rounded px-2 py-1 text-fg hover:bg-bg-muted">Components</a></li>
+              <li>
+                <a href="#" className="block rounded px-2 py-1 text-fg hover:bg-bg-muted">
+                  Getting started
+                </a>
+              </li>
+              <li>
+                <a href="#" className="block rounded px-2 py-1 text-fg hover:bg-bg-muted">
+                  Components
+                </a>
+              </li>
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
@@ -1492,10 +1528,7 @@ const commandExample: ComponentExample = {
       <CommandList className="max-h-72 p-1">
         <CommandEmpty>No results found.</CommandEmpty>
         <CommandGroup heading="Navigation">
-          <CommandItem
-            className="gap-3 py-2"
-            keywords={["home", "overview"]}
-          >
+          <CommandItem className="gap-3 py-2" keywords={["home", "overview"]}>
             <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-sm text-fg-subtle aria-selected:text-accent">
               <LayoutDashboardIcon className="h-4 w-4" />
             </span>
@@ -1504,10 +1537,7 @@ const commandExample: ComponentExample = {
               <span className="truncate text-xs text-fg-muted">View today&rsquo;s activity</span>
             </span>
           </CommandItem>
-          <CommandItem
-            className="gap-3 py-2"
-            keywords={["schedule", "events"]}
-          >
+          <CommandItem className="gap-3 py-2" keywords={["schedule", "events"]}>
             <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-sm text-fg-subtle aria-selected:text-accent">
               <CalendarIcon className="h-4 w-4" />
             </span>
@@ -1516,43 +1546,40 @@ const commandExample: ComponentExample = {
               <span className="truncate text-xs text-fg-muted">Upcoming events and meetings</span>
             </span>
           </CommandItem>
-          <CommandItem
-            className="gap-3 py-2"
-            keywords={["preferences", "config"]}
-          >
+          <CommandItem className="gap-3 py-2" keywords={["preferences", "config"]}>
             <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-sm text-fg-subtle aria-selected:text-accent">
               <SettingsIcon className="h-4 w-4" />
             </span>
             <span className="flex min-w-0 flex-1 flex-col">
               <span className="truncate text-sm font-medium text-fg">Settings</span>
-              <span className="truncate text-xs text-fg-muted">Account and workspace preferences</span>
+              <span className="truncate text-xs text-fg-muted">
+                Account and workspace preferences
+              </span>
             </span>
           </CommandItem>
         </CommandGroup>
         <CommandSeparator />
         <CommandGroup heading="Documentation">
-          <CommandItem
-            className="gap-3 py-2"
-            keywords={["docs", "install", "setup"]}
-          >
+          <CommandItem className="gap-3 py-2" keywords={["docs", "install", "setup"]}>
             <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-sm text-fg-subtle aria-selected:text-accent">
               <BookOpenIcon className="h-4 w-4" />
             </span>
             <span className="flex min-w-0 flex-1 flex-col">
               <span className="truncate text-sm font-medium text-fg">Getting started</span>
-              <span className="truncate text-xs text-fg-muted">Install PRIZM and ship your first component</span>
+              <span className="truncate text-xs text-fg-muted">
+                Install PRIZM and ship your first component
+              </span>
             </span>
           </CommandItem>
-          <CommandItem
-            className="gap-3 py-2"
-            keywords={["tokens", "colors"]}
-          >
+          <CommandItem className="gap-3 py-2" keywords={["tokens", "colors"]}>
             <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-sm text-fg-subtle aria-selected:text-accent">
               <FileTextIcon className="h-4 w-4" />
             </span>
             <span className="flex min-w-0 flex-1 flex-col">
               <span className="truncate text-sm font-medium text-fg">Theming guide</span>
-              <span className="truncate text-xs text-fg-muted">Tokens, modes, and the four-variant system</span>
+              <span className="truncate text-xs text-fg-muted">
+                Tokens, modes, and the four-variant system
+              </span>
             </span>
           </CommandItem>
         </CommandGroup>

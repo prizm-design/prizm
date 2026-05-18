@@ -1,8 +1,8 @@
-import { ArrowRight, Droplet, Info, Layers, Sparkles, Zap } from "lucide-react";
-import Link from "next/link";
 import { HeroBg } from "@/components/site/hero-bg";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { cn } from "@/lib/utils";
+import { ArrowRight, Droplet, Info, Layers, Sparkles, Zap } from "lucide-react";
+import Link from "next/link";
 
 export default function LandingPage() {
   return (
@@ -14,8 +14,8 @@ export default function LandingPage() {
           <div className="mx-auto max-w-3xl text-center">
             <div className="mb-6 flex flex-wrap items-center justify-center gap-2">
               <span className="inline-flex items-center gap-2 rounded-full border border-border bg-bg-subtle px-3 py-1 text-xs font-medium text-fg-muted">
-                <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent" />
-                A DSTA design system
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent" />A DSTA design
+                system
               </span>
               <span className="inline-flex items-center gap-2 rounded-full border border-warning/40 bg-warning/10 px-3 py-1 text-xs font-medium text-warning">
                 <span className="inline-block h-1.5 w-1.5 rounded-full bg-warning" />
@@ -23,13 +23,12 @@ export default function LandingPage() {
               </span>
             </div>
             <h1 className="text-balance text-4xl font-semibold tracking-tight md:text-6xl">
-              A design system for{" "}
-              <span className="text-accent">command and control</span> and{" "}
+              A design system for <span className="text-accent">command and control</span> and{" "}
               <span className="text-accent">enterprise</span>.
             </h1>
             <p className="mt-6 text-balance text-lg text-fg-muted md:text-xl">
-              Shared component primitives, two design languages, four theme variants.
-              Built on Base UI and Tailwind. Engineered for developers and AI.
+              Shared component primitives, two design languages, four theme variants. Built on Base
+              UI and Tailwind. Engineered for developers and AI.
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
               <Link
@@ -49,12 +48,11 @@ export default function LandingPage() {
             <Alert variant="info" className="mx-auto mt-12 max-w-2xl text-left">
               <Info />
               <AlertDescription>
-                PRIZM 4.0 is in active preview. We're building the system in the open —
-                iterating on components, templates, and design language as feedback comes in
-                from early teams. Base UI, the accessibility primitives PRIZM is built on,
-                is itself approaching its first stable release. Expect breaking changes as
-                both projects mature. Adopt PRIZM 4.0 for projects where you're comfortable
-                updating alongside the system.
+                PRIZM 4.0 is in active preview. We're building the system in the open — iterating on
+                components, templates, and design language as feedback comes in from early teams.
+                Base UI, the accessibility primitives PRIZM is built on, is itself approaching its
+                first stable release. Expect breaking changes as both projects mature. Adopt PRIZM
+                4.0 for projects where you're comfortable updating alongside the system.
               </AlertDescription>
             </Alert>
           </div>
@@ -129,7 +127,8 @@ export default function LandingPage() {
         <div className="mx-auto max-w-7xl px-6 py-16 md:py-24">
           <h2 className="text-3xl font-semibold tracking-tight">Built differently</h2>
           <p className="mt-3 max-w-2xl text-fg-muted">
-            PRIZM 4.0 is structured around three principles that make it work for both human and AI consumers.
+            PRIZM 4.0 is structured around three principles that make it work for both human and AI
+            consumers.
           </p>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             <Principle
@@ -192,7 +191,10 @@ function ProductColumn({
         className="mb-6 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest"
         style={{ color: accent }}
       >
-        <span className="inline-block h-1.5 w-1.5 rounded-full" style={{ backgroundColor: accent }} />
+        <span
+          className="inline-block h-1.5 w-1.5 rounded-full"
+          style={{ backgroundColor: accent }}
+        />
         {tagline}
       </div>
       <h3 className="text-4xl font-semibold tracking-tight md:text-5xl">{title}</h3>

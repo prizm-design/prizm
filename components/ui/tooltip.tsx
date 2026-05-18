@@ -1,8 +1,8 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { Tooltip as BaseTooltip } from "@base-ui-components/react/tooltip";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
-import { cn } from "@/lib/utils";
 
 export const TooltipProvider = BaseTooltip.Provider;
 export const Tooltip = BaseTooltip.Root;

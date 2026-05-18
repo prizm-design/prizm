@@ -1,14 +1,24 @@
 "use client";
 
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
-import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
 
 const DAYS = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
 const MONTHS = [
-  "January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December",
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
 ];
 
 function startOfMonth(year: number, month: number) {
@@ -20,9 +30,11 @@ function daysInMonth(year: number, month: number) {
 }
 
 function isSameDay(a: Date, b: Date) {
-  return a.getFullYear() === b.getFullYear() &&
+  return (
+    a.getFullYear() === b.getFullYear() &&
     a.getMonth() === b.getMonth() &&
-    a.getDate() === b.getDate();
+    a.getDate() === b.getDate()
+  );
 }
 
 export interface CalendarProps {
@@ -73,10 +85,7 @@ export function Calendar({
         <button
           type="button"
           onClick={prevMonth}
-          className={cn(
-            buttonVariants({ variant: "ghost", size: "icon" }),
-            "h-7 w-7",
-          )}
+          className={cn(buttonVariants({ variant: "ghost", size: "icon" }), "h-7 w-7")}
           aria-label="Previous month"
         >
           <ChevronLeft className="h-4 w-4" />
@@ -87,10 +96,7 @@ export function Calendar({
         <button
           type="button"
           onClick={nextMonth}
-          className={cn(
-            buttonVariants({ variant: "ghost", size: "icon" }),
-            "h-7 w-7",
-          )}
+          className={cn(buttonVariants({ variant: "ghost", size: "icon" }), "h-7 w-7")}
           aria-label="Next month"
         >
           <ChevronRight className="h-4 w-4" />
@@ -100,7 +106,10 @@ export function Calendar({
       {/* Day names */}
       <div className="grid grid-cols-7 mb-1">
         {DAYS.map((d) => (
-          <div key={d} className="flex h-8 items-center justify-center text-xs font-medium text-fg-muted">
+          <div
+            key={d}
+            className="flex h-8 items-center justify-center text-xs font-medium text-fg-muted"
+          >
             {d}
           </div>
         ))}

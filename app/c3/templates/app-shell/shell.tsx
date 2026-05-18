@@ -1,5 +1,10 @@
 "use client";
 
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
 import {
   AlertCircle,
   AlertTriangle,
@@ -9,13 +14,13 @@ import {
   ChevronsRight,
   ClipboardList,
   Droplet,
-  Info,
-  LayoutDashboard,
-  LayoutGrid,
   Eye,
   HeartPulse,
   Home,
   Inbox,
+  Info,
+  LayoutDashboard,
+  LayoutGrid,
   LifeBuoy,
   MessageSquare,
   Moon,
@@ -32,11 +37,6 @@ import {
   X,
 } from "lucide-react";
 import { type ComponentType, type ReactNode, useEffect, useMemo, useState } from "react";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { cn } from "@/lib/utils";
 
 /**
  * SSR-safe live clock — returns null on first render (both server and client)
@@ -76,9 +76,13 @@ const CORE_APPS: RailItem[] = [
     badge: { count: 2, tone: "warning" },
   },
   { id: "orbat", label: "ORBAT", icon: <Network className="h-5 w-5" /> },
-  { id: "chat", label: "Chat", icon: <MessageSquare className="h-5 w-5" />, badge: { count: 5, tone: "info" } },
+  {
+    id: "chat",
+    label: "Chat",
+    icon: <MessageSquare className="h-5 w-5" />,
+    badge: { count: 5, tone: "info" },
+  },
 ];
-
 
 interface AddonAppSeed {
   id: string;
@@ -183,14 +187,8 @@ export function C3AppShell({
   const [addons, setAddons] = useState<AddonAppSeed[]>(ADDON_APPS_SEED);
 
   // Look up the active rail item in either the core apps or any pinned add-on.
-  const installedAddons = useMemo(
-    () => addons.filter((a) => a.installed),
-    [addons],
-  );
-  const pinnedAddons = useMemo(
-    () => installedAddons.filter((a) => a.pinned),
-    [installedAddons],
-  );
+  const installedAddons = useMemo(() => addons.filter((a) => a.installed), [addons]);
+  const pinnedAddons = useMemo(() => installedAddons.filter((a) => a.pinned), [installedAddons]);
   // railLookup includes ALL installed add-ons (not just pinned) so the slide
   // panel can render an app launched from inside the App Store, regardless
   // of whether it has a rail icon.
@@ -270,15 +268,15 @@ export function C3AppShell({
     const surfaces = root.querySelectorAll<HTMLElement>(
       ".surface-glass-chrome, .surface-glass-panel",
     );
-    surfaces.forEach((el) => {
+    for (const el of surfaces) {
       el.style.setProperty("backdrop-filter", "none", "important");
       el.style.setProperty("-webkit-backdrop-filter", "none", "important");
-    });
+    }
     const raf = requestAnimationFrame(() => {
-      surfaces.forEach((el) => {
+      for (const el of surfaces) {
         el.style.removeProperty("backdrop-filter");
         el.style.removeProperty("-webkit-backdrop-filter");
-      });
+      }
     });
     return () => cancelAnimationFrame(raf);
   }, [mode, glass]);
@@ -419,17 +417,11 @@ function TopBar({
                 onClick={onToggleMode}
                 aria-label={mode === "dark" ? "Switch to light mode" : "Switch to dark mode"}
               >
-                {mode === "dark" ? (
-                  <Sun className="h-4 w-4" />
-                ) : (
-                  <Moon className="h-4 w-4" />
-                )}
+                {mode === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
               </Button>
             }
           />
-          <TooltipContent>
-            {mode === "dark" ? "Switch to light" : "Switch to dark"}
-          </TooltipContent>
+          <TooltipContent>{mode === "dark" ? "Switch to light" : "Switch to dark"}</TooltipContent>
         </Tooltip>
         <button
           type="button"
@@ -461,7 +453,12 @@ function BrandMark() {
         aria-hidden
       >
         <title>Brand</title>
-        <path d="M12 2L22 20H2L12 2Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+        <path
+          d="M12 2L22 20H2L12 2Z"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinejoin="round"
+        />
         <path d="M12 2L12 20" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
       </svg>
       <span className="font-semibold tracking-tight">
@@ -582,8 +579,12 @@ function formatExerciseElapsed(ms: number): string {
   const totalSeconds = Math.max(0, Math.floor(ms / 1000));
   const days = Math.floor(totalSeconds / 86400);
   const rest = totalSeconds % 86400;
-  const hh = Math.floor(rest / 3600).toString().padStart(2, "0");
-  const mm = Math.floor((rest % 3600) / 60).toString().padStart(2, "0");
+  const hh = Math.floor(rest / 3600)
+    .toString()
+    .padStart(2, "0");
+  const mm = Math.floor((rest % 3600) / 60)
+    .toString()
+    .padStart(2, "0");
   const ss = (rest % 60).toString().padStart(2, "0");
   return `D+${days.toString().padStart(2, "0")} ${hh}:${mm}:${ss}`;
 }
@@ -759,10 +760,7 @@ function MainCanvas({ className }: { className?: string }) {
   ];
 
   return (
-    <main
-      className={cn("overflow-hidden bg-bg", className)}
-      aria-label="Map canvas (placeholder)"
-    >
+    <main className={cn("overflow-hidden bg-bg", className)} aria-label="Map canvas (placeholder)">
       {/* Radial accent glows — give backdrop-saturate something to amplify so
           the glass treatment reads clearly. Two zones: one cyan accent over
           the central canvas, one danger over the top-right where the right
@@ -865,9 +863,7 @@ function MainCanvas({ className }: { className?: string }) {
                 m.size === "sm" && "h-2 w-2",
                 (!m.size || m.size === "md") && "h-2.5 w-2.5",
                 m.size === "lg" && "h-3 w-3",
-                m.tone === "danger"
-                  ? "bg-danger ring-danger/30"
-                  : "bg-accent ring-accent/30",
+                m.tone === "danger" ? "bg-danger ring-danger/30" : "bg-accent ring-accent/30",
               )}
             />
           </div>
@@ -876,18 +872,34 @@ function MainCanvas({ className }: { className?: string }) {
 
       {/* Compass rose — top-right */}
       <div className="absolute right-3 top-3">
-        <svg
-          width="32"
-          height="32"
-          viewBox="0 0 32 32"
-          className="text-fg-muted"
-          aria-hidden
-        >
+        <svg width="32" height="32" viewBox="0 0 32 32" className="text-fg-muted" aria-hidden>
           <title>Compass</title>
-          <circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.7" />
-          <path d="M16 4 L16 28 M4 16 L28 16" stroke="currentColor" strokeWidth="0.5" opacity="0.4" />
+          <circle
+            cx="16"
+            cy="16"
+            r="13"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1"
+            opacity="0.7"
+          />
+          <path
+            d="M16 4 L16 28 M4 16 L28 16"
+            stroke="currentColor"
+            strokeWidth="0.5"
+            opacity="0.4"
+          />
           <path d="M16 4 L19 14 L16 12 L13 14 Z" fill="currentColor" />
-          <text x="16" y="2.5" textAnchor="middle" fontSize="6" fill="currentColor" fontFamily="monospace">N</text>
+          <text
+            x="16"
+            y="2.5"
+            textAnchor="middle"
+            fontSize="6"
+            fill="currentColor"
+            fontFamily="monospace"
+          >
+            N
+          </text>
         </svg>
       </div>
 
@@ -1121,9 +1133,7 @@ function NotificationPanel({ glass, onClose }: { glass: boolean; onClose: () => 
   }
 
   function markRead(id: string) {
-    setNotifications((prev) =>
-      prev.map((n) => (n.id === id ? { ...n, read: true } : n)),
-    );
+    setNotifications((prev) => prev.map((n) => (n.id === id ? { ...n, read: true } : n)));
   }
 
   function markAllRead() {
@@ -1193,6 +1203,12 @@ function NotificationPanel({ glass, onClose }: { glass: boolean; onClose: () => 
                   onKeyDown={(e) => {
                     if (e.key === "Enter" || e.key === " ") markRead(n.id);
                   }}
+                  // The <ul> can't contain <button> here because the row already
+                  // hosts a nested dismiss button — nested-button structure is
+                  // invalid HTML. The <li> is the interactive mark-as-read surface
+                  // with role + tabIndex + keyboard handlers.
+                  // biome-ignore lint/a11y/useSemanticElements: see above
+                  // biome-ignore lint/a11y/noNoninteractiveElementToInteractiveRole: see above
                   role="button"
                   tabIndex={0}
                   className="group flex cursor-default items-start gap-3 px-3 py-3 transition-colors hover:bg-bg-muted/40 focus-visible:bg-bg-muted/40 focus-visible:outline-none"
@@ -1220,10 +1236,7 @@ function NotificationPanel({ glass, onClose }: { glass: boolean; onClose: () => 
                     </p>
                   </div>
                   <div className="flex shrink-0 flex-col items-end gap-1">
-                    <span
-                      className="font-mono text-[10px] text-fg-subtle"
-                      suppressHydrationWarning
-                    >
+                    <span className="font-mono text-[10px] text-fg-subtle" suppressHydrationWarning>
                       {now == null ? " " : formatRelativeTime(n.createdAt, now)}
                     </span>
                     <button
@@ -1633,9 +1646,7 @@ function AppRow({
                 {app.pinned ? "Unpin" : "Pin"}
               </TooltipTrigger>
               {pinDisabled && (
-                <TooltipContent side="top">
-                  Rail full — unpin another add-on first
-                </TooltipContent>
+                <TooltipContent side="top">Rail full — unpin another add-on first</TooltipContent>
               )}
             </Tooltip>
             <Button size="sm" variant="outline" onClick={stop(onUninstall)}>

@@ -1,7 +1,7 @@
+import { Badge } from "@/components/ui/badge";
 import { ArrowRight, BarChart3, KeyRound, Layout, Settings } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { Badge } from "@/components/ui/badge";
 
 export const metadata = { title: "Enterprise — Templates" };
 
@@ -109,9 +109,7 @@ export default function EnterpriseTemplatesPage() {
         </>
       )}
 
-      <h2 className="mt-12 text-sm font-medium uppercase tracking-wider text-fg-subtle">
-        Planned
-      </h2>
+      <h2 className="mt-12 text-sm font-medium uppercase tracking-wider text-fg-subtle">Planned</h2>
       <p className="mt-3 text-sm text-fg-muted">
         Each composes the Enterprise application shell and fills the canvas with its own
         task-specific content.

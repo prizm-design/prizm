@@ -88,10 +88,11 @@ export default function SurfaceAndMotionPage() {
           ============================================================ */}
       <h2 className="mt-16 text-2xl font-semibold tracking-tight">Shadows</h2>
       <p className="mt-3 text-fg-muted">
-        Three elevation tiers. Match them to how prominently an element sits over its background —
-        a row in a table sits at <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-sm">sm</code>,
-        a popover at <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-sm">md</code>,
-        a modal at <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-sm">lg</code>.
+        Three elevation tiers. Match them to how prominently an element sits over its background — a
+        row in a table sits at{" "}
+        <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-sm">sm</code>, a popover
+        at <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-sm">md</code>, a modal
+        at <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-sm">lg</code>.
       </p>
       <div className="mt-6 grid gap-6 sm:grid-cols-3">
         {SHADOWS.map((s) => (
@@ -125,7 +126,9 @@ export default function SurfaceAndMotionPage() {
         wired through more deliberately once the design language is locked.
       </p>
 
-      <h3 className="mt-8 text-sm font-semibold uppercase tracking-wider text-fg-subtle">Durations</h3>
+      <h3 className="mt-8 text-sm font-semibold uppercase tracking-wider text-fg-subtle">
+        Durations
+      </h3>
       <p className="mt-3 text-fg-muted">Click each box to see the duration in action.</p>
       <div className="mt-4 grid gap-4 sm:grid-cols-3">
         {DURATIONS.map((d) => (
@@ -133,7 +136,9 @@ export default function SurfaceAndMotionPage() {
         ))}
       </div>
 
-      <h3 className="mt-12 text-sm font-semibold uppercase tracking-wider text-fg-subtle">Ease curves</h3>
+      <h3 className="mt-12 text-sm font-semibold uppercase tracking-wider text-fg-subtle">
+        Ease curves
+      </h3>
       <p className="mt-3 text-fg-muted">Click each box to compare the easing feel.</p>
       <div className="mt-4 grid gap-4 sm:grid-cols-2">
         {EASES.map((e) => (

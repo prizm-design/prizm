@@ -40,8 +40,8 @@ export default function C3OverviewPage() {
         <Link href="/docs/liquid-glass" className="text-accent hover:underline">
           liquid glass
         </Link>{" "}
-        — a translucent surface treatment for floating panels over canvas content. Operators
-        retain spatial awareness of the map or feed behind a panel rather than having it occluded.
+        — a translucent surface treatment for floating panels over canvas content. Operators retain
+        spatial awareness of the map or feed behind a panel rather than having it occluded.
         Available in both C3 light and C3 dark; not available in Enterprise.
       </p>
 

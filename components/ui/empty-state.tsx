@@ -1,5 +1,5 @@
-import { type HTMLAttributes, type ReactNode, forwardRef } from "react";
 import { cn } from "@/lib/utils";
+import { type HTMLAttributes, type ReactNode, forwardRef } from "react";
 
 export interface EmptyStateProps extends HTMLAttributes<HTMLDivElement> {
   icon?: ReactNode;
@@ -12,10 +12,7 @@ export const EmptyState = forwardRef<HTMLDivElement, EmptyStateProps>(
   ({ className, icon, title, description, action, ...props }, ref) => (
     <div
       ref={ref}
-      className={cn(
-        "flex flex-col items-center justify-center py-12 text-center",
-        className,
-      )}
+      className={cn("flex flex-col items-center justify-center py-12 text-center", className)}
       {...props}
     >
       {icon && (
@@ -24,9 +21,7 @@ export const EmptyState = forwardRef<HTMLDivElement, EmptyStateProps>(
         </div>
       )}
       <p className="text-sm font-semibold text-fg">{title}</p>
-      {description && (
-        <p className="mt-1 max-w-xs text-sm text-fg-muted">{description}</p>
-      )}
+      {description && <p className="mt-1 max-w-xs text-sm text-fg-muted">{description}</p>}
       {action && <div className="mt-4">{action}</div>}
     </div>
   ),

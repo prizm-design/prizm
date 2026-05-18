@@ -1,6 +1,6 @@
-import { cva, type VariantProps } from "class-variance-authority";
-import { type SVGAttributes, forwardRef } from "react";
 import { cn } from "@/lib/utils";
+import { type VariantProps, cva } from "class-variance-authority";
+import { type SVGAttributes, forwardRef } from "react";
 
 const spinnerVariants = cva("animate-spin text-fg-muted", {
   variants: {
@@ -27,6 +27,7 @@ export const Spinner = forwardRef<SVGSVGElement, SpinnerProps>(
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      // biome-ignore lint/a11y/useSemanticElements: <svg role="status"> is the standard live-region pattern for an inline loading indicator with an aria-label.
       role="status"
       aria-label={label}
       className={cn(spinnerVariants({ size }), className)}

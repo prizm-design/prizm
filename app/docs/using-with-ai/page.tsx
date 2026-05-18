@@ -1,6 +1,6 @@
+import { CodeBlock } from "@/components/site/code-block";
 import { BookOpen, Cloud, Code2, Compass, FileText, Network, Sparkles } from "lucide-react";
 import Link from "next/link";
-import { CodeBlock } from "@/components/site/code-block";
 
 export const metadata = { title: "Using with AI" };
 
@@ -11,17 +11,19 @@ export default function UsingWithAiPage() {
       <h1 className="mt-2 text-4xl font-semibold tracking-tight">Using PRIZM with AI</h1>
       <p className="mt-3 text-lg text-fg-muted">
         PRIZM is built to be read and used by AI assistants as well as people. This page walks
-        through how a team adopts PRIZM with AI in the loop — what PRIZM gives your AI to work
-        with, how to wire it up, and where each role fits.
+        through how a team adopts PRIZM with AI in the loop — what PRIZM gives your AI to work with,
+        how to wire it up, and where each role fits.
       </p>
 
       {/* ============================================================
           What PRIZM offers your AI assistant
           ============================================================ */}
-      <h2 className="mt-14 text-2xl font-semibold tracking-tight">What PRIZM offers your AI assistant</h2>
+      <h2 className="mt-14 text-2xl font-semibold tracking-tight">
+        What PRIZM offers your AI assistant
+      </h2>
       <p className="mt-3 text-fg-muted">
-        Every component, principle, and design decision in PRIZM is documented in plain Markdown
-        and TypeScript that AI tools can read directly — no separate API, no external service.
+        Every component, principle, and design decision in PRIZM is documented in plain Markdown and
+        TypeScript that AI tools can read directly — no separate API, no external service.
       </p>
 
       <div className="mt-6 space-y-3">
@@ -58,9 +60,9 @@ export default function UsingWithAiPage() {
       </div>
 
       <p className="mt-4 text-sm text-fg-muted">
-        PRIZM.md, llms.txt, the llms/ directory, and components-api.ts are vendored in the repo.
-        The principles page lives on the docs site — readable by any AI that can fetch HTML, or
-        ingested alongside the rest in an air-gapped knowledge base.
+        PRIZM.md, llms.txt, the llms/ directory, and components-api.ts are vendored in the repo. The
+        principles page lives on the docs site — readable by any AI that can fetch HTML, or ingested
+        alongside the rest in an air-gapped knowledge base.
       </p>
 
       {/* ============================================================
@@ -68,9 +70,9 @@ export default function UsingWithAiPage() {
           ============================================================ */}
       <h2 className="mt-14 text-2xl font-semibold tracking-tight">AI and your team</h2>
       <p className="mt-4 text-fg-muted">
-        AI is good at moving within a system: composing PRIZM components, applying tokens,
-        migrating older code, reviewing for consistency. PRIZM gives it the structure that makes
-        the output reliably good.
+        AI is good at moving within a system: composing PRIZM components, applying tokens, migrating
+        older code, reviewing for consistency. PRIZM gives it the structure that makes the output
+        reliably good.
       </p>
       <p className="mt-4 text-fg-muted">
         The system itself — its principles, its brand, the choices about what to build and who to
@@ -94,13 +96,21 @@ export default function UsingWithAiPage() {
           body={
             <>
               <p className="text-fg-muted">
-                Open the PRIZM repo (or your project that has PRIZM copied in) in your IDE. The
-                AI reads the workspace files automatically — including <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">PRIZM.md</code>, <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">llms.txt</code>, and the per-component context files.
+                Open the PRIZM repo (or your project that has PRIZM copied in) in your IDE. The AI
+                reads the workspace files automatically — including{" "}
+                <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">
+                  PRIZM.md
+                </code>
+                ,{" "}
+                <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">
+                  llms.txt
+                </code>
+                , and the per-component context files.
               </p>
               <p className="mt-3 text-fg-muted">
-                For Claude Code specifically, add PRIZM.md to your project context once (either as
-                a project instruction file or as initial-message context) and most subsequent
-                requests will resolve correctly without re-pasting.
+                For Claude Code specifically, add PRIZM.md to your project context once (either as a
+                project instruction file or as initial-message context) and most subsequent requests
+                will resolve correctly without re-pasting.
               </p>
             </>
           }
@@ -114,7 +124,10 @@ export default function UsingWithAiPage() {
               At the start of a session, paste the contents of{" "}
               <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">PRIZM.md</code>{" "}
               into the chat. For specific components, also paste the matching{" "}
-              <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">llms/&lt;slug&gt;.md</code>. Public deployments can also link to the hosted{" "}
+              <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">
+                llms/&lt;slug&gt;.md
+              </code>
+              . Public deployments can also link to the hosted{" "}
               <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">llms.txt</code>{" "}
               URL and let the model fetch.
             </p>
@@ -126,7 +139,9 @@ export default function UsingWithAiPage() {
           title="Internal LLM gateway with RAG"
           body={
             <p className="text-fg-muted">
-              Ingest the <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">llms/</code> directory and{" "}
+              Ingest the{" "}
+              <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">llms/</code>{" "}
+              directory and{" "}
               <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">PRIZM.md</code>{" "}
               into your team's knowledge base. The files are plain Markdown — no preprocessing
               needed. Re-ingest after each PRIZM release.
@@ -140,7 +155,11 @@ export default function UsingWithAiPage() {
           body={
             <p className="text-fg-muted">
               Same as the gateway path, but PRIZM ships into the air-gap via the offline release
-              tarball. The same files — <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">PRIZM.md</code>, <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">llms.txt</code>, the per-component context — work identically on an on-prem model with no external dependencies. See{" "}
+              tarball. The same files —{" "}
+              <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">PRIZM.md</code>,{" "}
+              <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">llms.txt</code>,
+              the per-component context — work identically on an on-prem model with no external
+              dependencies. See{" "}
               <Link href="/docs/air-gap" className="text-accent hover:underline">
                 Air-gap setup
               </Link>{" "}
@@ -193,11 +212,14 @@ Working conventions:
         Teams running on-prem LLM gateways or fully disconnected environments get the same AI
         experience PRIZM offers anywhere. The artefacts AI reads —{" "}
         <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">PRIZM.md</code>,{" "}
-        <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">llms.txt</code>,
-        the <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">llms/</code>{" "}
-        directory, <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">components-api.ts</code>{" "}
-        — are all vendored in the repo. No external service calls, no CDN fetches, no embedding
-        APIs required.
+        <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">llms.txt</code>, the{" "}
+        <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">llms/</code>{" "}
+        directory,{" "}
+        <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">
+          components-api.ts
+        </code>{" "}
+        — are all vendored in the repo. No external service calls, no CDN fetches, no embedding APIs
+        required.
       </p>
       <p className="mt-4 text-fg-muted">
         The PRIZM offline release tarball includes everything an air-gapped LLM needs. The same

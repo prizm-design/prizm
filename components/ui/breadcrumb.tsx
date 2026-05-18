@@ -1,6 +1,6 @@
+import { cn } from "@/lib/utils";
 import { ChevronRight } from "lucide-react";
 import { type ComponentProps, forwardRef } from "react";
-import { cn } from "@/lib/utils";
 
 export const Breadcrumb = forwardRef<HTMLElement, ComponentProps<"nav">>(
   ({ className, ...props }, ref) => (

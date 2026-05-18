@@ -1,9 +1,9 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { Menu as BaseMenu } from "@base-ui-components/react/menu";
 import { Check, ChevronRight, Circle } from "lucide-react";
 import type { ComponentPropsWithoutRef } from "react";
-import { cn } from "@/lib/utils";
 
 export const Menu = BaseMenu.Root;
 export const MenuTrigger = BaseMenu.Trigger;
@@ -113,10 +113,7 @@ export function MenuRadioItem({
 // aria-associated label, wrap items in <MenuGroup> and use <MenuGroupLabel> instead.
 export function MenuLabel({ className, ...props }: ComponentPropsWithoutRef<"div">) {
   return (
-    <div
-      className={cn("px-2 py-1.5 text-xs font-semibold text-fg-muted", className)}
-      {...props}
-    />
+    <div className={cn("px-2 py-1.5 text-xs font-semibold text-fg-muted", className)} {...props} />
   );
 }
 

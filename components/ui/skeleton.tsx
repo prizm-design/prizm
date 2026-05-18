@@ -1,5 +1,5 @@
-import { type HTMLAttributes, forwardRef } from "react";
 import { cn } from "@/lib/utils";
+import { type HTMLAttributes, forwardRef } from "react";
 
 export const Skeleton = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (

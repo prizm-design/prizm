@@ -1,9 +1,9 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { NavigationMenu as BaseNav } from "@base-ui-components/react/navigation-menu";
 import { ChevronDown } from "lucide-react";
 import type { ComponentPropsWithoutRef } from "react";
-import { cn } from "@/lib/utils";
 
 export const NavigationMenu = BaseNav.Root;
 
@@ -75,10 +75,7 @@ export function NavigationMenuIndicator({
   ...props
 }: ComponentPropsWithoutRef<typeof BaseNav.Icon>) {
   return (
-    <BaseNav.Icon
-      className={cn("flex h-1.5 w-1.5 rounded-full bg-accent", className)}
-      {...props}
-    />
+    <BaseNav.Icon className={cn("flex h-1.5 w-1.5 rounded-full bg-accent", className)} {...props} />
   );
 }
 

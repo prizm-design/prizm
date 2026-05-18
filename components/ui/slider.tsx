@@ -1,13 +1,10 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { Slider as BaseSlider } from "@base-ui-components/react/slider";
 import type { ComponentPropsWithoutRef } from "react";
-import { cn } from "@/lib/utils";
 
-export function Slider({
-  className,
-  ...props
-}: ComponentPropsWithoutRef<typeof BaseSlider.Root>) {
+export function Slider({ className, ...props }: ComponentPropsWithoutRef<typeof BaseSlider.Root>) {
   return (
     <BaseSlider.Root
       className={cn("relative flex w-full touch-none select-none items-center", className)}

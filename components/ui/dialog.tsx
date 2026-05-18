@@ -1,9 +1,9 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { Dialog as BaseDialog } from "@base-ui-components/react/dialog";
 import { X } from "lucide-react";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
-import { cn } from "@/lib/utils";
 
 export const Dialog = BaseDialog.Root;
 export const DialogTrigger = BaseDialog.Trigger;
@@ -84,7 +84,5 @@ export function DialogDescription({
   className,
   ...props
 }: ComponentPropsWithoutRef<typeof BaseDialog.Description>) {
-  return (
-    <BaseDialog.Description className={cn("text-sm text-fg-muted", className)} {...props} />
-  );
+  return <BaseDialog.Description className={cn("text-sm text-fg-muted", className)} {...props} />;
 }

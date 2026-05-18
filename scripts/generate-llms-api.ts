@@ -16,8 +16,8 @@
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import {
-  type ComponentApi,
   COMPONENT_API,
+  type ComponentApi,
   type PropSpec,
   type SubComponentSpec,
 } from "../lib/components-api";
@@ -39,11 +39,7 @@ function renderPropTable(props: PropSpec[]): string {
         p.default ? `\`${escapeTableCell(p.default)}\`` : "—"
       } | ${escapeTableCell(p.description)} |`,
   );
-  return [
-    "| Prop | Type | Default | Description |",
-    "|---|---|---|---|",
-    ...rows,
-  ].join("\n");
+  return ["| Prop | Type | Default | Description |", "|---|---|---|---|", ...rows].join("\n");
 }
 
 function renderSubComponent(sub: SubComponentSpec): string {
@@ -94,12 +90,7 @@ function upsertApiSection(content: string, generated: string): string {
   // No markers yet — insert before "## Source" if present, else append.
   const sourceMatch = content.match(/^## Source/m);
   if (sourceMatch && sourceMatch.index !== undefined) {
-    return (
-      content.slice(0, sourceMatch.index) +
-      markedBlock +
-      "\n\n" +
-      content.slice(sourceMatch.index)
-    );
+    return `${content.slice(0, sourceMatch.index) + markedBlock}\n\n${content.slice(sourceMatch.index)}`;
   }
   return `${content.trimEnd()}\n\n${markedBlock}\n`;
 }

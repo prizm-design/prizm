@@ -1,5 +1,6 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { Dialog as BaseDialog } from "@base-ui-components/react/dialog";
 import { Search } from "lucide-react";
 import {
@@ -19,7 +20,6 @@ import {
   useRef,
   useState,
 } from "react";
-import { cn } from "@/lib/utils";
 
 interface ItemEntry {
   id: string;
@@ -314,15 +314,8 @@ export function CommandGroup({
 
   if (!hasVisible) return null;
   return (
-    <div
-      ref={ref}
-      className={cn("overflow-hidden p-1 text-fg", className)}
-      role="group"
-      {...props}
-    >
-      {heading && (
-        <div className="px-2 py-1.5 text-xs font-semibold text-fg-muted">{heading}</div>
-      )}
+    <div ref={ref} className={cn("overflow-hidden p-1 text-fg", className)} role="group" {...props}>
+      {heading && <div className="px-2 py-1.5 text-xs font-semibold text-fg-muted">{heading}</div>}
       {children}
     </div>
   );

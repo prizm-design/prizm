@@ -10,15 +10,10 @@
  */
 export function HeroBg() {
   return (
-    <div
-      aria-hidden
-      className="pointer-events-none absolute inset-0 overflow-hidden text-fg"
-    >
-      {/* Dot grid */}
-      <svg
-        className="absolute inset-0 h-full w-full"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden text-fg">
+      {/* Dot grid — decorative; parent <div> already has aria-hidden */}
+      {/* biome-ignore lint/a11y/noSvgWithoutTitle: decorative background */}
+      <svg className="absolute inset-0 h-full w-full" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <pattern
             id="prizm-hero-dots"
@@ -39,13 +34,7 @@ export function HeroBg() {
           </mask>
         </defs>
         <g mask="url(#prizm-hero-mask)" opacity="0.22">
-          <rect
-            x="0"
-            y="0"
-            width="100%"
-            height="100%"
-            fill="url(#prizm-hero-dots)"
-          />
+          <rect x="0" y="0" width="100%" height="100%" fill="url(#prizm-hero-dots)" />
         </g>
       </svg>
 

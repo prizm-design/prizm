@@ -1,6 +1,6 @@
-import { cva, type VariantProps } from "class-variance-authority";
-import { type HTMLAttributes, forwardRef } from "react";
 import { cn } from "@/lib/utils";
+import { type VariantProps, cva } from "class-variance-authority";
+import { type HTMLAttributes, forwardRef } from "react";
 
 const alertVariants = cva(
   "relative w-full rounded-lg border px-4 py-3 text-sm [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-3.5 [&>svg]:h-4 [&>svg]:w-4 [&>svg~*]:pl-7",
@@ -43,9 +43,14 @@ export const AlertTitle = forwardRef<HTMLHeadingElement, HTMLAttributes<HTMLHead
 );
 AlertTitle.displayName = "AlertTitle";
 
-export const AlertDescription = forwardRef<HTMLParagraphElement, HTMLAttributes<HTMLParagraphElement>>(
-  ({ className, ...props }, ref) => (
-    <div ref={ref} className={cn("text-sm leading-relaxed [&_p]:leading-relaxed", className)} {...props} />
-  ),
-);
+export const AlertDescription = forwardRef<
+  HTMLParagraphElement,
+  HTMLAttributes<HTMLParagraphElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("text-sm leading-relaxed [&_p]:leading-relaxed", className)}
+    {...props}
+  />
+));
 AlertDescription.displayName = "AlertDescription";

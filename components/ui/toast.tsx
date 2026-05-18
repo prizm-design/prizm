@@ -1,9 +1,9 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { Toast as BaseToast } from "@base-ui-components/react/toast";
 import { AlertCircle, CheckCircle, Info, X } from "lucide-react";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
-import { cn } from "@/lib/utils";
 
 // Singleton manager — import `toast` and call toast.add(), toast.promise(), etc.
 export const toast = BaseToast.createToastManager();
@@ -39,12 +39,8 @@ function ToastViewportInner() {
             <div className="mt-0.5 shrink-0">{typeIcons[t.type]}</div>
           )}
           <div className="flex flex-1 flex-col gap-0.5">
-            {t.title && (
-              <BaseToast.Title className="text-sm font-semibold text-fg" />
-            )}
-            {t.description && (
-              <BaseToast.Description className="text-sm text-fg-muted" />
-            )}
+            {t.title && <BaseToast.Title className="text-sm font-semibold text-fg" />}
+            {t.description && <BaseToast.Description className="text-sm text-fg-muted" />}
           </div>
           <BaseToast.Close
             className={cn(
