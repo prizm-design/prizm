@@ -32,6 +32,9 @@ jobs:
       - name: Air-gap audit
         run: pnpm audit:airgap
 
+      - name: Component audit (registry / API parity)
+        run: pnpm audit:components
+
       - name: Internal link check
         run: pnpm check:links
 
