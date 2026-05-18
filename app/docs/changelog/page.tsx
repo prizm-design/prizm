@@ -77,11 +77,6 @@ const CHANGELOG: ChangelogDay[] = [
         body: "The Accessibility section's card grid was wider than the viewport on small screens, which forced page-level horizontal scroll and made the Custom SVGs section look broken. Now both sections fit cleanly.",
         href: "/docs/icons",
       },
-      {
-        type: "component",
-        title: "Site header gains a mobile nav",
-        body: "Hamburger trigger opens a left-anchored Sheet rendering the same NAV array as desktop, so the hierarchy stays consistent across breakpoints.",
-      },
     ],
   },
   {
@@ -98,11 +93,6 @@ const CHANGELOG: ChangelogDay[] = [
         title: "Icons foundation page",
         body: "Documents the lucide-react choice, the site-wide stroke-width of 1.5, the five-size scale, accessibility conventions, and the PRIZM brand mark as a worked example for custom SVGs.",
         href: "/docs/icons",
-      },
-      {
-        type: "design",
-        title: "Templates and Pages consolidated",
-        body: "Pages dropped as a separate layer — everything is a template now, each free to be skeletal or fleshed-out. Matches how shadcn and the Vercel template gallery actually work.",
       },
     ],
   },
@@ -129,7 +119,7 @@ const CHANGELOG: ChangelogDay[] = [
       {
         type: "foundation",
         title: "Foundations pages",
-        body: "Design principles, Colours, Typography, Surface & motion shipped as the visual reference layer. Theming sits in Overview because it's about architecture, not values.",
+        body: "Design principles, Colours, Typography, Surface & motion shipped as the visual reference layer.",
         href: "/docs/foundations",
       },
     ],
