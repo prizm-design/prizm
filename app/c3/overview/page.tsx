@@ -20,7 +20,7 @@ export default function C3OverviewPage() {
       />
       <Section
         title="High contrast for clarity"
-        body="C3 prioritises legibility under sustained focus. Foreground and background contrast targets exceed WCAG AAA where practical, so information remains readable across long shifts and varying ambient light."
+        body="C3 prioritises legibility under sustained focus. Text contrast meets WCAG AA across all four theme variants, with AAA reached for primary text where the design naturally allows, so information remains readable across long shifts and varying ambient light."
       />
       <Section
         title="Colour carries meaning"

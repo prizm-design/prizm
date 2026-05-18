@@ -16,14 +16,14 @@
   --prizm-color-border-strong: var(--prizm-slate-700);
 
   --prizm-color-fg: var(--prizm-slate-50);
-  --prizm-color-fg-muted: var(--prizm-slate-400);
-  --prizm-color-fg-subtle: var(--prizm-slate-500);
+  --prizm-color-fg-muted: var(--prizm-slate-300);
+  --prizm-color-fg-subtle: var(--prizm-slate-400);
 
   --prizm-color-accent: var(--prizm-blue-500);
   --prizm-color-accent-fg: var(--prizm-slate-950);
   --prizm-color-accent-hover: var(--prizm-blue-400);
 
-  --prizm-color-danger: var(--prizm-red-500);
+  --prizm-color-danger: var(--prizm-red-600);
   --prizm-color-danger-fg: var(--prizm-slate-50);
   --prizm-color-success: var(--prizm-green-500);
   --prizm-color-warning: var(--prizm-amber-500);

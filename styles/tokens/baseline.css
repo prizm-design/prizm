@@ -49,15 +49,23 @@
   --prizm-blue-900: oklch(37.9% 0.146 265.52);
   --prizm-blue-950: oklch(28.2% 0.091 267.93);
 
-  /* ----- Semantic non-neutral hues (consistent across themes) ----- */
+  /* ----- Semantic non-neutral hues (consistent across themes) -----
+     500 is the canonical vibrant step (best for fills + dark-mode text).
+     600 sits between vibrant and AA-safe — used as the light-mode fill default.
+     700 is the AA-readable-as-text step on white (passes 4.5:1 contrast).
+     Light themes prefer 700 for text/edge use; dark themes prefer 500. */
   --prizm-red-500: oklch(63.7% 0.237 25.33);
   --prizm-red-600: oklch(57.7% 0.245 27.32);
+  --prizm-red-700: oklch(50.5% 0.213 27.52);
   --prizm-green-500: oklch(72.3% 0.219 149.58);
   --prizm-green-600: oklch(62.7% 0.194 149.21);
+  --prizm-green-700: oklch(52.7% 0.154 150.07);
   --prizm-amber-500: oklch(76.9% 0.188 70.08);
   --prizm-amber-600: oklch(66.6% 0.179 58.32);
+  --prizm-amber-700: oklch(55.5% 0.163 49.0);
   --prizm-sky-500: oklch(68.5% 0.169 237.32);
   --prizm-sky-600: oklch(58.8% 0.158 241.97);
+  --prizm-sky-700: oklch(50.0% 0.134 242.75);
 
   /* ----- Radius ----- */
   --prizm-radius-xs: 0.125rem;

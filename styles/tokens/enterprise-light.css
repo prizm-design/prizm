@@ -25,9 +25,9 @@
   --prizm-color-accent-fg: oklch(100% 0 0);
   --prizm-color-accent-hover: var(--prizm-blue-700);
 
-  --prizm-color-danger: var(--prizm-red-600);
+  --prizm-color-danger: var(--prizm-red-700);
   --prizm-color-danger-fg: oklch(100% 0 0);
-  --prizm-color-success: var(--prizm-green-600);
-  --prizm-color-warning: var(--prizm-amber-500);
-  --prizm-color-info: var(--prizm-sky-600);
+  --prizm-color-success: var(--prizm-green-700);
+  --prizm-color-warning: var(--prizm-amber-700);
+  --prizm-color-info: var(--prizm-sky-700);
 }

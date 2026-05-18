@@ -73,11 +73,11 @@
   --color-accent: oklch(54.6% 0.245 262.88);
   --color-accent-fg: oklch(100% 0 0);
   --color-accent-hover: oklch(48.8% 0.243 264.38);
-  --color-danger: oklch(57.7% 0.245 27.32);
+  --color-danger: oklch(50.5% 0.213 27.52);
   --color-danger-fg: oklch(100% 0 0);
-  --color-success: oklch(62.7% 0.194 149.21);
-  --color-warning: oklch(76.9% 0.188 70.08);
-  --color-info: oklch(58.8% 0.158 241.97);
+  --color-success: oklch(52.7% 0.154 150.07);
+  --color-warning: oklch(55.5% 0.163 49.0);
+  --color-info: oklch(50.0% 0.134 242.75);
 }
 
 .swatch-enterprise-dark {
@@ -90,12 +90,12 @@
   --color-border: oklch(27.9% 0.041 260.03);
   --color-border-strong: oklch(37.2% 0.044 257.29);
   --color-fg: oklch(98.5% 0.002 247.84);
-  --color-fg-muted: oklch(70.4% 0.04 256.79);
-  --color-fg-subtle: oklch(55.4% 0.046 257.42);
+  --color-fg-muted: oklch(86.9% 0.022 252.89);
+  --color-fg-subtle: oklch(70.4% 0.04 256.79);
   --color-accent: oklch(62.3% 0.214 259.81);
   --color-accent-fg: oklch(12.9% 0.042 264.7);
   --color-accent-hover: oklch(70.7% 0.165 254.62);
-  --color-danger: oklch(63.7% 0.237 25.33);
+  --color-danger: oklch(57.7% 0.245 27.32);
   --color-danger-fg: oklch(98.5% 0.002 247.84);
   --color-success: oklch(72.3% 0.219 149.58);
   --color-warning: oklch(76.9% 0.188 70.08);
@@ -113,15 +113,15 @@
   --color-border-strong: oklch(70.4% 0.04 256.79);
   --color-fg: oklch(12.9% 0.042 264.7);
   --color-fg-muted: oklch(37.2% 0.044 257.29);
-  --color-fg-subtle: oklch(55.4% 0.046 257.42);
+  --color-fg-subtle: oklch(44.6% 0.043 257.28);
   --color-accent: oklch(52.0% 0.105 223.13);
   --color-accent-fg: oklch(100% 0 0);
   --color-accent-hover: oklch(45.0% 0.085 224.28);
-  --color-danger: oklch(57.7% 0.245 27.32);
+  --color-danger: oklch(50.5% 0.213 27.52);
   --color-danger-fg: oklch(100% 0 0);
-  --color-success: oklch(62.7% 0.194 149.21);
-  --color-warning: oklch(66.6% 0.179 58.32);
-  --color-info: oklch(58.8% 0.158 241.97);
+  --color-success: oklch(52.7% 0.154 150.07);
+  --color-warning: oklch(55.5% 0.163 49.0);
+  --color-info: oklch(50.0% 0.134 242.75);
   /* Liquid glass (C3 light) — darker tint over bright backdrop */
   --prizm-glass-chrome-bg: oklch(20% 0.025 240 / 0.06);
   --prizm-glass-chrome-border: oklch(0% 0 0 / 0.08);
@@ -147,11 +147,11 @@
   --color-border-strong: oklch(44.6% 0.043 257.28);
   --color-fg: oklch(99.0% 0.002 247.84);
   --color-fg-muted: oklch(86.9% 0.022 252.89);
-  --color-fg-subtle: oklch(55.4% 0.046 257.42);
+  --color-fg-subtle: oklch(70.4% 0.04 256.79);
   --color-accent: oklch(78.9% 0.154 211.53);
   --color-accent-fg: oklch(12.9% 0.042 264.7);
   --color-accent-hover: oklch(86.5% 0.127 207.08);
-  --color-danger: oklch(63.7% 0.237 25.33);
+  --color-danger: oklch(57.7% 0.245 27.32);
   --color-danger-fg: oklch(98.5% 0.002 247.84);
   --color-success: oklch(72.3% 0.219 149.58);
   --color-warning: oklch(76.9% 0.188 70.08);
