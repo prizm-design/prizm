@@ -40,7 +40,9 @@ jobs:
         env:
           # Repo is served at https://prizm-design.github.io/prizm/ — every
           # link, asset, and route needs this prefix. Local dev has no prefix.
-          NEXT_BASE_PATH: /prizm
+          # NEXT_PUBLIC_* so the value is available in both server-side
+          # config (next.config.mjs) and client-side code (lib/base-path.ts).
+          NEXT_PUBLIC_BASE_PATH: /prizm
         run: pnpm build
 
       - uses: actions/configure-pages@v5

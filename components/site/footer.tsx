@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { withBasePath } from "@/lib/base-path";
 
 export function Footer() {
   return (
@@ -31,8 +32,8 @@ export function Footer() {
             <div className="text-sm font-medium">For AI</div>
             <ul className="mt-3 space-y-2 text-sm text-fg-muted">
               <li><Link href="/docs/using-with-ai" className="hover:text-fg">Using with AI</Link></li>
-              <li><a href="/llms.txt" className="hover:text-fg">llms.txt</a></li>
-              <li><a href="/PRIZM.md" className="hover:text-fg">PRIZM.md</a></li>
+              <li><a href={withBasePath("/llms.txt")} className="hover:text-fg">llms.txt</a></li>
+              <li><a href={withBasePath("/PRIZM.md")} className="hover:text-fg">PRIZM.md</a></li>
               <li><Link href="/docs/air-gap" className="hover:text-fg">Air-gap setup</Link></li>
             </ul>
           </div>

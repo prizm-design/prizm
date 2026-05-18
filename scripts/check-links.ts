@@ -164,35 +164,81 @@ interface LinkRef {
   url: string;
   /** Whether the link was written as <Link href> (TRUE) or <a href> (FALSE) */
   usingNextLink: boolean;
+  /** True when the href was `{expression}` (e.g. withBasePath("/x")) rather than a literal string. */
+  hrefIsExpression: boolean;
 }
 
 function scanFile(file: string): LinkRef[] {
   const ext = file.slice(file.lastIndexOf("."));
   if (!SCAN_EXTENSIONS.has(ext)) return [];
 
-  const content = readFileSync(file, "utf8");
+  let content = readFileSync(file, "utf8");
+  // Strip JS block comments (e.g. JSDoc) while preserving line numbers, so
+  // documentation examples that show <a href=...> markup don't get scanned
+  // as real anchors. We replace each block comment with the same number of
+  // newlines so error messages still point at the right line.
+  content = content.replace(/\/\*[\s\S]*?\*\//g, (match) => {
+    const newlines = (match.match(/\n/g) || []).length;
+    return "\n".repeat(newlines);
+  });
   const lines = content.split("\n");
   const relPath = relative(ROOT, file);
   const refs: LinkRef[] = [];
 
   // Match <Link href="..."> and <a href="...">. Only first capture group is the URL.
-  // Use a more permissive match — handle multi-attr tags.
+  // For the `<a>` form we also detect static-string hrefs separately from
+  // expression hrefs like `href={withBasePath("/x")}` so Rule 4 can verify
+  // that raw `<a>` tags pointing at static files go through the helper.
   const linkRe = /<Link\b[^>]*href=["']([^"']+)["']/g;
-  const aRe = /<a\b[^>]*href=["']([^"']+)["']/g;
+  const aStringRe = /<a\b[^>]*href=["']([^"']+)["']/g;
+  const aExprRe = /<a\b[^>]*href=\{([^}]+)\}/g;
 
   lines.forEach((line, idx) => {
     let m: RegExpExecArray | null = linkRe.exec(line);
     while (m !== null) {
-      refs.push({ file: relPath, line: idx + 1, url: m[1], usingNextLink: true });
+      refs.push({
+        file: relPath,
+        line: idx + 1,
+        url: m[1],
+        usingNextLink: true,
+        hrefIsExpression: false,
+      });
       m = linkRe.exec(line);
     }
     linkRe.lastIndex = 0;
-    m = aRe.exec(line);
+
+    m = aStringRe.exec(line);
     while (m !== null) {
-      refs.push({ file: relPath, line: idx + 1, url: m[1], usingNextLink: false });
-      m = aRe.exec(line);
+      refs.push({
+        file: relPath,
+        line: idx + 1,
+        url: m[1],
+        usingNextLink: false,
+        hrefIsExpression: false,
+      });
+      m = aStringRe.exec(line);
     }
-    aRe.lastIndex = 0;
+    aStringRe.lastIndex = 0;
+
+    // `<a href={expr}>` — we can't statically resolve `expr`, but we can
+    // check whether it contains `withBasePath(...)` and if so capture the
+    // path argument so we can still validate it as a static file.
+    m = aExprRe.exec(line);
+    while (m !== null) {
+      const expr = m[1];
+      const wrappedPath = expr.match(/withBasePath\(\s*["']([^"']+)["']\s*\)/);
+      if (wrappedPath) {
+        refs.push({
+          file: relPath,
+          line: idx + 1,
+          url: wrappedPath[1],
+          usingNextLink: false,
+          hrefIsExpression: true,
+        });
+      }
+      m = aExprRe.exec(line);
+    }
+    aExprRe.lastIndex = 0;
   });
   return refs;
 }
@@ -261,6 +307,19 @@ for (const ref of allRefs) {
       });
     }
   }
+
+  // Rule 4: raw <a href="/file.ext"> for a static file must go through
+  // withBasePath(), or it will 404 on deployments served under a basePath
+  // (e.g. GitHub Pages at /prizm/). Next.js's <Link> auto-prepends basePath;
+  // raw anchors don't. The helper bridges the gap.
+  if (!ref.usingNextLink && n.isStatic && STATIC_FILES.has(n.path) && !ref.hrefIsExpression) {
+    violations.push({
+      file: ref.file,
+      line: ref.line,
+      rule: "anchor-missing-basepath",
+      detail: `<a href="${ref.url}"> won't include basePath in production — wrap with withBasePath(): <a href={withBasePath("${ref.url}")}>`,
+    });
+  }
 }
 
 // ----- Report -----
@@ -291,6 +350,7 @@ for (const [file, vs] of byFile) {
   console.log();
 }
 console.log("Convention reminder:");
-console.log("  • <Link href=...> for ROUTES (client-side navigation, trailing-slash handled)");
-console.log("  • <a href=...> for STATIC FILES (raw fetch — llms.txt, PRIZM.md, favicon, etc.)");
+console.log("  • <Link href=...> for ROUTES (client-side navigation, trailing-slash + basePath handled)");
+console.log("  • <a href={withBasePath(...)}> for STATIC FILES (raw fetch — llms.txt, PRIZM.md, etc.)");
+console.log("    Static-file anchors must use withBasePath() — see lib/base-path.ts");
 process.exit(1);

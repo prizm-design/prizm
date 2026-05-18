@@ -2,8 +2,10 @@ import createMDX from "@next/mdx";
 
 // basePath / assetPrefix are env-driven so local dev (`pnpm dev`) keeps working
 // at the root, while production builds deployed to a GitHub Pages subpath
-// (e.g. `/prizm`) can prepend that path everywhere by setting NEXT_BASE_PATH.
-const basePath = process.env.NEXT_BASE_PATH ?? "";
+// (e.g. `/prizm`) can prepend that path everywhere by setting
+// NEXT_PUBLIC_BASE_PATH. The NEXT_PUBLIC_* prefix is required so the same
+// value is also accessible to components (see lib/base-path.ts).
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {

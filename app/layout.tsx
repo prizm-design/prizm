@@ -8,10 +8,11 @@ import { ThemeProvider } from "@/lib/theme-context";
 import { ZoneRouteSync } from "@/lib/zone-detector";
 import "./globals.css";
 
-// Next.js's `metadata.icons` does NOT auto-prefix URLs with `basePath` — known
-// gotcha. We mirror the same NEXT_BASE_PATH env var read by next.config.mjs so
-// favicon URLs resolve correctly when deployed under a subpath (e.g. /prizm).
-const basePath = process.env.NEXT_BASE_PATH ?? "";
+import { basePath } from "@/lib/base-path";
+
+// Next.js's `metadata.icons` does NOT auto-prefix URLs with `basePath` —
+// known gotcha. Use the shared `basePath` constant from lib/base-path.ts
+// so favicon URLs resolve correctly when deployed under a subpath.
 
 export const metadata: Metadata = {
   title: {
