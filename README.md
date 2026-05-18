@@ -1,6 +1,6 @@
 # PRIZM 4.0
 
-The DSTA design system. Serves two product families — command-and-control (C3) and enterprise. Built on Base UI and Tailwind CSS. Engineered for developers and AI.
+A DSTA design system. Serves two product families — command-and-control (C3) and enterprise. Built on Base UI and Tailwind CSS. Engineered for developers and AI.
 
 ## What's in the box
 

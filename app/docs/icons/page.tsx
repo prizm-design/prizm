@@ -353,21 +353,36 @@ export default function IconsFoundationPage() {
           <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">svg {`{ stroke-width: 1.5 }`}</code> only affects elements that don't have an explicit per-path value. Include a{" "}
           <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">&lt;title&gt;</code> for accessibility.
         </p>
-        <div className="mt-6 flex flex-wrap items-center gap-6 rounded-lg border border-border bg-surface p-6">
-          <div className="flex items-center gap-3">
+        <div className="mt-6 flex flex-col gap-5 rounded-lg border border-border bg-surface p-6 sm:flex-row sm:items-center sm:gap-6">
+          <div className="flex shrink-0 items-center gap-3">
             <PrizmMark className="h-8 w-8 text-accent" />
             <div>
               <p className="text-sm font-semibold text-fg">PRIZM brand mark</p>
               <p className="text-xs text-fg-muted">Used in the site header and C3 App Shell</p>
             </div>
           </div>
-          <div className="flex-1 min-w-0 sm:min-w-[20rem]">
+          <div className="min-w-0 flex-1">
             <CodeBlock
               language="tsx"
-              code={`<svg viewBox="0 0 24 24" fill="none" className="h-5 w-5 text-accent" aria-hidden>
+              code={`<svg
+  viewBox="0 0 24 24"
+  fill="none"
+  className="h-5 w-5 text-accent"
+  aria-hidden
+>
   <title>PRIZM</title>
-  <path d="M12 2L22 20H2L12 2Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
-  <path d="M12 2L12 20" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+  <path
+    d="M12 2L22 20H2L12 2Z"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinejoin="round"
+  />
+  <path
+    d="M12 2L12 20"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinejoin="round"
+  />
 </svg>`}
             />
           </div>
