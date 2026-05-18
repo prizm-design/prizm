@@ -91,7 +91,7 @@ export default function LiquidGlassFoundationPage() {
           <TierCard
             name="surface-glass-chrome"
             useCase="Application frame: top bar, status ticker, icon rail, persistent navigation"
-            blur="12px"
+            blur="8px"
             opacity="6%"
             border="hairline"
             shadow="subtle top highlight"
@@ -99,7 +99,7 @@ export default function LiquidGlassFoundationPage() {
           <TierCard
             name="surface-glass-panel"
             useCase="Floating overlays: notification centre, workspace, slide panels, popovers, tooltips"
-            blur="24px"
+            blur="12px"
             opacity="10%"
             border="hairline"
             shadow="stronger highlight + drop"
@@ -120,7 +120,7 @@ export default function LiquidGlassFoundationPage() {
           <AnatomyRow
             n={1}
             label="Backdrop blur"
-            body="Diffuses what's behind the surface. 12px (chrome) or 24px (panel)."
+            body="Diffuses what's behind the surface. 8px (chrome) or 12px (panel) — tuned to keep underlying canvas activity readable."
           />
           <AnatomyRow
             n={2}
@@ -552,12 +552,12 @@ function AnatomyRow({ n, label, body }: { n: number; label: string; body: string
 const TOKEN_ROWS = [
   { token: "--prizm-glass-chrome-bg", purpose: "Surface tint for chrome-tier glass (top bar, ticker, rail)" },
   { token: "--prizm-glass-chrome-border", purpose: "Inner hairline border for chrome-tier glass" },
-  { token: "--prizm-glass-chrome-blur", purpose: "Backdrop blur amount for chrome tier (12px)" },
+  { token: "--prizm-glass-chrome-blur", purpose: "Backdrop blur amount for chrome tier (8px)" },
   { token: "--prizm-glass-chrome-saturate", purpose: "Backdrop saturation boost (180%)" },
   { token: "--prizm-glass-chrome-shadow", purpose: "Inner highlight/shadow for chrome tier" },
   { token: "--prizm-glass-panel-bg", purpose: "Surface tint for panel-tier glass (sheets, popovers, side panels)" },
   { token: "--prizm-glass-panel-border", purpose: "Inner hairline border for panel-tier glass" },
-  { token: "--prizm-glass-panel-blur", purpose: "Backdrop blur amount for panel tier (24px)" },
+  { token: "--prizm-glass-panel-blur", purpose: "Backdrop blur amount for panel tier (12px)" },
   { token: "--prizm-glass-panel-saturate", purpose: "Backdrop saturation boost (180%)" },
   { token: "--prizm-glass-panel-shadow", purpose: "Inner highlight + drop shadow for panel tier" },
   { token: "--prizm-glass-noise-opacity", purpose: "Opacity of the SVG noise overlay (4-5%)" },
