@@ -1,0 +1,8 @@
+# Pre-commit gate — keeps fast checks here, slow checks stay in CI.
+# Targets: lint (staged files only), typecheck (full, project-wide),
+# component-registry parity. Skips check:links / audit:airgap / build
+# — those run in GitHub Actions.
+#
+# Bypass with `git commit --no-verify` if you genuinely need to.
+
+pnpm exec lint-staged && pnpm typecheck && pnpm audit:components
