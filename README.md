@@ -4,7 +4,7 @@ A DSTA design system. Serves two product families — command-and-control (C3) a
 
 ## What's in the box
 
-- **44 component primitives** (all stable) — shared by both product families
+- **44 stable component primitives** (plus 6 planned) — shared by both product families
 - **Four theme variants** — `c3-light`, `c3-dark`, `enterprise-light`, `enterprise-dark`
 - **A docs site** at `/` that doubles as the public component browser. Top-level nav: Overview (Introduction, Getting started, Using with AI, Installation, Theming, Air-gap setup, Changelog) → Foundations → Components → C3 → Enterprise.
 - **An LLM layer** — `PRIZM.md`, `llms.txt`, per-component context files in `/llms/`

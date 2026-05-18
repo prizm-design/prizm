@@ -42,6 +42,14 @@ export const COMPONENTS: ComponentEntry[] = [
     description: "Trigger an action. Six visual variants and four sizes.",
     status: "stable",
   },
+  {
+    slug: "toggle-group",
+    name: "Toggle Group",
+    category: "actions",
+    description: "Group of toggle buttons for view switching or multi-select.",
+    status: "planned",
+    builtOn: "Base UI Toggle Group",
+  },
 
   // ----- Forms -----
   {
@@ -121,6 +129,21 @@ export const COMPONENTS: ComponentEntry[] = [
     status: "stable",
     builtOn: "Base UI Field",
   },
+  {
+    slug: "number-input",
+    name: "Number Input",
+    category: "forms",
+    description: "Numeric input with increment / decrement controls.",
+    status: "planned",
+    builtOn: "Base UI Number Field",
+  },
+  {
+    slug: "date-picker",
+    name: "Date Picker",
+    category: "forms",
+    description: "Pick a date or date range. Composes Calendar with input + popover.",
+    status: "planned",
+  },
 
   // ----- Data display -----
   {
@@ -173,6 +196,13 @@ export const COMPONENTS: ComponentEntry[] = [
     description: "Inline and block code.",
     status: "stable",
   },
+  {
+    slug: "tree",
+    name: "Tree",
+    category: "data",
+    description: "Hierarchical data view with expand / collapse.",
+    status: "planned",
+  },
 
   // ----- Layout -----
   {
@@ -203,6 +233,22 @@ export const COMPONENTS: ComponentEntry[] = [
     category: "layout",
     description: "Vertical spacing primitive.",
     status: "stable",
+  },
+  {
+    slug: "accordion",
+    name: "Accordion",
+    category: "layout",
+    description: "Vertically stacked, collapsible content sections.",
+    status: "planned",
+    builtOn: "Base UI Accordion",
+  },
+  {
+    slug: "scroll-area",
+    name: "Scroll Area",
+    category: "layout",
+    description: "Custom-styled scrollable region.",
+    status: "planned",
+    builtOn: "Base UI Scroll Area",
   },
 
   // ----- Feedback -----

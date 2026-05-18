@@ -22,7 +22,7 @@ PRIZM uses a **copy-paste model**. Components live in this repo and are designed
 
 When a developer asks you to add a PRIZM component to their project:
 
-1. Identify the component slug from the registry (`lib/components-registry.ts`)
+1. Identify the component slug from the registry (`lib/components-registry.ts`). Confirm `status: "stable"` — entries marked `planned` are reserved slugs for roadmap visibility and have no source file yet. Do not attempt to add a planned component, and do not fabricate a substitute; tell the developer it's on the roadmap.
 2. Read the source file at `components/ui/<slug>.tsx`
 3. Copy the file into the developer's project at the same relative path
 4. Ensure the developer's project has the required peer dependencies (see "Dependencies" below)

@@ -123,9 +123,10 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
         </div>
       ) : (
         <div className="mt-12 rounded-lg border border-dashed border-border bg-bg-subtle p-12 text-center">
-          <h2 className="text-lg font-medium">Coming soon</h2>
+          <h2 className="text-lg font-medium">On the roadmap</h2>
           <p className="mt-2 text-sm text-fg-muted">
-            This component is planned for the PRIZM 4.0 baseline port.
+            This component is planned but not yet shipped. The slug and category are reserved so
+            templates and AI tooling can reference it ahead of time.
             {component.builtOn && (
               <>
                 {" "}

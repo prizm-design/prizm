@@ -10,9 +10,11 @@
  *   lib/components-api.ts        — what props each component documents
  *   components/ui/<slug>.tsx     — the actual implementation
  *
- * Three assertions:
- *   1. Every registry slug has a matching key in COMPONENT_API
- *   2. Every COMPONENT_API key has a matching entry in the registry
+ * Three assertions (scoped to `status: "stable"` entries — `planned` entries
+ * reserve a slug for roadmap visibility and intentionally have no source,
+ * example, or API spec):
+ *   1. Every stable registry slug has a matching key in COMPONENT_API
+ *   2. Every COMPONENT_API key has a matching stable entry in the registry
  *   3. Every COMPONENT_API entry documents at least one prop OR one
  *      sub-component (otherwise the entry is almost certainly a stub).
  *      Some components legitimately expose no root-level props but a
@@ -26,7 +28,7 @@
 import { COMPONENT_API } from "../lib/components-api";
 import { COMPONENTS } from "../lib/components-registry";
 
-const registrySlugs = new Set(COMPONENTS.map((c) => c.slug));
+const registrySlugs = new Set(COMPONENTS.filter((c) => c.status === "stable").map((c) => c.slug));
 const apiSlugs = new Set(Object.keys(COMPONENT_API));
 
 const missingFromApi: string[] = [];
@@ -48,8 +50,10 @@ for (const slug of apiSlugs) {
 const violations = missingFromApi.length + missingFromRegistry.length + stubEntries.length;
 
 if (violations === 0) {
+  const plannedCount = COMPONENTS.filter((c) => c.status === "planned").length;
+  const plannedNote = plannedCount > 0 ? ` (${plannedCount} planned skipped)` : "";
   console.log(
-    `✓ Component audit clean. ${registrySlugs.size} components in registry, ${apiSlugs.size} in COMPONENT_API, all aligned.`,
+    `✓ Component audit clean. ${registrySlugs.size} stable components in registry, ${apiSlugs.size} in COMPONENT_API, all aligned${plannedNote}.`,
   );
   process.exit(0);
 }

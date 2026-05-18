@@ -227,7 +227,7 @@ const ZONE_ENTRIES: SearchEntry[] = [
 ];
 
 function buildIndex(): SearchEntry[] {
-  const components: SearchEntry[] = COMPONENTS.map((c) => ({
+  const components: SearchEntry[] = COMPONENTS.filter((c) => c.status === "stable").map((c) => ({
     id: `component:${c.slug}`,
     group: "Components",
     name: c.name,

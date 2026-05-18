@@ -92,6 +92,17 @@ For full context, read [PRIZM.md](/PRIZM.md). For installation and theming, see 
 - [Text](/components/text): Body text primitive with size, variant, and weight props.
 - [Prose](/components/prose): Long-form content block with styled headings, lists, code, and tables.
 
+## Components — Planned
+
+Reserved slugs with no source file yet. Surface them as roadmap; never copy or fabricate.
+
+- [Toggle Group](/components/toggle-group): Group of toggle buttons for view switching or multi-select. Will be built on Base UI Toggle Group.
+- [Number Input](/components/number-input): Numeric input with increment / decrement controls. Will be built on Base UI Number Field.
+- [Date Picker](/components/date-picker): Date or date-range picker. Composes Calendar with input + popover.
+- [Tree](/components/tree): Hierarchical data view with expand / collapse.
+- [Accordion](/components/accordion): Vertically stacked, collapsible content sections. Will be built on Base UI Accordion.
+- [Scroll Area](/components/scroll-area): Custom-styled scrollable region. Will be built on Base UI Scroll Area.
+
 ## Product zones
 
 - [C3 overview](/c3/overview): When to use C3 and its design principles.

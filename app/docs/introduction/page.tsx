@@ -75,7 +75,7 @@ export default function IntroductionPage() {
         Every component carefully crafted
       </h3>
       <p className="mt-3 text-fg-muted">
-        The 44 primitives in the baseline are not auto-generated wrappers — each one has been
+        The 44 stable primitives in the baseline are not auto-generated wrappers — each one has been
         considered individually. Variants are chosen, not enumerated. Keyboard paths are explicit.
         Focus management is deliberate. The four-variant token system means a single component
         renders correctly in C3-light, C3-dark, Enterprise-light, and Enterprise-dark with no
@@ -101,9 +101,10 @@ export default function IntroductionPage() {
           ============================================================ */}
       <h2 className="mt-14 text-2xl font-semibold tracking-tight">What&rsquo;s next</h2>
       <p className="mt-4 text-fg-muted">
-        PRIZM 4.0 is in active preview. The 44-component baseline covers a large surface area, but
-        it isn&rsquo;t complete — we will progressively add components to ensure full coverage of
-        common UI needs.
+        PRIZM 4.0 is in active preview. The 44-component stable baseline covers a large surface
+        area, but it isn&rsquo;t complete — six more components are already on the roadmap
+        (Accordion, Date Picker, Tree, Toggle Group, Number Input, Scroll Area), with further
+        additions to follow as templates pull them in.
       </p>
       <p className="mt-4 text-fg-muted">
         We will also expand the template library, building out the six planned C3 app templates and
