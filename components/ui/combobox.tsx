@@ -115,7 +115,7 @@ export function ComboboxEmpty({
 }: ComponentPropsWithoutRef<typeof BaseCombobox.Empty>) {
   return (
     <BaseCombobox.Empty
-      className={cn("py-6 text-center text-sm text-fg-muted", className)}
+      className={cn("py-6 text-center text-sm text-fg-muted empty:hidden", className)}
       {...props}
     />
   );

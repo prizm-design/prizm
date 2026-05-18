@@ -250,19 +250,14 @@ export const COMPONENT_API: Record<string, ComponentApi> = {
     ],
     subComponents: [
       {
-        name: "ComboboxTrigger",
-        description: "The button that opens the popup. Shows the selected value.",
+        name: "ComboboxInput",
+        description:
+          "The search input that is both the trigger and the query field. Focus or type to open the popup; the input's value drives filtering against the `items` prop.",
         props: [classNameProp],
       },
       {
         name: "ComboboxContent",
         description: "The popup with the filterable list. Portals to document body.",
-        props: [classNameProp],
-      },
-      {
-        name: "ComboboxInput",
-        description:
-          "The search input. Place inside `ComboboxContent` to enable typeahead filtering against the `items` prop.",
         props: [classNameProp],
       },
       {
@@ -283,9 +278,15 @@ export const COMPONENT_API: Record<string, ComponentApi> = {
         description: "Rendered when no items match the query.",
         props: [classNameProp],
       },
+      {
+        name: "ComboboxTrigger",
+        description:
+          "Optional Select-style button trigger. Use instead of `ComboboxInput` when you want a closed dropdown that opens on click rather than a typeahead-first input.",
+        props: [classNameProp],
+      },
     ],
     notes:
-      "Built on Base UI Combobox. Pass `items` on the root and render via a `ComboboxList` render function for built-in typeahead filtering.",
+      "Built on Base UI Combobox. The default pattern is typeahead-first: `ComboboxInput` is the visible control and filters items as the user types. Use `ComboboxTrigger` only for a Select-style closed state.",
   },
 
   slider: {
