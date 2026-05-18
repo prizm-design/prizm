@@ -149,8 +149,8 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
 
 function PropTable({ props, compact = false }: { props: PropSpec[]; compact?: boolean }) {
   return (
-    <div className="overflow-hidden rounded-lg border border-border">
-      <table className={`w-full ${compact ? "text-xs" : "text-sm"}`}>
+    <div className="overflow-x-auto rounded-lg border border-border">
+      <table className={`w-full min-w-[640px] ${compact ? "text-xs" : "text-sm"}`}>
         <thead className="bg-bg-subtle text-[10px] uppercase tracking-wider text-fg-subtle">
           <tr>
             <th className="px-3 py-2 text-left font-medium">Prop</th>

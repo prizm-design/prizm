@@ -241,16 +241,34 @@ export const COMPONENT_API: Record<string, ComponentApi> = {
         type: "(value: string) => void",
         description: "Called when the selection changes.",
       },
+      {
+        name: "items",
+        type: "readonly any[]",
+        description:
+          "Items to filter against the input query. Pair with a render-function child on `ComboboxList` to render each filtered item.",
+      },
     ],
     subComponents: [
       {
         name: "ComboboxTrigger",
-        description: "The text input + trigger that opens the popup.",
+        description: "The button that opens the popup. Shows the selected value.",
         props: [classNameProp],
       },
       {
         name: "ComboboxContent",
         description: "The popup with the filterable list. Portals to document body.",
+        props: [classNameProp],
+      },
+      {
+        name: "ComboboxInput",
+        description:
+          "The search input. Place inside `ComboboxContent` to enable typeahead filtering against the `items` prop.",
+        props: [classNameProp],
+      },
+      {
+        name: "ComboboxList",
+        description:
+          "The list container. Accepts either static children or a render function `(item) => ReactNode` when `items` is set on the root.",
         props: [classNameProp],
       },
       {
@@ -260,8 +278,14 @@ export const COMPONENT_API: Record<string, ComponentApi> = {
           { name: "value", type: "string", description: "The value this item represents." },
         ],
       },
+      {
+        name: "ComboboxEmpty",
+        description: "Rendered when no items match the query.",
+        props: [classNameProp],
+      },
     ],
-    notes: "Built on Base UI Combobox. Searchable Select — type to filter.",
+    notes:
+      "Built on Base UI Combobox. Pass `items` on the root and render via a `ComboboxList` render function for built-in typeahead filtering.",
   },
 
   slider: {

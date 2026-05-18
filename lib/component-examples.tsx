@@ -19,15 +19,6 @@ import {
   CommandSeparator,
 } from "@/components/ui/command";
 import {
-  Combobox,
-  ComboboxContent,
-  ComboboxEmpty,
-  ComboboxInput,
-  ComboboxItem,
-  ComboboxList,
-  ComboboxTrigger,
-} from "@/components/ui/combobox";
-import {
   ContextMenu,
   ContextMenuContent,
   ContextMenuItem,
@@ -144,6 +135,8 @@ import { Stack } from "@/components/ui/stack";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
+import { ComboboxDemo } from "@/components/site/combobox-demo";
+import { ToastDemo } from "@/components/site/toast-demo";
 import {
   Tooltip,
   TooltipContent,
@@ -675,6 +668,60 @@ export function Example() {
     </div>
   );
 }`,
+};
+
+const toastExample: ComponentExample = {
+  preview: <ToastDemo />,
+  code: `import { Button } from "@/components/ui/button";
+import { toast } from "@/components/ui/toast";
+
+export function Example() {
+  return (
+    <div className="flex flex-wrap gap-2">
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={() =>
+          toast.add({
+            title: "Saved",
+            description: "Your changes have been saved.",
+            type: "success",
+          })
+        }
+      >
+        Success
+      </Button>
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={() =>
+          toast.add({
+            title: "Couldn't save",
+            description: "Network error. Try again.",
+            type: "error",
+          })
+        }
+      >
+        Error
+      </Button>
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={() =>
+          toast.add({
+            title: "Heads up",
+            description: "A new version is available.",
+            type: "info",
+          })
+        }
+      >
+        Info
+      </Button>
+    </div>
+  );
+}
+
+// <ToastProvider> must wrap your app in app/layout.tsx.`,
 };
 
 const linkExample: ComponentExample = {
@@ -1225,35 +1272,36 @@ export function Example() {
 };
 
 const comboboxExample: ComponentExample = {
-  preview: (
-    <Combobox>
-      <ComboboxTrigger className="w-48" />
-      <ComboboxContent>
-        <ComboboxList>
-          <ComboboxItem value="c3">C3 product</ComboboxItem>
-          <ComboboxItem value="enterprise">Enterprise product</ComboboxItem>
-          <ComboboxItem value="mobile">Mobile app</ComboboxItem>
-          <ComboboxEmpty>No results.</ComboboxEmpty>
-        </ComboboxList>
-      </ComboboxContent>
-    </Combobox>
-  ),
+  preview: <ComboboxDemo />,
   code: `import {
-  Combobox, ComboboxContent, ComboboxEmpty, ComboboxItem,
-  ComboboxList, ComboboxTrigger,
+  Combobox, ComboboxContent, ComboboxEmpty, ComboboxInput,
+  ComboboxItem, ComboboxList, ComboboxTrigger,
 } from "@/components/ui/combobox";
+
+const items = [
+  "C3 product",
+  "Enterprise product",
+  "Mobile app",
+  "Internal tool",
+  "Marketing site",
+];
 
 export function Example() {
   return (
-    <Combobox>
-      <ComboboxTrigger className="w-48" />
+    <Combobox items={items}>
+      <ComboboxTrigger className="w-56" />
       <ComboboxContent>
+        <div className="border-b border-border p-2">
+          <ComboboxInput placeholder="Search products…" className="h-8 shadow-none" />
+        </div>
         <ComboboxList>
-          <ComboboxItem value="c3">C3 product</ComboboxItem>
-          <ComboboxItem value="enterprise">Enterprise product</ComboboxItem>
-          <ComboboxItem value="mobile">Mobile app</ComboboxItem>
-          <ComboboxEmpty>No results.</ComboboxEmpty>
+          {(item) => (
+            <ComboboxItem key={item} value={item}>
+              {item}
+            </ComboboxItem>
+          )}
         </ComboboxList>
+        <ComboboxEmpty>No results.</ComboboxEmpty>
       </ComboboxContent>
     </Combobox>
   );
@@ -1611,4 +1659,5 @@ export const EXAMPLES: Record<string, ComponentExample> = {
   code: codeExample,
   "navigation-menu": navigationMenuExample,
   command: commandExample,
+  toast: toastExample,
 };

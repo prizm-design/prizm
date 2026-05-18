@@ -64,7 +64,7 @@ export function ComboboxContent({
       <BaseCombobox.Positioner sideOffset={sideOffset} className="z-50">
         <BaseCombobox.Popup
           className={cn(
-            "max-h-[18rem] w-(--available-width) overflow-y-auto overscroll-contain rounded-md border border-border bg-surface-elevated shadow-md",
+            "max-h-[18rem] w-(--anchor-width) overflow-y-auto overscroll-contain rounded-md border border-border bg-surface-elevated shadow-md",
             "data-[starting-style]:opacity-0 data-[starting-style]:scale-95",
             "data-[ending-style]:opacity-0 data-[ending-style]:scale-95",
             "transition-all duration-150",
