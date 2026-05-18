@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { CodeBlock } from "@/components/site/code-block";
 
 export const metadata = { title: "Getting started" };
@@ -55,7 +56,7 @@ pnpm add -D tailwindcss@^4.0.0-beta.4`}
 
       <h2 className="mt-12 text-2xl font-semibold tracking-tight">4. Copy your first component</h2>
       <p className="mt-3 text-fg-muted">
-        Browse the <a href="/components" className="text-accent underline-offset-4 hover:underline">component catalog</a>{" "}
+        Browse the <Link href="/components" className="text-accent underline-offset-4 hover:underline">component catalog</Link>{" "}
         and copy the source of any stable component into{" "}
         <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">components/ui/</code>{" "}
         in your project. You now own that component — modify it freely.

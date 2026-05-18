@@ -32,5 +32,8 @@ jobs:
       - name: Air-gap audit
         run: pnpm audit:airgap
 
+      - name: Internal link check
+        run: pnpm check:links
+
       - name: Build (static export)
         run: pnpm build

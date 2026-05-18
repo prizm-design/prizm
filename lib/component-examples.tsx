@@ -1429,8 +1429,8 @@ export function Example() {
           <NavigationMenuTrigger>Products</NavigationMenuTrigger>
           <NavigationMenuContent className="p-3 w-48">
             <ul className="space-y-1 text-sm">
-              <li><a href="/c3" className="block rounded px-2 py-1 hover:bg-bg-muted">C3 Suite</a></li>
-              <li><a href="/enterprise" className="block rounded px-2 py-1 hover:bg-bg-muted">Enterprise Portal</a></li>
+              <li><Link href="/c3" className="block rounded px-2 py-1 hover:bg-bg-muted">C3 Suite</Link></li>
+              <li><Link href="/enterprise" className="block rounded px-2 py-1 hover:bg-bg-muted">Enterprise Portal</Link></li>
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
