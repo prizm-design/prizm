@@ -349,7 +349,7 @@ export default function IconsFoundationPage() {
             </h2>
             <p className="mt-2 max-w-3xl text-fg-muted">
               The {totalIcons} icons PRIZM uses most across components and templates. Not a full
-              catalog — lucide ships{" "}
+              catalogue — lucide ships{" "}
               <a
                 href="https://lucide.dev/icons"
                 className="text-accent underline-offset-4 hover:underline"

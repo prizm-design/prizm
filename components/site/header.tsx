@@ -9,31 +9,33 @@ import { CommandPalette, useCommandPaletteShortcut } from "./command-palette";
 import { ThemeToggle } from "./theme-toggle";
 
 const NAV = [
-  { label: "Components", href: "/components" },
+  {
+    label: "Overview",
+    href: "/docs/introduction",
+    children: [
+      { label: "Introduction", href: "/docs/introduction" },
+      { label: "Getting started", href: "/docs/getting-started" },
+      { label: "Using with AI", href: "/docs/using-with-ai" },
+      { label: "Installation", href: "/docs/installation" },
+      { label: "Theming", href: "/docs/theming" },
+      { label: "Air-gap setup", href: "/docs/air-gap" },
+      { label: "Changelog", href: "/docs/changelog" },
+    ],
+  },
   {
     label: "Foundations",
     href: "/docs/foundations",
     children: [
       { label: "Overview", href: "/docs/foundations" },
       { label: "Design principles", href: "/docs/principles" },
-      { label: "Colors", href: "/docs/colors" },
+      { label: "Colours", href: "/docs/colors" },
       { label: "Typography", href: "/docs/typography" },
       { label: "Surface & motion", href: "/docs/surface-and-motion" },
       { label: "Icons", href: "/docs/icons" },
       { label: "Liquid glass", href: "/docs/liquid-glass" },
     ],
   },
-  {
-    label: "Docs",
-    href: "/docs/getting-started",
-    children: [
-      { label: "Getting started", href: "/docs/getting-started" },
-      { label: "Using with AI", href: "/docs/using-with-ai" },
-      { label: "Installation", href: "/docs/installation" },
-      { label: "Theming", href: "/docs/theming" },
-      { label: "Air-gap setup", href: "/docs/air-gap" },
-    ],
-  },
+  { label: "Components", href: "/components" },
   {
     label: "C3",
     href: "/c3",

@@ -9,7 +9,8 @@ export default function C3OverviewPage() {
       <h1 className="mt-2 text-4xl font-semibold tracking-tight">Design overview</h1>
       <p className="mt-4 text-lg text-fg-muted">
         C3 — command and control — is for systems where operators monitor and act on real-world
-        events. Air defense, dispatch, network operations, mission control.
+        events. Examples include air defence, mission control, and other operator-facing systems
+        where every second on screen matters.
       </p>
 
       <h2 className="mt-12 text-2xl font-semibold tracking-tight">Design principles</h2>
@@ -19,19 +20,19 @@ export default function C3OverviewPage() {
       />
       <Section
         title="High contrast for clarity"
-        body="C3 prioritizes legibility under stress. Foreground and background contrast targets exceed WCAG AAA where practical. Borders are visible, not whispered."
+        body="C3 prioritises legibility under sustained focus. Foreground and background contrast targets exceed WCAG AAA where practical, so information remains readable across long shifts and varying ambient light."
       />
       <Section
-        title="Color carries meaning"
-        body="Status colors (red, amber, green) appear consistently and never decoratively. A red badge means an actual problem. A blinking element warrants attention."
+        title="Colour carries meaning"
+        body="Status colours (red, amber, green) appear consistently and never decoratively. A red badge means an actual problem. A blinking element warrants attention."
       />
       <Section
         title="Designed for dark mode first"
-        body="Most C3 installations run in dim rooms. Dark mode is the primary surface; light mode is the alternate. Token decisions favor dark-mode quality."
+        body="Most C3 installations run in dim rooms. Dark mode is the primary surface; light mode is the alternate. Token decisions favour dark-mode quality."
       />
       <Section
         title="Keyboard before pointer"
-        body="Operators don't fumble with mice. Every action has a keyboard path. Focus rings are visible and unambiguous."
+        body="Every action has a keyboard path, and focus rings stay visible and unambiguous so operators always know where they are."
       />
 
       <h2 className="mt-12 text-2xl font-semibold tracking-tight">A C3-only surface treatment</h2>
@@ -47,9 +48,9 @@ export default function C3OverviewPage() {
 
       <h2 className="mt-12 text-2xl font-semibold tracking-tight">When to use C3 vs Enterprise</h2>
       <p className="mt-4 text-fg-muted">
-        Choose C3 when the product is operated by trained users who spend long sessions monitoring
-        or directing real-world systems. Choose Enterprise for everything else — back-office
-        applications, customer-facing tools, internal portals.
+        Choose C3 when the product is operated by trained users in sustained monitoring sessions.
+        Choose Enterprise when the product serves a wider audience under normal working conditions
+        — back-office applications, customer-facing tools, internal portals.
       </p>
     </article>
   );

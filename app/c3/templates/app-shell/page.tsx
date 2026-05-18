@@ -125,7 +125,7 @@ export default function C3AppShellPage() {
       <section className="mt-12">
         <h2 className="text-sm font-medium uppercase tracking-wider text-fg-subtle">Code</h2>
         <p className="mt-3 text-fg-muted">
-          The shell is one file. Copy it into your project at the same relative path and customize
+          The shell is one file. Copy it into your project at the same relative path and customise
           the brand, rail items, and metrics for your application.
         </p>
         <div className="mt-4">

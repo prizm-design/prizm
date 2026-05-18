@@ -28,6 +28,15 @@ interface SearchEntry {
 
 const DOC_ENTRIES: SearchEntry[] = [
   {
+    id: "doc:introduction",
+    group: "Docs",
+    name: "Introduction",
+    description: "Why PRIZM, what changed in 4.0, and what's next.",
+    href: "/docs/introduction",
+    icon: <BookOpen className="h-4 w-4" />,
+    keywords: ["docs", "overview", "about", "prism", "history", "roadmap", "introduction"],
+  },
+  {
     id: "doc:getting-started",
     group: "Docs",
     name: "Getting started",
@@ -35,6 +44,15 @@ const DOC_ENTRIES: SearchEntry[] = [
     href: "/docs/getting-started",
     icon: <BookOpen className="h-4 w-4" />,
     keywords: ["docs", "install"],
+  },
+  {
+    id: "doc:changelog",
+    group: "Docs",
+    name: "Changelog",
+    description: "What's new in PRIZM — components, templates, design tweaks, fixes.",
+    href: "/docs/changelog",
+    icon: <BookOpen className="h-4 w-4" />,
+    keywords: ["docs", "changelog", "release", "history", "what's new"],
   },
   {
     id: "doc:using-with-ai",
@@ -105,7 +123,7 @@ const DOC_ENTRIES: SearchEntry[] = [
   {
     id: "doc:colors",
     group: "Docs",
-    name: "Colors",
+    name: "Colours",
     description: "Semantic tokens, baseline scales, and how they vary per theme.",
     href: "/docs/colors",
     icon: <BookOpen className="h-4 w-4" />,
@@ -143,7 +161,7 @@ const DOC_ENTRIES: SearchEntry[] = [
     id: "doc:icons",
     group: "Docs",
     name: "Icons",
-    description: "lucide-react at 1.5 stroke-width — sizes, pairing, accessibility, and catalog.",
+    description: "lucide-react at 1.5 stroke-width — sizes, pairing, accessibility, and catalogue.",
     href: "/docs/icons",
     icon: <BookOpen className="h-4 w-4" />,
     keywords: ["docs", "foundations", "icons", "lucide", "stroke", "svg", "iconography"],

@@ -38,7 +38,7 @@ export default function ThemingPage() {
       <p className="mt-3 text-fg-muted">PRIZM uses two layers:</p>
       <ol className="mt-3 list-decimal space-y-2 pl-6 text-fg-muted">
         <li>
-          <strong className="text-fg">Baseline tokens</strong> — raw color scales (slate, blue,
+          <strong className="text-fg">Baseline tokens</strong> — raw colour scales (slate, blue,
           cyan), radii, motion. In{" "}
           <code className="font-mono text-xs">styles/tokens/baseline.css</code>.
         </li>
@@ -53,7 +53,7 @@ export default function ThemingPage() {
         Components always reference semantic tokens — never baseline scales directly. This is what
         makes theme switching free. For the full palette and per-token visual reference, see{" "}
         <Link href="/docs/colors" className="text-accent hover:underline">
-          Colors
+          Colours
         </Link>
         .
       </p>
@@ -68,7 +68,7 @@ export default function ThemingPage() {
   <span className="text-accent">Important</span>
 </div>
 
-// ✗ Wrong — uses raw Tailwind colors, won't theme correctly
+// ✗ Wrong — uses raw Tailwind colours, won't theme correctly
 <div className="bg-slate-50 text-slate-900 border-slate-200">
   <span className="text-blue-600">Important</span>
 </div>`}

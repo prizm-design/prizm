@@ -61,7 +61,7 @@ pnpm add -D tailwindcss@^4.0.0-beta.4`}
       <p className="mt-3 text-fg-muted">
         Browse the{" "}
         <Link href="/components" className="text-accent underline-offset-4 hover:underline">
-          component catalog
+          component catalogue
         </Link>{" "}
         and copy the source of any stable component into{" "}
         <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">components/ui/</code>{" "}

@@ -13,7 +13,7 @@ export default function C3LandingPage() {
         </div>
         <h1 className="text-balance text-5xl font-semibold tracking-tight">PRIZM for C3 systems</h1>
         <p className="mt-4 text-balance text-lg text-fg-muted">
-          The C3 design language emphasizes density, high contrast, and operator clarity. Built for
+          The C3 design language emphasises density, high contrast, and operator clarity. Built for
           tactical interfaces, real-time data, and low-light environments.
         </p>
       </div>

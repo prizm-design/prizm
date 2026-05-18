@@ -9,7 +9,7 @@ PRIZM 4.0 is **a DSTA design system**. It serves two distinct product families:
 - **C3** — command and control systems. Dense data display, tactical UI, high-contrast surfaces. Used in operations centers, mission control, dispatch, network monitoring.
 - **Enterprise** — websites and applications. Calm, spacious, professional. Used in dashboards, forms, marketing pages, customer portals.
 
-Both product families share the same underlying **component primitives** but apply different **design tokens** (colors, density, contrast). PRIZM supports light and dark mode for each, giving four total theme variants:
+Both product families share the same underlying **component primitives** but apply different **design tokens** (colours, density, contrast). PRIZM supports light and dark mode for each, giving four total theme variants:
 
 - `c3-light`
 - `c3-dark`
@@ -36,7 +36,7 @@ PRIZM 4.0/
 │   ├── components/            # Component browser + per-component pages
 │   ├── c3/                    # C3 zone (overview, templates)
 │   ├── enterprise/            # Enterprise zone (overview, templates)
-│   └── docs/                  # Getting started, installation, theming, air-gap
+│   └── docs/                  # Introduction, Getting started, Using with AI, Installation, Theming, Air-gap, Changelog, plus foundation pages
 ├── components/
 │   ├── ui/                    # ←— THE COMPONENT LIBRARY (copy from here)
 │   └── site/                  # Docs site components (not for copying)
@@ -97,8 +97,8 @@ Two tiers, two usage paths:
 
 | Tier class | Use case |
 |---|---|
-| `surface-glass-chrome` | Application frame: top bar, status ticker, icon rail. Lighter blur (12px), ~6% tint opacity. |
-| `surface-glass-panel` | Floating overlays: sheets, popovers, side panels, notification centres. Heavier blur (24px), ~10% tint opacity, soft shadow. |
+| `surface-glass-chrome` | Application frame: top bar, status ticker, icon rail. Lighter blur (8px), ~6% tint opacity. |
+| `surface-glass-panel` | Floating overlays: sheets, popovers, side panels, notification centres. Heavier blur (12px), ~10% tint opacity, soft shadow. |
 
 **Via component variant prop** (recommended ergonomic path):
 
@@ -156,7 +156,7 @@ Use these semantic tokens in component code. They are guaranteed to exist across
 | `text-warning` | Warning state |
 | `text-info` | Informational |
 
-Never use raw Tailwind color utilities (`bg-slate-500`, `text-blue-600`, etc.) in component code. They break theme switching.
+Never use raw Tailwind colour utilities (`bg-slate-500`, `text-blue-600`, etc.) in component code. They break theme switching.
 
 ## Templates
 
@@ -170,6 +170,18 @@ PRIZM ships layout scaffolds called *templates* — reusable patterns that compo
 
 When building a new template, follow the convention: include a "Design Principles Applied" section listing 2–4 principles with concrete rationale, embed a live preview, and link to a standalone full-bleed preview route.
 
+## Overview pages — orientation and how-to
+
+For narrative orientation and tactical setup, read the Overview section:
+
+- `/docs/introduction` — why PRIZM is named after a prism, what changed in 4.0 (Base UI foundation, Tailwind v4 tokens, AI-first documentation, custom Liquid Glass surface treatment), and what's next (more components, more templates, exploring an "Info systems" third product family)
+- `/docs/getting-started` — install dependencies, copy your first component
+- `/docs/using-with-ai` — team-facing guide for adopting PRIZM with AI in the loop
+- `/docs/installation` — per-component installation flow
+- `/docs/theming` — architecture of the four-variant token system
+- `/docs/air-gap` — disconnected deployment setup
+- `/docs/changelog` — dated timeline of new components, templates, foundations, design tweaks, and notable fixes
+
 ## Foundation reference pages
 
 For the visual reference of every token — what each value looks like, when to use it, how it varies across themes — read the foundation pages on the docs site:
@@ -179,7 +191,7 @@ For the visual reference of every token — what each value looks like, when to 
 - `/docs/colors` — every semantic token rendered across all four theme variants, plus the baseline scales (slate, cyan, blue, status hues)
 - `/docs/typography` — font families, type scale samples, weights
 - `/docs/surface-and-motion` — radii (xs–xl), shadow tiers (sm/md/lg), motion tokens (durations, ease curves)
-- `/docs/icons` — lucide-react at PRIZM's site-wide 1.5 stroke-width. Size scale (h-3 through h-6), text-pairing conventions, accessibility rules (decorative vs meaningful), catalog of the ~30 icons used across PRIZM, custom-SVG conventions.
+- `/docs/icons` — lucide-react at PRIZM's site-wide 1.5 stroke-width. Size scale (h-3 through h-6), text-pairing conventions, accessibility rules (decorative vs meaningful), catalogue of the ~30 icons used across PRIZM, custom-SVG conventions.
 - `/docs/liquid-glass` — **C3-only** translucent surface treatment. Two tiers (`surface-glass-chrome` for application frame, `surface-glass-panel` for floating overlays). Available in both C3 light and C3 dark modes; tint flips with mode for backdrop contrast. Six components ship a `variant="glass"` prop: Sheet, Popover, Tooltip, HoverCard, Menu, ContextMenu.
 
 When you need to know "what does `--prizm-color-fg-muted` actually look like in C3 dark mode?" or "what radius does a card use?", these are the canonical references. For the *architecture* behind the tokens (why two layers exist, how activation works), see `/docs/theming`. For the *reasons* a pattern exists, see `/docs/principles`.
@@ -231,5 +243,5 @@ The `pnpm audit:airgap` script scans the repo and CI fails if external reference
 - Don't invent new tokens. If a semantic token is missing, raise it as a system-level decision.
 - Don't copy components from external libraries. PRIZM components are intentionally curated.
 - Don't bake product-specific copy into shared components. Components are neutral primitives.
-- Don't use raw color values. Always go through semantic tokens.
+- Don't use raw colour values. Always go through semantic tokens.
 - Don't introduce external URL references. Air-gap discipline is enforced in CI.

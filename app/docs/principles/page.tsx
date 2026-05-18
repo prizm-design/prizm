@@ -127,7 +127,7 @@ const C3_PRINCIPLES: Principle[] = [
   {
     title: "Hierarchical alert escalation",
     citation: "Lees (1974); Stanton (1994)",
-    says: "Severity escalates by perceptual salience: color → icon shape → motion → audio. Don't escalate by stacking modalities — match the modality to the severity.",
+    says: "Severity escalates by perceptual salience: colour → icon shape → motion → audio. Don't escalate by stacking modalities — match the modality to the severity.",
     why: "Alarm-flooding research repeatedly shows that operators tune out interfaces where everything competes for top attention. Tiered salience preserves a meaningful difference between routine status and a real emergency.",
     how: (
       <>
@@ -145,7 +145,7 @@ const C3_PRINCIPLES: Principle[] = [
     title: "Reversibility — staged commit",
     citation: "Norman (1988); Reason (1990)",
     says: "Destructive C3 actions go through preview-then-commit. Bare buttons are reserved for cheap-to-undo operations.",
-    why: "C3 actions often affect the real world — a deployed asset is deployed. Norman's gulf-of-execution and Reason's slip / lapse error taxonomy both argue for a deliberate confirmation step that requires the operator to *re-engage* with what they're about to do, not just click again.",
+    why: "C3 actions often affect the real world — a deployed asset is deployed. Norman's gulf-of-execution and Reason's slip / lapse error taxonomy both argue for a deliberate confirmation step that requires the operator to re-engage with what they're about to do, not just click again.",
     how: (
       <>
         Destructive flows use{" "}
@@ -249,7 +249,7 @@ const ENTERPRISE_PRINCIPLES: Principle[] = [
     title: "Form ergonomics",
     citation: "Wroblewski (2008); Jarrett (2009)",
     says: "Group fields by mental model, not by database schema. Minimize required input. Validate inline, not on submit.",
-    why: "Form research consistently shows that grouping fields the way users *think* about them (Identity → Address → Preferences) outperforms grouping by storage layout (Profile table → Address table). Inline validation cuts correction loops dramatically.",
+    why: "Form research consistently shows that grouping fields the way users think about them (Identity → Address → Preferences) outperforms grouping by storage layout (Profile table → Address table). Inline validation cuts correction loops dramatically.",
     how: (
       <>
         The{" "}
@@ -264,8 +264,8 @@ const ENTERPRISE_PRINCIPLES: Principle[] = [
   {
     title: "Visual hierarchy through whitespace",
     citation: "Tufte (1990); Lidwell, Holden & Butler (2010)",
-    says: "Use whitespace to signal grouping. Reserve color and weight for emphasis, not for structure.",
-    why: "Tufte's data-ink principle and Gestalt proximity grouping both point at the same thing — separation between groups is communicated more reliably by space than by lines or color. Enterprise pages are read; spacing controls reading rhythm.",
+    says: "Use whitespace to signal grouping. Reserve colour and weight for emphasis, not for structure.",
+    why: "Tufte's data-ink principle and Gestalt proximity grouping both point at the same thing — separation between groups is communicated more reliably by space than by lines or colour. Enterprise pages are read; spacing controls reading rhythm.",
     how: (
       <>
         The{" "}
@@ -356,7 +356,8 @@ export default function PrinciplesPage() {
           ============================================================ */}
       <h2 className="mt-16 text-2xl font-semibold tracking-tight">References</h2>
       <p className="mt-3 text-fg-muted">
-        The works cited above. PRIZM doesn't reproduce these findings — it inherits them.
+        PRIZM is built on established research and scientific principles in human factors and
+        human-computer interaction.
       </p>
       <ul className="mt-6 space-y-2 text-sm text-fg-muted">
         <li>

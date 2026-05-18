@@ -15,7 +15,7 @@ export default function EnterpriseLandingPage() {
           PRIZM for Enterprise products
         </h1>
         <p className="mt-4 text-balance text-lg text-fg-muted">
-          The Enterprise design language emphasizes calm, spacious, professional surfaces. Built for
+          The Enterprise design language emphasises calm, spacious, professional surfaces. Built for
           dashboards, forms, marketing pages, and customer-facing applications.
         </p>
       </div>

@@ -2,7 +2,7 @@ import { CodeBlock } from "@/components/site/code-block";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-export const metadata = { title: "Colors" };
+export const metadata = { title: "Colours" };
 
 interface SemanticToken {
   name: string;
@@ -152,9 +152,9 @@ export default function ColorsPage() {
   return (
     <article className="mx-auto max-w-5xl px-6 py-12">
       <p className="text-xs font-semibold uppercase tracking-wider text-fg-subtle">Foundations</p>
-      <h1 className="mt-2 text-4xl font-semibold tracking-tight">Colors</h1>
+      <h1 className="mt-2 text-4xl font-semibold tracking-tight">Colours</h1>
       <p className="mt-3 text-lg text-fg-muted">
-        PRIZM uses a two-layer color system: a fixed baseline palette of raw scales, and a set of
+        PRIZM uses a two-layer colour system: a fixed baseline palette of raw scales, and a set of
         semantic tokens that map onto those scales differently per theme. Component code only
         references semantic tokens — that's what makes theming free.
       </p>
@@ -172,8 +172,9 @@ export default function ColorsPage() {
           ============================================================ */}
       <h2 className="mt-14 text-2xl font-semibold tracking-tight">Semantic tokens</h2>
       <p className="mt-3 text-fg-muted">
-        These tokens carry meaning, not raw color. Each one resolves to a different value per theme
-        — that's the whole point of having four variants behind one component API.
+        These tokens carry meaning, not raw colour. Each one resolves to a different value per
+        theme, so the same component renders correctly across all four variants without any
+        branching at the call site.
       </p>
 
       <p className="mt-3 text-fg-muted">

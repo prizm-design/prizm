@@ -22,7 +22,7 @@ const FOUNDATIONS: Foundation[] = [
     highlights: ["4 core principles", "5 C3-specific", "4 Enterprise-specific"],
   },
   {
-    title: "Colors",
+    title: "Colours",
     href: "/docs/colors",
     icon: <Palette className="h-5 w-5" />,
     description:
@@ -50,8 +50,8 @@ const FOUNDATIONS: Foundation[] = [
     href: "/docs/icons",
     icon: <Shapes className="h-5 w-5" />,
     description:
-      "lucide-react at PRIZM's site-wide 1.5 stroke-width. Size scale, text-pairing rules, accessibility, and a catalog of the icons used across the system.",
-    highlights: ["1.5 stroke-width", "5 standard sizes", "~30 catalog icons"],
+      "lucide-react at PRIZM's site-wide 1.5 stroke-width. Size scale, text-pairing rules, accessibility, and a catalogue of the icons used across the system.",
+    highlights: ["1.5 stroke-width", "5 standard sizes", "~30 reference icons"],
   },
   {
     title: "Liquid glass",
@@ -66,7 +66,7 @@ const FOUNDATIONS: Foundation[] = [
 export default function FoundationsPage() {
   return (
     <article className="mx-auto max-w-5xl px-6 py-12">
-      <p className="text-xs font-semibold uppercase tracking-wider text-fg-subtle">Docs</p>
+      <p className="text-xs font-semibold uppercase tracking-wider text-fg-subtle">Foundations</p>
       <h1 className="mt-2 text-4xl font-semibold tracking-tight">Foundations</h1>
       <p className="mt-3 text-lg text-fg-muted">
         The raw materials PRIZM is built from. Each foundation page is a reference — what the tokens
