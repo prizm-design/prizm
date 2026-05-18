@@ -42,8 +42,8 @@ const FOUNDATIONS: Foundation[] = [
     href: "/docs/surface-and-motion",
     icon: <Layers className="h-5 w-5" />,
     description:
-      "Corner radii, shadow elevation tiers, and motion tokens (durations, ease curves). The physical-feeling values that make UI feel tactile.",
-    highlights: ["5 radii", "3 shadows", "3 durations + 2 eases"],
+      "Corner radii, shadow elevation tiers, and notes on motion. The physical-feeling values that make UI feel tactile.",
+    highlights: ["5 radii", "3 shadows", "Tailwind defaults for motion"],
   },
   {
     title: "Icons",

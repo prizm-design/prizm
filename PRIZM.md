@@ -189,7 +189,7 @@ For the visual reference of every token — what each value looks like, when to 
 - `/docs/principles` — the human factors and HCI research that shapes PRIZM's patterns. Core principles (apply universally), plus C3-specific (operator dark, alert escalation, staged commit, stress-resilient consistency, **layered transparency for spatial context**) and Enterprise-specific (progressive disclosure, form ergonomics, whitespace hierarchy, undo-over-confirm). Templates and components implement these — when in doubt about a design call, anchor on the principle, not on what "looks right".
 - `/docs/colors` — every semantic token rendered across all four theme variants, plus the baseline scales (slate, cyan, blue, status hues)
 - `/docs/typography` — font families, type scale samples, weights
-- `/docs/surface-and-motion` — radii (xs–xl), shadow tiers (sm/md/lg), motion tokens (durations, ease curves)
+- `/docs/surface-and-motion` — radii (xs–xl), shadow tiers (sm/md/lg), and a note on motion. PRIZM doesn't define its own duration / easing tokens; components use Tailwind's default `duration-*` / `ease-*` utilities.
 - `/docs/icons` — lucide-react at PRIZM's site-wide 1.5 stroke-width. Size scale (h-3 through h-6), text-pairing conventions, accessibility rules (decorative vs meaningful), catalogue of the ~30 icons used across PRIZM, custom-SVG conventions.
 - `/docs/liquid-glass` — **C3-only** translucent surface treatment. Two tiers (`surface-glass-chrome` for application frame, `surface-glass-panel` for floating overlays). Available in both C3 light and C3 dark modes; tint flips with mode for backdrop contrast. Six components ship a `variant="glass"` prop: Sheet, Popover, Tooltip, HoverCard, Menu, ContextMenu.
 

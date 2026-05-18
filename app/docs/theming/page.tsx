@@ -39,7 +39,7 @@ export default function ThemingPage() {
       <ol className="mt-3 list-decimal space-y-2 pl-6 text-fg-muted">
         <li>
           <strong className="text-fg">Baseline tokens</strong> — raw colour scales (slate, blue,
-          cyan), radii, motion. In{" "}
+          cyan), radii, shadows. In{" "}
           <code className="font-mono text-xs">styles/tokens/baseline.css</code>.
         </li>
         <li>

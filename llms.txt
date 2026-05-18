@@ -10,7 +10,7 @@ For full context, read [PRIZM.md](/PRIZM.md). For installation and theming, see 
 - [Design principles](/docs/principles): the human factors and HCI research behind PRIZM's patterns. Core + C3 + Enterprise principle sets. Templates and components anchor on these.
 - [Colours](/docs/colors): semantic tokens across all four theme variants, plus baseline scales.
 - [Typography](/docs/typography): font families, type scale, weights.
-- [Surface & motion](/docs/surface-and-motion): radii, shadows, durations, ease curves.
+- [Surface & motion](/docs/surface-and-motion): radii, shadows, and a note on motion (components use Tailwind's default duration / easing utilities; PRIZM doesn't define its own).
 - [Icons](/docs/icons): lucide-react at PRIZM's site-wide 1.5 stroke-width. Sizes, text-pairing, accessibility, catalogue of ~30 commonly-used icons.
 - [Liquid glass](/docs/liquid-glass): C3-only translucent surface treatment. Two tiers (chrome / panel). Available in both C3 light and C3 dark modes. Featured in PRIZM 4.0.
 

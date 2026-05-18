@@ -74,13 +74,6 @@
   --prizm-radius-lg: 0.5rem;
   --prizm-radius-xl: 0.75rem;
 
-  /* ----- Motion ----- */
-  --prizm-duration-fast: 120ms;
-  --prizm-duration-base: 200ms;
-  --prizm-duration-slow: 320ms;
-  --prizm-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --prizm-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
-
   /* ----- Shadow ----- */
   --prizm-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --prizm-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.05);
