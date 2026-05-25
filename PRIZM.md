@@ -234,7 +234,8 @@ The `pnpm audit:airgap` script scans the repo and CI fails if external reference
 
 - **"Add a button"** → Read `components/ui/button.tsx`, copy to consumer's project, ensure deps + tokens.
 - **"Build a settings form"** → Compose `Field`, `Input`, `Label`, `Button` components. Reference the registry to confirm which exist as stable.
-- **"Build a C3 dashboard"** → Set `data-zone="c3"` on the consumer's root, then compose existing components. Templates (Phase 3) will provide pre-built scaffolds.
+- **"Build a C3 application" / "Apply PRIZM C3"** → **Start with the C3 App Shell template** at `app/c3/templates/app-shell/shell.tsx`. Copy it into the consumer's project (e.g. `templates/c3/app-shell.tsx`), set `data-zone="c3"` on the consumer's root, then fill the main canvas slot and rail-panel slots with the feature's content. The shell already handles the operator-dark default, top bar, status ticker, icon rail, and the chrome-level Notification Centre + Workspace panels. Only fall back to composing primitives from scratch if the shell genuinely doesn't fit (embedded widget, settings page that sits outside an ops console).
+- **"Build a C3 dashboard"** → A dashboard is one app *inside* the C3 App Shell. Start with the shell (as above), then put the dashboard content in the main canvas. Don't reinvent the chrome.
 - **"Make the dark mode work"** → The token system handles this automatically. Set `data-mode="dark"` on `<html>` and the component code stays the same.
 
 ## What NOT to do

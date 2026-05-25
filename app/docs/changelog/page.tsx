@@ -39,6 +39,17 @@ interface ChangelogDay {
 
 const CHANGELOG: ChangelogDay[] = [
   {
+    date: "2026-05-25",
+    entries: [
+      {
+        type: "template",
+        title: "AI-application guidance — start C3 apps from the App Shell",
+        body: "PRIZM.md and llms.txt updated so AI assistants applying PRIZM C3 to a consumer project now scaffold from the C3 App Shell template by default, rather than composing primitives from scratch. The shell already shipped on 2026-05-16; this closes the gap in the instruction layer.",
+        href: "/c3/templates/app-shell",
+      },
+    ],
+  },
+  {
     date: "2026-05-18",
     entries: [
       {

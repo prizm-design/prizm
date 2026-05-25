@@ -111,7 +111,7 @@ Reserved slugs with no source file yet. Surface them as roadmap; never copy or f
 ## Templates
 
 - [C3 templates](/c3/templates): index of available C3 layout scaffolds.
-  - [C3 App Shell](/c3/templates/app-shell): foundational chrome — top bar, status ticker, icon rail, main canvas slot, expandable side panel. Other C3 templates compose this. [Full-bleed preview](/c3/templates/app-shell/preview).
+  - [C3 App Shell](/c3/templates/app-shell): **start here for any C3 application** — foundational chrome (top bar, status ticker, icon rail, main canvas slot, expandable side panel). Copy `shell.tsx`, fill the main canvas + rail-panel slots with the feature's content; don't reinvent the chrome. Other C3 templates compose this. [Full-bleed preview](/c3/templates/app-shell/preview).
 
 ## Optional
 
