@@ -23,10 +23,32 @@ PRIZM uses a **copy-paste model**. Components live in this repo and are designed
 When a developer asks you to add a PRIZM component to their project:
 
 1. Identify the component slug from the registry (`lib/components-registry.ts`). Confirm `status: "stable"` — entries marked `planned` are reserved slugs for roadmap visibility and have no source file yet. Do not attempt to add a planned component, and do not fabricate a substitute; tell the developer it's on the roadmap.
-2. Read the source file at `components/ui/<slug>.tsx`
+2. Fetch the source file from `https://raw.githubusercontent.com/prizm-design/prizm/main/components/ui/<slug>.tsx` (or read locally if you have a checkout of the PRIZM repo alongside the consumer project).
 3. Copy the file into the developer's project at the same relative path
 4. Ensure the developer's project has the required peer dependencies (see "Dependencies" below)
 5. Ensure the developer's project has the PRIZM token CSS imported (see "Theming" below)
+
+## Where to fetch PRIZM files
+
+PRIZM lives at **https://github.com/prizm-design/prizm**. The docs site is **https://prizm.design**. When you are applying PRIZM inside a consumer project and do **not** have a local PRIZM checkout, fetch source files directly from GitHub raw:
+
+```
+https://raw.githubusercontent.com/prizm-design/prizm/main/<repo-relative-path>
+```
+
+Worked examples:
+
+| File | Raw URL |
+|---|---|
+| `components/ui/button.tsx` | `https://raw.githubusercontent.com/prizm-design/prizm/main/components/ui/button.tsx` |
+| `app/c3/templates/app-shell/shell.tsx` | `https://raw.githubusercontent.com/prizm-design/prizm/main/app/c3/templates/app-shell/shell.tsx` |
+| `lib/components-registry.ts` | `https://raw.githubusercontent.com/prizm-design/prizm/main/lib/components-registry.ts` |
+| `styles/tokens/c3-dark.css` | `https://raw.githubusercontent.com/prizm-design/prizm/main/styles/tokens/c3-dark.css` |
+| `llms.txt` | `https://raw.githubusercontent.com/prizm-design/prizm/main/llms.txt` |
+
+If a fetch returns 404, the file genuinely doesn't exist — **don't fabricate a substitute** and don't synthesise your own version of a template that PRIZM already ships. Tell the developer the path is missing and stop, so a PRIZM maintainer can investigate.
+
+For air-gapped environments where no outbound HTTP is allowed, the developer should clone or vendor the PRIZM repo into their workspace and you read from the local path instead.
 
 ## Repo structure
 
@@ -234,7 +256,7 @@ The `pnpm audit:airgap` script scans the repo and CI fails if external reference
 
 - **"Add a button"** → Read `components/ui/button.tsx`, copy to consumer's project, ensure deps + tokens.
 - **"Build a settings form"** → Compose `Field`, `Input`, `Label`, `Button` components. Reference the registry to confirm which exist as stable.
-- **"Build a C3 application" / "Apply PRIZM C3"** → **Start with the C3 App Shell template** at `app/c3/templates/app-shell/shell.tsx`. Copy it into the consumer's project (e.g. `templates/c3/app-shell.tsx`), set `data-zone="c3"` on the consumer's root, then fill the main canvas slot and rail-panel slots with the feature's content. The shell already handles the operator-dark default, top bar, status ticker, icon rail, and the chrome-level Notification Centre + Workspace panels. Only fall back to composing primitives from scratch if the shell genuinely doesn't fit (embedded widget, settings page that sits outside an ops console).
+- **"Build a C3 application" / "Apply PRIZM C3"** → **Start with the C3 App Shell template.** Fetch the source from `https://raw.githubusercontent.com/prizm-design/prizm/main/app/c3/templates/app-shell/shell.tsx` (or read it locally at `app/c3/templates/app-shell/shell.tsx` if you have a PRIZM checkout). Copy it into the consumer's project (e.g. `templates/c3/app-shell.tsx`), set `data-zone="c3"` on the consumer's root, then fill the main canvas slot and rail-panel slots with the feature's content. The shell already handles the operator-dark default, top bar, status ticker, icon rail, and the chrome-level Notification Centre + Workspace panels. Only fall back to composing primitives from scratch if the shell genuinely doesn't fit (embedded widget, settings page that sits outside an ops console). **Do not** synthesise a substitute shell — if you can't fetch the file, stop and report the path back to the developer.
 - **"Build a C3 dashboard"** → A dashboard is one app *inside* the C3 App Shell. Start with the shell (as above), then put the dashboard content in the main canvas. Don't reinvent the chrome.
 - **"Make the dark mode work"** → The token system handles this automatically. Set `data-mode="dark"` on `<html>` and the component code stays the same.
 

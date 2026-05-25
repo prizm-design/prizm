@@ -4,6 +4,14 @@
 
 For full context, read [PRIZM.md](/PRIZM.md). For installation and theming, see the docs section.
 
+## Where to fetch source
+
+- **Repo**: https://github.com/prizm-design/prizm
+- **Docs site**: https://prizm.design
+- **Raw fetch URL pattern**: `https://raw.githubusercontent.com/prizm-design/prizm/main/<repo-relative-path>` — e.g. `https://raw.githubusercontent.com/prizm-design/prizm/main/components/ui/button.tsx`, `https://raw.githubusercontent.com/prizm-design/prizm/main/app/c3/templates/app-shell/shell.tsx`.
+
+If a fetch 404s, the file genuinely doesn't ship — don't synthesise a substitute. Stop and report the missing path back to the developer.
+
 ## Foundations — visual reference + design rationale
 
 - [Foundations overview](/docs/foundations): index of every foundation reference page.
