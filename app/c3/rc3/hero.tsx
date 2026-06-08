@@ -257,8 +257,12 @@ export function Hero() {
 
         {/* Identity rule — swarm scope. */}
         <div
-          className="relative flex items-center justify-between border-t-[1.5px] border-b px-5 py-3"
-          style={{ borderTopColor: RC3, borderBottomColor: SURFACE.border }}
+          className="relative flex flex-wrap items-center justify-between gap-x-4 gap-y-1 border-t-[1.5px] border-b px-5 py-3"
+          style={{
+            borderTopColor: RC3,
+            borderBottomColor: SURFACE.border,
+            backgroundColor: SURFACE.bg,
+          }}
         >
           <div className="flex items-center gap-3">
             <span

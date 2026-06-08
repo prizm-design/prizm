@@ -108,13 +108,14 @@ export default function OperatorConsolePage() {
           </Link>
         </div>
         <div className="overflow-hidden rounded-lg border border-border bg-bg-subtle">
-          <div className="h-[720px]">
-            <ThemedOperatorConsole />
+          <div className="h-[720px] overflow-x-auto">
+            <ThemedOperatorConsole className="h-full min-w-[860px]" />
           </div>
         </div>
         <p className="mt-2 text-xs text-fg-subtle">
           The autonomy rail discloses on the chevron; climbing arms a transition, descending commits
-          immediately. The safety primary requires a second deliberate tap to fire.
+          immediately. The safety primary requires a second deliberate tap to fire. The console
+          keeps its fixed operator layout on narrow screens — scroll horizontally to pan across it.
         </p>
       </section>
 
@@ -216,9 +217,12 @@ export default function YourConsole() {
               <Link href="/c3/rc3/components/telemetry-hud" className="text-accent hover:underline">
                 Telemetry HUD
               </Link>
-              . Four organisms cover the four corners. Future templates (fleet overview, mission
-              planner) will compose additional organisms — waypoint list, alerts panel, video tile —
-              once those are built.
+              . Four organisms cover the four corners. The{" "}
+              <Link href="/c3/rc3/templates/fleet-overview" className="text-accent hover:underline">
+                fleet overview
+              </Link>{" "}
+              template composes a broader set — platform roster, platform detail, video tile — for
+              multi-platform command. A mission planner template is planned.
             </p>
           </div>
         </div>

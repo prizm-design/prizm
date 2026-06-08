@@ -339,7 +339,7 @@ export function FleetOverview({ framed = false, mode = "dark", className }: Flee
 
 function IdentityRule({ platformCount, active }: { platformCount: number; active: string }) {
   return (
-    <div className="flex items-center justify-between border-b border-border bg-bg px-4 py-2.5">
+    <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 border-b border-border bg-bg px-4 py-2.5">
       <div className="flex items-center gap-3">
         <span
           className="inline-block h-1.5 w-1.5 rounded-full"

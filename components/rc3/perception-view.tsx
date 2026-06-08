@@ -232,7 +232,9 @@ export function PerceptionView({
       role="figure"
       aria-labelledby={labelId}
       className={cn(
-        "relative aspect-video overflow-hidden rounded-md border border-border bg-bg",
+        // Portrait on narrow screens so the chrome panels (top + bottom) leave a clear
+        // central band for the scene; 16:9 from sm up.
+        "relative aspect-[4/5] overflow-hidden rounded-md border border-border bg-bg sm:aspect-video",
         className,
       )}
     >
@@ -332,7 +334,7 @@ function LayerLegend({
   onToggleLayer?: (id: string) => void;
 }) {
   return (
-    <div className="absolute right-2.5 top-2.5 w-48 rounded bg-bg/80 p-1.5 backdrop-blur-sm">
+    <div className="absolute right-2.5 top-2.5 w-36 rounded bg-bg/80 p-1.5 backdrop-blur-sm sm:w-48">
       <div className="px-1.5 pb-1 font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-fg-subtle">
         Layers
       </div>
@@ -419,7 +421,7 @@ function SourceProvenance({
   // changes in place rather than reflowing the layout. A large swarm overflows
   // into an internal scroll rather than running off the canvas.
   return (
-    <div className="pointer-events-none absolute left-2.5 top-2.5 flex max-h-[60%] w-48 flex-col rounded bg-bg/80 p-1.5 backdrop-blur-sm">
+    <div className="pointer-events-none absolute left-2.5 top-2.5 flex max-h-[60%] w-36 flex-col rounded bg-bg/80 p-1.5 backdrop-blur-sm sm:w-48">
       <div className="shrink-0 px-1.5 pb-1 font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-fg-subtle">
         Sources
       </div>
@@ -475,7 +477,7 @@ function AoiRegistry({
   onSelectAoi?: (id: string | null) => void;
 }) {
   return (
-    <div className="absolute right-2.5 bottom-2.5 flex max-h-[60%] w-48 flex-col rounded bg-bg/80 p-1.5 backdrop-blur-sm">
+    <div className="absolute right-2.5 bottom-2.5 flex max-h-[60%] w-36 flex-col rounded bg-bg/80 p-1.5 backdrop-blur-sm sm:w-48">
       <div className="shrink-0 px-1.5 pb-1 font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-fg-subtle">
         Areas of interest
       </div>

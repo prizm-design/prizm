@@ -25,32 +25,34 @@ export default function RC3LandingPage() {
 function Spotlight() {
   return (
     <section className="mt-16 md:mt-20">
-      <div className="grid gap-8 md:grid-cols-2 md:items-center md:gap-12">
-        <div>
-          <span className="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-fg-subtle">
-            Spotlight
-          </span>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-            A live window into what the swarm sees.
-          </h2>
-          <p className="mt-4 text-fg-muted">
-            Perception view is RC3&rsquo;s live 3D canvas &mdash; the consolidated picture a robot
-            swarm builds of its surroundings, with areas of interest, layer toggles, and per-source
-            freshness so a held frame never reads as live.
-          </p>
-          <p className="mt-4 text-fg-muted">
-            RC3 frames the surface and ships a dependency-free reference renderer; a host map or
-            vendor engine can take over the 3D through a render delegate.
-          </p>
+      <div className="flex flex-col gap-8 md:grid md:grid-cols-2 md:items-center md:gap-12">
+        <div className="contents md:flex md:flex-col">
+          <div>
+            <span className="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-fg-subtle">
+              Spotlight
+            </span>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
+              A live window into what the swarm sees.
+            </h2>
+            <p className="mt-4 text-fg-muted">
+              Perception view is RC3&rsquo;s live 3D canvas &mdash; the consolidated picture a robot
+              swarm builds of its surroundings, with areas of interest, layer toggles, and
+              per-source freshness so a held frame never reads as live.
+            </p>
+            <p className="mt-4 text-fg-muted">
+              RC3 frames the surface and ships a dependency-free reference renderer; a host map or
+              vendor engine can take over the 3D through a render delegate.
+            </p>
+          </div>
           <Link
             href="/c3/rc3/components/perception-view"
-            className="mt-8 inline-flex h-10 items-center gap-2 rounded-md bg-accent px-4 text-sm font-medium text-accent-fg transition-colors hover:bg-accent-hover"
+            className="order-2 inline-flex h-10 items-center gap-2 self-start rounded-md bg-accent px-4 text-sm font-medium text-accent-fg transition-colors hover:bg-accent-hover md:order-none md:mt-8"
           >
             Open the component
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
-        <RC3Swatch className="overflow-hidden rounded-xl shadow-2xl ring-1 ring-black/10">
+        <RC3Swatch className="order-1 min-w-0 overflow-hidden rounded-xl shadow-2xl ring-1 ring-black/10 md:order-none">
           <div className="bg-bg p-3 md:p-4">
             <div className="overflow-hidden rounded-md border border-border">
               <PerceptionViewDemo />
@@ -107,7 +109,7 @@ function Activation() {
             supports.
           </p>
         </div>
-        <div className="space-y-3">
+        <div className="min-w-0 space-y-3">
           <CodeBlock
             language="css"
             code={`/* in your global CSS */

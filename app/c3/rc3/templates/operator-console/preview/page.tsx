@@ -6,11 +6,11 @@ export const metadata = { title: "RC3 — Operator console preview" };
 
 export default function OperatorConsolePreviewPage() {
   return (
-    <div className="fixed inset-0 z-50">
-      <ThemedOperatorConsole />
+    <div className="fixed inset-0 z-50 overflow-x-auto">
+      <ThemedOperatorConsole className="h-full min-w-[860px]" />
       <Link
         href="/c3/rc3/templates/operator-console"
-        className="absolute top-3 left-1/2 z-[60] inline-flex -translate-x-1/2 items-center gap-2 rounded-md border border-border bg-surface-elevated px-3 py-1.5 text-xs font-medium text-fg shadow-lg transition-colors hover:bg-bg-muted"
+        className="fixed top-3 right-3 z-[60] inline-flex items-center gap-2 rounded-md border border-border bg-surface-elevated px-3 py-1.5 text-xs font-medium text-fg shadow-lg transition-colors hover:bg-bg-muted"
       >
         <ArrowLeft className="h-4 w-4" />
         Exit preview
