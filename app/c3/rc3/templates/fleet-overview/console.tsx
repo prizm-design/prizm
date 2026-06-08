@@ -225,6 +225,13 @@ export interface FleetOverviewProps {
 export function FleetOverview({ framed = false, mode = "dark", className }: FleetOverviewProps) {
   const [activeId, setActiveId] = useState("UAV-01");
   const [groupAutonomy, setGroupAutonomy] = useState("delegated");
+  // Panels fit-and-scroll within their column only at lg, where the row is `lg:overflow-hidden`
+  // with `flex-1 min-h-0` and each column has a real height to fill. Below lg the columns stack
+  // inside a vertically-scrolling row; engaging fit-and-scroll there gives a panel no definite
+  // height to fill, so its `flex-1 min-h-0` body collapses to zero (the roster survives on its
+  // own scroll, but platform-detail crushes to a hairline). Below lg each panel renders at its
+  // intrinsic height and the row scrolls past them instead.
+  const fitColumns = useMinWidth("(min-width: 1024px)");
 
   const active = SWARM.find((p) => p.id === activeId) ?? SWARM[0];
   const activeFeedStatus =
@@ -266,14 +273,14 @@ export function FleetOverview({ framed = false, mode = "dark", className }: Flee
       <div className="relative flex flex-1 min-h-0 flex-col gap-3 overflow-y-auto p-3 lg:flex-row lg:overflow-hidden">
         {/* Left — roster. fillHeight lets the list scroll within the roster frame so a long
             fleet doesn't push other columns around. */}
-        <div className="flex min-h-0 flex-col lg:w-[240px] lg:shrink-0">
+        <div className="flex min-h-0 shrink-0 flex-col lg:w-[240px] lg:shrink-0">
           <PlatformRoster
             label="PERIMETER WATCH"
             platforms={ROSTER}
             activeId={activeId}
             onSelect={setActiveId}
-            fillHeight
-            className="flex-1 max-w-none"
+            fillHeight={fitColumns}
+            className={cn("max-w-none", fitColumns && "flex-1")}
           />
         </div>
 
@@ -287,7 +294,7 @@ export function FleetOverview({ framed = false, mode = "dark", className }: Flee
             intrinsic-height; platform-detail uses fillHeight so it takes whatever vertical
             space remains and scrolls within its own frame when the autonomy rail is expanded
             or the active platform has many extras. */}
-        <div className="flex min-h-0 flex-col gap-3 lg:w-[320px] lg:shrink-0">
+        <div className="flex min-h-0 shrink-0 flex-col gap-3 lg:w-[320px] lg:shrink-0">
           <AutonomyModeSelector
             scope="swarm"
             rungs={GROUP_RUNGS}
@@ -328,13 +335,29 @@ export function FleetOverview({ framed = false, mode = "dark", className }: Flee
             mission={active.missionStep}
             operator={active.operator}
             lastContact={active.lastContact}
-            fillHeight
-            className="w-full max-w-none flex-1 min-h-0"
+            fillHeight={fitColumns}
+            className={cn("w-full max-w-none", fitColumns && "flex-1 min-h-0")}
           />
         </div>
       </div>
     </div>
   );
+}
+
+// Tracks a `matchMedia` query. Starts `false` so SSR and first paint render the stacked mobile
+// layout, then resolves to the real match after mount — avoids a hydration mismatch.
+function useMinWidth(query: string): boolean {
+  const [matches, setMatches] = useState(false);
+
+  useEffect(() => {
+    const mql = window.matchMedia(query);
+    setMatches(mql.matches);
+    const onChange = (e: MediaQueryListEvent) => setMatches(e.matches);
+    mql.addEventListener("change", onChange);
+    return () => mql.removeEventListener("change", onChange);
+  }, [query]);
+
+  return matches;
 }
 
 function IdentityRule({ platformCount, active }: { platformCount: number; active: string }) {
