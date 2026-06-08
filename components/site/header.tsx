@@ -42,6 +42,7 @@ const NAV = [
     children: [
       { label: "Overview", href: "/c3/overview" },
       { label: "Templates", href: "/c3/templates" },
+      { label: "Robotics & Autonomy", href: "/c3/rc3" },
     ],
   },
   {

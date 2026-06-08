@@ -61,6 +61,7 @@ PRIZM 4.0/
 │   └── docs/                  # Introduction, Getting started, Using with AI, Installation, Theming, Air-gap, Changelog, plus foundation pages
 ├── components/
 │   ├── ui/                    # ←— THE COMPONENT LIBRARY (copy from here)
+│   ├── rc3/                   # RC3 capability-pack organisms
 │   └── site/                  # Docs site components (not for copying)
 ├── lib/
 │   ├── utils.ts               # cn() helper used by all components
@@ -73,9 +74,12 @@ PRIZM 4.0/
 │       ├── c3-light.css       # Semantic tokens for c3-light theme
 │       ├── c3-dark.css
 │       ├── enterprise-light.css
-│       └── enterprise-dark.css
+│       ├── enterprise-dark.css
+│       ├── rc3-light.css      # RC3 pack accent override (activated by data-pack="rc3")
+│       └── rc3-dark.css
 ├── llms.txt                   # Component index (this is the entry point for LLMs)
 ├── llms/                      # Per-component context files for LLMs
+│   └── rc3/                   # Per-organism context files for RC3
 └── PRIZM.md                   # ← you are here
 ```
 
@@ -191,6 +195,18 @@ PRIZM ships layout scaffolds called *templates* — reusable patterns that compo
 
 When building a new template, follow the convention: include a "Design Principles Applied" section listing 2–4 principles with concrete rationale, embed a live preview, and link to a standalone full-bleed preview route.
 
+## Capability packs
+
+PRIZM supports **capability module packs** — themed extensions to a product family that add an identity layer and domain-specific organisms without forking the foundations or component primitives. Activate a pack by setting `data-pack="<slug>"` on a parent surface; the pack's CSS overrides only the relevant semantic tokens, everything else inherits from the host product family.
+
+**Available capability packs:**
+
+- **RC3** — Robotics & Autonomy modules for C3 systems. Activates with `data-pack="rc3"` inside a C3 surface. Adds the Ember signature colour, an always-on identity rule (1.5px top border + signature dot + RC3 mark), schematic iconography conventions, a set of signature organisms (spanning safety, comms / health, autonomy, sensor feeds, telemetry, operator input, fleet roster / detail, and a live 3D perception view), and RC3-specific concepts (command-context spectrum, five behavioural invariants, surface regions). Source lives at `components/rc3/<slug>.tsx`; docs at `app/c3/rc3/`; LLM context at `llms/rc3/<slug>.md`; token overrides at `styles/tokens/rc3-{light,dark}.css`.
+
+When building inside an RC3 surface: import organisms from `@/components/rc3/<slug>`. Set `data-pack="rc3"` on the App Shell or shadow root that wraps the RC3 application. The RC3 organisms honour the Ember signature regardless of the `data-pack` attribute (the hue is inlined as a constant); the attribute controls whether the broader C3 accent token also flips to Ember for non-RC3 components rendering inside the same surface.
+
+For full RC3 context, including the identity rule, behavioural invariants, and component anatomy, see `/c3/rc3` on the docs site.
+
 ## Overview pages — orientation and how-to
 
 For narrative orientation and tactical setup, read the Overview section:
@@ -258,6 +274,7 @@ The `pnpm audit:airgap` script scans the repo and CI fails if external reference
 - **"Build a settings form"** → Compose `Field`, `Input`, `Label`, `Button` components. Reference the registry to confirm which exist as stable.
 - **"Build a C3 application" / "Apply PRIZM C3"** → **Start with the C3 App Shell template.** Fetch the source from `https://raw.githubusercontent.com/prizm-design/prizm/main/app/c3/templates/app-shell/shell.tsx` (or read it locally at `app/c3/templates/app-shell/shell.tsx` if you have a PRIZM checkout). Copy it into the consumer's project (e.g. `templates/c3/app-shell.tsx`), set `data-zone="c3"` on the consumer's root, then fill the main canvas slot and rail-panel slots with the feature's content. The shell already handles the operator-dark default, top bar, status ticker, icon rail, and the chrome-level Notification Centre + Workspace panels. Only fall back to composing primitives from scratch if the shell genuinely doesn't fit (embedded widget, settings page that sits outside an ops console). **Do not** synthesise a substitute shell — if you can't fetch the file, stop and report the path back to the developer.
 - **"Build a C3 dashboard"** → A dashboard is one app *inside* the C3 App Shell. Start with the shell (as above), then put the dashboard content in the main canvas. Don't reinvent the chrome.
+- **"Build a robotics / autonomy console" / "Build a UAV/UGV operator station" / "Apply RC3"** → **Start with the RC3 operator-console template.** Fetch the source from `https://raw.githubusercontent.com/prizm-design/prizm/main/app/c3/rc3/templates/operator-console/console.tsx` (or read it locally at `app/c3/rc3/templates/operator-console/console.tsx` if you have a PRIZM checkout). Copy it into the consumer's project (e.g. `templates/rc3/operator-console.tsx`), set `data-pack="rc3"` on the surface that wraps the RC3 application, and substitute the stylised canvas for the consumer's real map / sensor feeds. Import RC3 organisms from `@/components/rc3/<slug>` — sources at `components/rc3/<slug>.tsx`. Honour the five behavioural invariants documented at `app/c3/rc3/concepts/behavioural-invariants/` (safety reachable in one tap, comms / health always visible, active context unambiguous, no mode-switch via accident, telemetry never silently stale). **Do not** fabricate substitute organisms — check `app/c3/rc3/components/` for what's available and planned; if something is missing, stop and report the gap rather than invent.
 - **"Make the dark mode work"** → The token system handles this automatically. Set `data-mode="dark"` on `<html>` and the component code stays the same.
 
 ## What NOT to do

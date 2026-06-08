@@ -121,6 +121,48 @@ Reserved slugs with no source file yet. Surface them as roadmap; never copy or f
 - [C3 templates](/c3/templates): index of available C3 layout scaffolds.
   - [C3 App Shell](/c3/templates/app-shell): **start here for any C3 application** — foundational chrome (top bar, status ticker, icon rail, main canvas slot, expandable side panel). Copy `shell.tsx`, fill the main canvas + rail-panel slots with the feature's content; don't reinvent the chrome. Other C3 templates compose this. [Full-bleed preview](/c3/templates/app-shell/preview).
 
+## RC3 — Robotics & Autonomy
+
+A capability module pack inside C3 for robotics & autonomy applications. Inherits C3 foundations and components; adds an identity layer, three signature organisms, and RC3-specific concepts. Activates via `data-pack="rc3"` on a parent surface.
+
+- [Robotics & Autonomy overview](/c3/rc3): what RC3 is, when to use it, the identity rule, and a small live autonomy panel.
+- [RC3 identity](/c3/rc3/identity): Ember signature colour, schematic iconography, the always-on identity rule.
+- [Ember colour reference](/c3/rc3/identity/colour): ramp, tokens, activation contract, contrast.
+
+### RC3 concepts
+
+- [Command contexts](/c3/rc3/concepts/command-contexts): platform / group / swarm / mission scope spectrum.
+- [Behavioural invariants](/c3/rc3/concepts/behavioural-invariants): five properties every RC3 surface must satisfy regardless of layout.
+- [Surface regions](/c3/rc3/concepts/surface-regions): the shared dictionary of regions (spatial canvas, roster, telemetry, autonomy state, comms/health, safety actions, mission timeline, detail panel), each linked to the organism that fills it.
+
+### RC3 components
+
+- [Safety actions](/c3/rc3/components/safety-actions): one-tap-reach, two-tap-confirm primary safety affordance. Per-scope action set (e-stop / recall / abort + recoverable secondary). Honours invariants 1 and 4.
+- [Comms / health strip](/c3/rc3/components/comms-health-strip): persistent strip carrying link state + signal + battery + GPS for the active platform(s). Single-platform and aggregated views. Honours invariant 2.
+- [Autonomy mode selector](/c3/rc3/components/autonomy-mode-selector): LOA ladder with asymmetric consent — the climb arms, the descent is immediate. Compact-by-default with disclosure. Honours invariant 4.
+- [Video tile](/c3/rc3/components/video-tile): frame for a single sensor feed — FPV / gimbal / IR / EO. Consumer plugs the stream player into the children slot. Honours invariant 5.
+- [Telemetry HUD](/c3/rc3/components/telemetry-hud): compact strip of operational telemetry — speed, altitude, heading, battery, attitude. Overlays a video tile or sits as its own thin panel. Honours invariant 5.
+- [Controller interface](/c3/rc3/components/controller-interface): live operator input state — sticks, triggers, buttons. Read-only; consumer wires input from gamepad / WebSocket / physical controller pipeline. Honours invariant 5.
+- [Platform roster](/c3/rc3/components/platform-roster): vertical list of platforms with link, autonomy mode, and battery summary per row. The active platform is Ember-marked — unmistakable. Honours invariant 3.
+- [Platform detail](/c3/rc3/components/platform-detail): vertical card showing deep state of a single platform — master-detail companion to platform roster. Comms, telemetry, mission, operator, last-contact. Honours invariant 3.
+- [Perception view](/c3/rc3/components/perception-view): live 3D window into what the swarm perceives — point clouds, occupancy, structure, and areas of interest, with per-source freshness. RC3 ships a dependency-free reference renderer and the operator chrome; upstream does the fusion (no SLAM in RC3). ROS 2 / Foxglove-shaped contract; render-delegate escape hatch for vendor engines. Honours invariant 5.
+
+### RC3 components — Planned
+
+Reserved slugs with no source file yet. Surface them as roadmap; never copy or fabricate.
+- [Waypoint list](/c3/rc3/components/waypoint-list): ordered waypoint editor with reorder, insert, and active-step affordances.
+- [Alerts panel](/c3/rc3/components/alerts-panel): RC3-scoped warnings for autonomy, safety, link, and platform events.
+- [Mission timeline](/c3/rc3/components/mission-timeline): sequence of mission phases with progress and active-step indicator.
+- [Hand-off / takeover](/c3/rc3/components/handoff): shared-control affordance for multi-operator workflows. Active controller, takeover request, transfer acknowledgement.
+- [Gimbal aim](/c3/rc3/components/gimbal-aim): spatial indicator of camera orientation relative to the platform — bearing, depression / elevation, field-of-view.
+
+### RC3 templates
+
+- [RC3 templates index](/c3/rc3/templates): anchor arrangements that compose the RC3 organisms into a working surface.
+- [Operator console](/c3/rc3/templates/operator-console): the anchor RC3 template — single-platform command context composing autonomy mode selector, comms / health strip, safety actions, and telemetry HUD over a stylised tactical canvas. **Use this as the starting scaffold for any single-platform RC3 surface**; sets `data-pack="rc3"` and follows the behavioural invariants.
+- [Fleet overview](/c3/rc3/templates/fleet-overview): second anchor template — swarm-scope command surface composing platform roster, aggregated comms / health strip, group autonomy mode selector, group safety actions, and an active-platform pane (video tile + telemetry HUD). **Use this as the starting scaffold for any group / swarm RC3 surface**.
+
 ## Optional
 
 - [Per-component LLM context files](/llms/) — deeper detail on each component for LLMs.
+- [Per-organism LLM context files for RC3](/llms/rc3/) — `safety-actions.md`, `comms-health-strip.md`, `autonomy-mode-selector.md`.

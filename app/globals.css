@@ -6,6 +6,8 @@
 @import "../styles/tokens/c3-dark.css";
 @import "../styles/tokens/enterprise-light.css";
 @import "../styles/tokens/enterprise-dark.css";
+@import "../styles/tokens/rc3-light.css";
+@import "../styles/tokens/rc3-dark.css";
 
 /* ============================================================
    Tailwind v4 theme — wires CSS custom properties to utilities
@@ -333,5 +335,31 @@
   .prizm-hero-edge-4 {
     animation: none;
     opacity: 0.6;
+  }
+}
+
+/* ============================================================
+   RC3 — Autonomy mode selector ghost-pointer pulse.
+   Pulses the hollow chevron on the destination rung while the
+   operator's climb awaits its second-tap confirmation.
+   ============================================================ */
+
+@keyframes rc3-ghost-pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.rc3-ghost-pointer {
+  animation: rc3-ghost-pulse 1.1s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rc3-ghost-pointer {
+    animation: none;
   }
 }

@@ -39,6 +39,19 @@ interface ChangelogDay {
 
 const CHANGELOG: ChangelogDay[] = [
   {
+    // RC3 ships as one changelog event — the whole pack lands in a single entry,
+    // not the per-organism / per-template trail it accreted during the build.
+    date: "2026-06-08",
+    entries: [
+      {
+        type: "foundation",
+        title: "RC3 — Robotics & Autonomy capability pack",
+        body: 'PRIZM\'s first capability module pack — an identity layer plus domain-specific organisms layered on C3 without forking foundations or primitives. Activates via `data-pack="rc3"` (overrides only the accent tokens to the Ember signature colour, oklch(71% 0.195 32); everything else inherits from C3). Ships an always-on identity rule, three concept docs (command contexts, behavioural invariants, surface regions), nine signature organisms (safety actions, comms / health strip, autonomy mode selector, video tile, telemetry HUD, controller interface, platform roster, platform detail, perception view), and two anchor templates (operator console, fleet overview). Lives at `/c3/rc3`; sources at `components/rc3/<slug>.tsx`, LLM context at `llms/rc3/<slug>.md`.',
+        href: "/c3/rc3",
+      },
+    ],
+  },
+  {
     date: "2026-05-25",
     entries: [
       {
@@ -63,12 +76,6 @@ const CHANGELOG: ChangelogDay[] = [
         title: "Combobox is now typeahead-first",
         body: "Single search input replaces the trigger + popup-input pattern. Type to filter against the items prop; pick to select. Popup width pinned to the trigger, empty state collapses cleanly.",
         href: "/components/combobox",
-      },
-      {
-        type: "fix",
-        title: "C3 App Shell theme toggle in liquid glass mode",
-        body: "Toggling dark ↔ light while glass was on left the chrome and side panels visually stuck on the old tint until a browser tab switch. Force a one-frame backdrop-filter suppression on mode change so the GPU layer invalidates.",
-        href: "/c3/templates/app-shell",
       },
     ],
   },
