@@ -181,10 +181,14 @@ export default function UsingWithAiPage() {
       <div className="mt-4">
         <CodeBlock
           language="text"
-          code={`You are helping me build with PRIZM 4.0, a design system documented in this repo.
+          code={`You are helping me build with PRIZM 4.0, a design system. Read PRIZM.md and
+llms.txt first — from your local PRIZM checkout or your team's mirror if you
+have one, otherwise from the repo at https://github.com/prizm-design/prizm.
+They describe everything else, including how to fetch any source file you don't
+already have. If you can't locate them, ask me where PRIZM lives rather than
+guessing.
 
 Working conventions:
-- Read PRIZM.md and llms.txt before suggesting components.
 - For any component, check llms/<slug>.md for props, conventions, and accessibility notes.
 - For design decisions (layout, hierarchy, when-to-use), consult /docs/principles.
 - Use semantic Tailwind tokens only: bg-bg, text-fg, border-border, bg-accent, etc.
