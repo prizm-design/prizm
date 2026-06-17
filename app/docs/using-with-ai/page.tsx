@@ -324,9 +324,8 @@ partway through a long session.`}
       </div>
 
       <p className="mt-4 text-sm text-fg-muted">
-        Review what it writes, trim it to the essentials, and commit it. Keep component docs and
-        token tables out — those live in PRIZM and go stale the moment they're copied. From then on
-        every session starts from the file instead of a pasted prompt.
+        Review what it writes, trim it to the essentials, and commit it — from then on every session
+        starts from the file instead of a pasted prompt.
       </p>
 
       <p className="mt-8 font-semibold text-fg">Two habits that help</p>
