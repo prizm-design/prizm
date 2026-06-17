@@ -270,6 +270,8 @@ The `pnpm audit:airgap` script scans the repo and CI fails if external reference
 
 ## What to do when asked to build something
 
+**Check for a project rules file first.** A consumer project may carry a rules file your tool auto-loads each session (`CLAUDE.md`, or your tool's equivalent) that records its PRIZM zone, pack, and local conventions — read and honour it before scaffolding; it often settles the zone/pack question for you. If none exists, offer to set one up so the decisions persist across sessions rather than relying on a one-off prompt the context will eventually summarise away.
+
 **Before scaffolding, settle the zone — and whether a capability pack applies. Getting it wrong means redoing the template, not just re-theming.** Infer the zone from the domain: operations / mission / command-and-control / dispatch / monitoring → **C3**; websites, portals, marketing pages, forms, customer-facing dashboards → **Enterprise**. Then check for a **capability pack**: a pack layers on top of its base family when the work falls in that pack's specialty — consult the "Capability packs" section above for the packs that currently exist and the domains each covers, rather than assuming a fixed set. If the request is genuinely ambiguous — a bare "build a dashboard" fits either zone, and a given domain may or may not warrant a pack — ask the developer rather than silently defaulting.
 
 - **"Add a button"** → Read `components/ui/button.tsx`, copy to consumer's project, ensure deps + tokens.

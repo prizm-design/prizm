@@ -1,5 +1,15 @@
 import { CodeBlock } from "@/components/site/code-block";
-import { BookOpen, Cloud, Code2, Compass, FileText, Network, Sparkles } from "lucide-react";
+import {
+  BookOpen,
+  Cloud,
+  Code2,
+  Compass,
+  FileText,
+  Network,
+  RefreshCw,
+  ShieldCheck,
+  Sparkles,
+} from "lucide-react";
 import Link from "next/link";
 
 export const metadata = { title: "Using with AI" };
@@ -207,6 +217,144 @@ Working conventions:
         Adapt the rules to your team's working conventions. This prompt is a starting point, not a
         contract — tighten or loosen it to match the kind of work you're doing.
       </p>
+
+      {/* ============================================================
+          Keeping your AI on-system over time
+          ============================================================ */}
+      <h2 className="mt-14 text-2xl font-semibold tracking-tight">
+        Keeping your AI on-system over time
+      </h2>
+      <p className="mt-3 text-fg-muted">
+        The starter prompt above does its job at the start of a session. But over a long session,
+        the AI's earliest messages are the first thing summarised away as the context fills up — so
+        the specifics fade (<em>use semantic tokens</em>, <em>start from the App Shell</em>) even
+        while the AI still remembers it's &ldquo;using PRIZM&rdquo;. The result is gradual drift
+        away from the system.
+      </p>
+      <p className="mt-4 text-fg-muted">
+        The fix is to give the rules a home the AI re-reads every session rather than a message it
+        sees once. PRIZM recommends two complementary things for this: a project rules file the AI
+        loads automatically, and a short record of the key decisions it can consult, so each new
+        session starts grounded in what was already agreed.
+      </p>
+
+      <p className="mt-6 font-semibold text-fg">The core practice: a project rules file</p>
+      <p className="mt-3 text-fg-muted">
+        Your conventions belong in the file your AI tool loads automatically at the start of every
+        session —{" "}
+        <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">CLAUDE.md</code> for
+        Claude Code, or the equivalent for your tool (Cursor's{" "}
+        <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">.cursor/rules</code>,
+        for example). You don't have to write it by hand — give your AI the one-time prompt below
+        and it will set the file up for you. A good rules file stays short and points at the source
+        rather than restating it — it captures four things:
+      </p>
+      <ol className="mt-4 space-y-2 text-fg-muted">
+        <li className="flex gap-3">
+          <span className="font-mono text-sm text-accent">1.</span>
+          <span>
+            <strong className="font-medium text-fg">To build with PRIZM</strong> — use PRIZM
+            components and templates, start from a PRIZM template where one fits before composing
+            from primitives, and check what already exists before hand-rolling UI. This is the rule
+            that actually drifts: an AI can follow every token rule while quietly rebuilding a
+            component PRIZM already ships.
+          </span>
+        </li>
+        <li className="flex gap-3">
+          <span className="font-mono text-sm text-accent">2.</span>
+          <span>
+            <strong className="font-medium text-fg">Which zone and pack you're on</strong> — so the
+            AI loads the right tokens and the right starting point (an active{" "}
+            <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">data-pack</code>{" "}
+            for a capability pack).
+          </span>
+        </li>
+        <li className="flex gap-3">
+          <span className="font-mono text-sm text-accent">3.</span>
+          <span>
+            <strong className="font-medium text-fg">The conventions that must always hold</strong> —
+            the few non-negotiables for your project (semantic tokens, variants over overrides, no
+            external URLs), not a full style guide. Keep it short enough that the AI weighs every
+            line.
+          </span>
+        </li>
+        <li className="flex gap-3">
+          <span className="font-mono text-sm text-accent">4.</span>
+          <span>
+            <strong className="font-medium text-fg">Where the canonical docs live</strong> —{" "}
+            <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">PRIZM.md</code>,{" "}
+            <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">llms.txt</code>,
+            and the raw-file fetch path — so the AI reads the current source instead of working from
+            memory.
+          </span>
+        </li>
+      </ol>
+      <p className="mt-4 text-fg-muted">
+        One self-contained prompt does it — paste it into a fresh session or your project setup:
+      </p>
+
+      <div className="mt-4">
+        <CodeBlock
+          language="text"
+          code={`Set up a PRIZM rules file for this project. First read PRIZM.md and llms.txt
+— from our local PRIZM checkout or mirror, otherwise from the repo at
+https://github.com/prizm-design/prizm. They describe the conventions and how
+to fetch any source file.
+
+Then add these to the file my AI tool loads automatically each session —
+CLAUDE.md, or the equivalent for our tool. If that file already exists, append
+a clearly-marked PRIZM section rather than overwriting what's there; create the
+file only if it's missing. Keep the section short:
+- the core rule: this project's UI is built with PRIZM. Use PRIZM components
+  and templates; start from a PRIZM template where one fits before composing
+  from primitives; check llms.txt for what already exists before building any
+  UI from scratch — don't hand-roll what PRIZM already ships;
+- the PRIZM zone and pack this project uses (ask me if it isn't obvious from
+  the code);
+- the conventions that must always hold (semantic tokens only, existing
+  variants over className overrides, no external URLs, British English in
+  user-facing copy; check llms/<slug>.md for a component's props and usage);
+- where the canonical docs live: PRIZM.md, llms.txt, and the raw-file fetch
+  path — read current source rather than recalling it, and if a fetch 404s,
+  stop and tell me instead of inventing a substitute.
+
+From now on that file is the source of truth — re-read it before new work and
+partway through a long session.`}
+        />
+      </div>
+
+      <p className="mt-4 text-sm text-fg-muted">
+        Review what it writes, trim it to the essentials, and commit it. Keep component docs and
+        token tables out — those live in PRIZM and go stale the moment they're copied. From then on
+        every session starts from the file instead of a pasted prompt.
+      </p>
+
+      <p className="mt-8 font-semibold text-fg">Two habits that help</p>
+      <div className="mt-4 space-y-6">
+        <SetupBlock
+          icon={<RefreshCw className="h-5 w-5" />}
+          title="Scope sessions, and start fresh"
+          body={
+            <p className="text-fg-muted">
+              One feature per session beats one marathon session — there's less context to summarise
+              away, so less room for drift. On a long session, ask the AI to re-read the rules file
+              partway through before it carries on.
+            </p>
+          }
+        />
+        <SetupBlock
+          icon={<ShieldCheck className="h-5 w-5" />}
+          title="Add a mechanical check"
+          body={
+            <p className="text-fg-muted">
+              A lint rule or a pull-request review step that flags non-PRIZM usage — raw colours,
+              ad-hoc chrome — catches drift regardless of what the model remembers. It's the one
+              safety net that doesn't depend on context staying intact, so it's worth having even
+              when the rules file is doing its job.
+            </p>
+          }
+        />
+      </div>
 
       {/* ============================================================
           For air-gapped teams
