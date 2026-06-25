@@ -30,7 +30,7 @@ export function SelectTrigger({
     <BaseSelect.Trigger
       className={cn(
         "flex h-9 w-full items-center justify-between rounded-md border border-border bg-surface px-3 py-1 text-sm shadow-sm",
-        "focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-accent",
+        "focus-visible:outline-1 focus-visible:outline-offset-0 focus-visible:outline-accent",
         "disabled:cursor-not-allowed disabled:opacity-50",
         "data-[placeholder]:text-fg-subtle",
         className,

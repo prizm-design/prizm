@@ -75,7 +75,7 @@ function Header() {
         Robotics &amp; Autonomy
       </h1>
       <p className="mt-5 max-w-3xl text-balance text-lg text-fg-muted md:text-xl">
-        A capability pack for command and control. One vocabulary across the full spectrum — from
+        An extension pack for command and control. One vocabulary across the full spectrum — from
         single-platform teleop to mission-level intent.
       </p>
     </div>

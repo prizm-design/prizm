@@ -17,7 +17,7 @@ export function Slider({ className, ...props }: ComponentPropsWithoutRef<typeof 
         <BaseSlider.Thumb
           className={cn(
             "block h-4 w-4 rounded-full border-2 border-accent bg-surface shadow-sm transition-colors",
-            "focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-accent",
+            "focus-visible:outline-1 focus-visible:outline-offset-0 focus-visible:outline-accent",
             "disabled:pointer-events-none disabled:opacity-50",
           )}
         />

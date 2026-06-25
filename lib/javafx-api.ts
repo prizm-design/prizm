@@ -7,7 +7,7 @@
  * this file documents the Java side — class, base type, constructors, and the
  * typed knobs (enums + setters) it exposes.
  *
- * SCOPE — C3 and its capability packs only; Enterprise is web-only. This is a
+ * SCOPE — C3 and its extension packs only; Enterprise is web-only. This is a
  * discovery reference, not a customization guide.
  *
  * MAINTENANCE — keep entries in sync with the Java source under javafx/ and

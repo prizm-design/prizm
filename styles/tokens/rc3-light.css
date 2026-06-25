@@ -1,5 +1,5 @@
 /* ============================================================
-   RC3 — Light mode (capability pack override on C3)
+   RC3 — Light mode (extension pack override on C3)
    ------------------------------------------------------------
    Thin override layer. Activates on top of C3 light when an RC3
    surface is in scope (data-pack="rc3"). Overrides ONLY the

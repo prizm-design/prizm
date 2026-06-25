@@ -28,7 +28,7 @@ import javafx.stage.Stage;
 
 /**
  * PRIZM JavaFX gallery — a runnable showcase of every JavaFX-ready control, in
- * all variants and states, with live theme (dark/light) and capability-pack
+ * all variants and states, with live theme (dark/light) and extension-pack
  * (RC3 Ember) toggles.
  *
  * <p>Because the docs site can't render JavaFX, this gallery is the canonical

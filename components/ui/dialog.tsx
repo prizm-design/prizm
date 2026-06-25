@@ -43,7 +43,7 @@ export function DialogContent({
           <BaseDialog.Close
             className={cn(
               "absolute right-4 top-4 rounded-sm text-fg-muted opacity-70 transition-opacity",
-              "hover:opacity-100 focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-accent",
+              "hover:opacity-100 focus-visible:outline-1 focus-visible:outline-offset-0 focus-visible:outline-accent",
             )}
             aria-label="Close"
           >

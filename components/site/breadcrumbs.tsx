@@ -7,9 +7,9 @@ export interface Crumb {
 
 /**
  * Multi-level breadcrumb chain. The last item is rendered as plain text (current page); all
- * other items render as links if they carry an `href`. Used at the top of every RC3 capability-
+ * other items render as links if they carry an `href`. Used at the top of every RC3 extension-
  * pack page in place of a single back-link, so readers can see the full path and jump to any
- * ancestor in one click. Capability packs in general should mirror this pattern.
+ * ancestor in one click. Extension packs in general should mirror this pattern.
  */
 export function Breadcrumbs({ items }: { items: Crumb[] }) {
   return (

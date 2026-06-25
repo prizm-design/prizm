@@ -36,7 +36,7 @@ export default function C3LandingPage() {
         />
       </div>
 
-      <CapabilityPacks />
+      <ExtensionPacks />
       <ThickClient />
     </div>
   );
@@ -56,7 +56,7 @@ function ThickClient() {
         <p>
           The design language is shared, not duplicated. The colour tokens are derived from the same
           canonical source, and the controls are in spec parity with their web counterparts — C3 and
-          its capability packs only.
+          its extension packs only.
         </p>
       </div>
       <div className="mt-6">
@@ -72,10 +72,10 @@ function ThickClient() {
   );
 }
 
-function CapabilityPacks() {
+function ExtensionPacks() {
   return (
     <section className="mt-16">
-      <h2 className="text-2xl font-semibold tracking-tight">Capability packs</h2>
+      <h2 className="text-2xl font-semibold tracking-tight">Extension packs</h2>
       <div className="mt-3 max-w-3xl space-y-3 text-fg-muted">
         <p>
           Some C3 products are specialised — flying an autonomous robot swarm, fusing an ISR sensor
@@ -84,7 +84,7 @@ function CapabilityPacks() {
           interaction treatment, not just a recolour of the base.
         </p>
         <p>
-          A capability pack is how PRIZM serves a specialised product without fragmenting into
+          An extension pack is how PRIZM serves a specialised product without fragmenting into
           separate design systems. It{" "}
           <strong className="font-medium text-fg">
             extends the C3 base rather than forking it
@@ -124,7 +124,7 @@ function CapabilityPacks() {
             A pattern, not a one-off
           </h3>
           <p className="mt-2 text-sm text-fg-muted">
-            RC3 is the first capability pack, not a special case. A single{" "}
+            RC3 is the first extension pack, not a special case. A single{" "}
             <code className="rounded bg-bg-muted px-1 py-0.5 font-mono text-xs">data-pack</code>{" "}
             attribute switches a pack on, so the next specialised C3 product — counter-UAS, for
             instance — gets its own identity and organisms through the same mechanism.

@@ -32,7 +32,7 @@ export function NavigationMenuTrigger({
       className={cn(
         "group inline-flex h-9 items-center justify-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors",
         "text-fg-muted hover:bg-bg-muted hover:text-fg",
-        "focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-accent",
+        "focus-visible:outline-1 focus-visible:outline-offset-0 focus-visible:outline-accent",
         "data-[popup-open]:bg-bg-muted data-[popup-open]:text-fg",
         "disabled:pointer-events-none disabled:opacity-50",
         className,

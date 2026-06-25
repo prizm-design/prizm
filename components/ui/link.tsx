@@ -7,7 +7,7 @@ export function Link({ className, ...props }: ComponentProps<typeof NextLink>) {
     <NextLink
       className={cn(
         "text-accent underline-offset-4 transition-colors hover:underline",
-        "focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-accent",
+        "focus-visible:outline-1 focus-visible:outline-offset-0 focus-visible:outline-accent",
         className,
       )}
       {...props}

@@ -7,7 +7,7 @@ import Link from "next/link";
 export const metadata = {
   title: "JavaFX — thick-client C3",
   description:
-    "Build native desktop operator applications with a parallel JavaFX library, themed from the same PRIZM tokens. C3 and its capability packs.",
+    "Build native desktop operator applications with a parallel JavaFX library, themed from the same PRIZM tokens. C3 and its extension packs.",
 };
 
 export default function JavaFxPage() {
@@ -82,7 +82,7 @@ function Setup() {
           <p className="mt-4 text-fg-muted">
             Add the OpenJFX plugin, then apply a theme to your{" "}
             <code className="rounded bg-bg-muted px-1 py-0.5 font-mono text-xs">Scene</code>.
-            Switching mode or overlaying a capability pack is the same call with different arguments
+            Switching mode or overlaying an extension pack is the same call with different arguments
             &mdash; every styled component re-reads its looked-up colours live.
           </p>
           <p className="mt-4 text-fg-muted">

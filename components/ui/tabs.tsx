@@ -27,7 +27,7 @@ export function TabsTrigger({
       className={cn(
         "inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1 text-sm font-medium transition-all",
         "text-fg-muted hover:text-fg",
-        "focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-accent",
+        "focus-visible:outline-1 focus-visible:outline-offset-0 focus-visible:outline-accent",
         "data-[active]:bg-surface data-[active]:text-accent data-[active]:shadow-sm",
         "disabled:pointer-events-none disabled:opacity-50",
         className,
@@ -45,7 +45,7 @@ export function TabsContent({
     <BaseTabs.Panel
       className={cn(
         "mt-2",
-        "focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-accent",
+        "focus-visible:outline-1 focus-visible:outline-offset-0 focus-visible:outline-accent",
         className,
       )}
       {...props}

@@ -5,8 +5,8 @@ A DSTA design system. Serves two product families — command-and-control (C3) a
 ## What's in the box
 
 - **44 stable component primitives** (plus 6 planned) — shared by both product families
-- **RC3 capability pack** — robotics & autonomy modules for C3. Identity layer (Ember signature, identity rule) + three signature organisms (safety actions, comms / health strip, autonomy mode selector) + concept docs.
-- **JavaFX library** — a parallel set of native controls for thick-client (desktop) C3 apps. Tokens derived from the same CSS; `PrizmButton` / `PrizmInput` / `PrizmCard` in spec parity with the React library. C3 and capability packs only. Lives at `javafx/`.
+- **RC3 extension pack** — robotics & autonomy modules for C3. Identity layer (Ember signature, identity rule) + three signature organisms (safety actions, comms / health strip, autonomy mode selector) + concept docs.
+- **JavaFX library** — a parallel set of native controls for thick-client (desktop) C3 apps. Tokens derived from the same CSS; `PrizmButton` / `PrizmInput` / `PrizmCard` in spec parity with the React library. C3 and extension packs only. Lives at `javafx/`.
 - **Four theme variants** — `c3-light`, `c3-dark`, `enterprise-light`, `enterprise-dark`
 - **A docs site** at `/` that doubles as the public component browser. Top-level nav: Overview (Introduction, Getting started, Using with AI, Installation, Theming, Air-gap setup, Changelog) → Foundations → Components → C3 → Enterprise.
 - **An LLM layer** — `PRIZM.md`, `llms.txt`, per-component context files in `/llms/`
@@ -44,7 +44,7 @@ PRIZM 4.0/
 ├── app/                    # Next.js docs site (App Router, static export)
 ├── components/
 │   ├── ui/                 # ←— The component library. Copy these.
-│   ├── rc3/                # RC3 capability-pack organisms
+│   ├── rc3/                # RC3 extension-pack organisms
 │   └── site/               # Docs-site components (header, preview, etc.)
 ├── lib/
 │   ├── utils.ts            # cn() helper

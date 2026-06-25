@@ -1,7 +1,7 @@
 # PRIZM JavaFX
 
 A parallel JavaFX library for PRIZM, for building **thick-client** operator
-applications. Scope is **C3 and its capability packs** (RC3 today) — Enterprise
+applications. Scope is **C3 and its extension packs** (RC3 today) — Enterprise
 is web-only and not shipped here.
 
 The design language is shared with the React library, not the code: the colour

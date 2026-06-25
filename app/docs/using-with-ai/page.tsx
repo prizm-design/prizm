@@ -266,7 +266,7 @@ Working conventions:
             <strong className="font-medium text-fg">Which zone and pack you're on</strong> — so the
             AI loads the right tokens and the right starting point (an active{" "}
             <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">data-pack</code>{" "}
-            for a capability pack).
+            for an extension pack).
           </span>
         </li>
         <li className="flex gap-3">

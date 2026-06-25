@@ -125,7 +125,7 @@ Reserved slugs with no source file yet. Surface them as roadmap; never copy or f
 
 ## RC3 — Robotics & Autonomy
 
-A capability module pack inside C3 for robotics & autonomy applications. Inherits C3 foundations and components; adds an identity layer, three signature organisms, and RC3-specific concepts. Activates via `data-pack="rc3"` on a parent surface.
+An extension module pack inside C3 for robotics & autonomy applications. Inherits C3 foundations and components; adds an identity layer, three signature organisms, and RC3-specific concepts. Activates via `data-pack="rc3"` on a parent surface.
 
 - [Robotics & Autonomy overview](/c3/rc3): what RC3 is, when to use it, the identity rule, and a small live autonomy panel.
 - [RC3 identity](/c3/rc3/identity): Ember signature colour, schematic iconography, the always-on identity rule.
@@ -166,7 +166,7 @@ Reserved slugs with no source file yet. Surface them as roadmap; never copy or f
 
 ## JavaFX (thick client) — C3
 
-A parallel JavaFX library for native desktop operator apps. **C3 and its capability packs only** — not Enterprise. Tokens are derived from the canonical CSS; controls are idiomatic JavaFX in spec parity with the React library. Source lives at `javafx/` (a Gradle module); not consumed via copy-paste of `.tsx`.
+A parallel JavaFX library for native desktop operator apps. **C3 and its extension packs only** — not Enterprise. Tokens are derived from the canonical CSS; controls are idiomatic JavaFX in spec parity with the React library. Source lives at `javafx/` (a Gradle module); not consumed via copy-paste of `.tsx`.
 
 - [JavaFX overview](/c3/javafx): scope, setup, theme swap, and the available controls.
   - `PrizmButton` — six variants × four sizes; mirrors the React Button.

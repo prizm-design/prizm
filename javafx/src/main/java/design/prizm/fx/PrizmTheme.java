@@ -8,14 +8,14 @@ import javafx.scene.text.Font;
  * Applies a PRIZM theme to a JavaFX {@link Scene}.
  *
  * <p>A theme is three stylesheets layered in order: the generated colour-token
- * sheet ({@code prizm/themes/c3-<mode>.css}), an optional capability-pack
+ * sheet ({@code prizm/themes/c3-<mode>.css}), an optional extension-pack
  * overlay ({@code prizm/themes/rc3-<mode>.css}) whose accent tokens win, and
  * the hand-authored control stylesheet ({@code prizm/prizm.css}) that consumes
  * the tokens. Switching theme is just calling {@code apply} again with
  * different arguments — every styled control re-reads its looked-up colours
  * live, no rebuild of the scene graph required.
  *
- * <p>Scope is C3 and its capability packs; Enterprise is not shipped for JavaFX.
+ * <p>Scope is C3 and its extension packs; Enterprise is not shipped for JavaFX.
  */
 public final class PrizmTheme {
 
@@ -25,7 +25,7 @@ public final class PrizmTheme {
         DARK
     }
 
-    /** Capability-pack overlay. {@code NONE} is plain C3. */
+    /** Extension-pack overlay. {@code NONE} is plain C3. */
     public enum Pack {
         NONE,
         RC3
@@ -71,7 +71,7 @@ public final class PrizmTheme {
     }
 
     /**
-     * Apply C3 in the given mode, optionally overlaying a capability pack.
+     * Apply C3 in the given mode, optionally overlaying an extension pack.
      * The pack overlay is added after the base theme so its accent overrides
      * take precedence; the control stylesheet is added last.
      */

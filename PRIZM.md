@@ -61,7 +61,7 @@ PRIZM 4.0/
 │   └── docs/                  # Introduction, Getting started, Using with AI, Installation, Theming, Air-gap, Changelog, plus foundation pages
 ├── components/
 │   ├── ui/                    # ←— THE COMPONENT LIBRARY (copy from here)
-│   ├── rc3/                   # RC3 capability-pack organisms
+│   ├── rc3/                   # RC3 extension-pack organisms
 │   └── site/                  # Docs site components (not for copying)
 ├── lib/
 │   ├── utils.ts               # cn() helper used by all components
@@ -202,11 +202,11 @@ PRIZM ships layout scaffolds called *templates* — reusable patterns that compo
 
 When building a new template, follow the convention: include a "Design Principles Applied" section listing 2–4 principles with concrete rationale, embed a live preview, and link to a standalone full-bleed preview route.
 
-## Capability packs
+## Extension packs
 
-PRIZM supports **capability module packs** — themed extensions to a product family that add an identity layer and domain-specific organisms without forking the foundations or component primitives. Activate a pack by setting `data-pack="<slug>"` on a parent surface; the pack's CSS overrides only the relevant semantic tokens, everything else inherits from the host product family.
+PRIZM supports **extension module packs** — themed extensions to a product family that add an identity layer and domain-specific organisms without forking the foundations or component primitives. Activate a pack by setting `data-pack="<slug>"` on a parent surface; the pack's CSS overrides only the relevant semantic tokens, everything else inherits from the host product family.
 
-**Available capability packs:**
+**Available extension packs:**
 
 - **RC3** — Robotics & Autonomy modules for C3 systems. Activates with `data-pack="rc3"` inside a C3 surface. Adds the Ember signature colour, an always-on identity rule (1.5px top border + signature dot + RC3 mark), schematic iconography conventions, a set of signature organisms (spanning safety, comms / health, autonomy, sensor feeds, telemetry, operator input, fleet roster / detail, and a live 3D perception view), and RC3-specific concepts (command-context spectrum, five behavioural invariants, surface regions). Source lives at `components/rc3/<slug>.tsx`; docs at `app/c3/rc3/`; LLM context at `llms/rc3/<slug>.md`; token overrides at `styles/tokens/rc3-{light,dark}.css`.
 
@@ -216,12 +216,12 @@ For full RC3 context, including the identity rule, behavioural invariants, and c
 
 ## JavaFX — thick-client C3
 
-PRIZM ships a parallel **JavaFX** library for native thick-client (desktop) operator applications. Scope is **C3 and its capability packs only** — Enterprise is web-only and not shipped for JavaFX.
+PRIZM ships a parallel **JavaFX** library for native thick-client (desktop) operator applications. Scope is **C3 and its extension packs only** — Enterprise is web-only and not shipped for JavaFX.
 
 The design language is shared, not the code. Colour tokens are *derived* from the canonical CSS (`styles/tokens/*.css`) into JavaFX stylesheets by `scripts/generate-javafx-theme.ts`; the controls are idiomatic JavaFX classes implemented to the same component spec as their React counterparts (`lib/javafx-api.ts` documents the Java surface). It is **not** a web view embedded in a desktop window.
 
 - **Library** at `javafx/` (a Gradle module). Controls at `javafx/src/main/java/design/prizm/fx/controls/<Name>.java`; base styling at `javafx/src/main/resources/prizm/prizm.css`; generated themes at `javafx/src/main/resources/prizm/themes/`; LLM context at `llms/javafx/<slug>.md`.
-- **Theming** — apply a theme to a `Scene` with `PrizmTheme.apply(scene, Mode.DARK)`; switching mode or overlaying a capability pack (`Pack.RC3` → Ember) is the same call with different arguments, re-styling live.
+- **Theming** — apply a theme to a `Scene` with `PrizmTheme.apply(scene, Mode.DARK)`; switching mode or overlaying an extension pack (`Pack.RC3` → Ember) is the same call with different arguments, re-styling live.
 - **Available controls** — `PrizmButton` (six variants × four sizes), `PrizmInput`, `PrizmCard`. More follow as consumers need them.
 
 For the full overview see `/c3/javafx` on the docs site.
@@ -291,14 +291,14 @@ The `pnpm audit:airgap` script scans the repo and CI fails if external reference
 
 **Check for a project rules file first.** A consumer project may carry a rules file your tool auto-loads each session (`CLAUDE.md`, or your tool's equivalent) that records its PRIZM zone, pack, and local conventions — read and honour it before scaffolding; it often settles the zone/pack question for you. If none exists, offer to set one up so the decisions persist across sessions rather than relying on a one-off prompt the context will eventually summarise away.
 
-**Before scaffolding, settle the zone — and whether a capability pack applies. Getting it wrong means redoing the template, not just re-theming.** Infer the zone from the domain: operations / mission / command-and-control / dispatch / monitoring → **C3**; websites, portals, marketing pages, forms, customer-facing dashboards → **Enterprise**. Then check for a **capability pack**: a pack layers on top of its base family when the work falls in that pack's specialty — consult the "Capability packs" section above for the packs that currently exist and the domains each covers, rather than assuming a fixed set. If the request is genuinely ambiguous — a bare "build a dashboard" fits either zone, and a given domain may or may not warrant a pack — ask the developer rather than silently defaulting.
+**Before scaffolding, settle the zone — and whether an extension pack applies. Getting it wrong means redoing the template, not just re-theming.** Infer the zone from the domain: operations / mission / command-and-control / dispatch / monitoring → **C3**; websites, portals, marketing pages, forms, customer-facing dashboards → **Enterprise**. Then check for an **extension pack**: a pack layers on top of its base family when the work falls in that pack's specialty — consult the "Extension packs" section above for the packs that currently exist and the domains each covers, rather than assuming a fixed set. If the request is genuinely ambiguous — a bare "build a dashboard" fits either zone, and a given domain may or may not warrant a pack — ask the developer rather than silently defaulting.
 
 - **"Add a button"** → Read `components/ui/button.tsx`, copy to consumer's project, ensure deps + tokens.
 - **"Build a settings form"** → Compose `Field`, `Input`, `Label`, `Button` components. Reference the registry to confirm which exist as stable.
 - **"Build a C3 application" / "Apply PRIZM C3"** → **Start with the C3 App Shell template.** Fetch the source from `https://raw.githubusercontent.com/prizm-design/prizm/main/app/c3/templates/app-shell/shell.tsx` (or read it locally at `app/c3/templates/app-shell/shell.tsx` if you have a PRIZM checkout). Copy it into the consumer's project (e.g. `templates/c3/app-shell.tsx`), set `data-zone="c3"` on the consumer's root, then fill the main canvas slot and rail-panel slots with the feature's content. The shell already handles the operator-dark default, top bar, status ticker, icon rail, and the chrome-level Notification Centre + Workspace panels. Only fall back to composing primitives from scratch if the shell genuinely doesn't fit (embedded widget, settings page that sits outside an ops console). **Do not** synthesise a substitute shell — if you can't fetch the file, stop and report the path back to the developer.
 - **"Build a C3 dashboard"** → A dashboard is one app *inside* the C3 App Shell. Start with the shell (as above), then put the dashboard content in the main canvas. Don't reinvent the chrome.
 - **"Build a robotics / autonomy console" / "Build a UAV/UGV operator station" / "Apply RC3"** → **Start with the RC3 operator-console template.** Fetch the source from `https://raw.githubusercontent.com/prizm-design/prizm/main/app/c3/rc3/templates/operator-console/console.tsx` (or read it locally at `app/c3/rc3/templates/operator-console/console.tsx` if you have a PRIZM checkout). Copy it into the consumer's project (e.g. `templates/rc3/operator-console.tsx`), set `data-pack="rc3"` on the surface that wraps the RC3 application, and substitute the stylised canvas for the consumer's real map / sensor feeds. Import RC3 organisms from `@/components/rc3/<slug>` — sources at `components/rc3/<slug>.tsx`. Honour the five behavioural invariants documented at `app/c3/rc3/concepts/behavioural-invariants/` (safety reachable in one tap, comms / health always visible, active context unambiguous, no mode-switch via accident, telemetry never silently stale). **Do not** fabricate substitute organisms — check `app/c3/rc3/components/` for what's available and planned; if something is missing, stop and report the gap rather than invent.
-- **"Build a JavaFX / thick-client / desktop C3 app"** → Use the **PRIZM JavaFX library** under `javafx/`, not the React components. Fetch a control from `https://raw.githubusercontent.com/prizm-design/prizm/main/javafx/src/main/java/design/prizm/fx/controls/PrizmButton.java` (or read locally at `javafx/src/main/java/design/prizm/fx/controls/<Name>.java`), apply a theme with `PrizmTheme.apply(scene, …)`, and build with idiomatic JavaFX. C3 and its capability packs only — there is no Enterprise JavaFX. See `/c3/javafx`. **Do not** hand-roll chrome or restyle stock controls ad hoc; reach for the `Prizm*` controls and `PrizmTheme`.
+- **"Build a JavaFX / thick-client / desktop C3 app"** → Use the **PRIZM JavaFX library** under `javafx/`, not the React components. Fetch a control from `https://raw.githubusercontent.com/prizm-design/prizm/main/javafx/src/main/java/design/prizm/fx/controls/PrizmButton.java` (or read locally at `javafx/src/main/java/design/prizm/fx/controls/<Name>.java`), apply a theme with `PrizmTheme.apply(scene, …)`, and build with idiomatic JavaFX. C3 and its extension packs only — there is no Enterprise JavaFX. See `/c3/javafx`. **Do not** hand-roll chrome or restyle stock controls ad hoc; reach for the `Prizm*` controls and `PrizmTheme`.
 - **"Make the dark mode work"** → The token system handles this automatically. Set `data-mode="dark"` on `<html>` and the component code stays the same.
 
 ## What NOT to do

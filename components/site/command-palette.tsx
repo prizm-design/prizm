@@ -229,7 +229,7 @@ const ZONE_ENTRIES: SearchEntry[] = [
     id: "pack:rc3-overview",
     group: "Zones",
     name: "C3 — Robotics & Autonomy (RC3)",
-    description: "Capability module pack for robotics and autonomy modules inside C3.",
+    description: "Extension module pack for robotics and autonomy modules inside C3.",
     href: "/c3/rc3",
     icon: <FileText className="h-4 w-4" />,
     keywords: ["c3", "rc3", "robotics", "autonomy", "pack", "uav", "ugv", "teleop"],

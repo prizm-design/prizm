@@ -5,7 +5,7 @@
  * Derives JavaFX stylesheets from the canonical PRIZM token CSS.
  * The CSS token files stay the single source of truth; this script
  * only READS them and emits a second output format. Scope is C3 +
- * its capability packs (RC3) — Enterprise is deliberately excluded.
+ * its extension packs (RC3) — Enterprise is deliberately excluded.
  *
  * Pipeline per theme: resolve the token cascade (baseline → c3-{mode}
  * → pack overlay), convert each semantic colour oklch() → sRGB hex,

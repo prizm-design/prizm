@@ -22,7 +22,7 @@ export function PaginationItem({ className, ...props }: ComponentPropsWithoutRef
 
 const pageButtonBase = cn(
   "inline-flex h-9 min-w-9 items-center justify-center rounded-md px-3 text-sm font-medium transition-colors",
-  "focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-accent",
+  "focus-visible:outline-1 focus-visible:outline-offset-0 focus-visible:outline-accent",
   "disabled:pointer-events-none disabled:opacity-50",
 );
 

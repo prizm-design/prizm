@@ -17,7 +17,7 @@ export function ComboboxTrigger({
       className={cn(
         "flex h-9 w-full items-center justify-between rounded-md border border-border bg-bg px-3 py-2",
         "text-sm text-fg shadow-sm",
-        "hover:bg-bg-subtle focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-accent",
+        "hover:bg-bg-subtle focus-visible:outline-1 focus-visible:outline-offset-0 focus-visible:outline-accent",
         "disabled:pointer-events-none disabled:opacity-50",
         "data-[popup-open]:outline-2 data-[popup-open]:outline-offset-2 data-[popup-open]:outline-accent",
         className,
@@ -47,7 +47,7 @@ export function ComboboxInput({
       className={cn(
         "flex h-9 w-full rounded-md border border-border bg-bg px-3 py-2",
         "text-sm text-fg shadow-sm placeholder:text-fg-subtle",
-        "focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-accent",
+        "focus-visible:outline-1 focus-visible:outline-offset-0 focus-visible:outline-accent",
         "disabled:pointer-events-none disabled:opacity-50",
         className,
       )}

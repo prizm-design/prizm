@@ -44,7 +44,7 @@ const CHANGELOG: ChangelogDay[] = [
       {
         type: "design",
         title: "Thinner focus rings",
-        body: "Focus-visible rings across all components are now 1px with a tighter offset (previously 2px with a wider offset), for a lighter, less obtrusive focus affordance — matching the JavaFX library.",
+        body: "Focus-visible rings across all components are now 1px with a tighter offset (previously 2px with a wider offset), for a lighter, less obtrusive focus affordance.",
       },
       {
         type: "fix",
@@ -61,8 +61,8 @@ const CHANGELOG: ChangelogDay[] = [
     entries: [
       {
         type: "foundation",
-        title: "RC3 — Robotics & Autonomy capability pack",
-        body: 'PRIZM\'s first capability module pack — an identity layer plus domain-specific organisms layered on C3 without forking foundations or primitives. Activates via `data-pack="rc3"` (overrides only the accent tokens to the Ember signature colour, oklch(71% 0.195 32); everything else inherits from C3). Ships an always-on identity rule, three concept docs (command contexts, behavioural invariants, surface regions), nine signature organisms (safety actions, comms / health strip, autonomy mode selector, video tile, telemetry HUD, controller interface, platform roster, platform detail, perception view), and two anchor templates (operator console, fleet overview). Lives at `/c3/rc3`; sources at `components/rc3/<slug>.tsx`, LLM context at `llms/rc3/<slug>.md`.',
+        title: "RC3 — Robotics & Autonomy extension pack",
+        body: 'PRIZM\'s first extension module pack — an identity layer plus domain-specific organisms layered on C3 without forking foundations or primitives. Activates via `data-pack="rc3"` (overrides only the accent tokens to the Ember signature colour, oklch(71% 0.195 32); everything else inherits from C3). Ships an always-on identity rule, three concept docs (command contexts, behavioural invariants, surface regions), nine signature organisms (safety actions, comms / health strip, autonomy mode selector, video tile, telemetry HUD, controller interface, platform roster, platform detail, perception view), and two anchor templates (operator console, fleet overview). Lives at `/c3/rc3`; sources at `components/rc3/<slug>.tsx`, LLM context at `llms/rc3/<slug>.md`.',
         href: "/c3/rc3",
       },
     ],
