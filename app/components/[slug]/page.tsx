@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { CodeBlock } from "@/components/site/code-block";
 import { ComponentPreview } from "@/components/site/component-preview";
 import { Badge } from "@/components/ui/badge";
@@ -9,6 +11,17 @@ import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
+
+// The canonical source for each stable component lives at components/ui/<slug>.tsx.
+// Read it at build time (static export) so the page can show the actual file to
+// copy — not just a usage snippet. Returns null if there's no matching file.
+function readComponentSource(slug: string): string | null {
+  try {
+    return readFileSync(join(process.cwd(), "components/ui", `${slug}.tsx`), "utf8").trimEnd();
+  } catch {
+    return null;
+  }
+}
 
 export function generateStaticParams() {
   return COMPONENTS.map((c) => ({ slug: c.slug }));
@@ -32,6 +45,7 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
   const example = EXAMPLES[slug];
   const api = getComponentApi(slug);
   const isStable = component.status === "stable";
+  const source = isStable ? readComponentSource(slug) : null;
 
   return (
     <div className="mx-auto max-w-5xl px-6 py-10">
@@ -113,13 +127,21 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
             <h2 className="mb-3 text-sm font-medium uppercase tracking-wider text-fg-subtle">
               Source
             </h2>
-            <p className="text-sm text-fg-muted">
-              The canonical implementation lives at{" "}
+            <p className="mb-3 text-sm text-fg-muted">
+              The full implementation of{" "}
               <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">
                 components/ui/{component.slug}.tsx
-              </code>
-              . Copy it into your project and own it.
+              </code>{" "}
+              {source
+                ? "is below — copy it into your project and own it."
+                : "is in the repository — copy it into your project and own it."}{" "}
+              Some components import the{" "}
+              <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">cn</code> helper
+              from{" "}
+              <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">lib/utils</code>{" "}
+              or other primitives; copy those too.
             </p>
+            {source && <CodeBlock code={source} language="tsx" />}
           </section>
 
           {component.javafx && <JavaFxSection slug={component.slug} />}
