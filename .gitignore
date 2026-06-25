@@ -52,4 +52,3 @@ prizm-docs-*.tar.gz
 # internal working docs for AI sessions building PRIZM itself
 # (PRIZM.md, llms.txt, and llms/ are public AI artefacts and stay tracked)
 AI_HANDOFF.md
-RC3_NOTES.md

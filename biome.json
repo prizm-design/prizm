@@ -3,7 +3,7 @@
   "vcs": { "enabled": false, "clientKind": "git", "useIgnoreFile": false },
   "files": {
     "ignoreUnknown": false,
-    "ignore": ["node_modules", ".next", "out", "public/fonts"]
+    "ignore": ["node_modules", ".next", "out", "public/fonts", "javafx/build/**", "javafx/src/**"]
   },
   "formatter": {
     "enabled": true,

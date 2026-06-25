@@ -6,6 +6,7 @@ A DSTA design system. Serves two product families — command-and-control (C3) a
 
 - **44 stable component primitives** (plus 6 planned) — shared by both product families
 - **RC3 capability pack** — robotics & autonomy modules for C3. Identity layer (Ember signature, identity rule) + three signature organisms (safety actions, comms / health strip, autonomy mode selector) + concept docs.
+- **JavaFX library** — a parallel set of native controls for thick-client (desktop) C3 apps. Tokens derived from the same CSS; `PrizmButton` / `PrizmInput` / `PrizmCard` in spec parity with the React library. C3 and capability packs only. Lives at `javafx/`.
 - **Four theme variants** — `c3-light`, `c3-dark`, `enterprise-light`, `enterprise-dark`
 - **A docs site** at `/` that doubles as the public component browser. Top-level nav: Overview (Introduction, Getting started, Using with AI, Installation, Theming, Air-gap setup, Changelog) → Foundations → Components → C3 → Enterprise.
 - **An LLM layer** — `PRIZM.md`, `llms.txt`, per-component context files in `/llms/`
@@ -52,8 +53,10 @@ PRIZM 4.0/
 ├── styles/
 │   ├── fonts.css           # Self-hosted font declarations
 │   └── tokens/             # The four-variant token system
+├── javafx/                 # JavaFX thick-client library (C3 + packs only)
 ├── llms/                   # Per-component LLM context files
-│   └── rc3/                # Per-organism context files for RC3
+│   ├── rc3/                # Per-organism context files for RC3
+│   └── javafx/             # Per-control context files for the JavaFX library
 ├── llms.txt                # Top-level LLM entry point
 ├── PRIZM.md                # Full brief for AI assistants
 ├── OFFLINE_SETUP.md        # Air-gap deployment guide

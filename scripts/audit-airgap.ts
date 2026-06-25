@@ -24,6 +24,13 @@ const IGNORE_DIRS = new Set([
   ".git",
   ".pnpm-store-offline",
   "public/fonts",
+  // JavaFX Gradle build outputs — generated artefacts (e.g. the problems
+  // report HTML) reference external docs/CDN URLs that aren't shipped.
+  "javafx/build",
+  "javafx/.gradle",
+  // Bundled JavaFX font assets — the OFL licence text carries a sil.org URL,
+  // same category as public/fonts above.
+  "javafx/src/main/resources/prizm/fonts",
 ]);
 
 // Specific files we skip. The audit script itself contains the forbidden-host

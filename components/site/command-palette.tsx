@@ -216,6 +216,16 @@ const ZONE_ENTRIES: SearchEntry[] = [
     keywords: ["c3", "template", "shell", "operator", "chrome", "icon rail"],
   },
   {
+    id: "zone:c3-javafx",
+    group: "Zones",
+    name: "C3 — JavaFX (thick-client)",
+    description:
+      "Build native desktop operator apps with a parallel JavaFX library, themed from the same tokens.",
+    href: "/c3/javafx",
+    icon: <FileText className="h-4 w-4" />,
+    keywords: ["c3", "javafx", "thick client", "desktop", "java", "native", "fx", "openjfx"],
+  },
+  {
     id: "pack:rc3-overview",
     group: "Zones",
     name: "C3 — Robotics & Autonomy (RC3)",

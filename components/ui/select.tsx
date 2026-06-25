@@ -15,7 +15,7 @@ export function SelectValue({
   placeholder?: ReactNode;
 }) {
   return (
-    <BaseSelect.Value className={className} {...props}>
+    <BaseSelect.Value className={cn("data-[placeholder]:text-fg-subtle", className)} {...props}>
       {(value) => (value == null || value === "" ? placeholder : (value as ReactNode))}
     </BaseSelect.Value>
   );
@@ -30,7 +30,7 @@ export function SelectTrigger({
     <BaseSelect.Trigger
       className={cn(
         "flex h-9 w-full items-center justify-between rounded-md border border-border bg-surface px-3 py-1 text-sm shadow-sm",
-        "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+        "focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-accent",
         "disabled:cursor-not-allowed disabled:opacity-50",
         "data-[placeholder]:text-fg-subtle",
         className,
@@ -52,7 +52,7 @@ export function SelectContent({
 }: ComponentPropsWithoutRef<typeof BaseSelect.Popup> & { children?: ReactNode }) {
   return (
     <BaseSelect.Portal>
-      <BaseSelect.Positioner sideOffset={4}>
+      <BaseSelect.Positioner sideOffset={4} alignItemWithTrigger={false} align="start">
         <BaseSelect.Popup
           className={cn(
             "z-50 max-h-[var(--available-height)] min-w-[var(--anchor-width)] overflow-y-auto",

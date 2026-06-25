@@ -15,7 +15,7 @@ export function Checkbox({
         "peer inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-sm border border-border-strong bg-surface shadow-sm transition-colors",
         "data-[checked]:border-accent data-[checked]:bg-accent data-[checked]:text-accent-fg",
         "data-[indeterminate]:border-accent data-[indeterminate]:bg-accent data-[indeterminate]:text-accent-fg",
-        "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+        "focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-accent",
         "disabled:cursor-not-allowed disabled:opacity-50",
         className,
       )}

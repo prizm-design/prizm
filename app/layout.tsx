@@ -47,6 +47,15 @@ const themeInitScript = `
 })();
 `;
 
+// @font-face is injected here (not via globals.css) so the font URLs pick up
+// `basePath` when deployed under a subpath — the same gotcha as the favicon URLs.
+// styles/fonts.css remains the consumer copy-paste artifact.
+const fontFaceStyles = `
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 100 900; font-display: swap; src: url("${basePath}/fonts/Inter/InterVariable.woff2") format("woff2"); }
+@font-face { font-family: "Inter"; font-style: italic; font-weight: 100 900; font-display: swap; src: url("${basePath}/fonts/Inter/InterVariable-Italic.woff2") format("woff2"); }
+@font-face { font-family: "JetBrains Mono"; font-style: normal; font-weight: 100 800; font-display: swap; src: url("${basePath}/fonts/JetBrainsMono/JetBrainsMono-VariableFont_wght.ttf") format("truetype"); }
+`;
+
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -56,6 +65,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             from a known-safe inline string we control. */}
         {/* biome-ignore lint/security/noDangerouslySetInnerHtml: trusted constant */}
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        {/* biome-ignore lint/security/noDangerouslySetInnerHtml: trusted constant */}
+        <style dangerouslySetInnerHTML={{ __html: fontFaceStyles }} />
       </head>
       <body className="flex min-h-screen flex-col bg-bg text-fg antialiased">
         <ThemeProvider>

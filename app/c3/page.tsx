@@ -37,7 +37,38 @@ export default function C3LandingPage() {
       </div>
 
       <CapabilityPacks />
+      <ThickClient />
     </div>
+  );
+}
+
+function ThickClient() {
+  return (
+    <section className="mt-16">
+      <h2 className="text-2xl font-semibold tracking-tight">Thick-client delivery</h2>
+      <div className="mt-3 max-w-3xl space-y-3 text-fg-muted">
+        <p>
+          Not every C3 surface is a web app — operator consoles often run as native desktop
+          software. C3 ships for that too: a parallel{" "}
+          <strong className="font-medium text-fg">JavaFX</strong> library for thick-client
+          applications, rendered natively rather than in a browser.
+        </p>
+        <p>
+          The design language is shared, not duplicated. The colour tokens are derived from the same
+          canonical source, and the controls are in spec parity with their web counterparts — C3 and
+          its capability packs only.
+        </p>
+      </div>
+      <div className="mt-6">
+        <Link
+          href="/c3/javafx"
+          className="group inline-flex items-center gap-2 rounded-lg border border-border bg-surface px-5 py-3 text-sm font-medium transition-colors hover:border-border-strong hover:bg-bg-subtle"
+        >
+          Explore PRIZM for JavaFX
+          <ArrowRight className="h-4 w-4 text-accent transition-transform group-hover:translate-x-0.5" />
+        </Link>
+      </div>
+    </section>
   );
 }
 

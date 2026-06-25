@@ -20,6 +20,7 @@
     "check:links": "tsx scripts/check-links.ts",
     "build:offline": "tsx scripts/build-offline.ts",
     "generate:llms-api": "tsx scripts/generate-llms-api.ts",
+    "generate:javafx-theme": "tsx scripts/generate-javafx-theme.ts",
     "generate:favicon-png": "tsx scripts/generate-favicon-png.ts",
     "prepare": "husky"
   },

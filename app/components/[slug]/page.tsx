@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { EXAMPLES } from "@/lib/component-examples";
 import { COMMON_PROPS_NOTE, type PropSpec, getComponentApi } from "@/lib/components-api";
 import { COMPONENTS, getComponent } from "@/lib/components-registry";
+import { JAVAFX_API } from "@/lib/javafx-api";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -120,6 +121,8 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
               . Copy it into your project and own it.
             </p>
           </section>
+
+          {component.javafx && <JavaFxSection slug={component.slug} />}
         </div>
       ) : (
         <div className="mt-12 rounded-lg border border-dashed border-border bg-bg-subtle p-12 text-center">
@@ -138,6 +141,39 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
         </div>
       )}
     </div>
+  );
+}
+
+function JavaFxSection({ slug }: { slug: string }) {
+  const api = JAVAFX_API[slug];
+  if (!api) return null;
+  const usage = `import ${api.package}.${api.className};\n\n${api.constructors.join("\n")}`;
+  return (
+    <section>
+      <h2 className="mb-3 text-sm font-medium uppercase tracking-wider text-fg-subtle">JavaFX</h2>
+      <p className="text-sm text-fg-muted">
+        Ships in the{" "}
+        <Link href="/c3/javafx" className="text-accent hover:underline">
+          PRIZM JavaFX library
+        </Link>{" "}
+        for thick-client C3 apps as{" "}
+        <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">{api.className}</code>{" "}
+        (extends{" "}
+        <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">
+          {api.base.split(".").pop()}
+        </code>
+        ). Run the gallery to see it natively.
+      </p>
+      <div className="mt-4">
+        <CodeBlock code={usage} language="java" />
+      </div>
+      {api.members.length > 0 && (
+        <div className="mt-4">
+          <PropTable props={api.members} compact />
+        </div>
+      )}
+      {api.notes && <p className="mt-4 text-sm text-fg-muted">{api.notes}</p>}
+    </section>
   );
 }
 

@@ -71,6 +71,13 @@ export default function ComponentsIndexPage() {
                     {c.builtOn && (
                       <p className="mt-2 text-[11px] text-fg-subtle">Built on {c.builtOn}</p>
                     )}
+                    {c.javafx && (
+                      <div className="mt-2">
+                        <Badge variant="outline" className="text-[10px]">
+                          JavaFX
+                        </Badge>
+                      </div>
+                    )}
                   </Link>
                 ))}
               </div>

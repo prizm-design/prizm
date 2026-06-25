@@ -139,7 +139,7 @@ export function Calendar({
               aria-label={date.toLocaleDateString()}
               className={cn(
                 "flex h-8 w-8 items-center justify-center rounded-md text-sm transition-colors",
-                "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+                "focus-visible:outline-1 focus-visible:outline-offset-1 focus-visible:outline-accent",
                 "disabled:pointer-events-none disabled:opacity-30",
                 isSelected && "bg-accent text-accent-fg font-semibold",
                 !isSelected && isToday && "border border-accent text-accent font-semibold",

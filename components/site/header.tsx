@@ -43,6 +43,7 @@ const NAV = [
       { label: "Overview", href: "/c3/overview" },
       { label: "Templates", href: "/c3/templates" },
       { label: "Robotics & Autonomy", href: "/c3/rc3" },
+      { label: "JavaFX (thick-client)", href: "/c3/javafx" },
     ],
   },
   {

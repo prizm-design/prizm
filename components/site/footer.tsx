@@ -70,6 +70,11 @@ export function Footer() {
                   Enterprise
                 </Link>
               </li>
+              <li>
+                <Link href="/c3/javafx" className="hover:text-fg">
+                  JavaFX (C3)
+                </Link>
+              </li>
             </ul>
           </div>
           <div>

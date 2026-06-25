@@ -66,7 +66,8 @@ PRIZM 4.0/
 ├── lib/
 │   ├── utils.ts               # cn() helper used by all components
 │   ├── theme-context.tsx      # Zone + mode state provider
-│   └── components-registry.ts # Canonical list of all components
+│   ├── components-registry.ts # Canonical list of all components
+│   └── javafx-api.ts          # JavaFX control API surface (C3 thick-client)
 ├── styles/
 │   ├── fonts.css              # Self-hosted font declarations
 │   └── tokens/
@@ -77,9 +78,15 @@ PRIZM 4.0/
 │       ├── enterprise-dark.css
 │       ├── rc3-light.css      # RC3 pack accent override (activated by data-pack="rc3")
 │       └── rc3-dark.css
+├── javafx/                    # JavaFX thick-client library (C3 + packs only)
+│   ├── src/main/java/         # PrizmTheme + controls (PrizmButton, …)
+│   └── src/main/resources/prizm/
+│       ├── prizm.css          # base control styling
+│       └── themes/            # GENERATED token stylesheets (pnpm generate:javafx-theme)
 ├── llms.txt                   # Component index (this is the entry point for LLMs)
 ├── llms/                      # Per-component context files for LLMs
-│   └── rc3/                   # Per-organism context files for RC3
+│   ├── rc3/                   # Per-organism context files for RC3
+│   └── javafx/                # Per-control context files for the JavaFX library
 └── PRIZM.md                   # ← you are here
 ```
 
@@ -207,6 +214,18 @@ When building inside an RC3 surface: import organisms from `@/components/rc3/<sl
 
 For full RC3 context, including the identity rule, behavioural invariants, and component anatomy, see `/c3/rc3` on the docs site.
 
+## JavaFX — thick-client C3
+
+PRIZM ships a parallel **JavaFX** library for native thick-client (desktop) operator applications. Scope is **C3 and its capability packs only** — Enterprise is web-only and not shipped for JavaFX.
+
+The design language is shared, not the code. Colour tokens are *derived* from the canonical CSS (`styles/tokens/*.css`) into JavaFX stylesheets by `scripts/generate-javafx-theme.ts`; the controls are idiomatic JavaFX classes implemented to the same component spec as their React counterparts (`lib/javafx-api.ts` documents the Java surface). It is **not** a web view embedded in a desktop window.
+
+- **Library** at `javafx/` (a Gradle module). Controls at `javafx/src/main/java/design/prizm/fx/controls/<Name>.java`; base styling at `javafx/src/main/resources/prizm/prizm.css`; generated themes at `javafx/src/main/resources/prizm/themes/`; LLM context at `llms/javafx/<slug>.md`.
+- **Theming** — apply a theme to a `Scene` with `PrizmTheme.apply(scene, Mode.DARK)`; switching mode or overlaying a capability pack (`Pack.RC3` → Ember) is the same call with different arguments, re-styling live.
+- **Available controls** — `PrizmButton` (six variants × four sizes), `PrizmInput`, `PrizmCard`. More follow as consumers need them.
+
+For the full overview see `/c3/javafx` on the docs site.
+
 ## Overview pages — orientation and how-to
 
 For narrative orientation and tactical setup, read the Overview section:
@@ -279,6 +298,7 @@ The `pnpm audit:airgap` script scans the repo and CI fails if external reference
 - **"Build a C3 application" / "Apply PRIZM C3"** → **Start with the C3 App Shell template.** Fetch the source from `https://raw.githubusercontent.com/prizm-design/prizm/main/app/c3/templates/app-shell/shell.tsx` (or read it locally at `app/c3/templates/app-shell/shell.tsx` if you have a PRIZM checkout). Copy it into the consumer's project (e.g. `templates/c3/app-shell.tsx`), set `data-zone="c3"` on the consumer's root, then fill the main canvas slot and rail-panel slots with the feature's content. The shell already handles the operator-dark default, top bar, status ticker, icon rail, and the chrome-level Notification Centre + Workspace panels. Only fall back to composing primitives from scratch if the shell genuinely doesn't fit (embedded widget, settings page that sits outside an ops console). **Do not** synthesise a substitute shell — if you can't fetch the file, stop and report the path back to the developer.
 - **"Build a C3 dashboard"** → A dashboard is one app *inside* the C3 App Shell. Start with the shell (as above), then put the dashboard content in the main canvas. Don't reinvent the chrome.
 - **"Build a robotics / autonomy console" / "Build a UAV/UGV operator station" / "Apply RC3"** → **Start with the RC3 operator-console template.** Fetch the source from `https://raw.githubusercontent.com/prizm-design/prizm/main/app/c3/rc3/templates/operator-console/console.tsx` (or read it locally at `app/c3/rc3/templates/operator-console/console.tsx` if you have a PRIZM checkout). Copy it into the consumer's project (e.g. `templates/rc3/operator-console.tsx`), set `data-pack="rc3"` on the surface that wraps the RC3 application, and substitute the stylised canvas for the consumer's real map / sensor feeds. Import RC3 organisms from `@/components/rc3/<slug>` — sources at `components/rc3/<slug>.tsx`. Honour the five behavioural invariants documented at `app/c3/rc3/concepts/behavioural-invariants/` (safety reachable in one tap, comms / health always visible, active context unambiguous, no mode-switch via accident, telemetry never silently stale). **Do not** fabricate substitute organisms — check `app/c3/rc3/components/` for what's available and planned; if something is missing, stop and report the gap rather than invent.
+- **"Build a JavaFX / thick-client / desktop C3 app"** → Use the **PRIZM JavaFX library** under `javafx/`, not the React components. Fetch a control from `https://raw.githubusercontent.com/prizm-design/prizm/main/javafx/src/main/java/design/prizm/fx/controls/PrizmButton.java` (or read locally at `javafx/src/main/java/design/prizm/fx/controls/<Name>.java`), apply a theme with `PrizmTheme.apply(scene, …)`, and build with idiomatic JavaFX. C3 and its capability packs only — there is no Enterprise JavaFX. See `/c3/javafx`. **Do not** hand-roll chrome or restyle stock controls ad hoc; reach for the `Prizm*` controls and `PrizmTheme`.
 - **"Make the dark mode work"** → The token system handles this automatically. Set `data-mode="dark"` on `<html>` and the component code stays the same.
 
 ## What NOT to do

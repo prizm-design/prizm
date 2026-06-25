@@ -39,6 +39,22 @@ interface ChangelogDay {
 
 const CHANGELOG: ChangelogDay[] = [
   {
+    date: "2026-06-25",
+    entries: [
+      {
+        type: "design",
+        title: "Thinner focus rings",
+        body: "Focus-visible rings across all components are now 1px with a tighter offset (previously 2px with a wider offset), for a lighter, less obtrusive focus affordance — matching the JavaFX library.",
+      },
+      {
+        type: "fix",
+        title: "Select opens below the trigger",
+        body: "The Select dropdown now opens directly below the trigger instead of aligning the selected item over it, which made the popup jump up or down depending on the current selection.",
+        href: "/components/select",
+      },
+    ],
+  },
+  {
     // RC3 ships as one changelog event — the whole pack lands in a single entry,
     // not the per-organism / per-template trail it accreted during the build.
     date: "2026-06-08",

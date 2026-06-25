@@ -31,6 +31,8 @@ export interface ComponentEntry {
   description: string;
   status: ComponentStatus;
   builtOn?: string;
+  /** JavaFX (thick-client) availability, if the control ships in the JavaFX library. C3 scope only. */
+  javafx?: "stable" | "planned";
 }
 
 export const COMPONENTS: ComponentEntry[] = [
@@ -41,6 +43,7 @@ export const COMPONENTS: ComponentEntry[] = [
     category: "actions",
     description: "Trigger an action. Six visual variants and four sizes.",
     status: "stable",
+    javafx: "stable",
   },
   {
     slug: "toggle-group",
@@ -58,6 +61,7 @@ export const COMPONENTS: ComponentEntry[] = [
     category: "forms",
     description: "A single-line text input.",
     status: "stable",
+    javafx: "stable",
   },
   {
     slug: "textarea",
@@ -65,6 +69,7 @@ export const COMPONENTS: ComponentEntry[] = [
     category: "forms",
     description: "Multi-line text input.",
     status: "stable",
+    javafx: "stable",
   },
   {
     slug: "checkbox",
@@ -73,6 +78,7 @@ export const COMPONENTS: ComponentEntry[] = [
     description: "Binary toggle.",
     status: "stable",
     builtOn: "Base UI Checkbox",
+    javafx: "stable",
   },
   {
     slug: "radio-group",
@@ -81,6 +87,7 @@ export const COMPONENTS: ComponentEntry[] = [
     description: "Pick one of several mutually exclusive options.",
     status: "stable",
     builtOn: "Base UI Radio",
+    javafx: "stable",
   },
   {
     slug: "switch",
@@ -97,6 +104,7 @@ export const COMPONENTS: ComponentEntry[] = [
     description: "Choose one from a list of options.",
     status: "stable",
     builtOn: "Base UI Select",
+    javafx: "stable",
   },
   {
     slug: "combobox",
@@ -113,6 +121,7 @@ export const COMPONENTS: ComponentEntry[] = [
     description: "Pick a numeric value within a range.",
     status: "stable",
     builtOn: "Base UI Slider",
+    javafx: "stable",
   },
   {
     slug: "label",
@@ -120,6 +129,7 @@ export const COMPONENTS: ComponentEntry[] = [
     category: "forms",
     description: "Accessible label for form controls.",
     status: "stable",
+    javafx: "stable",
   },
   {
     slug: "field",
@@ -152,6 +162,7 @@ export const COMPONENTS: ComponentEntry[] = [
     category: "layout",
     description: "A container with surface, border, and structured slots.",
     status: "stable",
+    javafx: "stable",
   },
   {
     slug: "badge",
