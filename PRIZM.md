@@ -222,7 +222,7 @@ The design language is shared, not the code. Colour tokens are *derived* from th
 
 - **Library** at `javafx/` (a Gradle module). Controls at `javafx/src/main/java/design/prizm/fx/controls/<Name>.java`; base styling at `javafx/src/main/resources/prizm/prizm.css`; generated themes at `javafx/src/main/resources/prizm/themes/`; LLM context at `llms/javafx/<slug>.md`.
 - **Theming** — apply a theme to a `Scene` with `PrizmTheme.apply(scene, Mode.DARK)`; switching mode or overlaying an extension pack (`Pack.RC3` → Ember) is the same call with different arguments, re-styling live.
-- **Available controls** — `PrizmButton` (six variants × four sizes), `PrizmInput`, `PrizmCard`. More follow as consumers need them.
+- **Available controls** — the operator-relevant core, growing as consumers need them: actions (`PrizmButton`), forms (`PrizmInput`, `PrizmTextarea`, `PrizmCheckbox`, `PrizmSwitch`, `PrizmRadioGroup`, `PrizmSelect`, `PrizmSlider`, `PrizmLabel`, `PrizmField`), layout (`PrizmCard`). The live, authoritative list is the Controls table on `/c3/javafx` (data-driven from the registry) — don't treat this line as exhaustive.
 
 For the full overview see `/c3/javafx` on the docs site.
 

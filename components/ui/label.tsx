@@ -9,8 +9,11 @@ export const Label = forwardRef<HTMLLabelElement, LabelHTMLAttributes<HTMLLabelE
     <label
       ref={ref}
       className={cn(
-        "text-sm font-medium leading-none text-fg",
+        "text-sm font-medium leading-tight text-fg",
+        // Base UI controls expose disabled via data-disabled (the peer is a
+        // span/div, not a native :disabled control), so target both.
         "peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+        "peer-data-[disabled]:cursor-not-allowed peer-data-[disabled]:opacity-70",
         className,
       )}
       {...props}

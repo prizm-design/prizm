@@ -16,7 +16,7 @@ export function Checkbox({
         "data-[checked]:border-accent data-[checked]:bg-accent data-[checked]:text-accent-fg",
         "data-[indeterminate]:border-accent data-[indeterminate]:bg-accent data-[indeterminate]:text-accent-fg",
         "focus-visible:outline-1 focus-visible:outline-offset-0 focus-visible:outline-accent",
-        "disabled:cursor-not-allowed disabled:opacity-50",
+        "data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50",
         className,
       )}
       {...props}

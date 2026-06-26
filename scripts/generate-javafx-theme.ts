@@ -11,7 +11,8 @@
  * → pack overlay), convert each semantic colour oklch() → sRGB hex,
  * emit `.root { -color-*: #rrggbb; }` looked-up colours.
  *
- *   - c3-{light,dark}.css   full base theme (all 18 colour tokens)
+ *   - c3-{light,dark}.css   full base theme (all colour tokens, plus derived
+ *                           -color-<status>-subtle / -border alert tints)
  *   - rc3-{light,dark}.css  pack overlay — only the accent trio,
  *                           applied to the Scene ON TOP of the base
  *                           (mirrors the web data-pack model)
@@ -68,6 +69,29 @@ function toHex([r, g, b]: [number, number, number]): string {
       .toString(16)
       .padStart(2, "0");
   return `#${h(r)}${h(g)}${h(b)}`;
+}
+
+function hexToRgb(hex: string): [number, number, number] {
+  const n = hex.replace("#", "");
+  return [
+    Number.parseInt(n.slice(0, 2), 16) / 255,
+    Number.parseInt(n.slice(2, 4), 16) / 255,
+    Number.parseInt(n.slice(4, 6), 16) / 255,
+  ];
+}
+
+/** Source-over compositing of `fg` at `alpha` onto opaque `bg` (sRGB gamma space,
+ *  matching how a browser composites an `oklch(... / alpha)` layer). */
+function compositeOver(
+  fg: [number, number, number],
+  bg: [number, number, number],
+  alpha: number,
+): [number, number, number] {
+  return [
+    alpha * fg[0] + (1 - alpha) * bg[0],
+    alpha * fg[1] + (1 - alpha) * bg[1],
+    alpha * fg[2] + (1 - alpha) * bg[2],
+  ];
 }
 
 // --- token parsing (mirrors scripts/audit-contrast.ts) ------------------
@@ -157,6 +181,28 @@ for (const mode of ["light", "dark"] as const) {
   const c3 = parseTokens(read(`c3-${mode}`));
   const c3Keys = Object.keys(c3).filter(COLOUR_KEY);
   const c3Colours = resolveColours(c3, c3Keys);
+
+  // Composited status tints for the Alert — the status colour blended over the
+  // theme background at the web's fill (10%) and border (30%) alphas. JavaFX CSS
+  // can't alpha-mix a looked-up colour, so we precompute solid hexes here.
+  const byToken = Object.fromEntries(c3Colours.map((c) => [c.token, c.hex]));
+  const bgRgb = hexToRgb(byToken.bg);
+  for (const status of ["info", "success", "warning", "danger"]) {
+    const sRgb = hexToRgb(byToken[status]);
+    c3Colours.push({
+      token: `${status}-subtle`,
+      hex: toHex(compositeOver(sRgb, bgRgb, 0.1)),
+      source: `${status} @10% over bg`,
+      clamped: false,
+    });
+    c3Colours.push({
+      token: `${status}-border`,
+      hex: toHex(compositeOver(sRgb, bgRgb, 0.3)),
+      source: `${status} @30% over bg`,
+      clamped: false,
+    });
+  }
+
   writeFileSync(
     `${OUT_DIR}/c3-${mode}.css`,
     emitCss(`PRIZM C3 — ${mode}`, `baseline.css + c3-${mode}.css`, c3Colours),

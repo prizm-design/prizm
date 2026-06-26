@@ -168,14 +168,11 @@ Reserved slugs with no source file yet. Surface them as roadmap; never copy or f
 
 A parallel JavaFX library for native desktop operator apps. **C3 and its extension packs only** — not Enterprise. Tokens are derived from the canonical CSS; controls are idiomatic JavaFX in spec parity with the React library. Source lives at `javafx/` (a Gradle module); not consumed via copy-paste of `.tsx`.
 
-- [JavaFX overview](/c3/javafx): scope, setup, theme swap, and the available controls.
-  - `PrizmButton` — six variants × four sizes; mirrors the React Button.
-  - `PrizmInput` — single-line field; mirrors Input.
-  - `PrizmCard` — surface card; mirrors Card.
+- [JavaFX overview](/c3/javafx): scope, setup, theme swap, and the live Controls table (data-driven from the registry — the authoritative list of what ships). Controls carry the web component name, `Prizm`-prefixed (`PrizmButton`, `PrizmInput`, `PrizmSwitch`, `PrizmField`, …), each in spec parity with its React counterpart.
 - Theme with `PrizmTheme.apply(scene, Mode.DARK, Pack.RC3)`. Regenerate token stylesheets with `pnpm generate:javafx-theme`.
 
 ## Optional
 
 - [Per-component LLM context files](/llms/) — deeper detail on each component for LLMs.
 - [Per-organism LLM context files for RC3](/llms/rc3/) — `safety-actions.md`, `comms-health-strip.md`, `autonomy-mode-selector.md`.
-- [Per-control LLM context files for the JavaFX library](/llms/javafx/) — `button.md`, `input.md`, `card.md`.
+- [Per-control LLM context files for the JavaFX library](/llms/javafx/) — one `<slug>.md` per JavaFX-ready control.

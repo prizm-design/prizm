@@ -1,4 +1,6 @@
 import { ComboboxDemo } from "@/components/site/combobox-demo";
+import { CommandDemo } from "@/components/site/command-demo";
+import { PaginationDemo } from "@/components/site/pagination-demo";
 import { ToastDemo } from "@/components/site/toast-demo";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -23,15 +25,6 @@ import {
 } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Code, CodeBlock } from "@/components/ui/code";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-  CommandSeparator,
-} from "@/components/ui/command";
 import {
   ContextMenu,
   ContextMenuContent,
@@ -75,15 +68,6 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
 import {
   Popover,
   PopoverContent,
@@ -131,14 +115,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Text } from "@/components/ui/text";
 import { Textarea } from "@/components/ui/textarea";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import {
-  BookOpenIcon,
-  CalendarIcon,
-  FileTextIcon,
-  InboxIcon,
-  LayoutDashboardIcon,
-  SettingsIcon,
-} from "lucide-react";
+import { InboxIcon } from "lucide-react";
 import type { ReactNode } from "react";
 
 export interface ComponentExample {
@@ -332,7 +309,7 @@ export function Example() {
 
 const fieldExample: ComponentExample = {
   preview: (
-    <Field className="w-full max-w-sm space-y-1.5">
+    <Field className="w-full max-w-sm">
       <FieldLabel>Project key</FieldLabel>
       <Input placeholder="PRIZM" />
       <FieldDescription>
@@ -345,7 +322,7 @@ import { Input } from "@/components/ui/input";
 
 export function Example() {
   return (
-    <Field className="space-y-1.5">
+    <Field>
       <FieldLabel>Project key</FieldLabel>
       <Input placeholder="PRIZM" />
       <FieldDescription>
@@ -391,9 +368,17 @@ export function Example() {
 
 const switchExample: ComponentExample = {
   preview: (
-    <div className="flex items-center gap-3">
-      <Switch id="ex-sw" defaultChecked />
-      <Label htmlFor="ex-sw">Auto-refresh feeds</Label>
+    <div className="flex flex-col gap-3">
+      <div className="flex items-center gap-3">
+        <Switch id="ex-sw" defaultChecked />
+        <Label htmlFor="ex-sw">Auto-refresh feeds</Label>
+      </div>
+      <div className="flex items-center gap-3">
+        <Switch id="ex-sw-locked" defaultChecked disabled />
+        <Label htmlFor="ex-sw-locked" className="text-fg-muted">
+          Telemetry sync (locked)
+        </Label>
+      </div>
     </div>
   ),
   code: `import { Switch } from "@/components/ui/switch";
@@ -401,9 +386,17 @@ import { Label } from "@/components/ui/label";
 
 export function Example() {
   return (
-    <div className="flex items-center gap-3">
-      <Switch id="autorefresh" defaultChecked />
-      <Label htmlFor="autorefresh">Auto-refresh feeds</Label>
+    <div className="flex flex-col gap-3">
+      <div className="flex items-center gap-3">
+        <Switch id="autorefresh" defaultChecked />
+        <Label htmlFor="autorefresh">Auto-refresh feeds</Label>
+      </div>
+      <div className="flex items-center gap-3">
+        <Switch id="locked" defaultChecked disabled />
+        <Label htmlFor="locked" className="text-fg-muted">
+          Telemetry sync (locked)
+        </Label>
+      </div>
     </div>
   );
 }`,
@@ -1324,32 +1317,7 @@ export function Example() {
 };
 
 const paginationExample: ComponentExample = {
-  preview: (
-    <Pagination>
-      <PaginationContent>
-        <PaginationItem>
-          <PaginationPrevious href="#" />
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#">1</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#" isActive>
-            2
-          </PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#">3</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationEllipsis />
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationNext href="#" />
-        </PaginationItem>
-      </PaginationContent>
-    </Pagination>
-  ),
+  preview: <PaginationDemo />,
   code: `import {
   Pagination, PaginationContent, PaginationEllipsis,
   PaginationItem, PaginationLink, PaginationNext, PaginationPrevious,
@@ -1522,88 +1490,18 @@ export function Example() {
 };
 
 const commandExample: ComponentExample = {
-  preview: (
-    <Command className="w-full max-w-md rounded-lg border border-border shadow-md">
-      <CommandInput placeholder="Type a command or search…" />
-      <CommandList className="max-h-72 p-1">
-        <CommandEmpty>No results found.</CommandEmpty>
-        <CommandGroup heading="Navigation">
-          <CommandItem className="gap-3 py-2" keywords={["home", "overview"]}>
-            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-sm text-fg-subtle aria-selected:text-accent">
-              <LayoutDashboardIcon className="h-4 w-4" />
-            </span>
-            <span className="flex min-w-0 flex-1 flex-col">
-              <span className="truncate text-sm font-medium text-fg">Dashboard</span>
-              <span className="truncate text-xs text-fg-muted">View today&rsquo;s activity</span>
-            </span>
-          </CommandItem>
-          <CommandItem className="gap-3 py-2" keywords={["schedule", "events"]}>
-            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-sm text-fg-subtle aria-selected:text-accent">
-              <CalendarIcon className="h-4 w-4" />
-            </span>
-            <span className="flex min-w-0 flex-1 flex-col">
-              <span className="truncate text-sm font-medium text-fg">Calendar</span>
-              <span className="truncate text-xs text-fg-muted">Upcoming events and meetings</span>
-            </span>
-          </CommandItem>
-          <CommandItem className="gap-3 py-2" keywords={["preferences", "config"]}>
-            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-sm text-fg-subtle aria-selected:text-accent">
-              <SettingsIcon className="h-4 w-4" />
-            </span>
-            <span className="flex min-w-0 flex-1 flex-col">
-              <span className="truncate text-sm font-medium text-fg">Settings</span>
-              <span className="truncate text-xs text-fg-muted">
-                Account and workspace preferences
-              </span>
-            </span>
-          </CommandItem>
-        </CommandGroup>
-        <CommandSeparator />
-        <CommandGroup heading="Documentation">
-          <CommandItem className="gap-3 py-2" keywords={["docs", "install", "setup"]}>
-            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-sm text-fg-subtle aria-selected:text-accent">
-              <BookOpenIcon className="h-4 w-4" />
-            </span>
-            <span className="flex min-w-0 flex-1 flex-col">
-              <span className="truncate text-sm font-medium text-fg">Getting started</span>
-              <span className="truncate text-xs text-fg-muted">
-                Install PRIZM and ship your first component
-              </span>
-            </span>
-          </CommandItem>
-          <CommandItem className="gap-3 py-2" keywords={["tokens", "colors"]}>
-            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-sm text-fg-subtle aria-selected:text-accent">
-              <FileTextIcon className="h-4 w-4" />
-            </span>
-            <span className="flex min-w-0 flex-1 flex-col">
-              <span className="truncate text-sm font-medium text-fg">Theming guide</span>
-              <span className="truncate text-xs text-fg-muted">
-                Tokens, modes, and the four-variant system
-              </span>
-            </span>
-          </CommandItem>
-        </CommandGroup>
-      </CommandList>
-      <div className="flex items-center justify-between border-t border-border bg-bg-subtle px-3 py-2 text-[11px] text-fg-subtle">
-        <div className="flex items-center gap-3">
-          <span className="inline-flex items-center gap-1">
-            <kbd className="rounded border border-border bg-bg px-1 py-0.5">↑↓</kbd> navigate
-          </span>
-          <span className="inline-flex items-center gap-1">
-            <kbd className="rounded border border-border bg-bg px-1 py-0.5">↵</kbd> select
-          </span>
-        </div>
-        <span>5 results</span>
-      </div>
-    </Command>
-  ),
-  code: `import { BookOpen, Calendar, FileText, LayoutDashboard, Settings } from "lucide-react";
+  preview: <CommandDemo />,
+  code: `import { BookOpen, Calendar, Check, FileText, LayoutDashboard, Settings } from "lucide-react";
+import { useState } from "react";
 import {
   Command, CommandEmpty, CommandGroup, CommandInput,
   CommandItem, CommandList, CommandSeparator,
 } from "@/components/ui/command";
 
 export function Example() {
+  // Items are selectable: picking one marks it until another is chosen.
+  const [selected, setSelected] = useState<string | null>(null);
+
   return (
     <Command className="rounded-lg border border-border shadow-md">
       <CommandInput placeholder="Type a command or search…" />
@@ -1612,7 +1510,7 @@ export function Example() {
         <CommandGroup heading="Navigation">
           <CommandItem
             keywords={["home", "overview"]}
-            onSelect={() => router.push("/dashboard")}
+            onSelect={() => setSelected("dashboard")}
             className="gap-3 py-2"
           >
             <LayoutDashboard className="h-4 w-4 text-fg-subtle" />
@@ -1620,17 +1518,23 @@ export function Example() {
               <span className="text-sm font-medium">Dashboard</span>
               <span className="text-xs text-fg-muted">View today's activity</span>
             </div>
+            {selected === "dashboard" && <Check className="ml-auto h-4 w-4 text-accent" />}
           </CommandItem>
           {/* …more items… */}
         </CommandGroup>
         <CommandSeparator />
         <CommandGroup heading="Documentation">
-          <CommandItem keywords={["docs", "install"]} className="gap-3 py-2">
+          <CommandItem
+            keywords={["docs", "install"]}
+            onSelect={() => setSelected("getting-started")}
+            className="gap-3 py-2"
+          >
             <BookOpen className="h-4 w-4 text-fg-subtle" />
             <div className="flex flex-col">
               <span className="text-sm font-medium">Getting started</span>
               <span className="text-xs text-fg-muted">Install PRIZM and ship your first component</span>
             </div>
+            {selected === "getting-started" && <Check className="ml-auto h-4 w-4 text-accent" />}
           </CommandItem>
         </CommandGroup>
       </CommandList>

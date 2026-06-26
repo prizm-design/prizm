@@ -34,7 +34,7 @@ export function NavigationMenuTrigger({
         "text-fg-muted hover:bg-bg-muted hover:text-fg",
         "focus-visible:outline-1 focus-visible:outline-offset-0 focus-visible:outline-accent",
         "data-[popup-open]:bg-bg-muted data-[popup-open]:text-fg",
-        "disabled:pointer-events-none disabled:opacity-50",
+        "aria-disabled:pointer-events-none aria-disabled:opacity-50",
         className,
       )}
       {...props}

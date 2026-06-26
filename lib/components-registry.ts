@@ -96,6 +96,7 @@ export const COMPONENTS: ComponentEntry[] = [
     description: "Toggle a setting on or off.",
     status: "stable",
     builtOn: "Base UI Switch",
+    javafx: "stable",
   },
   {
     slug: "select",
@@ -108,6 +109,7 @@ export const COMPONENTS: ComponentEntry[] = [
   },
   {
     slug: "combobox",
+    javafx: "stable",
     name: "Combobox",
     category: "forms",
     description: "Searchable select with typeahead.",
@@ -138,6 +140,7 @@ export const COMPONENTS: ComponentEntry[] = [
     description: "Form field wrapper with label, hint, and error.",
     status: "stable",
     builtOn: "Base UI Field",
+    javafx: "stable",
   },
   {
     slug: "number-input",
@@ -170,6 +173,7 @@ export const COMPONENTS: ComponentEntry[] = [
     category: "data",
     description: "A small status indicator or label.",
     status: "stable",
+    javafx: "stable",
   },
   {
     slug: "avatar",
@@ -178,6 +182,7 @@ export const COMPONENTS: ComponentEntry[] = [
     description: "User or entity image with fallback.",
     status: "stable",
     builtOn: "Base UI Avatar",
+    javafx: "stable",
   },
   {
     slug: "table",
@@ -185,9 +190,11 @@ export const COMPONENTS: ComponentEntry[] = [
     category: "data",
     description: "Structured tabular data.",
     status: "stable",
+    javafx: "stable",
   },
   {
     slug: "calendar",
+    javafx: "stable",
     name: "Calendar",
     category: "data",
     description: "Date picker grid.",
@@ -195,6 +202,7 @@ export const COMPONENTS: ComponentEntry[] = [
   },
   {
     slug: "kbd",
+    javafx: "stable",
     name: "Kbd",
     category: "typography",
     description: "Keyboard shortcut display.",
@@ -202,6 +210,7 @@ export const COMPONENTS: ComponentEntry[] = [
   },
   {
     slug: "code",
+    javafx: "stable",
     name: "Code",
     category: "typography",
     description: "Inline and block code.",
@@ -223,9 +232,11 @@ export const COMPONENTS: ComponentEntry[] = [
     description: "Visual dividing line.",
     status: "stable",
     builtOn: "Base UI Separator",
+    javafx: "stable",
   },
   {
     slug: "frame",
+    javafx: "stable",
     name: "Frame",
     category: "layout",
     description: "Constrained content frame with consistent padding.",
@@ -237,6 +248,7 @@ export const COMPONENTS: ComponentEntry[] = [
     category: "layout",
     description: "Horizontal grouping of related controls.",
     status: "stable",
+    javafx: "stable",
   },
   {
     slug: "stack",
@@ -244,6 +256,7 @@ export const COMPONENTS: ComponentEntry[] = [
     category: "layout",
     description: "Vertical spacing primitive.",
     status: "stable",
+    javafx: "stable",
   },
   {
     slug: "accordion",
@@ -269,6 +282,7 @@ export const COMPONENTS: ComponentEntry[] = [
     category: "feedback",
     description: "Inline message block.",
     status: "stable",
+    javafx: "stable",
   },
   {
     slug: "toast",
@@ -277,6 +291,7 @@ export const COMPONENTS: ComponentEntry[] = [
     description: "Transient notification.",
     status: "stable",
     builtOn: "Base UI Toast",
+    javafx: "stable",
   },
   {
     slug: "progress",
@@ -285,6 +300,7 @@ export const COMPONENTS: ComponentEntry[] = [
     description: "Determinate progress indicator.",
     status: "stable",
     builtOn: "Base UI Progress",
+    javafx: "stable",
   },
   {
     slug: "spinner",
@@ -292,9 +308,11 @@ export const COMPONENTS: ComponentEntry[] = [
     category: "feedback",
     description: "Indeterminate loading indicator.",
     status: "stable",
+    javafx: "stable",
   },
   {
     slug: "skeleton",
+    javafx: "stable",
     name: "Skeleton",
     category: "feedback",
     description: "Loading placeholder.",
@@ -306,11 +324,13 @@ export const COMPONENTS: ComponentEntry[] = [
     category: "feedback",
     description: "Placeholder for empty content regions.",
     status: "stable",
+    javafx: "stable",
   },
 
   // ----- Navigation -----
   {
     slug: "tabs",
+    javafx: "stable",
     name: "Tabs",
     category: "navigation",
     description: "Switch between related views.",
@@ -319,6 +339,7 @@ export const COMPONENTS: ComponentEntry[] = [
   },
   {
     slug: "breadcrumb",
+    javafx: "stable",
     name: "Breadcrumb",
     category: "navigation",
     description: "Hierarchical navigation trail.",
@@ -326,6 +347,7 @@ export const COMPONENTS: ComponentEntry[] = [
   },
   {
     slug: "pagination",
+    javafx: "stable",
     name: "Pagination",
     category: "navigation",
     description: "Page navigation for long lists.",
@@ -333,6 +355,7 @@ export const COMPONENTS: ComponentEntry[] = [
   },
   {
     slug: "navigation-menu",
+    javafx: "stable",
     name: "Navigation Menu",
     category: "navigation",
     description: "Multi-level navigation bar.",
@@ -341,6 +364,7 @@ export const COMPONENTS: ComponentEntry[] = [
   },
   {
     slug: "command",
+    javafx: "stable",
     name: "Command",
     category: "navigation",
     description: "Command palette / fuzzy launcher.",
@@ -348,6 +372,7 @@ export const COMPONENTS: ComponentEntry[] = [
   },
   {
     slug: "link",
+    javafx: "stable",
     name: "Link",
     category: "navigation",
     description: "Inline hyperlink with PRIZM styling.",
@@ -362,6 +387,7 @@ export const COMPONENTS: ComponentEntry[] = [
     description: "Modal dialog for focused tasks.",
     status: "stable",
     builtOn: "Base UI Dialog",
+    javafx: "stable",
   },
   {
     slug: "sheet",
@@ -370,6 +396,7 @@ export const COMPONENTS: ComponentEntry[] = [
     description: "Edge-anchored sliding panel. Opens from any side.",
     status: "stable",
     builtOn: "Base UI Dialog",
+    javafx: "stable",
   },
   {
     slug: "popover",
@@ -378,6 +405,7 @@ export const COMPONENTS: ComponentEntry[] = [
     description: "Floating contextual panel.",
     status: "stable",
     builtOn: "Base UI Popover",
+    javafx: "stable",
   },
   {
     slug: "tooltip",
@@ -386,6 +414,7 @@ export const COMPONENTS: ComponentEntry[] = [
     description: "Hover label for compact UI elements.",
     status: "stable",
     builtOn: "Base UI Tooltip",
+    javafx: "stable",
   },
   {
     slug: "menu",
@@ -394,6 +423,7 @@ export const COMPONENTS: ComponentEntry[] = [
     description: "Action menu with keyboard support.",
     status: "stable",
     builtOn: "Base UI Menu",
+    javafx: "stable",
   },
   {
     slug: "context-menu",
@@ -402,9 +432,11 @@ export const COMPONENTS: ComponentEntry[] = [
     description: "Right-click action menu.",
     status: "stable",
     builtOn: "Base UI Context Menu",
+    javafx: "stable",
   },
   {
     slug: "hover-card",
+    javafx: "stable",
     name: "Hover Card",
     category: "overlay",
     description: "Rich preview on hover.",
@@ -415,6 +447,7 @@ export const COMPONENTS: ComponentEntry[] = [
   // ----- Typography -----
   {
     slug: "heading",
+    javafx: "stable",
     name: "Heading",
     category: "typography",
     description: "Display and section headings.",
@@ -422,6 +455,7 @@ export const COMPONENTS: ComponentEntry[] = [
   },
   {
     slug: "text",
+    javafx: "stable",
     name: "Text",
     category: "typography",
     description: "Body text primitive.",
@@ -429,6 +463,7 @@ export const COMPONENTS: ComponentEntry[] = [
   },
   {
     slug: "prose",
+    javafx: "stable",
     name: "Prose",
     category: "typography",
     description: "Long-form content block.",

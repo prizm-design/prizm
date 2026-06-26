@@ -29,7 +29,7 @@ export function TabsTrigger({
         "text-fg-muted hover:text-fg",
         "focus-visible:outline-1 focus-visible:outline-offset-0 focus-visible:outline-accent",
         "data-[active]:bg-surface data-[active]:text-accent data-[active]:shadow-sm",
-        "disabled:pointer-events-none disabled:opacity-50",
+        "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
         className,
       )}
       {...props}

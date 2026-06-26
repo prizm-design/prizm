@@ -2,6 +2,7 @@ package design.prizm.fx;
 
 import java.io.IOException;
 import javafx.scene.Scene;
+import javafx.scene.control.DialogPane;
 import javafx.scene.text.Font;
 
 /**
@@ -76,7 +77,21 @@ public final class PrizmTheme {
      * take precedence; the control stylesheet is added last.
      */
     public static void apply(Scene scene, Mode mode, Pack pack) {
-        var sheets = scene.getStylesheets();
+        applyTo(scene.getStylesheets(), mode, pack);
+    }
+
+    /**
+     * Apply a theme to a {@link DialogPane}. A dialog lives in its own window /
+     * scene, so it does NOT inherit the main scene's stylesheets the way popups
+     * (Tooltip, ContextMenu, Popover) do — theme its pane explicitly, the same
+     * way you theme the main {@link Scene}. The pane is its scene's root, so the
+     * {@code .root} colour tokens resolve on it.
+     */
+    public static void apply(DialogPane pane, Mode mode, Pack pack) {
+        applyTo(pane.getStylesheets(), mode, pack);
+    }
+
+    private static void applyTo(javafx.collections.ObservableList<String> sheets, Mode mode, Pack pack) {
         sheets.clear();
         var m = mode == Mode.DARK ? "dark" : "light";
         sheets.add(url("/prizm/themes/c3-" + m + ".css"));

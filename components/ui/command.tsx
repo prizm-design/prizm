@@ -312,9 +312,16 @@ export function CommandGroup({
     setHasVisible(any || items.length === 0);
   }, [query]);
 
-  if (!hasVisible) return null;
+  // Stay mounted and hide via `hidden` rather than returning null — otherwise the
+  // ref detaches when the group empties, the effect above bails on `!ref.current`,
+  // and clearing the query can never restore the group.
   return (
-    <div ref={ref} className={cn("overflow-hidden p-1 text-fg", className)} role="group" {...props}>
+    <div
+      ref={ref}
+      className={cn("overflow-hidden p-1 text-fg", !hasVisible && "hidden", className)}
+      role="group"
+      {...props}
+    >
       {heading && <div className="px-2 py-1.5 text-xs font-semibold text-fg-muted">{heading}</div>}
       {children}
     </div>

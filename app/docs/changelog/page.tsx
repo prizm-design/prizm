@@ -39,6 +39,22 @@ interface ChangelogDay {
 
 const CHANGELOG: ChangelogDay[] = [
   {
+    date: "2026-06-26",
+    entries: [
+      {
+        type: "fix",
+        title: "Command palette restores results after clearing the search",
+        body: "Clearing the search field now brings back every command. Previously, once a group filtered down to no matches it stayed hidden, so emptying the query could leave the palette stuck on “No results found.”",
+        href: "/components/command",
+      },
+      {
+        type: "fix",
+        title: "Disabled state now applies across more controls",
+        body: "Switch, Checkbox, Radio Group, Tabs, Slider, and Navigation Menu now correctly dim and block interaction when disabled. The styling previously targeted the native `:disabled` pseudo-class, which these Base UI–backed controls don't expose.",
+      },
+    ],
+  },
+  {
     date: "2026-06-25",
     entries: [
       {

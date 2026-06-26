@@ -22,7 +22,7 @@ export function RadioGroupItem({
         "peer inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full border border-border-strong bg-surface shadow-sm transition-colors",
         "data-[checked]:border-accent",
         "focus-visible:outline-1 focus-visible:outline-offset-0 focus-visible:outline-accent",
-        "disabled:cursor-not-allowed disabled:opacity-50",
+        "data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50",
         className,
       )}
       {...props}

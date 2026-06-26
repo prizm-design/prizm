@@ -34,7 +34,8 @@
     -fx-font-weight: 500;
     -fx-cursor: hand;
     -fx-font-size: 14px;
-    -fx-padding: 6 16 6 16;
+    /* ~36px tall to match the web md button's h-9 (sm/lg set their own padding). */
+    -fx-padding: 8 16 8 16;
 }
 .button:focused { -fx-border-color: -color-accent; }
 .button:disabled { -fx-opacity: 0.5; }
@@ -117,7 +118,7 @@
 }
 .prizm-card > .prizm-card__title {
     -fx-font-size: 18px;
-    -fx-font-weight: 600;
+    -fx-font-weight: bold;
     -fx-text-fill: -color-fg;
 }
 .prizm-card > .prizm-card__body {
@@ -144,12 +145,12 @@
 }
 .gallery-title {
     -fx-font-size: 15px;
-    -fx-font-weight: 600;
+    -fx-font-weight: bold;
     -fx-text-fill: -color-fg;
 }
 .gallery-heading {
     -fx-font-size: 18px;
-    -fx-font-weight: 600;
+    -fx-font-weight: bold;
     -fx-text-fill: -color-fg;
 }
 .gallery-caption {
@@ -305,6 +306,875 @@
     -fx-background-radius: 1em;
 }
 
+/* ---- Switch (mirror switch.tsx) — track + sliding thumb. Drawn by
+   PrizmSwitchSkin; the track is the control's own background. ---- */
+.prizm-switch {
+    -fx-background-color: -color-bg-muted;
+    -fx-background-radius: 1em;
+    -fx-cursor: hand;
+}
+.prizm-switch:selected {
+    -fx-background-color: -color-accent;
+}
+.prizm-switch:disabled {
+    -fx-opacity: 0.5;
+}
+.prizm-switch__thumb {
+    -fx-background-color: -color-surface;
+    -fx-background-radius: 1em;
+    /* Hairline border defines the thumb edge in both modes — the surface fill
+       flips dark in dark mode and would otherwise blend into the track. */
+    -fx-border-color: -color-border-strong;
+    -fx-border-width: 1;
+    -fx-border-radius: 1em;
+    /* Soft shadow so it doesn't inflate the light-mode thumb (the border now
+       carries edge definition). */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.12), 1, 0, 0, 0.5);
+}
+
+/* ---- Field (PrizmField — mirror field.tsx) — label/control/hint/error stack.
+   The label uses .prizm-label; only the hint and error need rules here. ---- */
+.prizm-field__description {
+    -fx-text-fill: -color-fg-muted;
+    -fx-font-size: 12px;
+}
+.prizm-field__error {
+    -fx-text-fill: -color-danger;
+    -fx-font-size: 12px;
+}
+
+/* ---- Separator (mirror separator.tsx) — a 1px -color-border line. The stock
+   JavaFX Separator draws the rule as a border on its .line child; override it
+   for both orientations and drop Modena's default padding. PrizmStack /
+   PrizmGroup are pure layout (VBox / HBox) and need no paint rules. ---- */
+.prizm-separator:horizontal .line {
+    -fx-border-color: -color-border transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+    -fx-padding: 0;
+}
+.prizm-separator:vertical .line {
+    -fx-border-color: transparent transparent transparent -color-border;
+    -fx-border-width: 0 0 0 1;
+    -fx-padding: 0;
+}
+
+/* ============================================================
+   Feedback controls — alert, spinner, progress, empty state.
+   ============================================================ */
+
+/* ---- Alert (mirror alert.tsx) — surface block, status read via the border
+   and title colour. JavaFX CSS can't alpha-mix a looked-up colour, so the
+   web's translucent tint isn't reproduced; body text stays -color-fg. ---- */
+.prizm-alert {
+    -fx-background-color: -color-surface;
+    -fx-background-radius: 8;
+    -fx-border-color: -color-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-padding: 12 16 12 16;
+}
+.prizm-alert__title {
+    -fx-font-size: 14px;
+    -fx-font-weight: 500;
+    -fx-text-fill: -color-fg;
+}
+.prizm-alert__body {
+    -fx-font-size: 14px;
+    -fx-text-fill: -color-fg;
+}
+/* Variants — tinted background + border (composited over bg by the theme
+   generator) and the status colour on the whole text, mirroring the web. */
+.prizm-alert--info {
+    -fx-background-color: -color-info-subtle;
+    -fx-border-color: -color-info-border;
+}
+.prizm-alert--info .prizm-alert__title,
+.prizm-alert--info .prizm-alert__body { -fx-text-fill: -color-info; }
+.prizm-alert--success {
+    -fx-background-color: -color-success-subtle;
+    -fx-border-color: -color-success-border;
+}
+.prizm-alert--success .prizm-alert__title,
+.prizm-alert--success .prizm-alert__body { -fx-text-fill: -color-success; }
+.prizm-alert--warning {
+    -fx-background-color: -color-warning-subtle;
+    -fx-border-color: -color-warning-border;
+}
+.prizm-alert--warning .prizm-alert__title,
+.prizm-alert--warning .prizm-alert__body { -fx-text-fill: -color-warning; }
+.prizm-alert--danger {
+    -fx-background-color: -color-danger-subtle;
+    -fx-border-color: -color-danger-border;
+}
+.prizm-alert--danger .prizm-alert__title,
+.prizm-alert--danger .prizm-alert__body { -fx-text-fill: -color-danger; }
+
+/* ---- Spinner (mirror spinner.tsx) — muted track ring + rotating arc. ---- */
+.prizm-spinner__track {
+    -fx-stroke: -color-fg-muted;
+    -fx-opacity: 0.25;
+}
+.prizm-spinner__arc {
+    -fx-stroke: -color-fg-muted;
+}
+
+/* ---- Progress (mirror progress.tsx) — muted track, accent fill, 8px tall. ---- */
+.prizm-progress {
+    -fx-pref-height: 8;
+    -fx-min-height: 8;
+}
+.prizm-progress > .track {
+    -fx-background-color: -color-bg-muted;
+    -fx-background-radius: 1em;
+    -fx-background-insets: 0;
+}
+.prizm-progress > .bar {
+    -fx-background-color: -color-accent;
+    -fx-background-radius: 1em;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+/* ---- Empty state (mirror empty-state.tsx) — centred icon / title / description. ---- */
+.prizm-empty-state {
+    -fx-padding: 48 0 48 0;
+}
+.prizm-empty-state__icon {
+    -fx-min-width: 48; -fx-pref-width: 48; -fx-max-width: 48;
+    -fx-min-height: 48; -fx-pref-height: 48; -fx-max-height: 48;
+    -fx-background-color: -color-bg-muted;
+    -fx-background-radius: 1em;
+}
+.prizm-empty-state__title {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-fg;
+}
+.prizm-empty-state__description {
+    -fx-font-size: 14px;
+    -fx-text-fill: -color-fg-muted;
+}
+
+/* ============================================================
+   Data display — badge, avatar, table.
+   ============================================================ */
+
+/* ---- Badge (mirror badge.tsx) — rounded pill, seven variants. Status
+   variants reuse the composited -color-<status>-subtle tints. ---- */
+.prizm-badge {
+    -fx-background-radius: 1em;
+    -fx-border-radius: 1em;
+    -fx-border-width: 1;
+    -fx-border-color: transparent;
+    -fx-padding: 2 8 2 8;
+    -fx-font-size: 12px;
+    -fx-font-weight: 500;
+}
+.prizm-badge--solid { -fx-background-color: -color-accent; -fx-text-fill: -color-accent-fg; }
+.prizm-badge--outline {
+    -fx-background-color: transparent;
+    -fx-border-color: -color-border;
+    -fx-text-fill: -color-fg;
+}
+.prizm-badge--subtle { -fx-background-color: -color-bg-muted; -fx-text-fill: -color-fg-muted; }
+.prizm-badge--success { -fx-background-color: -color-success-subtle; -fx-text-fill: -color-success; }
+.prizm-badge--warning { -fx-background-color: -color-warning-subtle; -fx-text-fill: -color-warning; }
+.prizm-badge--danger { -fx-background-color: -color-danger-subtle; -fx-text-fill: -color-danger; }
+.prizm-badge--info { -fx-background-color: -color-info-subtle; -fx-text-fill: -color-info; }
+
+/* ---- Avatar (mirror avatar.tsx) — circular muted background + initials.
+   The square footprint + radius 100 yields a circle at any size. ---- */
+.prizm-avatar {
+    -fx-background-color: -color-bg-muted;
+    -fx-background-radius: 100;
+}
+.prizm-avatar__fallback {
+    -fx-text-fill: -color-fg-muted;
+    -fx-font-weight: 500;
+}
+.prizm-avatar--sm .prizm-avatar__fallback { -fx-font-size: 10px; }
+.prizm-avatar--md .prizm-avatar__fallback { -fx-font-size: 12px; }
+.prizm-avatar--lg .prizm-avatar__fallback { -fx-font-size: 14px; }
+.prizm-avatar--xl .prizm-avatar__fallback { -fx-font-size: 16px; }
+
+/* ---- Table (mirror table.tsx) — transparent surface, muted header,
+   1px row separators, muted hover/selection, no cell grid lines. ---- */
+.prizm-table {
+    -fx-background-color: transparent;
+    -fx-table-cell-border-color: transparent;
+    -fx-padding: 0;
+    -fx-font-size: 14px;
+}
+.prizm-table:focused {
+    -fx-background-color: transparent;
+}
+.prizm-table .column-header-background {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+.prizm-table .column-header,
+.prizm-table .filler {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent -color-border transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-size: 40;
+}
+.prizm-table .column-header .label {
+    -fx-text-fill: -color-fg-muted;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 0 12 0 12;
+}
+.prizm-table .table-row-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent -color-border transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-cell-size: 40;
+}
+.prizm-table .table-cell {
+    -fx-text-fill: -color-fg;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 0 12 0 12;
+    -fx-border-color: transparent;
+}
+.prizm-table .table-row-cell:hover {
+    -fx-background-color: -color-bg-muted;
+}
+.prizm-table .table-row-cell:selected {
+    -fx-background-color: -color-bg-muted;
+}
+.prizm-table .table-row-cell:selected .table-cell {
+    -fx-text-fill: -color-fg;
+}
+.prizm-table .table-row-cell:empty {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+/* ============================================================
+   Overlays — tooltip, menu (MenuButton), context menu. The menu
+   popup + items use the global .context-menu / .menu-item rules so
+   both PrizmContextMenu and PrizmMenu's popup are styled consistently.
+   ============================================================ */
+
+/* ---- Tooltip (mirror tooltip.tsx — solid only; glass is web-only) ---- */
+.prizm-tooltip {
+    -fx-background-color: -color-surface-elevated;
+    -fx-text-fill: -color-fg;
+    -fx-background-radius: 6;
+    -fx-border-color: -color-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 6;
+    -fx-font-size: 12px;
+    -fx-padding: 6 10 6 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.18), 8, 0, 0, 2);
+}
+
+/* ---- Dialog (mirror dialog.tsx) — native modal window, styled pane + buttons.
+   No rounding (the pane fills the OS window). Default button = accent, others
+   = outline. Theme the pane explicitly: PrizmTheme.apply(pane, mode, pack). ---- */
+/* Dialog — an in-scene overlay (scrim + centred card), not a native window, so
+   the rounded card renders cleanly with no OS-chrome corner artifacts. */
+.prizm-dialog-scrim { -fx-background-color: rgba(0, 0, 0, 0.5); }
+.prizm-dialog {
+    -fx-background-color: -color-surface-elevated;
+    -fx-background-radius: 10;
+    -fx-border-color: -color-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 24, 0, 0, 10);
+}
+.prizm-dialog__title {
+    -fx-text-fill: -color-fg;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    /* Right inset clears the floating ✕. */
+    -fx-padding: 18 44 0 20;
+}
+.prizm-dialog__body { -fx-padding: 6 20 12 20; }
+.prizm-dialog__message {
+    -fx-text-fill: -color-fg-muted;
+    -fx-font-size: 14px;
+}
+.prizm-dialog__buttons { -fx-padding: 8 16 16 16; }
+/* Top-right close affordance. */
+.prizm-dialog__close { -fx-cursor: hand; }
+.prizm-dialog__close-icon {
+    -fx-fill: transparent;
+    -fx-stroke: -color-fg-muted;
+    -fx-stroke-width: 2;
+    -fx-stroke-line-cap: round;
+}
+.prizm-dialog__close:hover .prizm-dialog__close-icon { -fx-stroke: -color-fg; }
+
+/* ---- Toast (mirror toast.tsx) — transient notification card. Managed by
+   PrizmToaster (bottom-right stack). A small semantic dot stands in for the
+   web's per-type lucide icon. ---- */
+.prizm-toaster {
+    -fx-background-color: transparent;
+}
+.prizm-toast {
+    -fx-background-color: -color-surface-elevated;
+    -fx-background-radius: 8;
+    -fx-border-color: -color-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-padding: 14 16 14 16;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 16, 0, 0, 6);
+}
+.prizm-toast__title {
+    -fx-text-fill: -color-fg;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+.prizm-toast__message {
+    -fx-text-fill: -color-fg-muted;
+    -fx-font-size: 14px;
+}
+.prizm-toast__close {
+    -fx-text-fill: -color-fg-muted;
+    -fx-font-size: 16px;
+    -fx-cursor: hand;
+    -fx-padding: 0 0 0 4;
+}
+.prizm-toast__close:hover { -fx-text-fill: -color-fg; }
+.prizm-toast__dot {
+    -fx-min-width: 8; -fx-pref-width: 8; -fx-max-width: 8;
+    -fx-min-height: 8; -fx-pref-height: 8; -fx-max-height: 8;
+    -fx-background-radius: 8;
+    -fx-translate-y: 5;
+    -fx-background-color: -color-fg-muted;
+}
+.prizm-toast--info .prizm-toast__dot { -fx-background-color: -color-info; }
+.prizm-toast--success .prizm-toast__dot { -fx-background-color: -color-success; }
+.prizm-toast--warning .prizm-toast__dot { -fx-background-color: -color-warning; }
+.prizm-toast--error .prizm-toast__dot { -fx-background-color: -color-danger; }
+
+/* ---- Sheet (mirror sheet.tsx) — edge-anchored sliding panel + scrim. The
+   border sits on the inner edge (depends on the side). ---- */
+.prizm-sheet {
+    -fx-background-color: -color-surface;
+    -fx-border-color: -color-border;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 16, 0, 0, 0);
+}
+.prizm-sheet--left { -fx-border-width: 0 1 0 0; }
+.prizm-sheet--right { -fx-border-width: 0 0 0 1; }
+.prizm-sheet--top { -fx-border-width: 0 0 1 0; }
+.prizm-sheet--bottom { -fx-border-width: 1 0 0 0; }
+.prizm-sheet-scrim {
+    -fx-background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* ---- Popover (mirror popover.tsx — solid only; glass is web-only) ---- */
+.prizm-popover {
+    -fx-background-color: -color-surface-elevated;
+    -fx-background-radius: 8;
+    -fx-border-color: -color-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-padding: 16;
+    -fx-min-width: 240;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.18), 12, 0, 0, 4);
+}
+
+/* ---- Menu trigger (PrizmMenu — a MenuButton; mirror the outline button) ---- */
+.prizm-menu {
+    -fx-background-color: -color-bg;
+    -fx-border-color: -color-border;
+    -fx-border-width: 1;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-padding: 0;
+    -fx-pref-height: 36;
+    -fx-min-height: 36;
+    -fx-cursor: hand;
+}
+.prizm-menu:hover { -fx-background-color: -color-bg-muted; }
+.prizm-menu > .label {
+    -fx-text-fill: -color-fg;
+    -fx-font-size: 14px;
+    -fx-padding: 0 12 0 12;
+}
+/* No dropdown arrow — the trigger reads as a plain button (like the web). */
+.prizm-menu > .arrow-button {
+    -fx-padding: 0;
+    -fx-background-color: transparent;
+}
+.prizm-menu > .arrow-button > .arrow {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-min-width: 0;
+    -fx-pref-width: 0;
+    -fx-max-width: 0;
+}
+
+/* ---- Menu / Context menu popup (shared by ContextMenu + MenuButton) ---- */
+/* No horizontal popup/item padding — so items AND the separator span the full
+   inner width. Text is inset via the label instead, which keeps the separator
+   flush to both edges without fighting negative insets / container padding. */
+.context-menu {
+    -fx-background-color: -color-surface-elevated;
+    -fx-background-radius: 6;
+    -fx-border-color: -color-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 6;
+    -fx-padding: 5 5 5 5;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.18), 12, 0, 0, 4);
+}
+.context-menu .menu-item {
+    -fx-background-color: transparent;
+    -fx-background-radius: 6;
+    -fx-padding: 9 0 9 0;
+}
+.context-menu .menu-item > .label {
+    -fx-text-fill: -color-fg;
+    -fx-font-size: 14px;
+    -fx-padding: 0 12 0 12;
+}
+.context-menu .menu-item:focused,
+.context-menu .menu-item:hover {
+    -fx-background-color: -color-bg-muted;
+    -fx-background-radius: 6;
+}
+.context-menu .menu-item:disabled { -fx-opacity: 0.5; }
+.context-menu .menu-item > .left-container,
+.context-menu .menu-item > .right-container { -fx-padding: 0; }
+/* Accent the check / radio glyph on selected items. */
+.context-menu .check-menu-item:checked > .left-container > .check-mark,
+.context-menu .radio-menu-item:checked > .left-container > .radio {
+    -fx-background-color: -color-accent;
+}
+/* Separator runs edge-to-edge. Must match Modena's exact selector
+   `.context-menu .separator:horizontal .line` (it defaults to the bright
+   -fx-box-border); with no horizontal padding anywhere it's already flush. */
+.context-menu .separator-menu-item {
+    -fx-padding: 4 0 4 0;
+}
+.context-menu .separator:horizontal .line {
+    -fx-border-color: -color-border transparent transparent transparent;
+    -fx-border-insets: 0;
+}
+
+/* ============================================================
+   Typography — heading, text, code, kbd, prose.
+   ============================================================ */
+.prizm-heading { -fx-text-fill: -color-fg; -fx-font-weight: bold; }
+.prizm-heading--xl4 { -fx-font-size: 36px; }
+.prizm-heading--xl3 { -fx-font-size: 30px; }
+.prizm-heading--xl2 { -fx-font-size: 24px; }
+.prizm-heading--xl { -fx-font-size: 20px; }
+.prizm-heading--lg { -fx-font-size: 18px; }
+.prizm-heading--md { -fx-font-size: 16px; }
+
+.prizm-text { -fx-text-fill: -color-fg; -fx-font-size: 16px; }
+.prizm-text--size-xs { -fx-font-size: 12px; }
+.prizm-text--size-sm { -fx-font-size: 14px; }
+.prizm-text--size-md { -fx-font-size: 16px; }
+.prizm-text--size-lg { -fx-font-size: 18px; }
+.prizm-text--tone-default { -fx-text-fill: -color-fg; }
+.prizm-text--tone-muted { -fx-text-fill: -color-fg-muted; }
+.prizm-text--tone-subtle { -fx-text-fill: -color-fg-subtle; }
+.prizm-text--w-normal { -fx-font-weight: normal; }
+.prizm-text--w-medium { -fx-font-weight: 500; }
+/* JavaFX's system font has no 600 face, so `600` silently renders as regular;
+   `bold` is the closest weight it can show — matching the web's font-semibold. */
+.prizm-text--w-semibold { -fx-font-weight: bold; }
+
+.prizm-code {
+    -fx-font-family: "JetBrains Mono";
+    -fx-font-size: 13px;
+    -fx-text-fill: -color-fg;
+    -fx-background-color: -color-bg-muted;
+    -fx-border-color: -color-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-padding: 1 5 1 5;
+}
+.prizm-kbd {
+    -fx-font-family: "JetBrains Mono";
+    -fx-font-size: 12px;
+    -fx-text-fill: -color-fg-muted;
+    -fx-background-color: -color-bg-muted;
+    -fx-border-color: -color-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-padding: 2 6 2 6;
+}
+.prizm-prose { -fx-background-color: transparent; }
+
+/* ---- Frame (mirror frame.tsx) — pure layout container, no paint ---- */
+.prizm-frame { -fx-background-color: transparent; }
+
+/* ---- Skeleton (mirror skeleton.tsx) — muted block; pulse is animated in Java ---- */
+.prizm-skeleton {
+    -fx-background-color: -color-bg-muted;
+    -fx-background-radius: 6;
+}
+
+/* ============================================================
+   Navigation — breadcrumb, navigation menu, pagination.
+   ============================================================ */
+.prizm-breadcrumb__link {
+    -fx-text-fill: -color-fg-muted;
+    -fx-underline: false;
+    -fx-border-color: transparent;
+    -fx-padding: 0;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+}
+.prizm-breadcrumb__link:hover { -fx-text-fill: -color-fg; -fx-underline: false; }
+.prizm-breadcrumb__link:focused { -fx-border-color: transparent; }
+.prizm-breadcrumb__current {
+    -fx-text-fill: -color-fg;
+    -fx-font-weight: 500;
+    -fx-font-size: 14px;
+}
+.prizm-breadcrumb__sep { -fx-text-fill: -color-fg-subtle; -fx-font-size: 14px; }
+
+.prizm-navigation-menu { -fx-background-color: transparent; }
+.prizm-nav-trigger {
+    -fx-background-color: transparent;
+    -fx-background-radius: 6;
+    -fx-padding: 6 12 6 12;
+    -fx-cursor: hand;
+}
+.prizm-nav-trigger:hover,
+.prizm-nav-trigger:showing { -fx-background-color: -color-bg-muted; }
+.prizm-nav-trigger > .label {
+    -fx-text-fill: -color-fg-muted;
+    -fx-font-size: 14px;
+}
+.prizm-nav-trigger:hover > .label,
+.prizm-nav-trigger:showing > .label { -fx-text-fill: -color-fg; }
+/* Hide MenuButton's built-in arrow — the chevron graphic replaces it. */
+.prizm-nav-trigger > .arrow-button { -fx-padding: 0; -fx-background-color: transparent; }
+.prizm-nav-trigger > .arrow-button > .arrow {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-min-width: 0;
+    -fx-pref-width: 0;
+    -fx-max-width: 0;
+}
+.prizm-nav-chevron { -fx-text-fill: -color-fg-muted; -fx-font-size: 16px; }
+.prizm-nav-trigger:hover .prizm-nav-chevron,
+.prizm-nav-trigger:showing .prizm-nav-chevron { -fx-text-fill: -color-fg; }
+
+.prizm-pagination { -fx-background-color: transparent; }
+/* Compact, ~square page buttons (h-9 min-w-9 px-3 like the web) — overrides the
+   wider default button padding so the active page's border box isn't oversized. */
+.prizm-pagination .button {
+    -fx-padding: 0 10 0 10;
+    -fx-min-width: 36;
+    -fx-min-height: 36;
+}
+/* Previous / Next chevrons — a touch larger than the label text. */
+.prizm-pagination__chevron {
+    -fx-font-size: 18px;
+    -fx-text-fill: -color-fg;
+}
+/* Hollow dots (like the web MoreHorizontal icon), muted. */
+.prizm-pagination__dot {
+    -fx-fill: transparent;
+    -fx-stroke: -color-fg-muted;
+    -fx-stroke-width: 1;
+}
+
+/* ============================================================
+   Calendar + Command palette.
+   ============================================================ */
+.prizm-calendar { -fx-background-color: transparent; }
+.prizm-calendar__month {
+    -fx-text-fill: -color-fg;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+.prizm-calendar__dayname {
+    -fx-text-fill: -color-fg-muted;
+    -fx-font-size: 12px;
+    -fx-font-weight: 500;
+}
+.prizm-calendar__day {
+    -fx-text-fill: -color-fg;
+    -fx-font-size: 14px;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+.prizm-calendar__day:hover { -fx-background-color: -color-bg-muted; }
+.prizm-calendar__day--today {
+    -fx-border-color: -color-accent;
+    -fx-border-width: 1;
+    -fx-border-radius: 6;
+    -fx-text-fill: -color-accent;
+}
+/* `:hover` must be matched too, else hovering the just-clicked cell (specificity
+   0,2,0) would beat plain `--selected` (0,1,0) and show the muted hover bg. */
+.prizm-calendar__day--selected,
+.prizm-calendar__day--selected:hover {
+    -fx-background-color: -color-accent;
+    -fx-text-fill: -color-accent-fg;
+}
+/* Must out-specify `.button.sm` (0,2,0), which otherwise pins the font to 12px. */
+.button.prizm-calendar__nav { -fx-font-size: 18px; }
+
+.prizm-command {
+    -fx-background-color: -color-surface-elevated;
+    -fx-background-radius: 8;
+    -fx-border-color: -color-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.18), 12, 0, 0, 4);
+}
+/* Search row: magnifier + input, with a bottom divider. */
+.prizm-command__search-row {
+    -fx-padding: 0 12 0 12;
+    -fx-min-height: 44;
+    -fx-pref-height: 44;
+    -fx-border-color: -color-border;
+    -fx-border-width: 0 0 1 0;
+}
+.prizm-command__search-icon {
+    -fx-fill: transparent;
+    -fx-stroke: -color-fg-muted;
+    -fx-stroke-width: 2;
+    -fx-stroke-line-cap: round;
+    -fx-stroke-line-join: round;
+}
+.prizm-command__search {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    /* Left inset stops the first glyph clipping; modest vertical padding keeps
+       the content area tall enough that descenders (y, p) aren't cut off. */
+    -fx-padding: 8 4 8 10;
+    -fx-font-size: 14px;
+}
+.prizm-command__search:focused {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+.prizm-command__scroll,
+.prizm-command__scroll .viewport { -fx-background-color: transparent; }
+/* Thin, subtle scrollbar (no chunky Modena track or arrow buttons). */
+.prizm-command__scroll .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 8;
+    -fx-padding: 0;
+}
+.prizm-command__scroll .scroll-bar:vertical .track,
+.prizm-command__scroll .scroll-bar:vertical .track-background {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+.prizm-command__scroll .scroll-bar:vertical .thumb {
+    -fx-background-color: -color-border;
+    -fx-background-radius: 4;
+    -fx-background-insets: 1;
+}
+.prizm-command__scroll .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: -color-fg-subtle;
+}
+.prizm-command__scroll .scroll-bar:vertical .increment-button,
+.prizm-command__scroll .scroll-bar:vertical .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-pref-height: 0;
+}
+.prizm-command__scroll .scroll-bar:vertical .increment-arrow,
+.prizm-command__scroll .scroll-bar:vertical .decrement-arrow {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-shape: " ";
+}
+.prizm-command__list { -fx-padding: 4; }
+.prizm-command__group { -fx-padding: 4; }
+.prizm-command__group-heading {
+    -fx-padding: 6 8 6 8;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-fg-muted;
+}
+.prizm-command__item {
+    -fx-padding: 8;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+.prizm-command__item.is-active { -fx-background-color: -color-bg-muted; }
+.prizm-command__item-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: 500;
+    -fx-text-fill: -color-fg;
+}
+.prizm-command__item-subtitle {
+    -fx-font-size: 12px;
+    -fx-text-fill: -color-fg-muted;
+}
+/* Icon box (no fill, like the web) — stroked glyph turns accent when active. */
+.prizm-command__icon {
+    -fx-fill: transparent;
+    -fx-stroke: -color-fg-subtle;
+    -fx-stroke-width: 2;
+    -fx-stroke-line-cap: round;
+    -fx-stroke-line-join: round;
+}
+.prizm-command__item.is-active .prizm-command__icon { -fx-stroke: -color-accent; }
+/* Selected entry: a trailing accent check that persists until another is chosen. */
+.prizm-command__check {
+    -fx-fill: transparent;
+    -fx-stroke: -color-accent;
+    -fx-stroke-width: 2;
+    -fx-stroke-line-cap: round;
+    -fx-stroke-line-join: round;
+}
+.prizm-command__separator {
+    -fx-min-height: 1;
+    -fx-pref-height: 1;
+    -fx-max-height: 1;
+    -fx-background-color: -color-border;
+}
+.prizm-command__empty {
+    -fx-padding: 24 0 24 0;
+    -fx-font-size: 14px;
+    -fx-text-fill: -color-fg-muted;
+}
+/* Footer: keyboard hints + result count on a subtle bar. */
+.prizm-command__footer {
+    -fx-padding: 8 12 8 12;
+    -fx-background-color: -color-bg-subtle;
+    -fx-background-radius: 0 0 8 8;
+    -fx-border-color: -color-border;
+    -fx-border-width: 1 0 0 0;
+}
+.prizm-command__hint,
+.prizm-command__count { -fx-font-size: 11px; -fx-text-fill: -color-fg-subtle; }
+.prizm-command__kbd {
+    -fx-font-size: 11px;
+    -fx-text-fill: -color-fg-subtle;
+    -fx-background-color: -color-bg;
+    -fx-background-radius: 4;
+    -fx-border-color: -color-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 4;
+    -fx-padding: 1 4 1 4;
+}
+
+/* ---- Link (mirror link.tsx) — accent text, underline on hover, no focus border ---- */
+.prizm-link {
+    -fx-text-fill: -color-accent;
+    -fx-underline: false;
+    -fx-border-color: transparent;
+    -fx-padding: 0;
+    -fx-cursor: hand;
+}
+.prizm-link:hover { -fx-underline: true; }
+.prizm-link:visited { -fx-text-fill: -color-accent; }
+.prizm-link:focused { -fx-border-color: transparent; }
+
+/* ---- Tabs (mirror tabs.tsx) — segmented pill: a muted track wrapping the
+   tabs, with the selected tab raised to surface + accent text. ---- */
+.prizm-tabs {
+    -fx-background-color: transparent;
+    /* Compact tab height (≈ the web h-9 once the 4px track padding is added). */
+    -fx-tab-min-height: 28;
+    -fx-tab-max-height: 28;
+}
+.prizm-tabs > .tab-header-area { -fx-padding: 0; }
+.prizm-tabs > .tab-header-area > .tab-header-background { -fx-background-color: transparent; }
+/* The headers-region wraps the tabs → use it as the muted track (p-1 inset). */
+.prizm-tabs > .tab-header-area > .headers-region {
+    -fx-background-color: -color-bg-muted;
+    -fx-background-radius: 8;
+    -fx-padding: 4;
+}
+.prizm-tabs > .tab-header-area > .headers-region > .tab {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 6;
+    -fx-padding: 0 14 0 14;
+    /* Kill the accent focus ring around the selected/focused tab. */
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+.prizm-tabs > .tab-header-area > .headers-region > .tab:selected {
+    -fx-background-color: -color-surface;
+}
+.prizm-tabs > .tab-header-area > .headers-region > .tab:focused {
+    -fx-background-insets: 0;
+}
+.prizm-tabs > .tab-header-area > .headers-region > .tab .tab-label {
+    -fx-text-fill: -color-fg-muted;
+    -fx-font-size: 14px;
+}
+.prizm-tabs > .tab-header-area > .headers-region > .tab:hover .tab-label {
+    -fx-text-fill: -color-fg;
+}
+.prizm-tabs > .tab-header-area > .headers-region > .tab:selected .tab-label {
+    -fx-text-fill: -color-accent;
+}
+.prizm-tabs > .tab-content-area { -fx-padding: 12 0 0 0; }
+
+/* ---- Combobox (mirror combobox.tsx) — a custom control: a search field + a
+   filtered popup list. Highlight (selected row) follows keyboard + hover; the
+   check marks the committed value only. No dropdown arrow. ---- */
+.prizm-combobox-field {
+    -fx-background-color: -color-surface;
+    -fx-text-fill: -color-fg;
+    -fx-prompt-text-fill: -color-fg-subtle;
+    -fx-border-color: -color-border;
+    -fx-border-width: 1;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-padding: 0 12 0 12;
+}
+.prizm-combobox-field:focused { -fx-border-color: -color-accent; }
+.prizm-combobox-popup {
+    -fx-background-color: -color-surface-elevated;
+    -fx-background-radius: 6;
+    -fx-border-color: -color-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 6;
+    -fx-padding: 4;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.18), 12, 0, 0, 4);
+}
+.prizm-combobox-popup .list-view {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-border-color: transparent;
+    -fx-padding: 0;
+    -fx-fixed-cell-size: 32;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+.prizm-combobox-popup .list-view:focused { -fx-background-color: transparent; }
+.prizm-combobox-popup .list-cell {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-text-fill: -color-fg;
+    -fx-padding: 6 10 6 10;
+    -fx-background-radius: 4;
+    -fx-font-size: 14px;
+}
+/* The single highlight — the selected row, driven by keyboard AND hover. */
+.prizm-combobox-popup .list-cell:filled:selected {
+    -fx-background-color: -color-bg-muted;
+    -fx-text-fill: -color-fg;
+}
+/* Foreground (not accent) check on the committed row. */
+.prizm-combobox-check {
+    -fx-background-color: -color-fg;
+    -fx-shape: "M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z";
+    -fx-scale-shape: true;
+    -fx-min-width: 10px;
+    -fx-min-height: 10px;
+    -fx-pref-width: 10px;
+    -fx-pref-height: 10px;
+    -fx-max-width: 10px;
+    -fx-max-height: 10px;
+}
+
 /* ---- ComboBox / Select (mirror select.tsx) ---- */
 .combo-box {
     -fx-background-color: -color-surface;
@@ -328,8 +1198,12 @@
     -fx-background-color: transparent;
     -fx-padding: 0 10 0 4;
 }
-.combo-box .arrow {
-    -fx-background-color: -color-fg-muted;
+/* The default arrow is hidden in PrizmSelect and replaced with the shared `›`
+   chevron glyph (see PrizmSelect#installChevron), so the Select and nav trigger
+   arrows are identical. */
+.combo-box .prizm-select-chevron {
+    -fx-text-fill: -color-fg-muted;
+    -fx-font-size: 18px;
 }
 .combo-box:disabled {
     -fx-opacity: 0.5;
