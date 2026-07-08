@@ -8,7 +8,7 @@ A DSTA design system. Serves two product families — command-and-control (C3) a
 - **RC3 extension pack** — robotics & autonomy modules for C3. Identity layer (Ember signature, identity rule) + three signature organisms (safety actions, comms / health strip, autonomy mode selector) + concept docs.
 - **JavaFX library** — a parallel set of native controls for thick-client (desktop) C3 apps. Tokens derived from the same CSS; an operator-relevant core of `Prizm*` controls (actions, forms, layout) in spec parity with the React library, growing as consumers need them. C3 and extension packs only. Lives at `javafx/`; the live control list is on `/c3/javafx`.
 - **Four theme variants** — `c3-light`, `c3-dark`, `enterprise-light`, `enterprise-dark`
-- **A docs site** at `/` that doubles as the public component browser. Top-level nav: Overview (Introduction, Getting started, Using with AI, Installation, Theming, Air-gap setup, Changelog) → Foundations → Components → C3 → Enterprise.
+- **A docs site** at `/` that doubles as the public component browser. Top-level nav: Overview (Introduction, Getting started, Using with AI, Adopting PRIZM, Installation, Theming, Air-gap setup, Changelog) → Foundations → Components → C3 → Enterprise.
 - **An LLM layer** — `PRIZM.md`, `llms.txt`, per-component context files in `/llms/`
 - **Air-gap support** — self-hosted fonts, no CDN refs, offline release artifacts
 - **Copy-paste distribution** — own your components, no npm package required

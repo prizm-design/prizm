@@ -29,6 +29,7 @@ If you're working in a consumer project, look for a project rules file (`CLAUDE.
 - [Introduction](/docs/introduction): why PRIZM is named after a prism, what changed in 4.0 (Base UI foundation, Tailwind v4 tokens, AI-first documentation, custom Liquid Glass), and what's next.
 - [Getting started](/docs/getting-started)
 - [Using with AI](/docs/using-with-ai): how a team adopts PRIZM with AI in the loop — what PRIZM gives AI, how to wire up Claude Code / Cursor / chat-based LLMs / internal gateways / air-gapped models, a starter prompt, a one-time prompt to set up a project rules file that keeps AI on-system across sessions, and where each role fits.
+- [Adopting PRIZM](/docs/adopting-prizm): how to adopt PRIZM 4 in a product already running on an older system, without a big-bang redesign — evolve alongside PRIZM: new work starts on PRIZM 4, older modules migrate when they're reworked anyway, differences sit at module boundaries not inside a task, and the shared shell moves first. Coexistence is a normal, named industry pattern (Salesforce, SAP Fiori, Windows).
 - [Installation](/docs/installation)
 - [Theming](/docs/theming): architecture of the four-variant token system.
 - [Air-gap setup](/docs/air-gap)

@@ -244,6 +244,7 @@ For narrative orientation and tactical setup, read the Overview section:
 - `/docs/introduction` — why PRIZM is named after a prism, what changed in 4.0 (Base UI foundation, Tailwind v4 tokens, AI-first documentation, custom Liquid Glass surface treatment), and what's next (more components, more templates, exploring an "Info systems" third product family)
 - `/docs/getting-started` — install dependencies, copy your first component
 - `/docs/using-with-ai` — team-facing guide for adopting PRIZM with AI in the loop
+- `/docs/adopting-prizm` — how to bring PRIZM 4 into an existing product incrementally (new work first, older modules on rework, differences at module boundaries, shell first) instead of a big-bang redesign; frames it as evolving alongside PRIZM and as the standard coexistence pattern
 - `/docs/installation` — per-component installation flow
 - `/docs/theming` — architecture of the four-variant token system
 - `/docs/air-gap` — disconnected deployment setup

@@ -26,6 +26,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/docs/adopting-prizm" className="hover:text-fg">
+                  Adopting PRIZM
+                </Link>
+              </li>
+              <li>
                 <Link href="/docs/installation" className="hover:text-fg">
                   Installation
                 </Link>

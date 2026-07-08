@@ -16,6 +16,7 @@ const NAV = [
       { label: "Introduction", href: "/docs/introduction" },
       { label: "Getting started", href: "/docs/getting-started" },
       { label: "Using with AI", href: "/docs/using-with-ai" },
+      { label: "Adopting PRIZM", href: "/docs/adopting-prizm" },
       { label: "Installation", href: "/docs/installation" },
       { label: "Theming", href: "/docs/theming" },
       { label: "Air-gap setup", href: "/docs/air-gap" },
