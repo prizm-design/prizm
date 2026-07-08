@@ -199,6 +199,12 @@ already have. If you can't locate them, ask me where PRIZM lives rather than
 guessing.
 
 Working conventions:
+- Reuse before you build (non-negotiable). Before creating any UI element,
+  search llms.txt and lib/components-api.ts for a PRIZM component that fits.
+  If one exists, use it as-is — adjust exposed props and variants only, never
+  rewrite its markup or styling. If nothing fits, stop and say so, naming what
+  you checked, rather than silently hand-rolling a replacement. Duplicating
+  existing PRIZM functionality needs explicit sign-off from me.
 - For any component, check llms/<slug>.md for props, conventions, and accessibility notes.
 - For design decisions (layout, hierarchy, when-to-use), consult /docs/principles.
 - Use semantic Tailwind tokens only: bg-bg, text-fg, border-border, bg-accent, etc.
@@ -253,11 +259,18 @@ Working conventions:
         <li className="flex gap-3">
           <span className="font-mono text-sm text-accent">1.</span>
           <span>
-            <strong className="font-medium text-fg">To build with PRIZM</strong> — use PRIZM
-            components and templates, start from a PRIZM template where one fits before composing
-            from primitives, and check what already exists before hand-rolling UI. This is the rule
-            that actually drifts: an AI can follow every token rule while quietly rebuilding a
-            component PRIZM already ships.
+            <strong className="font-medium text-fg">Reuse before you build</strong> — use PRIZM
+            components and templates. Before writing any UI element, search{" "}
+            <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">llms.txt</code>{" "}
+            and{" "}
+            <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">
+              lib/components-api.ts
+            </code>{" "}
+            for one that fits. If one does, use it as-is — adjust exposed props and variants only,
+            never re-implement its markup or styling. If nothing fits, stop and say so — naming what
+            was checked — rather than silently hand-rolling a replacement. Duplicating existing
+            PRIZM functionality needs explicit sign-off. This is the rule that actually drifts: an
+            AI can follow every token rule while quietly rebuilding a component PRIZM already ships.
           </span>
         </li>
         <li className="flex gap-3">
@@ -305,10 +318,14 @@ Then add these to the file my AI tool loads automatically each session —
 CLAUDE.md, or the equivalent for our tool. If that file already exists, append
 a clearly-marked PRIZM section rather than overwriting what's there; create the
 file only if it's missing. Keep the section short:
-- the core rule: this project's UI is built with PRIZM. Use PRIZM components
-  and templates; start from a PRIZM template where one fits before composing
-  from primitives; check llms.txt for what already exists before building any
-  UI from scratch — don't hand-roll what PRIZM already ships;
+- the core rule (state it as non-negotiable): this project's UI is built with
+  PRIZM. Before creating any UI element, search llms.txt and
+  lib/components-api.ts for an existing PRIZM component. If one fits, use it
+  as-is — adjust exposed props and variants only, never rewrite its markup or
+  styling. If nothing fits, stop and say so — naming what was checked —
+  rather than silently hand-rolling. Start from a PRIZM template where one
+  fits before composing from primitives. Duplicating existing PRIZM
+  functionality needs explicit sign-off from me;
 - the PRIZM zone and pack this project uses (ask me if it isn't obvious from
   the code);
 - the conventions that must always hold (semantic tokens only, existing
@@ -327,6 +344,67 @@ partway through a long session.`}
         Review what it writes, trim it to the essentials, and commit it — from then on every session
         starts from the file instead of a pasted prompt.
       </p>
+
+      <p className="mt-8 font-semibold text-fg">Or copy this straight into CLAUDE.md</p>
+      <p className="mt-3 text-fg-muted">
+        If you'd rather skip the prompt and just paste a starting point into{" "}
+        <code className="rounded bg-bg-muted px-1.5 py-0.5 font-mono text-xs">CLAUDE.md</code> (or
+        your tool's equivalent) yourself, use this template. Fill in the zone and pack, adjust the
+        &ldquo;always hold&rdquo; list for your project's own conventions, and commit.
+      </p>
+
+      <div className="mt-4">
+        <CodeBlock
+          language="markdown"
+          code={`# PRIZM project rules
+
+This project's UI is built with **PRIZM 4.0** (a DSTA design system). Before
+writing UI, read the current PRIZM.md and llms.txt — from our local PRIZM
+checkout or mirror, otherwise from the repo at
+https://github.com/prizm-design/prizm.
+
+## Reuse before you build — non-negotiable
+
+1. Before creating any UI element, search **llms.txt** (component index) and
+   **lib/components-api.ts** (props, variants, defaults) for a PRIZM
+   component that fits the need. Look by function, not by name — a "pill" or
+   "chip" is a Badge; a "modal" is a Dialog; a "drawer" is a Sheet.
+2. If one exists, use it as-is — adjust exposed props and variants only.
+   Never rewrite its markup, restyle its internals, or wrap it purely to
+   change its look.
+3. If nothing fits, **stop and say so — explicitly**. Name the components
+   checked and why each doesn't fit, before writing anything from scratch.
+4. Duplicating existing PRIZM functionality requires explicit sign-off — flag
+   the overlap and wait for a "yes, build a new one" before proceeding.
+
+## Zone and pack
+
+- Product zone: <c3 | enterprise>
+- Extension pack: <none | rc3 | …>
+
+## Conventions that must always hold
+
+- Semantic Tailwind tokens only (\`bg-bg\`, \`text-fg\`, \`border-border\`,
+  \`bg-accent\`, etc.). Never raw colour utilities like \`bg-slate-500\`.
+- Prefer existing component variants over \`className\` overrides for visual
+  changes.
+- No external URL references — no CDNs, remote fonts, third-party scripts.
+  PRIZM is air-gap safe and the audit script fails CI on violations.
+- User-facing copy uses British English (colour, behaviour, organisation);
+  code identifiers stay American.
+
+## Canonical docs — read current source, don't recall
+
+- \`PRIZM.md\` — the AI brief.
+- \`llms.txt\` — component index. Consult before writing UI.
+- \`lib/components-api.ts\` — full props / variants surface.
+- \`llms/<slug>.md\` — per-component context.
+- \`/docs/principles\` — HF/HCI rationale behind PRIZM's patterns.
+- Raw fetch pattern:
+  \`https://raw.githubusercontent.com/prizm-design/prizm/main/<path>\`.
+  If a fetch 404s, stop and tell me — don't fabricate a substitute.`}
+        />
+      </div>
 
       <p className="mt-8 font-semibold text-fg">Two habits that help</p>
       <div className="mt-4 space-y-6">

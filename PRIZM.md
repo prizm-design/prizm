@@ -16,6 +16,17 @@ Both product families share the same underlying **component primitives** but app
 - `enterprise-light`
 - `enterprise-dark`
 
+## Reuse before you build — non-negotiable
+
+This is the rule most AI sessions drift on. Not tokens, not accessibility — the quiet re-invention of components PRIZM already ships. Apply it every time you are about to write JSX (or a JavaFX control) for a UI element:
+
+1. **Search first.** Consult `llms.txt` (the component index, grouped by category) and `lib/components-api.ts` (props, variants, sub-components, defaults for every stable component). Look for a fit by *function*, not by name — a "pill", a "chip", a "tag" is a `Badge`; a "modal" is a `Dialog`; a "drawer" is a `Sheet`.
+2. **If one fits, use it as-is.** Adjust only the exposed props and variants documented in `components-api.ts`. Do **not** rewrite its markup, restyle its internals with overrides, wrap it purely to change its look, or copy its logic into a new file. If the visual change you need isn't reachable through the documented API, that's a system-level decision — raise it, don't work around it.
+3. **If nothing fits, stop and say so — explicitly.** Name the PRIZM components you checked and why each one doesn't fit *before* writing anything from scratch. Silently hand-rolling a replacement is a failure mode, not a fallback.
+4. **Duplicating existing functionality requires explicit sign-off.** If the developer asks for something PRIZM already provides (a bespoke button, a custom tab bar, a hand-styled dialog), flag the overlap and wait for an explicit "yes, build a new one" before proceeding.
+
+This rule covers templates and pack organisms too — check `/c3/templates`, the "Templates" section below, and the "Extension packs" section before scaffolding a new layout or a new domain organism. The JavaFX library has the same discipline: reach for `Prizm*` controls in `javafx/src/main/java/design/prizm/fx/controls/` before restyling stock JavaFX.
+
 ## How PRIZM is distributed
 
 PRIZM uses a **copy-paste model**. Components live in this repo and are designed to be copied into consuming projects, not installed as an npm package. This gives consuming teams full ownership of their component code.
@@ -303,6 +314,7 @@ The `pnpm audit:airgap` script scans the repo and CI fails if external reference
 
 ## What NOT to do
 
+- **Don't hand-roll UI that PRIZM already ships.** Search `llms.txt` and `lib/components-api.ts` first; if nothing fits, say so explicitly (naming what was checked) before writing anything from scratch. See "Reuse before you build" above.
 - Don't invent new tokens. If a semantic token is missing, raise it as a system-level decision.
 - Don't copy components from external libraries. PRIZM components are intentionally curated.
 - Don't bake product-specific copy into shared components. Components are neutral primitives.
