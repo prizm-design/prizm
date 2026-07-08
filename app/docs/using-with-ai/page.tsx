@@ -400,9 +400,9 @@ https://github.com/prizm-design/prizm.
 - \`lib/components-api.ts\` — full props / variants surface.
 - \`llms/<slug>.md\` — per-component context.
 - \`/docs/principles\` — HF/HCI rationale behind PRIZM's patterns.
-- Raw fetch pattern:
-  \`https://raw.githubusercontent.com/prizm-design/prizm/main/<path>\`.
-  If a fetch 404s, stop and tell me — don't fabricate a substitute.`}
+- The raw-file fetch pattern is documented in PRIZM.md and llms.txt — use it
+  to read current source rather than recalling it. If a fetch 404s, stop and
+  tell me — don't fabricate a substitute.`}
         />
       </div>
 
