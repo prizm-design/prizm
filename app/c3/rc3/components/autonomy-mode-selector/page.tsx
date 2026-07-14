@@ -6,6 +6,7 @@ import {
   type AutonomyScope,
   DEFAULT_RUNGS,
 } from "@/components/rc3/autonomy-mode-selector";
+import { Rc3JavaFxSection } from "@/components/rc3/javafx-section";
 import { RC3Swatch } from "@/components/rc3/swatch";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { CodeBlock } from "@/components/site/code-block";
@@ -42,6 +43,7 @@ export default function AutonomyModeSelectorPage() {
       <Behaviour />
       <Taxonomy />
       <A11y />
+      <Rc3JavaFxSection slug="autonomy-mode-selector" />
       <Usage />
     </div>
   );

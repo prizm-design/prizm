@@ -1,8 +1,24 @@
 import { CodeBlock } from "@/components/site/code-block";
 import { COMPONENTS } from "@/lib/components-registry";
 import { JAVAFX_API } from "@/lib/javafx-api";
+import { RC3_JAVAFX_API } from "@/lib/rc3-javafx-api";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+
+const RC3_EMBER = "oklch(71% 0.195 32)";
+
+// Friendly names for the RC3 organisms (RC3 has no components-registry entry).
+const RC3_NAMES: Record<string, string> = {
+  "safety-actions": "Safety actions",
+  "comms-health-strip": "Comms / health strip",
+  "autonomy-mode-selector": "Autonomy mode selector",
+  "video-tile": "Video tile",
+  "telemetry-hud": "Telemetry HUD",
+  "controller-interface": "Controller interface",
+  "platform-roster": "Platform roster",
+  "platform-detail": "Platform detail",
+  "perception-view": "Perception view",
+};
 
 export const metadata = {
   title: "JavaFX — thick-client C3",
@@ -17,6 +33,8 @@ export default function JavaFxPage() {
       <HowItWorks />
       <Setup />
       <Components />
+      <Rc3Organisms />
+      <Templates />
       <SeeItNatively />
       <Notes />
     </div>
@@ -154,6 +172,109 @@ function Components() {
             </div>
           </Link>
         ))}
+      </div>
+    </section>
+  );
+}
+
+function Rc3Organisms() {
+  // Data-driven from the RC3 JavaFX spec, in declared order. Adding an organism
+  // to rc3-javafx-api.ts surfaces it here automatically. Links to the RC3 docs
+  // page (RC3 organisms have no /components/<slug> entry).
+  const organisms = Object.entries(RC3_JAVAFX_API).map(([slug, api]) => ({
+    slug,
+    api,
+    name: RC3_NAMES[slug] ?? slug,
+  }));
+  return (
+    <section className="mt-16 md:mt-20">
+      <span className="inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.16em] text-fg-subtle">
+        <span
+          className="inline-block h-1.5 w-1.5 rounded-full"
+          style={{ backgroundColor: RC3_EMBER }}
+        />
+        Extension packs
+      </span>
+      <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
+        RC3 &mdash; Robotics &amp; Autonomy
+      </h2>
+      <p className="mt-4 max-w-3xl text-fg-muted">
+        The RC3 pack&rsquo;s signature organisms, ported natively. Overlay the Ember accent with{" "}
+        <code className="rounded bg-bg-muted px-1 py-0.5 font-mono text-xs">
+          PrizmTheme.Pack.RC3
+        </code>{" "}
+        &mdash; identity marks read as Ember with or without it. All nine signature organisms,
+        ported natively.
+      </p>
+      <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {organisms.map(({ slug, api, name }) => (
+          <Link
+            key={slug}
+            href={`/c3/rc3/components/${slug}`}
+            className="group rounded-lg border border-border bg-surface px-4 py-3 transition-colors hover:border-border-strong hover:bg-bg-subtle"
+          >
+            <div className="flex items-baseline justify-between gap-3">
+              <span className="font-mono text-sm font-semibold tracking-tight group-hover:text-accent">
+                {api.className}
+              </span>
+              <span className="shrink-0 text-xs text-fg-subtle">{name}</span>
+            </div>
+            <div className="mt-1 text-xs text-fg-subtle">
+              extends <span className="font-mono">{api.base.split(".").pop()}</span>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Templates() {
+  return (
+    <section className="mt-16 md:mt-20">
+      <span className="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-fg-subtle">
+        Templates
+      </span>
+      <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
+        The operator shell, native
+      </h2>
+      <p className="mt-4 max-w-3xl text-fg-muted">
+        The{" "}
+        <Link href="/c3/templates/app-shell" className="text-accent hover:underline">
+          C3 App Shell
+        </Link>{" "}
+        &mdash; the canonical starting point for a C3 application &mdash; ships for JavaFX as{" "}
+        <code className="rounded bg-bg-muted px-1 py-0.5 font-mono text-xs">PrizmAppShell</code>:
+        top bar, status ticker, icon rail with an App Store, slide panels, and a full-bleed map
+        canvas. Fill its slots rather than composing chrome from scratch.
+      </p>
+      <div className="mt-6 grid gap-8 md:grid-cols-2 md:items-start md:gap-12">
+        <div className="min-w-0">
+          <p className="text-sm text-fg-muted">
+            Launch it standalone, or hit{" "}
+            <strong className="font-medium text-fg">Launch App Shell</strong> in the gallery toolbar
+            (it inherits the gallery&rsquo;s theme + pack):
+          </p>
+          <div className="mt-3">
+            <CodeBlock
+              language="bash"
+              code={`cd javafx
+gradle runShell`}
+            />
+          </div>
+        </div>
+        <div className="rounded-lg border border-border bg-surface p-6">
+          <h3 className="font-semibold tracking-tight">Same anatomy as the web</h3>
+          <p className="mt-2 text-sm text-fg-muted">
+            {" "}
+            <code className="rounded bg-bg-muted px-1 py-0.5 font-mono text-xs">PrizmAppShell</code>{" "}
+            mirrors the web App Shell &mdash; see the{" "}
+            <Link href="/c3/templates/app-shell" className="text-accent hover:underline">
+              template page
+            </Link>{" "}
+            for the layout, regions, and the design principles it embodies.
+          </p>
+        </div>
       </div>
     </section>
   );

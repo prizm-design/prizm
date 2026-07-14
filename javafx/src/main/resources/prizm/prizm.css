@@ -48,7 +48,9 @@
 .button.solid:hover, .button.solid:armed { -fx-background-color: -color-accent-hover; }
 
 .button.outline {
-    -fx-background-color: -color-bg;
+    /* Web token is bg-transparent — let the surface behind show through so the
+       button doesn't read as a dark inset on lighter panels (e.g. App Store). */
+    -fx-background-color: transparent;
     -fx-text-fill: -color-fg;
     -fx-border-color: -color-border;
 }
@@ -477,10 +479,12 @@
     -fx-text-fill: -color-fg;
 }
 .prizm-badge--subtle { -fx-background-color: -color-bg-muted; -fx-text-fill: -color-fg-muted; }
-.prizm-badge--success { -fx-background-color: -color-success-subtle; -fx-text-fill: -color-success; }
-.prizm-badge--warning { -fx-background-color: -color-warning-subtle; -fx-text-fill: -color-warning; }
-.prizm-badge--danger { -fx-background-color: -color-danger-subtle; -fx-text-fill: -color-danger; }
-.prizm-badge--info { -fx-background-color: -color-info-subtle; -fx-text-fill: -color-info; }
+/* Status badges use the 15%-over-surface fill (see the generator's -badge
+   tokens); the -subtle tokens are the darker 10%-over-bg Alert tint. */
+.prizm-badge--success { -fx-background-color: -color-success-badge; -fx-text-fill: -color-success; }
+.prizm-badge--warning { -fx-background-color: -color-warning-badge; -fx-text-fill: -color-warning; }
+.prizm-badge--danger { -fx-background-color: -color-danger-badge; -fx-text-fill: -color-danger; }
+.prizm-badge--info { -fx-background-color: -color-info-badge; -fx-text-fill: -color-info; }
 
 /* ---- Avatar (mirror avatar.tsx) — circular muted background + initials.
    The square footprint + radius 100 yields a circle at any size. ---- */
@@ -1265,3 +1269,327 @@
     -fx-max-width: 10px;
     -fx-max-height: 10px;
 }
+
+/* ============================================================
+   PRIZM App Shell template (design.prizm.fx.templates.PrizmAppShell)
+   Solid surfaces only — liquid glass is web-only.
+   ============================================================ */
+
+.prizm-shell { -fx-background-color: -color-bg; }
+
+/* ---- Chrome icons (SVGPath) ---- */
+.prizm-shell-icon {
+    -fx-fill: transparent;
+    -fx-stroke: -color-fg-muted;
+    -fx-stroke-width: 1.5;
+    -fx-stroke-line-cap: round;
+    -fx-stroke-line-join: round;
+}
+.prizm-shell-brand-mark {
+    -fx-fill: transparent;
+    -fx-stroke: -color-accent;
+    -fx-stroke-width: 2;
+    -fx-stroke-line-join: round;
+}
+/* Icon carried inside a text button (e.g. the App Store Pin/Unpin toggle) —
+   outlined stroke that tracks the button's text colour. */
+.prizm-shell-btn-icon {
+    -fx-fill: transparent;
+    -fx-stroke: -color-fg;
+    -fx-stroke-width: 1.5;
+    -fx-stroke-line-cap: round;
+    -fx-stroke-line-join: round;
+}
+/* Pinned Pin/Unpin toggle goes accent — text + icon (web: text-accent). Two
+   class selectors to override .button.outline's text fill; relies on source
+   order after the .button.outline rule above for the tie-break. */
+.button.prizm-shell-pin--active { -fx-text-fill: -color-accent; }
+.prizm-shell-pin--active .prizm-shell-btn-icon { -fx-stroke: -color-accent; }
+/* Chrome icon buttons stay borderless — no persistent focus ring on click. */
+.prizm-shell-icon-btn, .prizm-shell-icon-btn:focused { -fx-border-color: transparent; }
+
+/* ---- Top bar ---- */
+.prizm-shell-topbar {
+    -fx-background-color: -color-surface;
+    -fx-border-color: transparent transparent -color-border transparent;
+    -fx-border-width: 0 0 1 0;
+}
+.prizm-shell-brand-text {
+    -fx-text-fill: -color-fg;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+}
+.prizm-shell-brand-sub {
+    -fx-text-fill: -color-fg-subtle;
+    -fx-font-family: "JetBrains Mono", monospace;
+    -fx-font-size: 10px;
+}
+.prizm-shell-avatar-btn { -fx-cursor: hand; }
+.prizm-shell-duty-dot {
+    /* Surface ring (outer) + success dot (inset 2px) — mirrors the web's
+       ring-2 ring-surface, which sits outside the dot rather than shrinking it. */
+    -fx-background-color: -color-surface, -color-success;
+    -fx-background-insets: 0, 2;
+    -fx-background-radius: 999, 999;
+}
+
+/* ---- Status ticker ---- */
+.prizm-shell-ticker {
+    -fx-background-color: -color-bg-subtle;
+    -fx-border-color: transparent transparent -color-border transparent;
+    -fx-border-width: 0 0 1 0;
+}
+.prizm-shell-metric-label {
+    -fx-text-fill: -color-fg-subtle;
+    -fx-font-size: 12px;
+}
+.prizm-shell-metric-value {
+    -fx-text-fill: -color-fg;
+    -fx-font-family: "JetBrains Mono", monospace;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+.prizm-shell-metric-danger {
+    -fx-text-fill: -color-danger;
+    -fx-font-family: "JetBrains Mono", monospace;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+.prizm-shell-clock {
+    -fx-text-fill: -color-fg;
+    -fx-font-family: "JetBrains Mono", monospace;
+    -fx-font-size: 12px;
+}
+.prizm-shell-clock-muted {
+    -fx-text-fill: -color-fg-muted;
+    -fx-font-family: "JetBrains Mono", monospace;
+    -fx-font-size: 12px;
+}
+.prizm-shell-clock-ex {
+    -fx-text-fill: -color-warning;
+    -fx-font-family: "JetBrains Mono", monospace;
+    -fx-font-size: 12px;
+}
+
+/* ---- Icon rail ---- */
+.prizm-shell-rail {
+    -fx-background-color: -color-surface;
+    -fx-border-color: transparent -color-border transparent transparent;
+    -fx-border-width: 0 1 0 0;
+}
+.prizm-shell-rail-divider {
+    -fx-background-color: -color-border;
+    -fx-max-width: 32;
+}
+.prizm-shell-rail-item {
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+.prizm-shell-rail-item:hover { -fx-background-color: -color-bg-muted; }
+.prizm-shell-rail-item:active { -fx-background-color: -color-bg-muted; }
+.prizm-shell-rail-icon {
+    -fx-fill: transparent;
+    -fx-stroke: -color-fg-muted;
+    -fx-stroke-width: 1.5;
+    -fx-stroke-line-cap: round;
+    -fx-stroke-line-join: round;
+}
+.prizm-shell-rail-item:hover .prizm-shell-rail-icon { -fx-stroke: -color-fg; }
+.prizm-shell-rail-item:active .prizm-shell-rail-icon { -fx-stroke: -color-accent; }
+.prizm-shell-rail-badge {
+    -fx-font-family: "JetBrains Mono", monospace;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 3 0 3;
+    -fx-background-radius: 999;
+    /* 16px circle for a single digit (matches the web h-4 min-w-4). */
+    -fx-min-width: 16;
+    -fx-min-height: 16;
+    -fx-pref-height: 16;
+    -fx-alignment: center;
+    -fx-content-display: text-only;
+}
+.prizm-shell-rail-badge--danger { -fx-background-color: -color-danger; -fx-text-fill: -color-danger-fg; }
+.prizm-shell-rail-badge--warning { -fx-background-color: -color-warning; -fx-text-fill: -color-fg; }
+.prizm-shell-rail-badge--info { -fx-background-color: -color-info; -fx-text-fill: -color-fg; }
+
+/* ---- Map placeholder ---- */
+.prizm-shell-map { -fx-background-color: -color-bg; }
+.prizm-shell-map-label {
+    -fx-text-fill: -color-fg-subtle;
+    -fx-font-family: "JetBrains Mono", monospace;
+    -fx-font-size: 10px;
+    -fx-background-color: -color-bg;
+    -fx-border-color: -color-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-padding: 4 8 4 8;
+}
+
+/* ---- Panels (slide + right) ---- */
+.prizm-shell-panel {
+    -fx-background-color: -color-surface;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.35), 16, 0, 0, 4);
+}
+
+/* Thin, subtle scrollbar for panel scroll areas — no chunky Modena track or
+   arrow buttons (mirrors .prizm-command__scroll). */
+.prizm-shell-scroll, .prizm-shell-scroll > .viewport { -fx-background-color: transparent; }
+.prizm-shell-scroll .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 8;
+    -fx-padding: 0;
+}
+.prizm-shell-scroll .scroll-bar:vertical .track,
+.prizm-shell-scroll .scroll-bar:vertical .track-background {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+.prizm-shell-scroll .scroll-bar:vertical .thumb {
+    -fx-background-color: -color-border;
+    -fx-background-radius: 4;
+    -fx-background-insets: 1;
+}
+.prizm-shell-scroll .scroll-bar:vertical .thumb:hover { -fx-background-color: -color-fg-subtle; }
+.prizm-shell-scroll .scroll-bar:vertical .increment-button,
+.prizm-shell-scroll .scroll-bar:vertical .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-pref-height: 0;
+}
+.prizm-shell-scroll .scroll-bar:vertical .increment-arrow,
+.prizm-shell-scroll .scroll-bar:vertical .decrement-arrow {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-shape: " ";
+}
+.prizm-shell-panel-header {
+    -fx-border-color: transparent transparent -color-border transparent;
+    -fx-border-width: 0 0 1 0;
+}
+.prizm-shell-panel-title {
+    -fx-text-fill: -color-fg;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+.prizm-shell-panel-body { -fx-text-fill: -color-fg-muted; -fx-font-size: 13px; }
+.prizm-shell-panel-footer {
+    -fx-border-color: -color-border transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+}
+.prizm-shell-panel-action { -fx-text-fill: -color-fg-muted; -fx-font-size: 11px; -fx-cursor: hand; }
+.prizm-shell-panel-action:hover { -fx-text-fill: -color-fg; }
+.prizm-shell-panel-action-danger { -fx-text-fill: -color-danger; -fx-font-size: 11px; -fx-cursor: hand; }
+
+/* ---- Notification filter chips ---- */
+.prizm-shell-notif-filters {
+    -fx-border-color: transparent transparent -color-border transparent;
+    -fx-border-width: 0 0 1 0;
+}
+.prizm-shell-filter-chip {
+    -fx-text-fill: -color-fg-muted;
+    -fx-font-size: 12px;
+    -fx-padding: 2 10 2 10;
+    -fx-background-radius: 999;
+    -fx-cursor: hand;
+}
+.prizm-shell-filter-chip:hover { -fx-background-color: -color-bg-subtle; -fx-text-fill: -color-fg; }
+.prizm-shell-filter-chip--active { -fx-background-color: -color-bg-muted; -fx-text-fill: -color-fg; }
+
+/* ---- Notification rows ---- */
+.prizm-shell-notif-row {
+    -fx-border-color: transparent transparent -color-border transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-cursor: hand;
+}
+.prizm-shell-notif-row:hover { -fx-background-color: -color-bg-muted; }
+.prizm-shell-sev-icon {
+    -fx-fill: transparent;
+    -fx-stroke-width: 1.5;
+    -fx-stroke-line-cap: round;
+    -fx-stroke-line-join: round;
+}
+.prizm-shell-sev--danger { -fx-stroke: -color-danger; }
+.prizm-shell-sev--warning { -fx-stroke: -color-warning; }
+.prizm-shell-sev--info { -fx-stroke: -color-info; }
+.prizm-shell-sev--success { -fx-stroke: -color-success; }
+.prizm-shell-unread-dot { -fx-background-color: -color-accent; -fx-background-radius: 999; }
+.prizm-shell-notif-title { -fx-text-fill: -color-fg; -fx-font-weight: bold; -fx-font-size: 13px; }
+.prizm-shell-notif-title-read { -fx-text-fill: -color-fg-muted; -fx-font-size: 13px; }
+.prizm-shell-notif-desc { -fx-text-fill: -color-fg-muted; -fx-font-size: 12px; }
+.prizm-shell-notif-time {
+    -fx-text-fill: -color-fg-subtle;
+    -fx-font-family: "JetBrains Mono", monospace;
+    -fx-font-size: 10px;
+}
+.prizm-shell-notif-empty { -fx-text-fill: -color-fg-subtle; -fx-font-size: 12px; }
+.prizm-shell-notif-dismiss {
+    -fx-fill: transparent;
+    -fx-stroke: -color-fg-muted;
+    -fx-stroke-width: 1.5;
+    -fx-stroke-line-cap: round;
+}
+.prizm-shell-notif-dismiss-box { -fx-opacity: 0; -fx-cursor: hand; -fx-padding: 2; }
+.prizm-shell-notif-row:hover .prizm-shell-notif-dismiss-box { -fx-opacity: 1; }
+
+/* ---- Workspace panel ---- */
+.prizm-shell-user-card {
+    -fx-border-color: transparent transparent -color-border transparent;
+    -fx-border-width: 0 0 1 0;
+}
+.prizm-shell-user-name { -fx-text-fill: -color-fg; -fx-font-weight: bold; -fx-font-size: 14px; }
+.prizm-shell-user-role { -fx-text-fill: -color-fg-muted; -fx-font-size: 12px; }
+.prizm-shell-section-heading {
+    -fx-text-fill: -color-fg-subtle;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 12 6 12;
+}
+/* Workspace switcher rows are PrizmRadioGroupItems (real radio primitive);
+   the radio dot is the marker, the row content rides as the item graphic. */
+.prizm-shell-ws-radio {
+    -fx-cursor: hand;
+    -fx-padding: 10 12 10 12;
+}
+.prizm-shell-ws-radio:hover { -fx-background-color: -color-bg-subtle; }
+.prizm-shell-ws-radio:selected { -fx-background-color: -color-bg-muted; }
+.prizm-shell-ws-radio:selected .prizm-shell-ws-name { -fx-font-weight: bold; }
+.prizm-shell-ws-tag {
+    -fx-font-size: 10px;
+    -fx-padding: 1 6 1 6;
+}
+/* Header count badges ("3 / 5 pinned", "3 unread") — monospace to match the
+   web's font-mono text-[10px] (px-1.5 py-0). */
+.prizm-shell-count-tag {
+    -fx-font-family: "JetBrains Mono", monospace;
+    -fx-font-size: 10px;
+    -fx-padding: 0 6 0 6;
+}
+.prizm-shell-ws-name { -fx-text-fill: -color-fg; -fx-font-size: 13px; }
+.prizm-shell-ws-detail { -fx-text-fill: -color-fg-muted; -fx-font-size: 12px; }
+
+/* ---- App Store panel ---- */
+.prizm-shell-appstore-row {
+    -fx-border-color: transparent transparent -color-border transparent;
+    -fx-border-width: 0 0 1 0;
+}
+/* Installed-but-unpinned rows launch on click; give them the same hover
+   affordance as notification rows (web: hover:bg-bg-muted/40 + cursor). */
+.prizm-shell-appstore-row--launchable { -fx-cursor: hand; }
+.prizm-shell-appstore-row--launchable:hover { -fx-background-color: -color-bg-muted; }
+.prizm-shell-appstore-iconbox {
+    -fx-background-color: -color-bg-muted;
+    -fx-background-radius: 6;
+}
+.prizm-shell-appstore-icon {
+    -fx-fill: transparent;
+    -fx-stroke: -color-fg-muted;
+    -fx-stroke-width: 1.5;
+    -fx-stroke-line-cap: round;
+    -fx-stroke-line-join: round;
+}
+.prizm-shell-appstore-name { -fx-text-fill: -color-fg; -fx-font-weight: bold; -fx-font-size: 13px; }
+.prizm-shell-appstore-desc { -fx-text-fill: -color-fg-muted; -fx-font-size: 12px; }
+.prizm-shell-appstore-hint { -fx-text-fill: -color-fg-muted; -fx-font-size: 11px; }
+.prizm-shell-appstore-empty { -fx-text-fill: -color-fg-subtle; -fx-font-size: 12px; }

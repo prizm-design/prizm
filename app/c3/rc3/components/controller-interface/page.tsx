@@ -4,6 +4,7 @@ import {
   ControllerInterface,
   type ControllerInterfaceProps,
 } from "@/components/rc3/controller-interface";
+import { Rc3JavaFxSection } from "@/components/rc3/javafx-section";
 import { RC3Swatch } from "@/components/rc3/swatch";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { CodeBlock } from "@/components/site/code-block";
@@ -67,6 +68,7 @@ export default function ControllerInterfacePage() {
       <Wiring />
       <Behaviour />
       <A11y />
+      <Rc3JavaFxSection slug="controller-interface" />
       <Usage />
     </div>
   );

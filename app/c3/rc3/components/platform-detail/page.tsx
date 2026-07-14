@@ -1,6 +1,7 @@
 "use client";
 
 import { CapacityBar, PipCount, StateDot, StateText } from "@/components/rc3/indicators";
+import { Rc3JavaFxSection } from "@/components/rc3/javafx-section";
 import { PlatformDetail, type PlatformDetailProps } from "@/components/rc3/platform-detail";
 import { RC3Swatch } from "@/components/rc3/swatch";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
@@ -173,6 +174,7 @@ export default function PlatformDetailPage() {
       <Wiring />
       <Behaviour />
       <A11y />
+      <Rc3JavaFxSection slug="platform-detail" />
       <Usage />
     </div>
   );

@@ -99,5 +99,9 @@ public final class PrizmTheme {
             sheets.add(url("/prizm/themes/rc3-" + m + ".css"));
         }
         sheets.add(url("/prizm/prizm.css"));
+        // RC3 organism styling. Always loaded — its rules only match .rc3-*
+        // classes, so it's inert unless an RC3 organism is on the scene, and
+        // organisms then render correctly whether or not the pack accent is on.
+        sheets.add(url("/prizm/rc3.css"));
     }
 }

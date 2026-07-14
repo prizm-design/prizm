@@ -1,5 +1,6 @@
 "use client";
 
+import { Rc3JavaFxSection } from "@/components/rc3/javafx-section";
 import { RC3Swatch } from "@/components/rc3/swatch";
 import { TelemetryHud, type TelemetryHudProps } from "@/components/rc3/telemetry-hud";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
@@ -100,6 +101,7 @@ export default function TelemetryHudPage() {
       <Wiring />
       <Behaviour />
       <A11y />
+      <Rc3JavaFxSection slug="telemetry-hud" />
       <Usage />
     </div>
   );
@@ -232,7 +234,7 @@ function Viewport() {
         </g>
       </svg>
       <span
-        className="absolute left-1/2 bottom-3 -translate-x-1/2 font-mono text-[10px] uppercase tracking-[0.14em] text-fg-subtle"
+        className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 font-mono text-[10px] uppercase tracking-[0.14em] text-fg-subtle lg:block"
         aria-hidden="true"
       >
         Viewport · map / 3D / video

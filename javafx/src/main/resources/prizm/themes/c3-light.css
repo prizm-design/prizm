@@ -23,10 +23,14 @@
     -color-info: #0069a8;
     -color-info-subtle: #dce9f2;
     -color-info-border: #abcce1;
+    -color-info-badge: #d9e9f2;
     -color-success-subtle: #dcebe6;
     -color-success-border: #abd4bf;
+    -color-success-badge: #d9ece1;
     -color-warning-subtle: #eee6e1;
     -color-warning-border: #e3c4af;
+    -color-warning-badge: #f5e4d9;
     -color-danger-subtle: #efdee2;
     -color-danger-border: #e5adb1;
+    -color-danger-badge: #f6d9da;
 }

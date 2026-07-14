@@ -1,5 +1,6 @@
 "use client";
 
+import { Rc3JavaFxSection } from "@/components/rc3/javafx-section";
 import { type PerceptionScene, PerceptionView } from "@/components/rc3/perception-view";
 import { PerceptionViewDemo } from "@/components/rc3/perception-view-demo";
 import { RC3Swatch } from "@/components/rc3/swatch";
@@ -23,6 +24,7 @@ export default function PerceptionViewPage() {
       <Wiring />
       <Behaviour />
       <A11y />
+      <Rc3JavaFxSection slug="perception-view" />
       <Usage />
     </div>
   );

@@ -187,6 +187,7 @@ for (const mode of ["light", "dark"] as const) {
   // can't alpha-mix a looked-up colour, so we precompute solid hexes here.
   const byToken = Object.fromEntries(c3Colours.map((c) => [c.token, c.hex]));
   const bgRgb = hexToRgb(byToken.bg);
+  const surfaceRgb = hexToRgb(byToken.surface);
   for (const status of ["info", "success", "warning", "danger"]) {
     const sRgb = hexToRgb(byToken[status]);
     c3Colours.push({
@@ -199,6 +200,15 @@ for (const mode of ["light", "dark"] as const) {
       token: `${status}-border`,
       hex: toHex(compositeOver(sRgb, bgRgb, 0.3)),
       source: `${status} @30% over bg`,
+      clamped: false,
+    });
+    // Badge fill — the web Badge tints the status colour at 15% (badge.tsx),
+    // and badges sit on surfaces (rows, top bar), not the app background. So
+    // composite over surface, not bg, or the pill reads darker than its panel.
+    c3Colours.push({
+      token: `${status}-badge`,
+      hex: toHex(compositeOver(sRgb, surfaceRgb, 0.15)),
+      source: `${status} @15% over surface`,
       clamped: false,
     });
   }

@@ -48,8 +48,12 @@ Requires a **JDK 21** that Gradle can detect. On macOS the simplest is
 
 ```
 gradle run        # launch the component gallery (showcase of every control)
+gradle runShell   # launch the C3 App Shell template full-window
 gradle build      # compile the library
 ```
+
+The gallery's toolbar also has a **Launch App Shell** button that opens the same
+shell in a new stage, inheriting the gallery's current theme + pack.
 
 The **gallery** (`design.prizm.fx.gallery.PrizmGallery`) is the visual reference
 for the library, since the docs site can't render JavaFX — it shows every

@@ -1,0 +1,769 @@
+/* ============================================================================
+ * PRIZM — RC3 (Robotics & Autonomy) extension-pack organism styling.
+ *
+ * Hand-authored, parallel to prizm.css. Consumes the same looked-up -color-*
+ * tokens; the Ember signature hue is inlined in the Java organisms (see Rc3.java)
+ * for identity marks, exactly as the web inlines it. Always on the classpath —
+ * these rules only match .rc3-* classes, so they are inert unless an RC3 organism
+ * is on the scene.
+ *
+ * Scope: C3 + RC3 only. Enterprise is web-only.
+ * ============================================================================ */
+
+/* ----- Safety actions --------------------------------------------------- */
+
+.rc3-safety-primary {
+    -fx-font-weight: bold;
+}
+
+.rc3-safety-primary--armed {
+    -fx-effect: dropshadow(gaussian, -color-danger, 10, 0.35, 0, 0);
+}
+
+.rc3-safety-cancel {
+    -fx-background-color: -color-surface;
+    -fx-border-color: -color-border;
+    -fx-border-width: 1;
+    -fx-background-radius: 1em;
+    -fx-border-radius: 1em;
+    -fx-min-width: 20;
+    -fx-min-height: 20;
+    -fx-max-width: 20;
+    -fx-max-height: 20;
+    -fx-padding: 0;
+    -fx-cursor: hand;
+}
+
+.rc3-safety-cancel-x {
+    -fx-stroke: -color-fg;
+}
+
+.rc3-safety-cancel:hover {
+    -fx-background-color: -color-bg-muted;
+}
+
+/* ----- Shared helpers --------------------------------------------------- */
+
+.rc3-mono {
+    -fx-font-family: "JetBrains Mono", monospace;
+    -fx-font-size: 12px;
+    -fx-text-fill: -color-fg;
+}
+
+/* Compounded with .rc3-mono so an explicit tone always wins over a
+ * component's own single-class text-fill (e.g. .rc3-comms-id). */
+.rc3-tone-success, .rc3-mono.rc3-tone-success { -fx-text-fill: -color-success; }
+.rc3-tone-warning, .rc3-mono.rc3-tone-warning { -fx-text-fill: -color-warning; }
+.rc3-tone-danger,  .rc3-mono.rc3-tone-danger  { -fx-text-fill: -color-danger; }
+.rc3-tone-fg,      .rc3-mono.rc3-tone-fg      { -fx-text-fill: -color-fg; }
+.rc3-tone-muted,   .rc3-mono.rc3-tone-muted   { -fx-text-fill: -color-fg-muted; }
+.rc3-tone-subtle,  .rc3-mono.rc3-tone-subtle  { -fx-text-fill: -color-fg-subtle; }
+
+/* ----- Comms / health strip -------------------------------------------- */
+
+.rc3-comms-strip {
+    -fx-background-color: -color-surface;
+    -fx-border-color: -color-border;
+    -fx-border-width: 1;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-padding: 10 16 10 16;
+}
+
+.rc3-comms-strip--empty {
+    -fx-background-color: -color-bg-muted;
+}
+
+.rc3-comms-empty {
+    -fx-text-fill: -color-fg-subtle;
+}
+
+.rc3-comms-id {
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-fg;
+}
+
+.rc3-comms-meta {
+    -fx-text-fill: -color-fg-muted;
+}
+
+.rc3-comms-link {
+    -fx-font-weight: bold;
+}
+
+.rc3-comms-divider {
+    -fx-background-color: -color-border;
+}
+
+.rc3-signal-bar {
+    -fx-background-radius: 1;
+    -fx-background-color: -color-border;
+}
+
+.rc3-signal-bar--off {
+    -fx-background-color: -color-border;
+}
+
+.rc3-signal-bar.rc3-tone-success { -fx-background-color: -color-success; }
+.rc3-signal-bar.rc3-tone-warning { -fx-background-color: -color-warning; }
+.rc3-signal-bar.rc3-tone-danger  { -fx-background-color: -color-danger; }
+
+.rc3-comms-pip {
+    -fx-background-radius: 1em;
+}
+
+.rc3-comms-pip.rc3-tone-success { -fx-background-color: -color-success; }
+.rc3-comms-pip.rc3-tone-warning { -fx-background-color: -color-warning; }
+.rc3-comms-pip.rc3-tone-danger  { -fx-background-color: -color-danger; }
+
+/* ----- Autonomy mode selector ------------------------------------------ */
+
+.rc3-autonomy--framed {
+    -fx-background-color: -color-surface;
+    -fx-border-color: -color-border;
+    -fx-border-width: 1;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+}
+
+.rc3-autonomy--framed.rc3-autonomy--armed {
+    -fx-border-color: -color-border-strong;
+    -fx-effect: dropshadow(gaussian, #ff684d, 6, 0.3, 0, 0);
+}
+
+.rc3-autonomy-header {
+    -fx-padding: 8 16 8 16;
+    -fx-border-color: transparent transparent -color-border transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.rc3-autonomy-caption {
+    -fx-font-size: 10px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -color-fg-muted;
+}
+
+.rc3-autonomy-toggle {
+    -fx-background-color: transparent;
+    -fx-padding: 2 4 2 4;
+    -fx-cursor: hand;
+}
+
+.rc3-autonomy-chevron {
+    -fx-stroke: -color-fg-muted;
+    -fx-fill: transparent;
+}
+
+.rc3-autonomy-toggle:hover .rc3-autonomy-chevron {
+    -fx-stroke: -color-fg;
+}
+
+.rc3-autonomy-active-row {
+    -fx-padding: 12 16 12 16;
+}
+
+.rc3-autonomy-rail {
+    -fx-padding: 12;
+}
+
+.rc3-autonomy-rail--divided {
+    -fx-border-color: -color-border transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+}
+
+.rc3-autonomy-spine {
+    -fx-background-color: -color-border-strong;
+}
+
+.rc3-autonomy-tick {
+    -fx-background-color: -color-border-strong;
+}
+
+.rc3-autonomy-rung {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+    -fx-border-width: 0;
+    -fx-padding: 0 4 0 4;
+    -fx-cursor: hand;
+}
+
+.rc3-autonomy-rung:focused {
+    -fx-background-color: transparent;
+}
+
+.rc3-autonomy-rung:hover {
+    -fx-background-color: -color-bg-muted;
+}
+
+.rc3-autonomy .rc3-autonomy-rung:disabled {
+    -fx-opacity: 1.0;
+    -fx-cursor: default;
+}
+
+.rc3-autonomy-rung:hover .rc3-autonomy-label.rc3-tone-muted {
+    -fx-text-fill: -color-fg;
+}
+
+.rc3-autonomy-index {
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+}
+
+.rc3-autonomy-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+}
+
+.rc3-autonomy-authority {
+    -fx-font-size: 10px;
+}
+
+/* ----- Video tile ------------------------------------------------------- */
+
+.rc3-video-tile {
+    -fx-background-color: -color-bg;
+    -fx-border-color: -color-border;
+    -fx-border-width: 1;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    /* inset the clipped inner layer inside the border (see Rc3VideoTile) */
+    -fx-padding: 1;
+}
+
+.rc3-video-pill {
+    -fx-background-color: -color-bg;
+    -fx-background-radius: 4;
+    -fx-padding: 4 8 4 8;
+    -fx-opacity: 0.92;
+}
+
+.rc3-video-source {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-fg;
+}
+
+.rc3-video-status {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+}
+
+.rc3-video-telem {
+    -fx-font-size: 10px;
+    -fx-text-fill: -color-fg;
+}
+
+.rc3-video-source-dot {
+    -fx-background-color: #ff684d; /* Ember — identity */
+    -fx-background-radius: 1em;
+}
+
+.rc3-video-rec-dot {
+    -fx-background-color: -color-danger;
+    -fx-background-radius: 1em;
+}
+
+.rc3-video-lost-overlay {
+    -fx-background-color: -color-bg;
+    -fx-opacity: 0.9;
+}
+
+/* Docs-only placeholder standing in for the consumer's video feed. */
+.rc3-video-placeholder {
+    -fx-background-color: linear-gradient(to bottom right, derive(-color-bg, 12%), -color-bg 65%, derive(-color-bg, -20%));
+}
+
+.rc3-video-placeholder-label {
+    -fx-font-size: 10px;
+    -fx-text-fill: -color-fg-subtle;
+}
+
+/* ----- Telemetry HUD ---------------------------------------------------- */
+
+.rc3-divider {
+    -fx-background-color: -color-border;
+}
+
+.rc3-telemetry-strip {
+    -fx-background-color: -color-surface;
+    -fx-border-color: -color-border;
+    -fx-border-width: 1;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-padding: 8 12 8 12;
+}
+
+.rc3-telem-label {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-fg-muted;
+}
+
+.rc3-telem-value {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.rc3-telem-platform {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-fg;
+}
+
+/* Docs-only viewport standing in for the map / 3D / video behind FRAME mode. */
+.rc3-frame-viewport {
+    -fx-background-color: linear-gradient(to bottom right, derive(-color-bg, 12%), -color-bg 65%, derive(-color-bg, -20%));
+    -fx-border-color: -color-border;
+    -fx-border-width: 1;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+}
+
+.rc3-telem-stale {
+    -fx-font-size: 9px;
+    -fx-font-weight: bold;
+    -fx-background-color: -color-danger-badge;
+    -fx-text-fill: -color-danger;
+    -fx-background-radius: 3;
+    -fx-border-radius: 3;
+    -fx-padding: 1 4 1 4;
+}
+
+/* ----- Controller interface -------------------------------------------- */
+
+.rc3-controller {
+    -fx-background-color: -color-surface;
+    -fx-border-color: -color-border;
+    -fx-border-width: 1;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-padding: 12 16 12 16;
+}
+
+.rc3-ctrl-caption {
+    -fx-font-size: 9px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-fg-muted;
+}
+
+.rc3-ctrl-readout {
+    -fx-font-size: 9px;
+    -fx-text-fill: -color-fg-subtle;
+}
+
+.rc3-stick-well {
+    -fx-fill: -color-bg;
+    -fx-stroke: -color-border;
+    -fx-stroke-width: 1;
+}
+
+.rc3-stick-dead {
+    -fx-fill: transparent;
+    -fx-stroke: -color-border;
+    -fx-stroke-width: 0.75;
+}
+
+.rc3-stick-line {
+    -fx-stroke: -color-fg-muted;
+    -fx-stroke-width: 0.75;
+}
+
+.rc3-stick-dot {
+    -fx-fill: -color-fg;
+}
+
+.rc3-trigger-track {
+    -fx-background-color: -color-bg;
+    -fx-border-color: -color-border;
+    -fx-border-width: 1;
+    -fx-background-radius: 2;
+    -fx-border-radius: 2;
+}
+
+.rc3-trigger-fill {
+    -fx-background-color: -color-fg-muted;
+}
+
+.rc3-ctrl-btn {
+    -fx-background-color: -color-bg;
+    -fx-border-color: -color-border;
+    -fx-border-width: 1;
+    -fx-background-radius: 3;
+    -fx-border-radius: 3;
+    -fx-padding: 4 8 4 8;
+}
+
+.rc3-ctrl-btn .rc3-ctrl-btn-label {
+    -fx-text-fill: -color-fg-muted;
+}
+
+.rc3-ctrl-btn--pressed {
+    -fx-background-color: -color-fg;
+    -fx-border-color: -color-fg;
+}
+
+.rc3-ctrl-btn--pressed .rc3-ctrl-btn-label,
+.rc3-ctrl-btn--pressed .rc3-ctrl-btn-binding {
+    -fx-text-fill: -color-bg;
+}
+
+.rc3-ctrl-btn-label {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+}
+
+.rc3-ctrl-btn-binding {
+    -fx-font-size: 8px;
+    -fx-text-fill: -color-fg-subtle;
+}
+
+/* ----- Platform roster -------------------------------------------------- */
+
+.rc3-roster {
+    -fx-background-color: -color-surface;
+    -fx-border-color: -color-border;
+    -fx-border-width: 1;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+}
+
+.rc3-roster--fill {
+    -fx-min-height: 0;
+}
+
+.rc3-roster-header {
+    -fx-background-color: -color-bg-subtle;
+    -fx-border-color: transparent transparent -color-border transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-background-radius: 5 5 0 0; /* follow the rounded top corners */
+    -fx-padding: 8 16 8 16;
+}
+
+.rc3-roster-label {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-fg-muted;
+}
+
+.rc3-roster-row {
+    -fx-background-color: transparent;
+}
+
+.rc3-roster-row--divided {
+    -fx-border-color: -color-border transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+}
+
+.rc3-roster-row--active {
+    -fx-background-color: -color-bg-muted;
+}
+
+.rc3-roster-row--interactive {
+    -fx-cursor: hand;
+}
+
+.rc3-roster-row--interactive:hover {
+    -fx-background-color: -color-bg-muted;
+}
+
+.rc3-roster-content {
+    -fx-padding: 10 12 10 12;
+}
+
+.rc3-roster-bar {
+    -fx-background-color: transparent;
+}
+
+.rc3-roster-bar--active {
+    -fx-background-color: #ff684d; /* Ember — identity */
+}
+
+.rc3-roster-dot {
+    -fx-background-color: -color-fg-subtle;
+    -fx-background-radius: 1em;
+}
+
+.rc3-roster-dot--active {
+    -fx-background-color: #ff684d; /* Ember — identity */
+    -fx-background-radius: 1em;
+}
+
+.rc3-roster-id {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-fg;
+}
+
+.rc3-roster-class {
+    -fx-font-size: 10px;
+    -fx-text-fill: -color-fg-subtle;
+}
+
+.rc3-roster-autonomy {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-fg-muted;
+}
+
+.rc3-roster-batt {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.rc3-roster-link {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+}
+
+/* ----- Platform detail -------------------------------------------------- */
+
+.rc3-detail {
+    -fx-background-color: -color-surface;
+    -fx-border-color: -color-border;
+    -fx-border-width: 1;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+}
+
+.rc3-detail--fill {
+    -fx-min-height: 0;
+}
+
+.rc3-detail-header {
+    -fx-background-color: -color-bg-subtle;
+    -fx-border-color: transparent transparent -color-border transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-background-radius: 5 5 0 0; /* follow the rounded top corners */
+    -fx-padding: 12 16 12 16;
+}
+
+.rc3-detail-id {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-fg;
+}
+
+.rc3-detail-class {
+    -fx-font-size: 10px;
+    -fx-text-fill: -color-fg-subtle;
+}
+
+.rc3-detail-autonomy {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-fg-muted;
+}
+
+.rc3-detail-section {
+    -fx-padding: 12 16 12 16;
+}
+
+.rc3-detail-section--divided {
+    -fx-border-color: -color-border transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+}
+
+.rc3-detail-section-label {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-fg-subtle;
+}
+
+.rc3-detail-row-label {
+    -fx-font-size: 10px;
+    -fx-text-fill: -color-fg-muted;
+}
+
+.rc3-detail-value {
+    -fx-font-size: 12px;
+}
+
+.rc3-detail-footer {
+    -fx-border-color: -color-border transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+    -fx-background-radius: 0 0 5 5; /* follow the rounded bottom corners */
+    -fx-padding: 8 16 8 16;
+}
+
+.rc3-batt-body {
+    -fx-border-color: -color-border-strong;
+    -fx-border-width: 1;
+    -fx-background-radius: 2;
+    -fx-border-radius: 2;
+    -fx-padding: 1;
+}
+
+.rc3-batt-fill {
+    -fx-background-radius: 1;
+}
+
+.rc3-batt-fill--success { -fx-background-color: -color-success; }
+.rc3-batt-fill--warning { -fx-background-color: -color-warning; }
+.rc3-batt-fill--danger  { -fx-background-color: -color-danger; }
+
+.rc3-batt-nub {
+    -fx-background-color: -color-border-strong;
+    -fx-background-radius: 0 2 2 0;
+}
+
+.rc3-heading-dial {
+    -fx-fill: -color-fg-muted;
+    -fx-stroke: -color-fg-muted;
+    -fx-stroke-width: 0.75;
+}
+
+/* ----- Indicator alphabet ---------------------------------------------- */
+
+.rc3-pip {
+    -fx-background-radius: 1em;
+}
+
+.rc3-pip--empty   { -fx-background-color: -color-border-strong; }
+.rc3-pip--success { -fx-background-color: -color-success; }
+.rc3-pip--warning { -fx-background-color: -color-warning; }
+.rc3-pip--danger  { -fx-background-color: -color-danger; }
+.rc3-pip--muted   { -fx-background-color: -color-fg-muted; }
+
+.rc3-statedot {
+    -fx-background-radius: 1em;
+}
+
+.rc3-statedot--active  { -fx-background-color: -color-success; }
+.rc3-statedot--standby { -fx-background-color: -color-warning; }
+.rc3-statedot--off     { -fx-background-color: -color-border-strong; }
+
+.rc3-statetext {
+    -fx-font-weight: 600;
+}
+
+.rc3-capacity-track {
+    -fx-border-color: -color-border-strong;
+    -fx-border-width: 1;
+    -fx-background-radius: 2;
+    -fx-border-radius: 2;
+}
+
+.rc3-capacity-fill--success { -fx-background-color: -color-success; }
+.rc3-capacity-fill--warning { -fx-background-color: -color-warning; }
+.rc3-capacity-fill--danger  { -fx-background-color: -color-danger; }
+.rc3-capacity-fill--muted   { -fx-background-color: -color-fg-muted; }
+
+/* ----- Perception view -------------------------------------------------- */
+
+.rc3-perception {
+    -fx-background-color: -color-bg;
+    -fx-border-color: -color-border;
+    -fx-border-width: 1;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+}
+
+.rc3-perc-panel {
+    -fx-background-color: -color-bg;
+    -fx-background-radius: 4;
+    -fx-padding: 6;
+    -fx-opacity: 0.92;
+    -fx-min-width: 150;
+    -fx-max-width: 190;
+}
+
+.rc3-perc-panel-title {
+    -fx-font-size: 9px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-fg-subtle;
+    -fx-padding: 0 0 2 2;
+}
+
+.rc3-perc-frame {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-fg;
+}
+
+.rc3-perc-status {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+}
+
+.rc3-perc-item {
+    -fx-font-size: 10px;
+    -fx-text-fill: -color-fg;
+}
+
+.rc3-perc-count {
+    -fx-font-size: 9px;
+    -fx-text-fill: -color-fg-subtle;
+}
+
+.rc3-perc-live {
+    -fx-font-size: 9px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -color-success;
+}
+
+.rc3-perc-stale {
+    -fx-font-size: 9px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-danger;
+    -fx-background-radius: 3;
+    -fx-padding: 1 4 1 4;
+    /* background set in Java — translucent danger, matches the web's 18% wash */
+}
+
+.rc3-perc-legend-row,
+.rc3-perc-aoi-row {
+    -fx-padding: 3 6 3 6;
+    -fx-background-radius: 3;
+    -fx-cursor: hand;
+}
+
+.rc3-perc-legend-row:hover,
+.rc3-perc-aoi-row:hover {
+    -fx-background-color: -color-bg-muted;
+}
+
+.rc3-perc-aoi-row--selected {
+    -fx-border-color: #ff684d; /* Ember ring on the selected AOI */
+    -fx-border-width: 1;
+    -fx-border-radius: 3;
+}
+
+.rc3-perc-cam-btn {
+    -fx-background-color: -color-bg;
+    -fx-background-radius: 4;
+    -fx-text-fill: -color-fg-muted;
+    -fx-font-size: 12px;
+    -fx-opacity: 0.9;
+    -fx-cursor: hand;
+}
+
+.rc3-perc-cam-btn:hover {
+    -fx-text-fill: -color-fg;
+}
+
+.rc3-perc-scroll {
+    -fx-background-color: transparent;
+}
+
+/* Perception-view icons — match the web (per-kind swatch, AOI list tones, lucide cam glyphs). */
+.rc3-perc-swatch-mesh {
+    -fx-background-color: transparent;
+    -fx-border-color: -color-fg-muted;
+    -fx-border-width: 1;
+    -fx-border-radius: 1;
+}
+
+.rc3-perc-diamond--objective { -fx-background-color: -color-fg; }
+.rc3-perc-diamond--hazard    { -fx-background-color: -color-danger; }
+.rc3-perc-diamond--inspect   { -fx-background-color: -color-warning; }
+.rc3-perc-diamond--marker    { -fx-background-color: -color-fg-muted; }
+
+/* lucide icons are outlined — stroke only, no fill. */
+.rc3-perc-cam-icon {
+    -fx-stroke: -color-fg-muted;
+    -fx-fill: transparent;
+}
+
+.rc3-perc-cam-btn:hover .rc3-perc-cam-icon {
+    -fx-stroke: -color-fg;
+}

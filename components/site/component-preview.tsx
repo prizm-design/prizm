@@ -78,7 +78,11 @@ export function ComponentPreview({
           </PreviewSwatch>
         </div>
       ) : (
-        <div className="flex min-h-[200px] items-center justify-center p-10">{children}</div>
+        <div className="overflow-x-auto">
+          <div className="flex min-h-[200px] w-max min-w-full items-center justify-center p-10">
+            {children}
+          </div>
+        </div>
       )}
     </div>
   );
@@ -108,7 +112,11 @@ function PreviewSwatch({
       <div className="border-b border-border bg-bg-subtle px-3 py-1.5 text-[10px] font-medium uppercase tracking-wider text-fg-subtle">
         {label}
       </div>
-      <div className="flex flex-1 items-center justify-center p-8">{children}</div>
+      <div className="flex-1 overflow-x-auto">
+        <div className="flex h-full w-max min-w-full items-center justify-center p-8">
+          {children}
+        </div>
+      </div>
     </div>
   );
 }

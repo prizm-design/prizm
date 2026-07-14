@@ -47,7 +47,19 @@ import design.prizm.fx.controls.PrizmProse;
 import design.prizm.fx.controls.PrizmSkeleton;
 import design.prizm.fx.controls.PrizmTabs;
 import design.prizm.fx.controls.PrizmText;
+import design.prizm.fx.rc3.Rc3AutonomyModeSelector;
+import design.prizm.fx.rc3.Rc3CommsHealthStrip;
+import design.prizm.fx.rc3.Rc3ControllerInterface;
+import design.prizm.fx.rc3.Rc3Indicators;
+import design.prizm.fx.rc3.Rc3PerceptionView;
+import design.prizm.fx.rc3.Rc3PlatformDetail;
+import design.prizm.fx.rc3.Rc3PlatformRoster;
+import design.prizm.fx.rc3.Rc3SafetyActions;
+import design.prizm.fx.rc3.Rc3TelemetryHud;
+import design.prizm.fx.rc3.Rc3VideoTile;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import javafx.application.Application;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.geometry.Insets;
@@ -139,7 +151,19 @@ public class PrizmGallery extends Application {
             new Section("Navigation Menu", "Top menu bar with dropdowns.", navigationMenu()),
             new Section("Hover Card", "Floating preview on hover.", hoverCard()),
             new Section("Calendar", "Month grid with selection.", calendar()),
-            new Section("Command", "⌘K command palette.", command()));
+            new Section("Command", "⌘K command palette.", command()),
+            // RC3 (Robotics & Autonomy) extension-pack organisms. Toggle the RC3
+            // pack in the toolbar to see the Ember accent; identity marks are Ember
+            // regardless (inlined, like the web).
+            new Section("RC3 · Safety actions", "Two-tap arm/confirm; per-scope actions.", rc3SafetyActions()),
+            new Section("RC3 · Comms / health strip", "Platform and aggregated link state.", rc3CommsHealthStrip()),
+            new Section("RC3 · Autonomy mode selector", "Notched rail; arm on climb, immediate on descent.", rc3AutonomyModeSelector()),
+            new Section("RC3 · Video tile", "Sensor-feed frame with telemetry burn-in.", rc3VideoTile()),
+            new Section("RC3 · Telemetry HUD", "Domain-aware readout; strip posture.", rc3TelemetryHud()),
+            new Section("RC3 · Controller interface", "Read-only sticks, triggers, buttons.", rc3ControllerInterface()),
+            new Section("RC3 · Platform roster", "Selectable list; Ember-marked active row.", rc3PlatformRoster()),
+            new Section("RC3 · Platform detail", "Master-detail companion card.", rc3PlatformDetail()),
+            new Section("RC3 · Perception view", "Live 3D window into the swarm's map; reference renderer.", rc3PerceptionView()));
     }
 
     @Override
@@ -166,6 +190,17 @@ public class PrizmGallery extends Application {
         stage.show();
     }
 
+    private void launchAppShell() {
+        var shell = new design.prizm.fx.templates.PrizmAppShell();
+        shell.setPack(pack);
+        var shellScene = new Scene(shell, 1180, 760);
+        PrizmTheme.apply(shellScene, mode, pack);
+        var stage = new Stage();
+        stage.setTitle("PRIZM JavaFX — C3 App Shell");
+        stage.setScene(shellScene);
+        stage.show();
+    }
+
     private Region toolbar() {
         var title = new Label("PRIZM JavaFX");
         title.getStyleClass().add("gallery-title");
@@ -183,10 +218,14 @@ public class PrizmGallery extends Application {
             retheme();
         });
 
+        var launch = new PrizmButton("Launch App Shell", PrizmButton.Variant.OUTLINE);
+        launch.setSize(PrizmButton.Size.SM);
+        launch.setOnAction(e -> launchAppShell());
+
         var spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
 
-        var bar = new HBox(16, title, spacer, dark, rc3);
+        var bar = new HBox(16, title, spacer, launch, dark, rc3);
         bar.setAlignment(Pos.CENTER_LEFT);
         bar.setPadding(new Insets(14, 20, 14, 20));
         bar.getStyleClass().add("gallery-toolbar");
@@ -356,6 +395,412 @@ public class PrizmGallery extends Application {
     }
 
     private record Platform(String id, String cls, String status) {}
+
+    // ----- RC3 extension-pack organisms -----
+
+    private Node rc3SafetyActions() {
+        var platform = new Rc3SafetyActions(Rc3SafetyActions.Scope.PLATFORM);
+        var swarm = new Rc3SafetyActions(Rc3SafetyActions.Scope.SWARM);
+        var col = new VBox(16, platform, swarm);
+        col.setAlignment(Pos.CENTER_LEFT);
+        return col;
+    }
+
+    private Node rc3CommsHealthStrip() {
+        var single = new Rc3CommsHealthStrip();
+        single.setPlatform(new Rc3CommsHealthStrip.PlatformLink(
+            "UGV-04", 4, 84, true, Rc3CommsHealthStrip.LinkStatus.GOOD));
+
+        var agg = new Rc3CommsHealthStrip();
+        agg.setScope(Rc3CommsHealthStrip.Scope.SWARM);
+        agg.setPlatforms(List.of(
+            new Rc3CommsHealthStrip.PlatformLink("A", 4, null, false, Rc3CommsHealthStrip.LinkStatus.GOOD),
+            new Rc3CommsHealthStrip.PlatformLink("B", 3, null, false, Rc3CommsHealthStrip.LinkStatus.GOOD),
+            new Rc3CommsHealthStrip.PlatformLink("C", 2, null, false, Rc3CommsHealthStrip.LinkStatus.DEGRADED),
+            new Rc3CommsHealthStrip.PlatformLink("D", 0, null, false, Rc3CommsHealthStrip.LinkStatus.LOST)));
+
+        var col = new VBox(16, single, agg);
+        col.setAlignment(Pos.CENTER_LEFT);
+        return col;
+    }
+
+    private Node rc3AutonomyModeSelector() {
+        // Full rail (compact off) — the whole ladder stays visible.
+        var full = new Rc3AutonomyModeSelector();
+        full.setPlatform("UGV-04");
+        full.setFramed(true);
+        full.setCompact(false);
+        full.setActiveKey("supervised");
+        full.setOnTransition(full::setActiveKey); // controlled, like the web demo wrapper
+
+        // Compact (default) — a single glance row; the chevron discloses the rail.
+        var compact = new Rc3AutonomyModeSelector();
+        compact.setPlatform("UGV-04");
+        compact.setFramed(true);
+        compact.setActiveKey("supervised");
+        compact.setOnTransition(compact::setActiveKey);
+
+        var col = new VBox(16, labelledExample("Compact (default)", compact),
+            labelledExample("Full rail", full));
+        col.setAlignment(Pos.TOP_LEFT);
+        return col;
+    }
+
+    private Node labelledExample(String caption, Node example) {
+        var label = new PrizmText(caption).setSize(PrizmText.Size.XS).setTone(PrizmText.Tone.MUTED);
+        var box = new VBox(6, label, example);
+        box.setAlignment(Pos.TOP_LEFT);
+        return box;
+    }
+
+    private Node rc3VideoTile() {
+        // Four feed states, mirroring the web docs fixtures.
+        var live = new Rc3VideoTile("FPV · UGV-04", Rc3VideoTile.FeedStatus.LIVE);
+        live.setContent(videoPlaceholder("FPV · UGV-04", Rc3VideoTile.FeedStatus.LIVE));
+        live.setCoordinates("01°20'58\"N 103°49'13\"E");
+        live.setBearing(48);
+        live.setRange(1200.0);
+        live.setZoom(2);
+        live.setSensor(Rc3VideoTile.SensorMode.EO);
+
+        var degraded = new Rc3VideoTile("GIMBAL · UAV-09", Rc3VideoTile.FeedStatus.DEGRADED);
+        degraded.setContent(videoPlaceholder("GIMBAL · UAV-09", Rc3VideoTile.FeedStatus.DEGRADED));
+        degraded.setSensor(Rc3VideoTile.SensorMode.IR);
+        degraded.setZoom(4);
+
+        var minimal = new Rc3VideoTile("WIDE · UGV-05", Rc3VideoTile.FeedStatus.LIVE);
+        minimal.setContent(videoPlaceholder("WIDE · UGV-05", Rc3VideoTile.FeedStatus.LIVE));
+
+        var lost = new Rc3VideoTile("IR · UGV-07", Rc3VideoTile.FeedStatus.LOST);
+        lost.setContent(videoPlaceholder("IR · UGV-07", Rc3VideoTile.FeedStatus.LOST));
+
+        var col = new VBox(16,
+            labelledExample("Live · full telemetry", sizedTile(live)),
+            labelledExample("Degraded · sensor only", sizedTile(degraded)),
+            labelledExample("Live · minimal", sizedTile(minimal)),
+            labelledExample("Lost · no signal", sizedTile(lost)));
+        col.setAlignment(Pos.TOP_LEFT);
+        return col;
+    }
+
+    private Node sizedTile(Rc3VideoTile tile) {
+        tile.setPrefWidth(440);
+        tile.setMaxWidth(440);
+        return tile;
+    }
+
+    private Node videoPlaceholder(String source, Rc3VideoTile.FeedStatus status) {
+        var pane = new javafx.scene.layout.StackPane();
+        pane.getStyleClass().add("rc3-video-placeholder");
+        if (status != Rc3VideoTile.FeedStatus.LOST) {
+            var id = source.contains("·") ? source.substring(source.lastIndexOf("·") + 1).trim() : source;
+            var label = new Label("VIDEO FEED · " + id);
+            label.getStyleClass().addAll("rc3-mono", "rc3-video-placeholder-label");
+            pane.getChildren().add(label);
+        }
+        return pane;
+    }
+
+    private Node rc3TelemetryHud() {
+        // Strip posture — inline row.
+        var strip = new Rc3TelemetryHud();
+        strip.setPlatform("UAV-11");
+        strip.setDomain(Rc3TelemetryHud.UxvDomain.AERIAL);
+        strip.setSpeed(18.4, Rc3TelemetryHud.SpeedUnit.M_S);
+        strip.setVertical(120.0, Rc3TelemetryHud.VerticalUnit.M, "AGL");
+        strip.setHeading(275);
+        strip.setBattery(64);
+
+        // Frame posture — four-edge overlay around a centred viewport.
+        var frame = new Rc3TelemetryHud();
+        frame.setMode(Rc3TelemetryHud.HudMode.FRAME);
+        frame.setDomain(Rc3TelemetryHud.UxvDomain.AERIAL);
+        frame.setPlatform("UAV-11");
+        frame.setContent(frameViewport());
+        frame.setSpeed(18.4, Rc3TelemetryHud.SpeedUnit.M_S);
+        frame.setVertical(120.0, Rc3TelemetryHud.VerticalUnit.M, "AGL");
+        frame.setVerticalRate(2.5);
+        frame.setHeading(275);
+        frame.setBattery(64);
+        frame.setRoll(-4.0);
+        frame.setPitch(3.0);
+        frame.setMinSize(440, 260);
+        frame.setPrefSize(440, 260);
+        frame.setMaxSize(440, 260);
+
+        var col = new VBox(16, labelledExample("Strip", strip), labelledExample("Frame", frame));
+        col.setAlignment(Pos.TOP_LEFT);
+        return col;
+    }
+
+    private Node frameViewport() {
+        var bg = new Region();
+        bg.getStyleClass().add("rc3-frame-viewport");
+
+        // Docs-only map decoration behind the HUD: a faint grid + a dashed route.
+        var canvas = new javafx.scene.canvas.Canvas(440, 260);
+        var g = canvas.getGraphicsContext2D();
+        g.setLineWidth(1);
+        g.setStroke(javafx.scene.paint.Color.web("#ffffff", 0.05));
+        for (double x = 0; x <= 440; x += 24) {
+            g.strokeLine(x, 0, x, 260);
+        }
+        for (double y = 0; y <= 260; y += 24) {
+            g.strokeLine(0, y, 440, y);
+        }
+        g.setStroke(javafx.scene.paint.Color.web("#94a3b8", 0.45));
+        g.setLineDashes(4, 4);
+        g.beginPath();
+        g.moveTo(30, 210);
+        g.bezierCurveTo(150, 120, 300, 190, 410, 80);
+        g.stroke();
+
+        return new javafx.scene.layout.StackPane(bg, canvas);
+    }
+
+    private Node rc3ControllerInterface() {
+        var ctrl = new Rc3ControllerInterface();
+        ctrl.setPlatform("UGV-04");
+        ctrl.setLeftStick(new Rc3ControllerInterface.StickState(0, 0), "DRIVE");
+        ctrl.setRightStick(new Rc3ControllerInterface.StickState(0, 0), "GIMBAL");
+        ctrl.setLeftTrigger(0.0, "ZOOM");
+        ctrl.setRightTrigger(0.0, "FOCUS");
+        ctrl.setButtons(List.of(
+            new Rc3ControllerInterface.ControllerButton("a", "A", false, "HORN"),
+            new Rc3ControllerInterface.ControllerButton("b", "B", true, "REC"),
+            new Rc3ControllerInterface.ControllerButton("x", "X", false, "MARK"),
+            new Rc3ControllerInterface.ControllerButton("y", "Y", false, "RTL")));
+
+        // Animate the sticks + triggers like the web's live demo (the component is
+        // read-only; here the gallery plays the role of the consumer's input feed).
+        final double[] t = {0};
+        var tl = new javafx.animation.Timeline(new javafx.animation.KeyFrame(
+            javafx.util.Duration.millis(50), e -> {
+                t[0] += 0.06;
+                double lx = Math.sin(t[0]);
+                double ly = Math.sin(t[0] * 0.8 + 1.2) * 0.85;
+                double rx = Math.cos(t[0] * 1.1) * 0.7;
+                double ry = Math.sin(t[0] * 1.3) * 0.6;
+                double lt = (Math.sin(t[0] * 1.4) + 1) / 2;
+                double rt = (Math.sin(t[0] * 0.9 + 2) + 1) / 2;
+                ctrl.updateInputs(
+                    new Rc3ControllerInterface.StickState(lx, ly),
+                    new Rc3ControllerInterface.StickState(rx, ry),
+                    lt, rt);
+            }));
+        tl.setCycleCount(javafx.animation.Timeline.INDEFINITE);
+        tl.play();
+        return ctrl;
+    }
+
+    private Node rc3PlatformRoster() {
+        var roster = new Rc3PlatformRoster();
+        roster.setLabel("ECHELON BRAVO");
+        roster.setActiveId("UGV-04");
+        roster.setPlatforms(List.of(
+            new Rc3PlatformRoster.RosterEntry("UGV-04", Rc3PlatformRoster.LinkStatus.GOOD, 4, 84, "SUPERVISED", "UGV"),
+            new Rc3PlatformRoster.RosterEntry("UAV-11", Rc3PlatformRoster.LinkStatus.GOOD, 3, 61, "DELEGATED", "UAV"),
+            new Rc3PlatformRoster.RosterEntry("USV-02", Rc3PlatformRoster.LinkStatus.DEGRADED, 2, 45, "MANUAL", "USV"),
+            new Rc3PlatformRoster.RosterEntry("UUV-07", Rc3PlatformRoster.LinkStatus.LOST, 0, 12, null, "UUV")));
+        roster.setOnSelect(roster::setActiveId);
+        return roster;
+    }
+
+    private Node rc3PlatformDetail() {
+        // Strike platform — the extras compose the indicator alphabet (PipCount,
+        // StateText, StateDot) so payload / sensor state reads as instruments.
+        var detail = new Rc3PlatformDetail("UAV-07");
+        detail.setKlass("UAV");
+        detail.setDomain(Rc3PlatformDetail.UxvDomain.AERIAL);
+        detail.setLink(Rc3PlatformDetail.LinkStatus.GOOD);
+        detail.setSignal(4);
+        detail.setBattery(72);
+        detail.setAutonomy("DELEGATED");
+        detail.setPosition("01°22'14\"N 103°50'40\"E");
+        detail.setHeading(215);
+        detail.setSpeed(28.0, "kn");
+        detail.setVertical(3500.0, "ft", "AGL");
+        detail.setMission(new Rc3PlatformDetail.MissionStep(2, 5, "STRIKE A"));
+        detail.setOperator("CPT NG");
+        detail.setExtras(List.of(
+            new Rc3PlatformDetail.Extra("Payload", "Munition",
+                Rc3Indicators.pipCount(4, 4, "AGM-114", Rc3Indicators.Tone.SUCCESS)),
+            new Rc3PlatformDetail.Extra("Payload", "Status",
+                Rc3Indicators.stateText(Rc3Indicators.Tone.DANGER, "ARMED")),
+            new Rc3PlatformDetail.Extra("Sensors", "EO/IR",
+                Rc3Indicators.stateDot(Rc3Indicators.DotState.ACTIVE, "Tracking")),
+            new Rc3PlatformDetail.Extra("Sensors", "Radar",
+                Rc3Indicators.stateDot(Rc3Indicators.DotState.STANDBY, "Standby"))));
+        detail.setLastContact("0.3 s ago");
+        return detail;
+    }
+
+    // ----- Perception view sample scene (mid-rise building mapped by a swarm) -----
+
+    private static final double PV_HX = 9, PV_HY = 7, PV_H = 30;
+    private static final int PV_FLOORS = 6, PV_BAYS_X = 5, PV_BAYS_Y = 4;
+    private static final double PV_WIN = 0.2;
+
+    private Node rc3PerceptionView() {
+        var view = new Rc3PerceptionView();
+        view.setScene(buildPerceptionScene());
+        view.setAutoRotate(true);
+        view.setSelectedAoiId("smoke");
+        view.setPrefSize(560, 360);
+        view.setMaxWidth(560);
+        return view;
+    }
+
+    private Rc3PerceptionView.PerceptionScene buildPerceptionScene() {
+        var rand = new Random(0x5eedL);
+        var structure = buildStructure();
+        var aerial = new Rc3PerceptionView.PointCloudLayer(
+            "aerial-cloud", "Aerial cloud", "UAV-09", buildAerialPoints(rand));
+        var ground = new Rc3PerceptionView.PointCloudLayer(
+            "ground-cloud", "Ground cloud", "UGV-04", buildGroundPoints(rand));
+        var occupancy = new Rc3PerceptionView.OccupancyLayer(
+            "floor-occupancy", "Floor plan", "UGV-05", buildOccupancy(rand), 1.1);
+
+        // Static swarm ages: a mix of live + stale so provenance shows both states.
+        var sources = List.of(
+            new Rc3PerceptionView.PerceptionSource("UAV-09", 0.3),
+            new Rc3PerceptionView.PerceptionSource("UAV-11", 0.6),
+            new Rc3PerceptionView.PerceptionSource("UAV-14", 4.4),
+            new Rc3PerceptionView.PerceptionSource("UGV-04", 0.2),
+            new Rc3PerceptionView.PerceptionSource("UGV-05", 0.5),
+            new Rc3PerceptionView.PerceptionSource("UGV-07", 5.2));
+
+        double cellX = (2 * PV_HX) / PV_BAYS_X;
+        double cellY = (2 * PV_HY) / PV_BAYS_Y;
+        double floorH = PV_H / PV_FLOORS;
+        var aois = List.of(
+            new Rc3PerceptionView.AreaOfInterest("entry", "Entrance",
+                Rc3PerceptionView.AoiKind.OBJECTIVE, new Rc3PerceptionView.Vec3(-PV_HX - 1.5, 0, 1.4), "UGV-04", 0.93, 0.2),
+            new Rc3PerceptionView.AreaOfInterest("smoke", "Smoke",
+                Rc3PerceptionView.AoiKind.HAZARD,
+                new Rc3PerceptionView.Vec3(-PV_HX + 3.5 * cellX, PV_HY + PV_WIN, 5.5 * floorH), "UAV-09", 0.74, 0.3),
+            new Rc3PerceptionView.AreaOfInterest("casualty", "Casualty",
+                Rc3PerceptionView.AoiKind.INSPECT,
+                new Rc3PerceptionView.Vec3(PV_HX + PV_WIN, -PV_HY + 2.5 * cellY, 3.5 * floorH), "UAV-11", 0.61, 0.6),
+            new Rc3PerceptionView.AreaOfInterest("roof", "Roof access",
+                Rc3PerceptionView.AoiKind.MARKER,
+                new Rc3PerceptionView.Vec3(-PV_HX + 1.5 * cellX, PV_HY - 2, PV_H), null, 0.5, null));
+
+        return new Rc3PerceptionView.PerceptionScene(
+            Rc3PerceptionView.CoordinateFrame.ENU, sources,
+            List.of(structure, occupancy, ground, aerial), aois);
+    }
+
+    private List<Rc3PerceptionView.Vec3> buildAerialPoints(Random rand) {
+        var pts = new ArrayList<Rc3PerceptionView.Vec3>();
+        for (int i = 0; i < 200; i++) {
+            pts.add(new Rc3PerceptionView.Vec3(
+                (rand.nextDouble() * 2 - 1) * PV_HX, (rand.nextDouble() * 2 - 1) * PV_HY,
+                PV_H + (rand.nextDouble() - 0.5) * 0.4));
+        }
+        for (int i = 0; i < 120; i++) {
+            boolean onX = rand.nextDouble() > 0.5;
+            pts.add(new Rc3PerceptionView.Vec3(
+                onX ? (rand.nextDouble() * 2 - 1) * PV_HX : (rand.nextDouble() > 0.5 ? PV_HX : -PV_HX),
+                onX ? (rand.nextDouble() > 0.5 ? PV_HY : -PV_HY) : (rand.nextDouble() * 2 - 1) * PV_HY,
+                PV_H * (0.55 + rand.nextDouble() * 0.45)));
+        }
+        return pts;
+    }
+
+    private List<Rc3PerceptionView.Vec3> buildGroundPoints(Random rand) {
+        var pts = new ArrayList<Rc3PerceptionView.Vec3>();
+        for (int i = 0; i < 280; i++) {
+            boolean onX = rand.nextDouble() > 0.5;
+            pts.add(new Rc3PerceptionView.Vec3(
+                onX ? (rand.nextDouble() * 2 - 1) * PV_HX : (rand.nextDouble() > 0.5 ? PV_HX : -PV_HX),
+                onX ? (rand.nextDouble() > 0.5 ? PV_HY : -PV_HY) : (rand.nextDouble() * 2 - 1) * PV_HY,
+                PV_H * 0.5 * rand.nextDouble()));
+        }
+        for (int i = 0; i < 90; i++) {
+            pts.add(new Rc3PerceptionView.Vec3(
+                -PV_HX - rand.nextDouble() * 6, (rand.nextDouble() * 2 - 1) * PV_HY,
+                (rand.nextDouble() - 0.5) * 0.2));
+        }
+        return pts;
+    }
+
+    private List<Rc3PerceptionView.Vec3> buildOccupancy(Random rand) {
+        var voxels = new ArrayList<Rc3PerceptionView.Vec3>();
+        for (double x = -PV_HX + 1; x < PV_HX; x += 1.4) {
+            for (double y = -PV_HY + 1; y < PV_HY; y += 1.4) {
+                if (Math.abs(y) < 1.1 && x > -6 && x < 6) {
+                    continue;
+                }
+                if (rand.nextDouble() > 0.82) {
+                    continue;
+                }
+                voxels.add(new Rc3PerceptionView.Vec3(x, y, 0.2));
+            }
+        }
+        return voxels;
+    }
+
+    private Rc3PerceptionView.MeshLayer buildStructure() {
+        var vertices = new ArrayList<Rc3PerceptionView.Vec3>();
+        var faces = new ArrayList<int[]>();
+        // Outer shell — four walls + roof.
+        vertices.add(new Rc3PerceptionView.Vec3(-PV_HX, -PV_HY, 0));
+        vertices.add(new Rc3PerceptionView.Vec3(PV_HX, -PV_HY, 0));
+        vertices.add(new Rc3PerceptionView.Vec3(PV_HX, PV_HY, 0));
+        vertices.add(new Rc3PerceptionView.Vec3(-PV_HX, PV_HY, 0));
+        vertices.add(new Rc3PerceptionView.Vec3(-PV_HX, -PV_HY, PV_H));
+        vertices.add(new Rc3PerceptionView.Vec3(PV_HX, -PV_HY, PV_H));
+        vertices.add(new Rc3PerceptionView.Vec3(PV_HX, PV_HY, PV_H));
+        vertices.add(new Rc3PerceptionView.Vec3(-PV_HX, PV_HY, PV_H));
+        quad(faces, 0, 1, 5, 4);
+        quad(faces, 1, 2, 6, 5);
+        quad(faces, 2, 3, 7, 6);
+        quad(faces, 3, 0, 4, 7);
+        quad(faces, 4, 5, 6, 7);
+
+        double floorH = PV_H / PV_FLOORS;
+        double halfH = floorH * 0.32;
+        double cellX = (2 * PV_HX) / PV_BAYS_X;
+        for (double sy : new double[] {PV_HY, -PV_HY}) {
+            double oy = sy > 0 ? PV_WIN : -PV_WIN;
+            for (int fl = 0; fl < PV_FLOORS; fl++) {
+                double cz = (fl + 0.5) * floorH;
+                for (int b = 0; b < PV_BAYS_X; b++) {
+                    double cx = -PV_HX + (b + 0.5) * cellX;
+                    addWindow(vertices, faces, cx, sy + oy, cz, 1, 0, cellX * 0.28, halfH);
+                }
+            }
+        }
+        double cellY = (2 * PV_HY) / PV_BAYS_Y;
+        for (double sx : new double[] {PV_HX, -PV_HX}) {
+            double ox = sx > 0 ? PV_WIN : -PV_WIN;
+            for (int fl = 0; fl < PV_FLOORS; fl++) {
+                double cz = (fl + 0.5) * floorH;
+                for (int b = 0; b < PV_BAYS_Y; b++) {
+                    double cy = -PV_HY + (b + 0.5) * cellY;
+                    addWindow(vertices, faces, sx + ox, cy, cz, 0, 1, cellY * 0.28, halfH);
+                }
+            }
+        }
+        return new Rc3PerceptionView.MeshLayer("shell", "Structure", null, vertices, faces);
+    }
+
+    private static void quad(List<int[]> faces, int a, int b, int c, int d) {
+        faces.add(new int[] {a, b, c});
+        faces.add(new int[] {a, c, d});
+    }
+
+    private static void addWindow(List<Rc3PerceptionView.Vec3> verts, List<int[]> faces,
+        double cx, double cy, double cz, double ux, double uy, double halfW, double halfH) {
+        int i = verts.size();
+        verts.add(new Rc3PerceptionView.Vec3(cx - ux * halfW, cy - uy * halfW, cz - halfH));
+        verts.add(new Rc3PerceptionView.Vec3(cx + ux * halfW, cy + uy * halfW, cz - halfH));
+        verts.add(new Rc3PerceptionView.Vec3(cx + ux * halfW, cy + uy * halfW, cz + halfH));
+        verts.add(new Rc3PerceptionView.Vec3(cx - ux * halfW, cy - uy * halfW, cz + halfH));
+        faces.add(new int[] {i, i + 1, i + 2});
+        faces.add(new int[] {i, i + 2, i + 3});
+    }
 
     private Node tooltip() {
         var btn = new PrizmButton("Hover for tooltip", PrizmButton.Variant.OUTLINE);

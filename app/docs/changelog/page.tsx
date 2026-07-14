@@ -39,6 +39,17 @@ interface ChangelogDay {
 
 const CHANGELOG: ChangelogDay[] = [
   {
+    date: "2026-07-14",
+    entries: [
+      {
+        type: "foundation",
+        title: "PRIZM for JavaFX — thick-client C3 library",
+        body: "A parallel JavaFX library for native thick-client (desktop) C3 operator apps — C3 and its extension packs only. All 44 stable components are implemented at spec parity with the web, plus the C3 App Shell template and all nine RC3 (Robotics & Autonomy) extension-pack organisms — including a dependency-free Canvas reference renderer for the perception view. Themes are derived additively from the same token CSS; the React components and tokens are read, never modified. Explore it at /c3/javafx.",
+        href: "/c3/javafx",
+      },
+    ],
+  },
+  {
     date: "2026-06-26",
     entries: [
       {

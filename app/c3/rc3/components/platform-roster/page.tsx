@@ -1,5 +1,6 @@
 "use client";
 
+import { Rc3JavaFxSection } from "@/components/rc3/javafx-section";
 import { PlatformRoster, type RosterEntry } from "@/components/rc3/platform-roster";
 import { RC3Swatch } from "@/components/rc3/swatch";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
@@ -58,6 +59,7 @@ export default function PlatformRosterPage() {
       <Wiring />
       <Behaviour />
       <A11y />
+      <Rc3JavaFxSection slug="platform-roster" />
       <Usage />
     </div>
   );

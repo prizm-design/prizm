@@ -169,7 +169,9 @@ Reserved slugs with no source file yet. Surface them as roadmap; never copy or f
 
 A parallel JavaFX library for native desktop operator apps. **C3 and its extension packs only** — not Enterprise. Tokens are derived from the canonical CSS; controls are idiomatic JavaFX in spec parity with the React library. Source lives at `javafx/` (a Gradle module); not consumed via copy-paste of `.tsx`.
 
-- [JavaFX overview](/c3/javafx): scope, setup, theme swap, and the live Controls table (data-driven from the registry — the authoritative list of what ships). Controls carry the web component name, `Prizm`-prefixed (`PrizmButton`, `PrizmInput`, `PrizmSwitch`, `PrizmField`, …), each in spec parity with its React counterpart.
+- [JavaFX overview](/c3/javafx): scope, setup, theme swap, and the live tables of C3 controls, RC3 organisms, and templates (data-driven — the authoritative list of what ships). C3 controls carry the web component name `Prizm`-prefixed (`PrizmButton`, `PrizmInput`, `PrizmSwitch`, `PrizmField`, …); RC3 organisms are `Rc3`-prefixed. Each in spec parity with its React counterpart.
+- **RC3 organisms** — all nine ship natively (`Rc3SafetyActions`, `Rc3CommsHealthStrip`, `Rc3AutonomyModeSelector`, `Rc3VideoTile`, `Rc3TelemetryHud`, `Rc3ControllerInterface`, `Rc3PlatformRoster`, `Rc3PlatformDetail`, `Rc3PerceptionView`) in `javafx/src/main/java/design/prizm/fx/rc3/`, with the `Rc3Indicators` alphabet (pipCount / capacityBar / stateDot / stateText). `Rc3PerceptionView` has a Canvas reference renderer + `RenderDelegate`. Each `/c3/rc3/components/<slug>` page carries a JavaFX block.
+- **Templates** — the C3 App Shell ships as `PrizmAppShell` (`gradle runShell`).
 - Theme with `PrizmTheme.apply(scene, Mode.DARK, Pack.RC3)`. Regenerate token stylesheets with `pnpm generate:javafx-theme`.
 
 ## Optional
@@ -177,3 +179,4 @@ A parallel JavaFX library for native desktop operator apps. **C3 and its extensi
 - [Per-component LLM context files](/llms/) — deeper detail on each component for LLMs.
 - [Per-organism LLM context files for RC3](/llms/rc3/) — `safety-actions.md`, `comms-health-strip.md`, `autonomy-mode-selector.md`.
 - [Per-control LLM context files for the JavaFX library](/llms/javafx/) — one `<slug>.md` per JavaFX-ready control.
+- [Per-organism LLM context files for RC3 in JavaFX](/llms/rc3/javafx/) — one `<slug>.md` per RC3 organism's JavaFX port.

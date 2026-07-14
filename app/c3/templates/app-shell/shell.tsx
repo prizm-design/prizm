@@ -3,6 +3,7 @@
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import {
@@ -1342,58 +1343,54 @@ function WorkspacePanel({ glass, onClose }: { glass: boolean; onClose: () => voi
         <p className="px-3 pt-4 pb-2 text-[10px] font-semibold uppercase tracking-wider text-fg-subtle">
           Workspaces
         </p>
-        <ul>
+        <RadioGroup
+          value={activeWorkspaceId}
+          onValueChange={(v) => setActiveWorkspaceId(v as string)}
+          className="gap-0"
+        >
           {WORKSPACES.map((w) => {
             const isActive = w.id === activeWorkspaceId;
             return (
-              <li key={w.id}>
-                <button
-                  type="button"
-                  onClick={() => setActiveWorkspaceId(w.id)}
-                  className={cn(
-                    "flex w-full items-start gap-3 px-3 py-2.5 text-left transition-colors",
-                    isActive ? "bg-bg-muted" : "hover:bg-bg-muted/40",
-                  )}
-                >
-                  <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center">
-                    {isActive ? (
-                      <CheckCircle className="h-4 w-4 text-accent" />
-                    ) : (
-                      <span className="h-3 w-3 rounded-full border border-border" />
+              // biome-ignore lint/a11y/noLabelWithoutControl: RadioGroupItem (a Base UI role="radio" button) is nested inside as the control; biome only detects native inputs
+              <label
+                key={w.id}
+                className={cn(
+                  "flex w-full cursor-pointer items-start gap-3 px-3 py-2.5 transition-colors",
+                  isActive ? "bg-bg-muted" : "hover:bg-bg-muted/40",
+                )}
+              >
+                <RadioGroupItem value={w.id} className="mt-0.5" />
+                <span className="min-w-0 flex-1">
+                  <span className="flex items-center gap-2">
+                    <span
+                      className={cn(
+                        "truncate text-sm",
+                        isActive ? "font-semibold text-fg" : "text-fg",
+                      )}
+                    >
+                      {w.name}
+                    </span>
+                    {w.tone && (
+                      <Badge
+                        variant={w.tone}
+                        className="px-1.5 py-0 text-[10px] uppercase tracking-wider"
+                      >
+                        {w.tone === "danger"
+                          ? "Live"
+                          : w.tone === "warning"
+                            ? "Exercise"
+                            : w.tone === "info"
+                              ? "Training"
+                              : "OK"}
+                      </Badge>
                     )}
                   </span>
-                  <span className="min-w-0 flex-1">
-                    <span className="flex items-center gap-2">
-                      <span
-                        className={cn(
-                          "truncate text-sm",
-                          isActive ? "font-semibold text-fg" : "text-fg",
-                        )}
-                      >
-                        {w.name}
-                      </span>
-                      {w.tone && (
-                        <Badge
-                          variant={w.tone}
-                          className="px-1.5 py-0 text-[10px] uppercase tracking-wider"
-                        >
-                          {w.tone === "danger"
-                            ? "Live"
-                            : w.tone === "warning"
-                              ? "Exercise"
-                              : w.tone === "info"
-                                ? "Training"
-                                : "OK"}
-                        </Badge>
-                      )}
-                    </span>
-                    <span className="mt-0.5 block truncate text-xs text-fg-muted">{w.detail}</span>
-                  </span>
-                </button>
-              </li>
+                  <span className="mt-0.5 block truncate text-xs text-fg-muted">{w.detail}</span>
+                </span>
+              </label>
             );
           })}
-        </ul>
+        </RadioGroup>
       </div>
 
       {/* Footer */}

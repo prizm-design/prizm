@@ -234,8 +234,11 @@ The design language is shared, not the code. Colour tokens are *derived* from th
 - **Library** at `javafx/` (a Gradle module). Controls at `javafx/src/main/java/design/prizm/fx/controls/<Name>.java`; base styling at `javafx/src/main/resources/prizm/prizm.css`; generated themes at `javafx/src/main/resources/prizm/themes/`; LLM context at `llms/javafx/<slug>.md`.
 - **Theming** — apply a theme to a `Scene` with `PrizmTheme.apply(scene, Mode.DARK)`; switching mode or overlaying an extension pack (`Pack.RC3` → Ember) is the same call with different arguments, re-styling live.
 - **Available controls** — the operator-relevant core, growing as consumers need them: actions (`PrizmButton`), forms (`PrizmInput`, `PrizmTextarea`, `PrizmCheckbox`, `PrizmSwitch`, `PrizmRadioGroup`, `PrizmSelect`, `PrizmSlider`, `PrizmLabel`, `PrizmField`), layout (`PrizmCard`). The live, authoritative list is the Controls table on `/c3/javafx` (data-driven from the registry) — don't treat this line as exhaustive.
+- **RC3 extension-pack organisms** — the full set of nine RC3 signature organisms ship natively in `javafx/src/main/java/design/prizm/fx/rc3/`, `Rc3`-prefixed (`Rc3SafetyActions`, `Rc3CommsHealthStrip`, `Rc3AutonomyModeSelector`, `Rc3VideoTile`, `Rc3TelemetryHud`, `Rc3ControllerInterface`, `Rc3PlatformRoster`, `Rc3PlatformDetail`, `Rc3PerceptionView`). `Rc3PerceptionView` includes a dependency-free JavaFX `Canvas` reference renderer plus a `RenderDelegate` swap-in. The indicator alphabet (`Rc3Indicators.pipCount / capacityBar / stateDot / stateText`) composes into row values. Activate the Ember accent with `Pack.RC3`; identity marks are Ember regardless. API surface in `lib/rc3-javafx-api.ts`, per-organism context in `llms/rc3/javafx/<slug>.md`, and a JavaFX block on each `/c3/rc3/components/<slug>` page.
+- **Templates** — the C3 App Shell ships as `PrizmAppShell` (`javafx/src/main/java/design/prizm/fx/templates/`); run it with `gradle runShell` or the gallery's "Launch App Shell" button. Fill its slots rather than composing chrome from scratch, the same way you start from `C3AppShell` on the web.
+- **Naming** — C3 controls carry the web component name `Prizm`-prefixed; RC3 organisms are `Rc3`-prefixed to mark the pack. Match the registry slug, not the underlying JavaFX type.
 
-For the full overview see `/c3/javafx` on the docs site.
+For the full overview see `/c3/javafx` on the docs site — it lists C3 controls, the RC3 organisms, and the App Shell template.
 
 ## Overview pages — orientation and how-to
 

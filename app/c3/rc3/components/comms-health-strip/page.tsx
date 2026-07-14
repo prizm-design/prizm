@@ -3,6 +3,7 @@ import {
   type PlatformLink,
   type Scope,
 } from "@/components/rc3/comms-health-strip";
+import { Rc3JavaFxSection } from "@/components/rc3/javafx-section";
 import { RC3Swatch } from "@/components/rc3/swatch";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { CodeBlock } from "@/components/site/code-block";
@@ -95,6 +96,7 @@ export default function CommsHealthStripPage() {
       <Wiring />
       <Behaviour />
       <A11y />
+      <Rc3JavaFxSection slug="comms-health-strip" />
       <Usage />
     </div>
   );

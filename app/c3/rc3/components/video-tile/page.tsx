@@ -1,5 +1,6 @@
 "use client";
 
+import { Rc3JavaFxSection } from "@/components/rc3/javafx-section";
 import { RC3Swatch } from "@/components/rc3/swatch";
 import { type FeedStatus, VideoTile } from "@/components/rc3/video-tile";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
@@ -66,6 +67,7 @@ export default function VideoTilePage() {
       <Wiring />
       <Behaviour />
       <A11y />
+      <Rc3JavaFxSection slug="video-tile" />
       <Usage />
     </div>
   );

@@ -34,3 +34,16 @@ application {
 // plugin (like the Foojay resolver) doesn't support the very newest Gradle, so
 // it's wired up only after Gradle is pinned to a known-good version through the
 // wrapper. See README "Native packaging" for the two-step setup.
+
+// Launch the App Shell template directly (`gradle runShell`). The javafx
+// plugin only wires the OpenJFX module path onto the `run` task, so borrow
+// its jvmArgs here rather than re-deriving the module path.
+tasks.register<JavaExec>("runShell") {
+    group = "application"
+    description = "Launch the C3 App Shell template directly."
+    mainClass = "design.prizm.fx.templates.PrizmAppShellApp"
+    classpath = sourceSets["main"].runtimeClasspath
+    doFirst {
+        jvmArgs = tasks.named<JavaExec>("run").get().jvmArgs
+    }
+}

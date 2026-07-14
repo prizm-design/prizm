@@ -1,5 +1,6 @@
 "use client";
 
+import { Rc3JavaFxSection } from "@/components/rc3/javafx-section";
 import {
   type SafetyActionKey,
   SafetyActions,
@@ -32,6 +33,7 @@ export default function SafetyActionsPage() {
       <Wiring />
       <Behaviour />
       <A11y />
+      <Rc3JavaFxSection slug="safety-actions" />
       <Usage />
     </div>
   );
